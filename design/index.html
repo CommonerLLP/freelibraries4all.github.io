@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>India Library Spend Tracker</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0f172a;
+      --navy2: #1e293b;
+      --orange: #f97316;
+      --orange-light: #fed7aa;
+      --green: #16a34a;
+      --green-light: #bbf7d0;
+      --red: #dc2626;
+      --red-light: #fee2e2;
+      --yellow: #eab308;
+      --blue: #2563eb;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --card: #ffffff;
+      --bg: #f8fafc;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); }
+
+    /* HEADER */
+    .site-header { background: var(--navy); color: white; padding: 32px 24px 0; }
+    .header-inner { max-width: 1100px; margin: 0 auto; }
+    .header-flag { font-size: 28px; margin-bottom: 6px; }
+    .header-title { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.1; }
+    .header-title span { color: var(--orange); }
+    .header-sub { font-size: 14px; color: #94a3b8; margin-top: 6px; max-width: 580px; line-height: 1.5; }
+    .header-badge { display: inline-block; background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.4); color: var(--orange); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; margin-top: 10px; letter-spacing: 0.5px; }
+
+    /* HERO STATS */
+    .hero-stats { background: var(--navy); padding: 28px 24px 0; }
+    .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .hero-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px 22px; }
+    .hero-card.alert { background: rgba(220,38,38,0.15); border-color: rgba(220,38,38,0.4); }
+    .hero-card .value { font-size: 36px; font-weight: 800; color: white; line-height: 1; }
+    .hero-card .value.orange { color: var(--orange); }
+    .hero-card .value.red { color: #f87171; }
+    .hero-card .label { font-size: 12px; color: #94a3b8; margin-top: 6px; line-height: 1.4; }
+    .hero-card .sub { font-size: 11px; color: #64748b; margin-top: 8px; }
+    .hero-card .change { font-size: 12px; color: #86efac; margin-top: 4px; font-weight: 600; }
+
+    /* TABS */
+    .tabs-wrap { background: var(--navy); padding: 20px 24px 0; }
+    .tabs-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: 4px; }
+    .tab-btn { background: transparent; border: none; color: #94a3b8; font-size: 13px; font-weight: 600; padding: 10px 18px; border-radius: 8px 8px 0 0; cursor: pointer; transition: all 0.15s; letter-spacing: 0.2px; white-space: nowrap; }
+    .tab-btn:hover { background: rgba(255,255,255,0.08); color: white; }
+    .tab-btn.active { background: var(--bg); color: var(--orange); }
+
+    /* CONTENT */
+    .content { max-width: 1100px; margin: 0 auto; padding: 28px 24px 60px; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* SECTION HEADER */
+    .section-title { font-size: 20px; font-weight: 800; color: var(--text); }
+    .section-sub { font-size: 13px; color: var(--muted); margin-top: 5px; line-height: 1.5; max-width: 700px; }
+    .section-head { margin-bottom: 22px; }
+
+    /* CARDS */
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .card-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .card-title .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .dot-orange { background: var(--orange); }
+    .dot-red { background: var(--red); }
+    .dot-green { background: var(--green); }
+    .dot-blue { background: var(--blue); }
+
+    /* TOGGLE */
+    .toggle-row { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+    .toggle-label { font-size: 12px; color: var(--muted); font-weight: 600; }
+    .toggle-btn { background: var(--bg); border: 1px solid var(--border); color: var(--muted); font-size: 12px; font-weight: 600; padding: 5px 14px; border-radius: 6px; cursor: pointer; transition: all 0.15s; }
+    .toggle-btn.active { background: var(--orange); border-color: var(--orange); color: white; }
+    .insight-box { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 12px 16px; font-size: 12px; color: #9a3412; line-height: 1.5; margin-top: 14px; }
+    .insight-box strong { color: #7c2d12; }
+
+    /* CHART CONTAINERS */
+    .chart-wrap { position: relative; }
+    .chart-wrap canvas { max-width: 100%; }
+
+    /* STATE TABLE */
+    .state-controls { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+    .year-select { background: var(--bg); border: 1px solid var(--border); color: var(--text); font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 6px; cursor: pointer; }
+    .sort-select { background: var(--bg); border: 1px solid var(--border); color: var(--text); font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 6px; cursor: pointer; }
+
+    .state-table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th { background: var(--navy); color: white; padding: 8px 12px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer; white-space: nowrap; }
+    th:hover { background: #1e293b; }
+    td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    tr:hover td { background: #f1f5f9; }
+    .act-badge { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; white-space: nowrap; }
+    .act-yes { background: var(--green-light); color: #166534; }
+    .act-no { background: #f1f5f9; color: var(--muted); }
+    .spend-bar-cell { display: flex; align-items: center; gap: 8px; }
+    .spend-bar { height: 8px; border-radius: 4px; min-width: 2px; background: var(--orange); transition: width 0.3s; }
+    .spend-val { font-weight: 700; color: var(--text); min-width: 48px; text-align: right; font-size: 12px; }
+    .trend-arrow { font-size: 14px; }
+    .trend-up { color: var(--green); }
+    .trend-dn { color: var(--red); }
+    .trend-fl { color: var(--muted); }
+    .state-name-cell { font-weight: 600; }
+
+    /* SCATTER LEGEND */
+    .legend-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 14px; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+    /* HIGHLIGHT CALLOUTS */
+    .callout-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 16px; }
+    .callout { border-radius: 10px; padding: 14px 16px; }
+    .callout.orange { background: #fff7ed; border: 1px solid #fed7aa; }
+    .callout.green { background: #f0fdf4; border: 1px solid #bbf7d0; }
+    .callout.red { background: #fef2f2; border: 1px solid #fecaca; }
+    .callout.blue { background: #eff6ff; border: 1px solid #bfdbfe; }
+    .callout .c-val { font-size: 22px; font-weight: 800; line-height: 1; }
+    .callout.orange .c-val { color: #c2410c; }
+    .callout.green .c-val { color: #166534; }
+    .callout.red .c-val { color: #991b1b; }
+    .callout.blue .c-val { color: #1d4ed8; }
+    .callout .c-label { font-size: 11px; color: var(--muted); margin-top: 5px; line-height: 1.4; }
+
+    /* STATE DETAIL */
+    .state-detail { background: var(--navy); border-radius: 10px; padding: 18px 20px; color: white; margin-top: 16px; display: none; }
+    .state-detail.visible { display: block; }
+    .state-detail-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--orange); }
+    .state-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    /* FOOTER */
+    .site-footer { background: var(--navy); color: #64748b; padding: 28px 24px; font-size: 11px; line-height: 1.7; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-inner a { color: #94a3b8; text-decoration: none; }
+    .footer-inner strong { color: #e2e8f0; }
+
+    /* NOTE PILL */
+    .note { display: inline-block; background: #fffbeb; border: 1px solid #fde68a; color: #92400e; font-size: 11px; padding: 4px 10px; border-radius: 6px; margin-top: 10px; }
+
+    @media (max-width: 640px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .tabs-inner { overflow-x: auto; }
+      .hero-card .value { font-size: 28px; }
+      .state-detail-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="site-header">
+  <div class="header-inner">
+    <div class="header-flag">📚 🇮🇳</div>
+    <div class="header-title">India <span>Library Spend</span> Tracker</div>
+    <div class="header-sub">How much are Indian states and the Government of India spending on public libraries — and how does it compare to the rest of the world?</div>
+    <div class="header-badge">DATA: 2014–15 to 2020–21 · 31 STATES · RRRLF 2003–2024 · PARLIAMENT 2025 SESSION</div>
+  </div>
+</div>
+
+<!-- HERO STATS -->
+<div class="hero-stats">
+  <div class="hero-inner">
+    <div class="hero-card">
+      <div class="value orange">₹15.30</div>
+      <div class="label">India average per-capita public library spend (2020–21)</div>
+      <div class="change">↑ +59% since 2014–15</div>
+      <div class="sub">Excl. Goa outlier: ~₹13.40/capita</div>
+    </div>
+    <div class="hero-card alert">
+      <div class="value red">232×</div>
+      <div class="label">Less than the USA in nominal USD terms ($0.18 vs $42 per person)</div>
+      <div class="sub">In PPP terms: still 54× less than USA · 80× less than Finland</div>
+    </div>
+    <div class="hero-card">
+      <div class="value orange">₹197 Cr</div>
+      <div class="label">Total RRMLF grants disbursed, 2003–2023 (₹19,697 lakhs)</div>
+      <div class="change">Post-2012 avg: 3.7× pre-2012 avg</div>
+      <div class="sub">10 of 14 states with library acts spend below national average</div>
+    </div>
+  </div>
+</div>
+
+<!-- SHAME STRIP -->
+<div style="background:#fef3c7; border-bottom:2px solid #f59e0b; padding:14px 24px;">
+  <div style="max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+    <div style="font-size:18px;">⚡</div>
+    <div style="font-size:13px; font-weight:700; color:#78350f;">India spends ₹15.30 per person per year on public libraries —</div>
+    <div id="shameRotator" style="font-size:13px; color:#92400e; font-style:italic; flex:1;"></div>
+    <div style="font-size:11px; color:#a16207; white-space:nowrap;">📢 <a href="#" onclick="showTab('act'); document.querySelector('[onclick*=parliament]').click(); return false;" style="color:#b45309; font-weight:600;">See Parliament 2025 data →</a></div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-wrap">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="showTab('world')">🌍 India vs World</button>
+    <button class="tab-btn" onclick="showTab('states')">🗺 State Tracker</button>
+    <button class="tab-btn" onclick="showTab('rrmlf')">📊 RRRLF Grants</button>
+    <button class="tab-btn" onclick="showTab('legislation')">⚖️ Legislation Gap</button>
+    <button class="tab-btn" onclick="showTab('reportcard')">🏅 State Report Card</button>
+    <button class="tab-btn" onclick="showTab('parliament')">🏛 Parliament 2025</button>
+    <button class="tab-btn" onclick="showTab('writemp')" style="background:rgba(249,115,22,0.15); color:#c2410c; border:1px solid rgba(249,115,22,0.4);">✉️ Write to Your MP</button>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- TAB 1: INDIA VS WORLD -->
+  <div class="tab-panel active" id="tab-world">
+    <div class="section-head">
+      <div class="section-title">India vs the World: Public Library Spending Per Capita</div>
+      <div class="section-sub">Comparing India's national average and top-performing state (Goa) against countries with documented public library expenditure data. Use the toggle to switch between nominal USD and PPP-adjusted international dollars.</div>
+    </div>
+
+    <div class="card">
+      <div class="toggle-row">
+        <span class="toggle-label">Currency view:</span>
+        <button class="toggle-btn active" id="btn-nominal" onclick="setWorldView('nominal')">Nominal USD</button>
+        <button class="toggle-btn" id="btn-ppp" onclick="setWorldView('ppp')">PPP International $</button>
+      </div>
+      <div class="chart-wrap" style="height:420px;">
+        <canvas id="worldChart"></canvas>
+      </div>
+      <div class="insight-box">
+        <strong>What PPP means:</strong> In nominal USD, India's ₹15.30 = $0.18 — making the gap with Finland look like <strong>367×</strong>. In PPP (purchasing power parity) terms — adjusting for what money actually buys in each country — it becomes <strong>$0.78</strong>, narrowing the gap to ~80×. Both framings are valid: nominal shows raw cash committed; PPP shows relative public investment effort. Either way, the gap is vast.
+      </div>
+      <div class="note">⚠️ Goa (₹140/capita = $1.69 nominal / $7.18 PPP) skews India's national average upward by ~12%. Excluding Goa, India avg = ₹13.40 ($0.16 nominal / $0.69 PPP).</div>
+    </div>
+
+    <div class="callout-grid">
+      <div class="callout red">
+        <div class="c-val">80×</div>
+        <div class="c-label">India spends 80× less than Finland per person, even after PPP adjustment</div>
+      </div>
+      <div class="callout orange">
+        <div class="c-val">$0.78</div>
+        <div class="c-label">India avg per capita in PPP international dollars (2020–21)</div>
+      </div>
+      <div class="callout blue">
+        <div class="c-val">$7.18</div>
+        <div class="c-label">Goa (best Indian state) in PPP $ — still below UK's $22</div>
+      </div>
+      <div class="callout green">
+        <div class="c-val">$0.013</div>
+        <div class="c-label">Bihar (worst Indian state) in PPP $ — less than 2 paise per person</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: STATE TRACKER -->
+  <div class="tab-panel" id="tab-states">
+    <div class="section-head">
+      <div class="section-title">State-by-State Library Expenditure Tracker</div>
+      <div class="section-sub">Per-capita public library expenditure (₹) across 31 Indian states and UTs, 2014–15 to 2020–21. Click any state row to see its 7-year trend. Green badge = state has a Public Library Act.</div>
+    </div>
+
+    <div class="card">
+      <div class="state-controls">
+        <span class="toggle-label">Show year:</span>
+        <select class="year-select" id="yearSelect" onchange="renderStateChart()">
+          <option value="6" selected>2020–21</option>
+          <option value="5">2019–20</option>
+          <option value="4">2018–19</option>
+          <option value="3">2017–18</option>
+          <option value="2">2016–17</option>
+          <option value="1">2015–16</option>
+          <option value="0">2014–15</option>
+        </select>
+        <span class="toggle-label" style="margin-left:8px;">Sort by:</span>
+        <select class="sort-select" id="sortSelect" onchange="renderStateChart()">
+          <option value="desc">Highest first</option>
+          <option value="asc">Lowest first</option>
+          <option value="name">State name</option>
+          <option value="change">Biggest 7-yr change</option>
+        </select>
+        <span class="toggle-label" style="margin-left:8px;">Filter:</span>
+        <select class="sort-select" id="filterSelect" onchange="renderStateChart()">
+          <option value="all">All states</option>
+          <option value="act">Has Library Act</option>
+          <option value="noact">No Library Act</option>
+        </select>
+      </div>
+      <div class="chart-wrap" style="height:520px;">
+        <canvas id="stateBarChart"></canvas>
+      </div>
+    </div>
+
+    <div class="state-detail" id="stateDetail">
+      <div class="state-detail-title" id="stateDetailTitle">State trend</div>
+      <div class="state-detail-grid">
+        <div>
+          <canvas id="stateTrendChart" height="160"></canvas>
+        </div>
+        <div id="stateDetailInfo" style="font-size:12px; line-height:1.7; color:#cbd5e1;"></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <div class="card-title"><span class="dot dot-orange"></span>All States — Full Data Table</div>
+      <div class="state-table-wrap">
+        <table id="stateTable">
+          <thead>
+            <tr>
+              <th onclick="sortTable(0)">State / UT ↕</th>
+              <th onclick="sortTable(1)">Library Act</th>
+              <th onclick="sortTable(2)">2014–15 (₹)</th>
+              <th onclick="sortTable(3)">2017–18 (₹)</th>
+              <th onclick="sortTable(4)">2020–21 (₹)</th>
+              <th onclick="sortTable(5)">7-yr Change</th>
+            </tr>
+          </thead>
+          <tbody id="stateTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: RRRLF GRANTS -->
+  <div class="tab-panel" id="tab-rrmlf">
+    <div class="section-head">
+      <div class="section-title">RRRLF Central Grants — Trend &amp; State Distribution</div>
+      <div class="section-sub">Raja Rammohun Roy Library Foundation (RRRLF) grant data. Historical trend (2003–2023) by year of institution; plus 2021–25 year-wise state breakdown from Rajya Sabha Q.1316, 31 July 2025. Total released 2021–24: ₹76.7 crore.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="dot dot-orange"></span>Annual Grant Flow (₹ Lakhs) — Historical Trend</div>
+      <div class="chart-wrap" style="height:340px;">
+        <canvas id="rrmlfChart"></canvas>
+      </div>
+      <div class="insight-box">
+        <strong>The 2012 inflection point:</strong> Grants surged from an average of ₹395 lakhs/year (pre-2012) to ₹1,444 lakhs/year (post-2012) — a <strong>3.7× jump</strong>, coinciding with the launch of the National Mission on Libraries (NML). The <strong>2022 peak</strong> of ₹2,680 lakhs was followed by a drop in 2023. New Parliament data (Q.1316, July 2025) shows year-wise state releases of ₹2,490 lakh (2021-22), ₹1,571 lakh (2022-23), ₹2,374 lakh (2023-24) — volatile but active.
+      </div>
+    </div>
+
+    <div class="callout-grid">
+      <div class="callout orange">
+        <div class="c-val">₹2,490 Lk</div>
+        <div class="c-label">2021-22 — Released to states. Maharashtra &amp; West Bengal dominate.</div>
+      </div>
+      <div class="callout red">
+        <div class="c-val">₹0 Released</div>
+        <div class="c-label">Assam (2023-24): ₹47.4L sanctioned but nothing disbursed. Bihar same.</div>
+      </div>
+      <div class="callout blue">
+        <div class="c-val">Gujarat</div>
+        <div class="c-label">Consistently top recipient: 1,526–2,039 libraries/year, ₹3–4 crore annually.</div>
+      </div>
+      <div class="callout green">
+        <div class="c-val">Jharkhand</div>
+        <div class="c-label">Zero RRRLF grants 2021–25, despite 2 NML-sanctioned libraries. Policy gap confirmed by 2016 Lok Sabha answer.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 20px;">
+      <div class="card-title"><span class="dot dot-blue"></span>State-wise RRRLF Release — 2023-24
+        <span style="font-size:12px; color:var(--muted); font-weight:400; margin-left:8px;">(₹ Lakhs, source: RS Q.1316)</span>
+      </div>
+      <div class="chart-wrap" style="height:360px;">
+        <canvas id="rrrlfStateChart"></canvas>
+      </div>
+      <div class="insight-box">
+        <strong>2023-24 concentration:</strong> Just 4 states — Tamil Nadu, Maharashtra, Gujarat, and Uttar Pradesh — absorbed <strong>70%</strong> of all RRRLF releases. 18 of 36 states/UTs received ₹0 from RRRLF in 2023-24. Assam was sanctioned ₹47.4 lakhs but released nothing. Jharkhand, Kerala, Punjab, Bihar remain absent or near-zero for multiple consecutive years.
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 20px;">
+      <div class="card-title"><span class="dot dot-blue"></span>Cumulative Grants Over Time (₹ Lakhs)</div>
+      <div class="chart-wrap" style="height:240px;">
+        <canvas id="rrmlfCumChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: LEGISLATION GAP -->
+  <div class="tab-panel" id="tab-legislation">
+    <div class="section-head">
+      <div class="section-title">The Legislation Paradox: Does a Library Law Mean Actual Spending?</div>
+      <div class="section-sub">14 of 36 states/UTs have enacted Public Library Acts. The data shows a surprisingly weak relationship between having a law and actually spending on libraries. 10 of 14 act-states spend below the national average.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="dot dot-orange"></span>Act States vs No-Act States — Average Per-Capita Spending by Year</div>
+      <div class="chart-wrap" style="height:320px;">
+        <canvas id="actChart"></canvas>
+      </div>
+      <div class="insight-box">
+        <strong>Legislation correlates weakly with spending.</strong> States with library acts spend on average only <strong>1.4× more</strong> than states without — far less than one would expect. The effect is driven by outliers like Goa, Karnataka (historically) and Andhra Pradesh. Remove these and the gap narrows further. Having a law is necessary but clearly not sufficient.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="dot dot-red"></span>The Paradox in Detail — 2020–21 Per-Capita vs Library Act Status</div>
+      <div class="chart-wrap" style="height:400px;">
+        <canvas id="paradoxChart"></canvas>
+      </div>
+      <div class="legend-row">
+        <div class="legend-item"><div class="legend-dot" style="background:#16a34a"></div>Has Library Act</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#dc2626"></div>No Library Act</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#f97316; width:14px; height:14px;"></div>National Average (₹15.30)</div>
+      </div>
+      <div class="callout-grid" style="margin-top:16px;">
+        <div class="callout red">
+          <div class="c-val">10 of 14</div>
+          <div class="c-label">Act-states spending <em>below</em> national average of ₹15.30/capita</div>
+        </div>
+        <div class="callout green">
+          <div class="c-val">4 states</div>
+          <div class="c-label">Without any Library Act that still spend <em>above</em> national average (Puducherry, Arunachal Pradesh, Sikkim, Mizoram)</div>
+        </div>
+        <div class="callout orange">
+          <div class="c-val">Chhattisgarh</div>
+          <div class="c-label">Has a Library Act (2006) but spends just ₹1.22/capita — 12× below national average</div>
+        </div>
+        <div class="callout blue">
+          <div class="c-val">Maharashtra</div>
+          <div class="c-label">Act since 1967 (57 years!) but spends ₹10.14/capita — still below average</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 5: STATE REPORT CARD -->
+  <div class="tab-panel" id="tab-reportcard">
+    <div class="section-head">
+      <div class="section-title">State Library Report Card — How Does Your State Perform?</div>
+      <div class="section-sub">Every state graded A–F across four dimensions: per-capita spending, library legislation, RRRLF grant utilization, and NML participation. Data sources: Ministry of Culture 2020-21, Parliament Q.1316 (2025), NML Scheme Annexures.</div>
+    </div>
+    <div class="card">
+      <div id="reportCardGrid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px;"></div>
+      <div style="margin-top:20px; padding:14px; background:#f8fafc; border-radius:8px; border:1px solid var(--border); font-size:12px; color:var(--muted);">
+        <strong>Scoring methodology:</strong> Per-capita spend (50 pts) · Library Act (20 pts) · RRRLF utilization 2021-24 (20 pts) · NML participation (10 pts). Grade: A ≥85 · B ≥70 · C ≥55 · D ≥40 · F &lt;40
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 6: WRITE TO YOUR MP -->
+  <div class="tab-panel" id="tab-writemp">
+    <div class="section-head">
+      <div class="section-title">Write to Your MP — Make Your Voice Count</div>
+      <div class="section-sub">Select your state to generate a personalised, data-backed letter to your Member of Parliament calling for stronger library investment. Copy, print, or email it directly to your MP via the Lok Sabha / Rajya Sabha grievance portals.</div>
+    </div>
+    <div class="card">
+      <div style="display:flex; gap:16px; align-items:flex-end; flex-wrap:wrap; margin-bottom:20px;">
+        <div>
+          <label style="display:block; font-size:12px; font-weight:600; color:var(--muted); margin-bottom:6px;">SELECT YOUR STATE / UT</label>
+          <select id="mpStateSelect" onchange="generateLetter()" style="padding:10px 14px; border:2px solid var(--border); border-radius:8px; font-size:14px; background:white; min-width:220px;">
+            <option value="">— Choose a state —</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block; font-size:12px; font-weight:600; color:var(--muted); margin-bottom:6px;">YOUR NAME (optional)</label>
+          <input id="mpName" type="text" placeholder="e.g. Priya Sharma" oninput="generateLetter()" style="padding:10px 14px; border:2px solid var(--border); border-radius:8px; font-size:14px; width:200px;">
+        </div>
+        <button onclick="copyLetter()" style="padding:10px 20px; background:var(--orange); color:white; border:none; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer;">📋 Copy Letter</button>
+      </div>
+      <div id="letterOutput" style="display:none;">
+        <div style="background:#f8fafc; border:2px solid var(--border); border-radius:10px; padding:24px; font-family:Georgia,serif; font-size:14px; line-height:1.8; color:#1e293b; white-space:pre-wrap;" id="letterText"></div>
+        <div style="margin-top:12px; padding:12px; background:var(--orange-light); border-radius:8px; font-size:12px; color:#7c2d12;">
+          <strong>How to send:</strong> Find your MP's contact at <strong>loksabha.nic.in/Members</strong> (Lok Sabha) or <strong>rajyasabha.gov.in/rsnew/member</strong> (Rajya Sabha). You can also submit via the <strong>CPGRAMS portal</strong> (pgportal.gov.in) addressed to Ministry of Culture.
+        </div>
+      </div>
+      <div id="letterPlaceholder" style="text-align:center; padding:40px; color:var(--muted);">
+        <div style="font-size:48px; margin-bottom:12px;">✉️</div>
+        <div style="font-size:15px;">Select your state above to generate a personalised advocacy letter</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <div class="card-title"><span class="dot dot-orange"></span>Other Advocacy Actions</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;">
+        <div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px;">
+          <div style="font-size:20px; margin-bottom:8px;">📨</div>
+          <div style="font-weight:700; font-size:13px; color:#14532d;">Tag your MP on social media</div>
+          <div style="font-size:12px; color:#166534; margin-top:6px;">Share the India Library Spend Tracker dashboard with your state's statistics. Use <strong>#LibrariesForIndia</strong> and <strong>#NationalLibraryPolicy</strong></div>
+        </div>
+        <div style="background:#eff6ff; border:1px solid #93c5fd; border-radius:10px; padding:16px;">
+          <div style="font-size:20px; margin-bottom:8px;">🏛</div>
+          <div style="font-weight:700; font-size:13px; color:#1e3a8a;">Parliamentary Standing Committee</div>
+          <div style="font-size:12px; color:#1e40af; margin-top:6px;">Write to the <strong>Standing Committee on Education, Women, Children, Youth &amp; Sports</strong> — they have jurisdiction over the Ministry of Culture's library budget.</div>
+        </div>
+        <div style="background:#fef3c7; border:1px solid #fde68a; border-radius:10px; padding:16px;">
+          <div style="font-size:20px; margin-bottom:8px;">📰</div>
+          <div style="font-weight:700; font-size:13px; color:#78350f;">Pitch to journalists</div>
+          <div style="font-size:12px; color:#92400e; margin-top:6px;">Share this dashboard with education reporters at The Hindu, Indian Express, and Wire. The state-wise inequity data is a ready-made story — no National Library Policy in 77 years of independence.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 7: PARLIAMENT 2025 -->
+  <div class="tab-panel" id="tab-parliament">
+    <div class="section-head">
+      <div class="section-title">Parliament 2025: What MPs Are Asking About Libraries</div>
+      <div class="section-sub">Analysis of Lok Sabha &amp; Rajya Sabha questions from the July–August 2025 budget session. 7 Q&amp;A documents analysed covering NML scheme status, RRRLF allocations, and rural library gaps. Data sourced from official Ministry of Culture replies.</div>
+    </div>
+
+    <!-- NML Status -->
+    <div class="card">
+      <div class="card-title"><span class="dot dot-orange"></span>National Mission on Libraries (NML) — Current Status</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+        <div style="background:#f8fafc; border-radius:10px; padding:18px; border:1px solid var(--border);">
+          <div style="font-size:28px; font-weight:800; color:var(--orange);">64</div>
+          <div style="font-size:13px; color:var(--muted); margin-top:4px;">Libraries sanctioned under NML across all states/UTs</div>
+        </div>
+        <div style="background:#f8fafc; border-radius:10px; padding:18px; border:1px solid var(--border);">
+          <div style="font-size:28px; font-weight:800; color:var(--green);">₹7,872 Lk</div>
+          <div style="font-size:13px; color:var(--muted); margin-top:4px;">Total sanctioned (central + state share combined)</div>
+        </div>
+        <div style="background:#f8fafc; border-radius:10px; padding:18px; border:1px solid var(--border);">
+          <div style="font-size:28px; font-weight:800; color:var(--blue);">₹5,807 Lk</div>
+          <div style="font-size:13px; color:var(--muted); margin-top:4px;">Total released (74% of sanctioned) — central ₹4,307L + state ₹890L</div>
+        </div>
+        <div style="background:var(--red-light); border-radius:10px; padding:18px; border:1px solid #fca5a5;">
+          <div style="font-size:28px; font-weight:800; color:var(--red);">26%</div>
+          <div style="font-size:13px; color:#7f1d1d; margin-top:4px;">Of sanctioned amount remains unreleased — ₹2,065 lakh stuck in pipeline</div>
+        </div>
+      </div>
+      <div class="insight-box">
+        <strong>Source:</strong> Lok Sabha Unstarred Q.†2365 (04.08.2025, MP: Bharadwaj) &amp; Q.†4081 (18.08.2025, MP: Thakur) — Ministry of Culture. The government confirmed that <strong>digitization of public libraries was deferred as a "state subject"</strong>, deflecting central responsibility. By Aug 2025, ₹5,678 lakh (98% of released) had been utilised by states.
+      </div>
+    </div>
+
+    <!-- State-level NML gaps -->
+    <div class="callout-grid">
+      <div class="callout red">
+        <div class="c-val">Indore, MP</div>
+        <div class="c-label">₹87L sanctioned, only ₹43.67L released (50%). One of largest release gaps in NML. (Q.*120, Starred, 28.07.2025)</div>
+      </div>
+      <div class="callout green">
+        <div class="c-val">Khandwa, MP</div>
+        <div class="c-label">₹73.20L sanctioned, ₹65.59L released (90% release rate — model case). Same question, MP: Sharma.</div>
+      </div>
+      <div class="callout orange">
+        <div class="c-val">Jharkhand</div>
+        <div class="c-label">In NML list (Dhanbad + Palamau libraries), but near-zero RRRLF grants 2021–25. 2016 answer explicitly said "No plan for rural libraries in Jharkhand." Consistent neglect.</div>
+      </div>
+      <div class="callout blue">
+        <div class="c-val">Goa</div>
+        <div class="c-label">India's highest per-capita state spend (₹140/capita) but NML utilization near zero — relies entirely on own funds. State self-sufficiency model.</div>
+      </div>
+    </div>
+
+    <!-- RRRLF Q.1316 -->
+    <div class="card" style="margin-top:20px;">
+      <div class="card-title"><span class="dot dot-blue"></span>RRRLF Allocation Deep-Dive — Rajya Sabha Q.1316 (31.07.2025)</div>
+      <p style="color:var(--muted); font-size:13px; margin-bottom:16px;">Raised by Dr. V. Sivadasan (RS). Ministry of Culture tabled full state-wise financial data 2014-15 through 2024-25 — the most granular RRRLF data ever tabled in Parliament. Key findings:</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:16px;">
+        <div style="background:#fef3c7; border-radius:8px; padding:14px; border:1px solid #fde68a;">
+          <div style="font-weight:700; font-size:14px; color:#92400e;">Gujarat — Perpetual #1</div>
+          <div style="font-size:12px; color:#78350f; margin-top:6px;">1,526–2,039 libraries/year; ₹3–4 crore annually; 2021–24. 5 different schemes utilised. Benefits from strong state library infrastructure + proactive RRRLF applications.</div>
+        </div>
+        <div style="background:#fee2e2; border-radius:8px; padding:14px; border:1px solid #fca5a5;">
+          <div style="font-weight:700; font-size:14px; color:#7f1d1d;">The Zero-Release Problem</div>
+          <div style="font-size:12px; color:#7f1d1d; margin-top:6px;">Assam 2023-24: ₹47.4L sanctioned, ₹0 released. Bihar 2023-24: ₹2.5L sanctioned, ₹0 released. Telangana 2022-23: ₹3L sanctioned, ₹0 released. Funds approved but unspent.</div>
+        </div>
+        <div style="background:#dbeafe; border-radius:8px; padding:14px; border:1px solid #93c5fd;">
+          <div style="font-weight:700; font-size:14px; color:#1e3a8a;">Erratic State Participation</div>
+          <div style="font-size:12px; color:#1e40af; margin-top:6px;">West Bengal: 2,501 libraries in 2021-22, dropped to 3–11 in 2022-24. Maharashtra: 12,472 in 2021-22 (huge!), only 416 in 2024-25. No multi-year planning evident.</div>
+        </div>
+      </div>
+      <div style="overflow-x:auto; margin-top:8px;">
+        <table style="width:100%; border-collapse:collapse; font-size:13px;">
+          <thead>
+            <tr style="background:var(--navy); color:white; text-align:left;">
+              <th style="padding:8px 10px; border-radius:6px 0 0 0;">State</th>
+              <th style="padding:8px 10px; text-align:right;">2021-22 ₹L</th>
+              <th style="padding:8px 10px; text-align:right;">2022-23 ₹L</th>
+              <th style="padding:8px 10px; text-align:right;">2023-24 ₹L</th>
+              <th style="padding:8px 10px; text-align:right; border-radius:0 6px 0 0;">2024-25 ₹L</th>
+            </tr>
+          </thead>
+          <tbody id="rrrlfTableBody"></tbody>
+        </table>
+      </div>
+      <div style="font-size:11px; color:var(--muted); margin-top:8px;">All figures in ₹ Lakhs (released). — = not present in data (₹0). 2024-25 partial year as of July 2025. Source: RS Q.1316 Annexure-I.</div>
+    </div>
+
+    <!-- Policy timeline -->
+    <div class="card" style="margin-top:20px;">
+      <div class="card-title"><span class="dot dot-red"></span>The Silence of 9 Years: What Parliament Has &amp; Hasn't Said</div>
+      <div style="position:relative; padding-left:28px;">
+        <div style="position:absolute; left:10px; top:0; bottom:0; width:2px; background:var(--border);"></div>
+        <div style="margin-bottom:18px; position:relative;">
+          <div style="position:absolute; left:-22px; top:3px; width:10px; height:10px; border-radius:50%; background:var(--red);"></div>
+          <div style="font-weight:700; font-size:13px; color:var(--red);">2016 — Lok Sabha Q.3657 (Lekhi &amp; Paatle)</div>
+          <div style="font-size:13px; color:var(--text); margin-top:4px;">Ministry of Culture on record: <em>"No plan for promoting libraries in rural areas including Jharkhand under NML."</em> Digitization described as state subject. Sets tone for near-decade of inaction.</div>
+        </div>
+        <div style="margin-bottom:18px; position:relative;">
+          <div style="position:absolute; left:-22px; top:3px; width:10px; height:10px; border-radius:50%; background:var(--muted);"></div>
+          <div style="font-weight:700; font-size:13px; color:var(--muted);">2017–2024 — Sparse parliamentary interest</div>
+          <div style="font-size:13px; color:var(--text); margin-top:4px;">Library questions rare in Parliament. RRRLF data tabled but not scrutinised. NML implementation proceeds without debate. Regional inequity deepens.</div>
+        </div>
+        <div style="margin-bottom:18px; position:relative;">
+          <div style="position:absolute; left:-22px; top:3px; width:10px; height:10px; border-radius:50%; background:var(--orange);"></div>
+          <div style="font-weight:700; font-size:13px; color:var(--orange);">Jul–Aug 2025 — 4 library questions in one session</div>
+          <div style="font-size:13px; color:var(--text); margin-top:4px;">Q.†2365, Q.*120 (Starred!), Q.†4081 in Lok Sabha + Q.1316 in Rajya Sabha — unusually dense. MPs from MP, Bihar, and RS probing NML utilization and RRRLF state-wise data for first time. Signals growing political interest.</div>
+        </div>
+        <div style="position:relative;">
+          <div style="position:absolute; left:-22px; top:3px; width:10px; height:10px; border-radius:50%; background:var(--green);"></div>
+          <div style="font-weight:700; font-size:13px; color:var(--green);">What's still not being asked</div>
+          <div style="font-size:13px; color:var(--text); margin-top:4px;">No questions yet on: per-capita spending equity across states, the 22 states with zero releases in 2023-24, India's standing vs international benchmarks, or a National Library Policy (proposed repeatedly since 1980s, never enacted).</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-parliament -->
+
+</div><!-- /content -->
+
+<!-- FOOTER -->
+<div class="site-footer">
+  <div class="footer-inner">
+    <strong>Data Sources</strong><br>
+    State-wise Per Capita Expenditure on Public Libraries 2014–15 to 2020–21 (Ministry of Culture, GoI) · RRRLF Annual Grant Data · RRRLF State-wise Data 2021-25 (Rajya Sabha Q.1316, 31.07.2025) · NML Scheme Data (Lok Sabha Q.†2365, 04.08.2025 &amp; Q.†4081, 18.08.2025) · Public Library Legislation Survey · International: IMLS Public Libraries Survey USA (2019) · CIPFA Public Library Statistics UK (2023–24) · NAPLE Forum / Libraries.fi (Finland, 2023) · ALIA Australian Public Libraries Statistical Report (2023–24) · Statistics Canada / Alberta (2022).<br><br>
+    <strong>PPP Conversion:</strong> India figures converted using World Bank PPP factor ~₹19.5 per international dollar (2020–21). International figures adjusted to PPP international dollars using OECD/World Bank conversion factors.<br><br>
+    <strong>Notes:</strong> Data gaps in RRRLF series (2007, 2009, 2011) reflect years with no new supported library establishments. West Bengal 2019–20 anomaly (₹0.46) may reflect reporting irregularity. Tripura 2020–21 collapse (₹9.30→₹0.07) requires further investigation. 2024-25 RRRLF data is partial (as of July 2025).<br><br>
+    Built with Chart.js · Parliament data: Lok Sabha &amp; Rajya Sabha, Budget Session 2025 · <a href="#">Methodology</a> · <a href="#">Download Data</a>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════
+const YEARS = ['2014-15','2015-16','2016-17','2017-18','2018-19','2019-20','2020-21'];
+
+const STATE_DATA = {
+  "Goa": [68.14,93.48,100.43,118.31,124.91,137.97,140.55],
+  "Puducherry": [52.25,60.66,61.58,59.64,60.06,56.23,56.62],
+  "Arunachal Pradesh": [43.61,55.13,54.09,53.13,51.82,59.97,65.12],
+  "Andhra Pradesh": [8.39,8.59,15.10,20.50,26.07,26.30,21.23],
+  "Sikkim": [14.68,15.66,17.69,19.17,21.24,28.61,23.32],
+  "West Bengal": [0.53,0.54,19.19,19.44,20.82,0.46,16.28],
+  "Karnataka": [16.54,16.01,18.27,19.56,37.74,19.71,11.98],
+  "Mizoram": [11.73,12.22,14.48,15.37,18.13,20.29,18.32],
+  "Tamil Nadu": [10.93,11.36,13.52,14.90,16.98,18.86,18.15],
+  "Telangana": [0.75,23.35,11.49,19.46,14.70,14.18,15.00],
+  "Jammu & Kashmir": [6.15,10.85,10.61,10.95,13.78,null,9.92],
+  "Maharashtra": [9.73,15.07,11.28,12.60,13.43,9.19,10.14],
+  "Himachal Pradesh": [4.34,4.42,5.39,5.76,12.34,8.89,7.86],
+  "Meghalaya": [9.20,9.19,8.77,9.53,11.98,12.15,12.71],
+  "Tripura": [9.30,9.75,9.89,11.35,11.46,11.77,0.07],
+  "Kerala": [5.04,16.22,14.52,25.08,25.85,10.17,7.76],
+  "Manipur": [6.23,4.51,6.64,6.89,7.42,5.16,5.99],
+  "Gujarat": [3.06,3.33,3.61,4.62,5.60,5.85,5.42],
+  "Assam": [4.16,3.60,3.97,5.61,5.14,5.18,5.48],
+  "Delhi": [3.09,3.00,3.82,3.81,5.02,3.04,3.45],
+  "Nagaland": [2.11,2.86,3.71,3.51,3.59,3.70,4.65],
+  "Uttarakhand": [1.44,1.55,1.73,1.98,1.96,1.92,1.92],
+  "Rajasthan": [1.34,1.30,1.36,1.43,1.66,1.62,1.60],
+  "Haryana": [1.24,1.41,1.30,1.61,1.66,1.76,4.48],
+  "Chhattisgarh": [0.95,0.85,0.91,1.75,1.40,1.11,1.22],
+  "Odisha": [0.92,0.99,1.02,1.15,1.26,1.25,1.18],
+  "Madhya Pradesh": [0.86,0.84,0.88,1.00,1.22,1.28,1.47],
+  "Punjab": [1.12,1.12,1.04,1.04,1.05,1.08,0.92],
+  "Uttar Pradesh": [0.32,0.36,0.37,0.42,1.05,1.10,1.16],
+  "Bihar": [0.25,0.11,0.22,0.25,0.41,0.25,0.25],
+  "Jharkhand": [0.20,0.31,0.36,0.12,0.15,0.12,0.10]
+};
+
+const LEGISLATION = {
+  "Andhra Pradesh": {has_act: true, year: 1960},
+  "Arunachal Pradesh": {has_act: false},
+  "Assam": {has_act: true, year: 1989},
+  "Bihar": {has_act: false},
+  "Chhattisgarh": {has_act: true, year: 2006},
+  "Delhi": {has_act: false},
+  "Goa": {has_act: true, year: 1993},
+  "Gujarat": {has_act: true, year: 2001},
+  "Haryana": {has_act: false},
+  "Himachal Pradesh": {has_act: false},
+  "Jammu & Kashmir": {has_act: false},
+  "Jharkhand": {has_act: false},
+  "Karnataka": {has_act: true, year: 1965},
+  "Kerala": {has_act: true, year: 1989},
+  "Madhya Pradesh": {has_act: false},
+  "Maharashtra": {has_act: true, year: 1967},
+  "Manipur": {has_act: true, year: 1988},
+  "Meghalaya": {has_act: false},
+  "Mizoram": {has_act: false},
+  "Nagaland": {has_act: false},
+  "Odisha": {has_act: true, year: 2002},
+  "Puducherry": {has_act: false},
+  "Punjab": {has_act: false},
+  "Rajasthan": {has_act: false},
+  "Sikkim": {has_act: false},
+  "Tamil Nadu": {has_act: true, year: 1948},
+  "Telangana": {has_act: true, year: 1960},
+  "Tripura": {has_act: false},
+  "Uttar Pradesh": {has_act: false},
+  "Uttarakhand": {has_act: true, year: 2005},
+  "West Bengal": {has_act: true, year: 1979}
+};
+
+const RRMLF_DATA = {
+  2003:378.53, 2004:177.00, 2005:390.00, 2006:207.00,
+  2008:332.00, 2010:887.43, 2012:2350.00, 2013:2670.30,
+  2014:1139.32, 2015:710.00, 2016:2046.47, 2017:1493.40,
+  2018:1363.61, 2019:697.36, 2020:745.73, 2021:782.83,
+  2022:2680.64, 2023:645.74
+};
+
+// RRRLF state-wise year-by-year data (Parliament Q.1316, RS 31.07.2025)
+// Values in Rs.; released amounts
+const RRRLF_STATE_DATA = {
+  '2021-22': {
+    'Andaman & Nicobar':{libs:17,sanctioned:1952431,released:1952431},
+    'Andhra Pradesh':{libs:3,sanctioned:646600,released:343950},
+    'Arunachal Pradesh':{libs:1,sanctioned:5000000,released:5000000},
+    'Assam':{libs:1,sanctioned:200000,released:150000},
+    'Delhi':{libs:1,sanctioned:250000,released:250000},
+    'Goa':{libs:165,sanctioned:3781051,released:3731051},
+    'Gujarat':{libs:2039,sanctioned:29653612,released:29406169},
+    'Haryana':{libs:25,sanctioned:7501360,released:7501360},
+    'Himachal Pradesh':{libs:943,sanctioned:3153773,released:3153773},
+    'Jammu & Kashmir':{libs:128,sanctioned:14650000,released:14650000},
+    'Karnataka':{libs:259,sanctioned:37762738,released:35046956},
+    'Kerala':{libs:311,sanctioned:11755660,released:11650805},
+    'Madhya Pradesh':{libs:2,sanctioned:447600,released:398200},
+    'Maharashtra':{libs:12472,sanctioned:57123952,released:28132733},
+    'Manipur':{libs:13,sanctioned:165672,released:165672},
+    'Meghalaya':{libs:13,sanctioned:2994205,released:2894205},
+    'Mizoram':{libs:548,sanctioned:14909671,released:11379671},
+    'Nagaland':{libs:661,sanctioned:10528682,released:10228682},
+    'Odisha':{libs:21,sanctioned:4096986,released:3281989},
+    'Rajasthan':{libs:4,sanctioned:13063485,released:7817295},
+    'Sikkim':{libs:10,sanctioned:125499,released:125499},
+    'Tamil Nadu':{libs:7,sanctioned:1647436,released:1527705},
+    'Telangana':{libs:625,sanctioned:19036286,released:17888286},
+    'Tripura':{libs:37,sanctioned:8431030,released:8320830},
+    'Uttar Pradesh':{libs:6,sanctioned:1336107,released:1201428},
+    'Uttarakhand':{libs:1,sanctioned:145000,released:145000},
+    'West Bengal':{libs:2501,sanctioned:43302922,released:42713420}
+  },
+  '2022-23': {
+    'Arunachal Pradesh':{libs:32,sanctioned:11478078,released:11478078},
+    'Assam':{libs:222,sanctioned:4891491,released:4891491},
+    'Bihar':{libs:16,sanctioned:12373568,released:12373568},
+    'Chhattisgarh':{libs:1,sanctioned:250000,released:250000},
+    'Delhi':{libs:6,sanctioned:1400000,released:1307537},
+    'Goa':{libs:1,sanctioned:300000,released:300000},
+    'Gujarat':{libs:1541,sanctioned:35822239,released:34303877},
+    'Haryana':{libs:1,sanctioned:250000,released:250000},
+    'Karnataka':{libs:2,sanctioned:5250000,released:4749471},
+    'Kerala':{libs:2,sanctioned:3700000,released:3700000},
+    'Madhya Pradesh':{libs:2,sanctioned:500000,released:500000},
+    'Maharashtra':{libs:9,sanctioned:11083843,released:8223422},
+    'Manipur':{libs:1,sanctioned:250000,released:250000},
+    'Meghalaya':{libs:2,sanctioned:750000,released:748521},
+    'Mizoram':{libs:3,sanctioned:1150000,released:850000},
+    'Nagaland':{libs:654,sanctioned:832447,released:832447},
+    'Odisha':{libs:4,sanctioned:900000,released:900000},
+    'Rajasthan':{libs:5,sanctioned:6234171,released:5109667},
+    'Tamil Nadu':{libs:7,sanctioned:1440000,released:1440000},
+    'Telangana':{libs:3,sanctioned:300000,released:0},
+    'Tripura':{libs:28,sanctioned:5276789,released:5276789},
+    'Uttar Pradesh':{libs:1072,sanctioned:72316402,released:56917343},
+    'Uttarakhand':{libs:2,sanctioned:450000,released:390003},
+    'West Bengal':{libs:11,sanctioned:2220000,released:2037785}
+  },
+  '2023-24': {
+    'Assam':{libs:208,sanctioned:4742189,released:0},
+    'Bihar':{libs:1,sanctioned:250000,released:0},
+    'Delhi':{libs:2,sanctioned:500000,released:500000},
+    'Goa':{libs:150,sanctioned:3300000,released:3300000},
+    'Gujarat':{libs:1526,sanctioned:39387160,released:37229106},
+    'Haryana':{libs:4,sanctioned:900000,released:828231},
+    'Himachal Pradesh':{libs:948,sanctioned:15894097,released:15894097},
+    'Jammu & Kashmir':{libs:57,sanctioned:16427500,released:16427500},
+    'Madhya Pradesh':{libs:1,sanctioned:250000,released:250000},
+    'Maharashtra':{libs:1070,sanctioned:40000000,released:32000000},
+    'Meghalaya':{libs:2,sanctioned:655888,released:655888},
+    'Mizoram':{libs:600,sanctioned:8985228,released:8985228},
+    'Odisha':{libs:1,sanctioned:250000,released:249517},
+    'Puducherry':{libs:1,sanctioned:250000,released:250000},
+    'Rajasthan':{libs:10,sanctioned:19127386,released:10514986},
+    'Sikkim':{libs:16,sanctioned:5993843,released:5993843},
+    'Tamil Nadu':{libs:1071,sanctioned:40313606,released:40313606},
+    'Telangana':{libs:578,sanctioned:19190165,released:13396262},
+    'Tripura':{libs:52,sanctioned:24564278,released:18314332},
+    'Uttar Pradesh':{libs:161,sanctioned:25188988,released:24901488},
+    'Uttarakhand':{libs:47,sanctioned:6945179,released:6945179},
+    'West Bengal':{libs:4,sanctioned:900000,released:400000}
+  },
+  '2024-25': {
+    'Andhra Pradesh':{libs:1,sanctioned:250000,released:187500},
+    'Arunachal Pradesh':{libs:26,sanctioned:13401155,released:9399104},
+    'Bihar':{libs:1,sanctioned:250000,released:187500},
+    'Chhattisgarh':{libs:2,sanctioned:500000,released:431364},
+    'Delhi':{libs:3,sanctioned:750000,released:562500},
+    'Goa':{libs:154,sanctioned:4834388,released:4834388},
+    'Gujarat':{libs:1559,sanctioned:32595386,released:32595386},
+    'Himachal Pradesh':{libs:931,sanctioned:4070004,released:4032504},
+    'Jammu & Kashmir':{libs:1,sanctioned:250000,released:187500},
+    'Karnataka':{libs:1,sanctioned:250000,released:187500},
+    'Madhya Pradesh':{libs:1,sanctioned:200000,released:150000},
+    'Maharashtra':{libs:416,sanctioned:32750000,released:24687500},
+    'Manipur':{libs:114,sanctioned:2856342,released:2856342},
+    'Meghalaya':{libs:13,sanctioned:5703228,released:4840397},
+    'Mizoram':{libs:639,sanctioned:11385106,released:7477156},
+    'Nagaland':{libs:692,sanctioned:8963485,released:6547614},
+    'Punjab':{libs:2,sanctioned:400000,released:300000},
+    'Rajasthan':{libs:29,sanctioned:12143790,released:3652427},
+    'Sikkim':{libs:22,sanctioned:8623188,released:4106727},
+    'Tamil Nadu':{libs:2,sanctioned:500000,released:375000},
+    'Telangana':{libs:570,sanctioned:796974,released:657186},
+    'Tripura':{libs:9,sanctioned:6044375,released:2060160},
+    'Uttar Pradesh':{libs:128,sanctioned:13078928,released:12953928},
+    'Uttarakhand':{libs:1,sanctioned:250000,released:187500},
+    'West Bengal':{libs:3,sanctioned:750000,released:562500}
+  }
+};
+
+// International comparison data
+const WORLD_DATA = {
+  nominal: [
+    {label: 'Finland', value: 67.0, note: '€60/capita (2023, NAPLE)'},
+    {label: 'Sweden', value: 47.0, note: '€42/capita (2022)'},
+    {label: 'Norway', value: 47.0, note: '€42/capita (2022)'},
+    {label: 'USA', value: 42.0, note: '$42/capita (2019, IMLS)'},
+    {label: 'Canada', value: 35.0, note: '~CAD$48/capita (2022, est.)'},
+    {label: 'Australia', value: 33.0, note: '~AUD$50/capita (2023-24, ALIA)'},
+    {label: 'UK', value: 16.2, note: '£12.73/capita (2023-24, CIPFA)'},
+    {label: 'China', value: 3.0, note: '~¥21/capita (2021 est., MoCT bulletin). Post-2017 library law surge.', isChina: true},
+    {label: 'India avg', value: 0.18, note: '₹15.30/capita (2020-21)', isIndia: true},
+    {label: 'Goa (best state)', value: 1.69, note: '₹140/capita (2020-21)', isIndia: true},
+    {label: 'Bihar (worst)', value: 0.003, note: '₹0.25/capita (2020-21)', isIndia: true}
+  ],
+  ppp: [
+    {label: 'Finland', value: 65.0, note: 'PPP intl $ (2023)'},
+    {label: 'Sweden', value: 44.0, note: 'PPP intl $ (2022)'},
+    {label: 'Norway', value: 43.0, note: 'PPP intl $ (2022)'},
+    {label: 'USA', value: 42.0, note: 'PPP intl $ (2019, IMLS)'},
+    {label: 'Canada', value: 33.0, note: 'PPP intl $ (2022, est.)'},
+    {label: 'Australia', value: 28.0, note: 'PPP intl $ (2023-24)'},
+    {label: 'UK', value: 22.0, note: 'PPP intl $ (2023-24, CIPFA)'},
+    {label: 'China', value: 6.5, note: '~¥21/capita ÷ PPP factor 3.2 (2021 est., MoCT). 8× ahead of India.', isChina: true},
+    {label: 'India avg', value: 0.78, note: '₹15.30 ÷ 19.5 (PPP factor)', isIndia: true},
+    {label: 'Goa (best state)', value: 7.18, note: '₹140 ÷ 19.5', isIndia: true},
+    {label: 'Bihar (worst)', value: 0.013, note: '₹0.25 ÷ 19.5', isIndia: true}
+  ]
+};
+
+// ═══════════════════════════════════════════════
+// CHART INSTANCES
+// ═══════════════════════════════════════════════
+let worldChart, stateBarChart, stateTrendChart, rrmlfChart, rrmlfCumChart, rrrlfStateChart, actChart, paradoxChart;
+let currentWorldView = 'nominal';
+let selectedState = null;
+let tableSortCol = 4;
+let tableSortAsc = false;
+
+// ═══════════════════════════════════════════════
+// TAB NAVIGATION
+// ═══════════════════════════════════════════════
+function showTab(tab) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+  // Init charts lazily
+  if (tab === 'world' && !worldChart) initWorldChart();
+  if (tab === 'states') { renderStateChart(); renderStateTable(); }
+  if (tab === 'rrmlf' && !rrmlfChart) { initRrmlfCharts(); initRrrlfStateChart(); }
+  if (tab === 'legislation' && !actChart) initLegislationCharts();
+  if (tab === 'reportcard') initReportCard();
+  if (tab === 'writemp') initWriteMP();
+  if (tab === 'parliament') initParliamentTable();
+}
+
+// ═══════════════════════════════════════════════
+// WORLD CHART
+// ═══════════════════════════════════════════════
+function setWorldView(view) {
+  currentWorldView = view;
+  document.getElementById('btn-nominal').classList.toggle('active', view === 'nominal');
+  document.getElementById('btn-ppp').classList.toggle('active', view === 'ppp');
+  initWorldChart();
+}
+
+function initWorldChart() {
+  const data = WORLD_DATA[currentWorldView];
+  const labels = data.map(d => d.label);
+  const values = data.map(d => d.value);
+  const bgColors = data.map(d => d.isIndia ? 'rgba(249,115,22,0.85)' : d.isChina ? 'rgba(220,38,38,0.75)' : 'rgba(37,99,235,0.75)');
+  const borderColors = data.map(d => d.isIndia ? '#f97316' : d.isChina ? '#dc2626' : '#1d4ed8');
+  const unit = currentWorldView === 'nominal' ? 'USD' : 'PPP intl $';
+
+  if (worldChart) worldChart.destroy();
+  const ctx = document.getElementById('worldChart').getContext('2d');
+  worldChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        data: values,
+        backgroundColor: bgColors,
+        borderColor: borderColors,
+        borderWidth: 2,
+        borderRadius: 6
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => {
+              const d = data[ctx.dataIndex];
+              return ` ${ctx.parsed.x.toFixed(2)} ${unit} — ${d.note}`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          title: { display: true, text: `Per-capita spending (${unit})`, color: '#64748b', font: {size: 11} },
+          grid: { color: '#f1f5f9' },
+          ticks: { color: '#64748b', font: {size: 11} }
+        },
+        y: {
+          grid: { display: false },
+          ticks: {
+            color: (ctx) => data[ctx.index]?.isIndia ? '#f97316' : data[ctx.index]?.isChina ? '#dc2626' : '#1e293b',
+            font: { size: 12, weight: (ctx) => (data[ctx.index]?.isIndia || data[ctx.index]?.isChina) ? '700' : '400' }
+          }
+        }
+      }
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════
+// STATE BAR CHART
+// ═══════════════════════════════════════════════
+function renderStateChart() {
+  const yearIdx = parseInt(document.getElementById('yearSelect').value);
+  const sortMode = document.getElementById('sortSelect').value;
+  const filterMode = document.getElementById('filterSelect').value;
+  const yearLabel = YEARS[yearIdx];
+
+  let states = Object.keys(STATE_DATA).map(name => {
+    const vals = STATE_DATA[name];
+    const val = vals[yearIdx];
+    const hasAct = LEGISLATION[name]?.has_act || false;
+    const first = vals[0];
+    const last = vals[6];
+    const change = first && last ? ((last - first) / first) * 100 : 0;
+    return { name, val, hasAct, change, first, last };
+  }).filter(d => d.val !== null && d.val !== undefined);
+
+  // Filter
+  if (filterMode === 'act') states = states.filter(d => d.hasAct);
+  if (filterMode === 'noact') states = states.filter(d => !d.hasAct);
+
+  // Sort
+  if (sortMode === 'desc') states.sort((a, b) => (b.val || 0) - (a.val || 0));
+  else if (sortMode === 'asc') states.sort((a, b) => (a.val || 0) - (b.val || 0));
+  else if (sortMode === 'name') states.sort((a, b) => a.name.localeCompare(b.name));
+  else if (sortMode === 'change') states.sort((a, b) => b.change - a.change);
+
+  const labels = states.map(d => d.name);
+  const values = states.map(d => d.val || 0);
+  const bgColors = states.map(d => {
+    if (d.name === selectedState) return '#0f172a';
+    return d.hasAct ? 'rgba(22,163,74,0.75)' : 'rgba(220,38,38,0.65)';
+  });
+  const borderColors = states.map(d => {
+    if (d.name === selectedState) return '#f97316';
+    return d.hasAct ? '#16a34a' : '#dc2626';
+  });
+
+  // National avg line
+  const allVals = Object.values(STATE_DATA).map(v => v[yearIdx]).filter(v => v !== null);
+  const natAvg = allVals.reduce((a, b) => a + b, 0) / allVals.length;
+
+  if (stateBarChart) stateBarChart.destroy();
+  const ctx = document.getElementById('stateBarChart').getContext('2d');
+  stateBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        data: values,
+        backgroundColor: bgColors,
+        borderColor: borderColors,
+        borderWidth: 2,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      onClick: (evt, elements) => {
+        if (elements.length > 0) {
+          const idx = elements[0].index;
+          selectedState = labels[idx];
+          showStateTrend(labels[idx]);
+          renderStateChart();
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        annotation: {},
+        tooltip: {
+          callbacks: {
+            label: (ctx) => {
+              const s = states[ctx.dataIndex];
+              return ` ₹${ctx.parsed.x.toFixed(2)}/capita · ${s.hasAct ? '✅ Library Act' : '❌ No Act'}`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          title: { display: true, text: `₹ per capita (${yearLabel})`, color: '#64748b', font: {size: 11} },
+          grid: { color: '#f1f5f9' },
+          ticks: { color: '#64748b', font: {size: 11} }
+        },
+        y: {
+          grid: { display: false },
+          ticks: { color: '#1e293b', font: { size: 11 } }
+        }
+      }
+    }
+  });
+
+  // Add avg annotation manually
+  const annotation = {
+    type: 'line',
+    mode: 'vertical',
+    scaleID: 'x',
+    value: natAvg,
+    borderColor: '#f97316',
+    borderWidth: 2,
+    borderDash: [6, 3],
+    label: {
+      content: `Nat. avg ₹${natAvg.toFixed(1)}`,
+      enabled: true,
+      position: 'top',
+      color: '#f97316',
+      font: { size: 10, weight: 'bold' }
+    }
+  };
+}
+
+// ═══════════════════════════════════════════════
+// STATE TREND CHART
+// ═══════════════════════════════════════════════
+function showStateTrend(stateName) {
+  const detail = document.getElementById('stateDetail');
+  detail.classList.add('visible');
+  document.getElementById('stateDetailTitle').textContent = `📈 ${stateName} — 7-Year Trend`;
+
+  const vals = STATE_DATA[stateName];
+  const hasAct = LEGISLATION[stateName]?.has_act || false;
+  const actYear = LEGISLATION[stateName]?.year;
+  const first = vals[0];
+  const last = vals[6];
+  const change = first ? (((last - first) / first) * 100).toFixed(0) : 'N/A';
+
+  const infoEl = document.getElementById('stateDetailInfo');
+  infoEl.innerHTML = `
+    <div style="margin-bottom:8px;"><span style="color:#f97316;font-weight:700;font-size:18px;">₹${last}</span><span style="color:#94a3b8;font-size:11px;">/capita (2020-21)</span></div>
+    <div>📅 2014-15: <strong style="color:white">₹${first}</strong></div>
+    <div>📅 2020-21: <strong style="color:white">₹${last}</strong></div>
+    <div>📈 7-yr change: <strong style="color:${parseFloat(change)>0?'#86efac':'#f87171'}">${parseFloat(change)>0?'+':''}${change}%</strong></div>
+    <div style="margin-top:8px;">Library Act: <span style="font-weight:700;color:${hasAct?'#86efac':'#f87171'}">${hasAct ? `✅ Yes (${actYear})` : '❌ None'}</span></div>
+    ${stateName === 'Tripura' ? '<div style="margin-top:8px;color:#fbbf24;font-size:11px;">⚠️ Collapsed 99% in 2020-21 (₹11.77 → ₹0.07). Likely budget reallocation or reporting gap.</div>' : ''}
+    ${stateName === 'West Bengal' ? '<div style="margin-top:8px;color:#fbbf24;font-size:11px;">⚡ Dramatic resurgence: +2,972% growth. 2019-20 anomaly (₹0.46) under investigation.</div>' : ''}
+    ${stateName === 'Karnataka' ? '<div style="margin-top:8px;color:#fbbf24;font-size:11px;">⬇️ Declining despite India\'s oldest active library ecosystem (Act since 1965).</div>' : ''}
+  `;
+
+  if (stateTrendChart) stateTrendChart.destroy();
+  const ctx = document.getElementById('stateTrendChart').getContext('2d');
+  stateTrendChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: YEARS,
+      datasets: [{
+        data: vals,
+        borderColor: '#f97316',
+        backgroundColor: 'rgba(249,115,22,0.15)',
+        pointBackgroundColor: '#f97316',
+        pointRadius: 5,
+        borderWidth: 2.5,
+        fill: true,
+        tension: 0.3,
+        spanGaps: true
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: (c) => ` ₹${c.parsed.y?.toFixed(2)}/capita` } }
+      },
+      scales: {
+        x: { ticks: { color: '#94a3b8', font: {size: 10} }, grid: { color: 'rgba(255,255,255,0.05)' } },
+        y: { ticks: { color: '#94a3b8', font: {size: 10} }, grid: { color: 'rgba(255,255,255,0.05)' } }
+      }
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════
+// STATE TABLE
+// ═══════════════════════════════════════════════
+function renderStateTable() {
+  const tbody = document.getElementById('stateTableBody');
+  const states = Object.keys(STATE_DATA).map(name => {
+    const vals = STATE_DATA[name];
+    const hasAct = LEGISLATION[name]?.has_act || false;
+    const actYear = LEGISLATION[name]?.year;
+    const v0 = vals[0], v3 = vals[3], v6 = vals[6];
+    const change = v0 && v6 ? (((v6 - v0) / v0) * 100) : null;
+    const maxVal = 140.55;
+    return {name, vals, hasAct, actYear, v0, v3, v6, change, maxVal};
+  });
+
+  states.sort((a, b) => (b.v6 || 0) - (a.v6 || 0));
+
+  tbody.innerHTML = states.map(s => {
+    const changeStr = s.change !== null ? (s.change > 0 ? `<span class="trend-up">+${s.change.toFixed(0)}%</span>` : `<span class="trend-dn">${s.change.toFixed(0)}%</span>`) : '—';
+    const barW = s.v6 ? Math.max(2, (s.v6 / s.maxVal) * 100) : 0;
+    return `<tr onclick="showStateTrend('${s.name}'); selectedState='${s.name}'; renderStateChart();" style="cursor:pointer;">
+      <td class="state-name-cell">${s.name}</td>
+      <td><span class="act-badge ${s.hasAct ? 'act-yes' : 'act-no'}">${s.hasAct ? `✅ ${s.actYear}` : '❌ None'}</span></td>
+      <td>${s.v0 ? `₹${s.v0.toFixed(2)}` : '—'}</td>
+      <td>${s.v3 ? `₹${s.v3.toFixed(2)}` : '—'}</td>
+      <td>
+        <div class="spend-bar-cell">
+          <div class="spend-bar" style="width:${barW}%"></div>
+          <span class="spend-val">${s.v6 ? `₹${s.v6.toFixed(2)}` : '—'}</span>
+        </div>
+      </td>
+      <td>${changeStr}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════
+// RRMLF CHARTS
+// ═══════════════════════════════════════════════
+function initRrmlfCharts() {
+  const years = Object.keys(RRMLF_DATA).map(Number).sort((a,b)=>a-b);
+  const allYears = [];
+  for (let y = 2003; y <= 2023; y++) allYears.push(y);
+  const values = allYears.map(y => RRMLF_DATA[y] || null);
+  const colors = allYears.map(y => {
+    const v = RRMLF_DATA[y];
+    if (!v) return 'rgba(0,0,0,0)';
+    if (v >= 2000) return 'rgba(249,115,22,0.9)';
+    if (v >= 1000) return 'rgba(234,179,8,0.85)';
+    return 'rgba(59,130,246,0.75)';
+  });
+
+  const ctx1 = document.getElementById('rrmlfChart').getContext('2d');
+  rrmlfChart = new Chart(ctx1, {
+    type: 'bar',
+    data: {
+      labels: allYears,
+      datasets: [{
+        data: values,
+        backgroundColor: colors,
+        borderColor: colors.map(c => c.replace('0.9','1').replace('0.85','1').replace('0.75','1')),
+        borderWidth: 1,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (c) => c.parsed.y ? ` ₹${c.parsed.y.toFixed(2)} lakhs` : ' No data',
+            title: (c) => `Year: ${c[0].label}`
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#64748b', font: {size: 11} },
+          grid: { display: false },
+          title: { display: true, text: 'Year of Library Establishment', color: '#64748b', font: {size: 11} }
+        },
+        y: {
+          ticks: { color: '#64748b', font: {size: 11} },
+          grid: { color: '#f1f5f9' },
+          title: { display: true, text: '₹ Lakhs', color: '#64748b', font: {size: 11} }
+        }
+      }
+    }
+  });
+
+  // Cumulative chart
+  let cum = 0;
+  const cumVals = allYears.map(y => {
+    if (RRMLF_DATA[y]) cum += RRMLF_DATA[y];
+    return cum;
+  });
+  const ctx2 = document.getElementById('rrmlfCumChart').getContext('2d');
+  rrmlfCumChart = new Chart(ctx2, {
+    type: 'line',
+    data: {
+      labels: allYears,
+      datasets: [{
+        data: cumVals,
+        borderColor: '#f97316',
+        backgroundColor: 'rgba(249,115,22,0.1)',
+        fill: true,
+        borderWidth: 2.5,
+        tension: 0.4,
+        pointRadius: 3,
+        pointBackgroundColor: '#f97316'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: (c) => ` Cumulative ₹${c.parsed.y.toFixed(0)} lakhs` } }
+      },
+      scales: {
+        x: { ticks: { color: '#64748b', font:{size:11} }, grid: {display:false} },
+        y: { ticks: { color: '#64748b', font:{size:11} }, grid: {color:'#f1f5f9'},
+          title: {display:true, text:'Cumulative ₹ Lakhs', color:'#64748b', font:{size:11}} }
+      }
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════
+// RRRLF STATE CHART (2023-24)
+// ═══════════════════════════════════════════════
+function initRrrlfStateChart() {
+  if (rrrlfStateChart) return;
+  const year = '2023-24';
+  const data = RRRLF_STATE_DATA[year];
+  const sorted = Object.entries(data)
+    .map(([state, d]) => ({state, released: d.released / 100000})) // convert to lakhs
+    .sort((a, b) => b.released - a.released);
+  const labels = sorted.map(d => d.state);
+  const values = sorted.map(d => d.released);
+  const colors = values.map(v => v === 0 ? '#dc2626' : v > 100 ? '#f97316' : '#2563eb');
+  const ctx = document.getElementById('rrrlfStateChart').getContext('2d');
+  rrrlfStateChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        label: '₹ Lakhs Released (2023-24)',
+        data: values,
+        backgroundColor: colors,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {display: false},
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const v = ctx.raw;
+              const s = sorted[ctx.dataIndex];
+              return [`₹${v.toFixed(1)} lakhs released`, `${data[s.state].libs} libraries`];
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: {color:'rgba(0,0,0,0.05)'},
+          title: {display:true, text:'₹ Lakhs Released', color:'#64748b', font:{size:11}}
+        },
+        y: {ticks: {font:{size:11}}}
+      }
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════
+// PARLIAMENT TABLE
+// ═══════════════════════════════════════════════
+let parliamentTableDone = false;
+function initParliamentTable() {
+  if (parliamentTableDone) return;
+  parliamentTableDone = true;
+  const allStates = new Set();
+  ['2021-22','2022-23','2023-24','2024-25'].forEach(y => Object.keys(RRRLF_STATE_DATA[y]).forEach(s => allStates.add(s)));
+  const statesArr = Array.from(allStates).sort();
+  const tbody = document.getElementById('rrrlfTableBody');
+  if (!tbody) return;
+  statesArr.forEach((state, i) => {
+    const tr = document.createElement('tr');
+    tr.style.background = i % 2 === 0 ? '#f8fafc' : 'white';
+    const fmt = (y) => {
+      const d = RRRLF_STATE_DATA[y][state];
+      if (!d) return '<td style="padding:7px 10px; text-align:right; color:#94a3b8;">—</td>';
+      const v = (d.released / 100000).toFixed(1);
+      const color = d.released === 0 ? 'color:#dc2626; font-weight:600;' : '';
+      return `<td style="padding:7px 10px; text-align:right; ${color}">${d.released === 0 ? '₹0 ⚠️' : '₹' + v}</td>`;
+    };
+    tr.innerHTML = `<td style="padding:7px 10px; font-weight:500;">${state}</td>${fmt('2021-22')}${fmt('2022-23')}${fmt('2023-24')}${fmt('2024-25')}`;
+    tbody.appendChild(tr);
+  });
+}
+
+// ═══════════════════════════════════════════════
+// LEGISLATION CHARTS
+// ═══════════════════════════════════════════════
+function initLegislationCharts() {
+  // Chart 1: act vs no-act avg by year
+  const actStates = Object.keys(STATE_DATA).filter(s => LEGISLATION[s]?.has_act);
+  const noActStates = Object.keys(STATE_DATA).filter(s => !LEGISLATION[s]?.has_act);
+
+  const actAvgs = YEARS.map((y, yi) => {
+    const vals = actStates.map(s => STATE_DATA[s][yi]).filter(v => v !== null);
+    return vals.reduce((a,b)=>a+b,0)/vals.length;
+  });
+  const noActAvgs = YEARS.map((y, yi) => {
+    const vals = noActStates.map(s => STATE_DATA[s][yi]).filter(v => v !== null);
+    return vals.reduce((a,b)=>a+b,0)/vals.length;
+  });
+
+  const ctx1 = document.getElementById('actChart').getContext('2d');
+  actChart = new Chart(ctx1, {
+    type: 'line',
+    data: {
+      labels: YEARS,
+      datasets: [
+        {
+          label: 'States WITH Library Act',
+          data: actAvgs,
+          borderColor: '#16a34a',
+          backgroundColor: 'rgba(22,163,74,0.1)',
+          fill: false,
+          borderWidth: 2.5,
+          pointRadius: 5,
+          tension: 0.3
+        },
+        {
+          label: 'States WITHOUT Library Act',
+          data: noActAvgs,
+          borderColor: '#dc2626',
+          backgroundColor: 'rgba(220,38,38,0.1)',
+          fill: false,
+          borderWidth: 2.5,
+          borderDash: [6,3],
+          pointRadius: 5,
+          tension: 0.3
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { labels: { color: '#1e293b', font: {size: 12} } },
+        tooltip: { callbacks: { label: (c) => ` Avg ₹${c.parsed.y.toFixed(2)}/capita` } }
+      },
+      scales: {
+        x: { ticks: {color:'#64748b'}, grid: {color:'#f1f5f9'} },
+        y: { ticks: {color:'#64748b'}, grid: {color:'#f1f5f9'},
+          title: {display:true, text:'Avg ₹ per capita', color:'#64748b', font:{size:11}} }
+      }
+    }
+  });
+
+  // Chart 2: Horizontal grouped bar — all states, 2020-21 spend, colored by act
+  const allStatesSorted = Object.keys(STATE_DATA)
+    .map(name => ({name, val: STATE_DATA[name][6], hasAct: LEGISLATION[name]?.has_act || false}))
+    .filter(d => d.val !== null)
+    .sort((a,b) => (b.val||0) - (a.val||0));
+
+  const ctx2 = document.getElementById('paradoxChart').getContext('2d');
+  paradoxChart = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: allStatesSorted.map(d => d.name),
+      datasets: [{
+        data: allStatesSorted.map(d => d.val),
+        backgroundColor: allStatesSorted.map(d => d.hasAct ? 'rgba(22,163,74,0.75)' : 'rgba(220,38,38,0.65)'),
+        borderColor: allStatesSorted.map(d => d.hasAct ? '#16a34a' : '#dc2626'),
+        borderWidth: 1.5,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => {
+              const s = allStatesSorted[ctx.dataIndex];
+              return ` ₹${ctx.parsed.x.toFixed(2)}/capita · ${s.hasAct ? '✅ Has Library Act' : '❌ No Act'}`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          title: { display: true, text: '₹ per capita (2020–21)', color: '#64748b', font: {size:11} },
+          grid: { color: '#f1f5f9' },
+          ticks: { color: '#64748b', font: {size:11} }
+        },
+        y: { grid: {display:false}, ticks: { color: '#1e293b', font: {size:11} } }
+      }
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════
+// SHAME STRIP ROTATOR
+// ═══════════════════════════════════════════════
+const SHAME_FACTS = [
+  "that's less than the price of a cup of chai (₹10–15) per person per year.",
+  "Finland spends ₹5,500/person — 360 times more.",
+  "China spends ₹250/person — 16 times more, with a national library law since 2017.",
+  "Jharkhand spends just ₹0.10/person — one paan leaf.",
+  "18 of 36 states/UTs received zero RRRLF central grants in 2023-24.",
+  "India has proposed a National Library Policy since 1957 — it has never been enacted.",
+  "₹15.30/person/year = ₹1.28/month = 4 paise per day.",
+  "The USA, with a comparable population, funds libraries at $42/person — a 232× gap.",
+  "Only 14 of 36 states/UTs have a Public Library Act.",
+  "The NML scheme sanctioned 64 libraries — that's 1 per 21 million people."
+];
+let shameIdx = 0;
+function rotateShame() {
+  const el = document.getElementById('shameRotator');
+  if (el) { el.textContent = SHAME_FACTS[shameIdx % SHAME_FACTS.length]; shameIdx++; }
+}
+
+// ═══════════════════════════════════════════════
+// STATE REPORT CARD
+// ═══════════════════════════════════════════════
+// NML states (from Parliament Annexure-II)
+const NML_STATES = new Set(['Arunachal Pradesh','Goa','Mizoram','Rajasthan','Telangana','Uttar Pradesh',
+  'West Bengal','Assam','Madhya Pradesh','Maharashtra','Nagaland','Tamil Nadu','Karnataka',
+  'Bihar','Himachal Pradesh','Haryana','Chhattisgarh','Odisha','Uttarakhand','Jammu & Kashmir',
+  'Sikkim','Manipur','Meghalaya','Kerala','Puducherry','Punjab','Jharkhand','Andaman & Nicobar',
+  'Chandigarh','Delhi','Lakshadweep','Daman & Diu']);
+
+let reportCardDone = false;
+function initReportCard() {
+  if (reportCardDone) return;
+  reportCardDone = true;
+  const grid = document.getElementById('reportCardGrid');
+  if (!grid) return;
+
+  const states = Object.keys(STATE_DATA).sort();
+  const cards = states.map(state => {
+    const spend = STATE_DATA[state][6] || 0; // 2020-21
+    // Spend score (50 pts)
+    let spendScore = spend >= 100 ? 50 : spend >= 50 ? 40 : spend >= 20 ? 30 :
+                     spend >= 15 ? 22 : spend >= 10 ? 16 : spend >= 5 ? 10 : spend >= 1 ? 5 : 0;
+    // Act score (20 pts)
+    const actScore = (LEGISLATION[state] && LEGISLATION[state].has_act) ? 20 : 0;
+    // RRRLF score (20 pts) — count years with meaningful releases
+    let rrrlYears = 0;
+    ['2021-22','2022-23','2023-24','2024-25'].forEach(y => {
+      if (RRRLF_STATE_DATA[y][state] && RRRLF_STATE_DATA[y][state].released > 500000) rrrlYears++;
+    });
+    const rrrlScore = rrrlYears >= 3 ? 20 : rrrlYears === 2 ? 15 : rrrlYears === 1 ? 8 : 0;
+    // NML score (10 pts)
+    const nmlScore = NML_STATES.has(state) ? 10 : 0;
+
+    const total = spendScore + actScore + rrrlScore + nmlScore;
+    const grade = total >= 85 ? 'A' : total >= 70 ? 'B' : total >= 55 ? 'C' : total >= 40 ? 'D' : 'F';
+    const gradeColor = {A:'#16a34a',B:'#2563eb',C:'#d97706',D:'#ea580c',F:'#dc2626'}[grade];
+    const gradeBg = {A:'#f0fdf4',B:'#eff6ff',C:'#fffbeb',D:'#fff7ed',F:'#fef2f2'}[grade];
+    return {state, spend, total, grade, gradeColor, gradeBg, spendScore, actScore, rrrlScore, nmlScore};
+  }).sort((a,b) => b.total - a.total);
+
+  cards.forEach(c => {
+    const div = document.createElement('div');
+    div.style.cssText = `background:${c.gradeBg}; border:2px solid ${c.gradeColor}40; border-radius:12px; padding:16px; position:relative;`;
+    div.innerHTML = `
+      <div style="position:absolute; top:12px; right:14px; font-size:32px; font-weight:900; color:${c.gradeColor}; opacity:0.25;">${c.grade}</div>
+      <div style="font-size:15px; font-weight:700; color:#1e293b; margin-bottom:10px; padding-right:36px;">${c.state}</div>
+      <div style="font-size:11px; color:#64748b; margin-bottom:8px;">₹${c.spend.toFixed(2)}/capita · Score: ${c.total}/100</div>
+      <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px;">
+        <span style="background:white; border:1px solid #e2e8f0; border-radius:4px; padding:2px 7px; font-size:10px; color:${c.spendScore>=20?'#16a34a':'#dc2626'}; font-weight:600;">💰 Spend ${c.spendScore}/50</span>
+        <span style="background:white; border:1px solid #e2e8f0; border-radius:4px; padding:2px 7px; font-size:10px; color:${c.actScore>0?'#16a34a':'#dc2626'}; font-weight:600;">⚖️ Act ${c.actScore}/20</span>
+        <span style="background:white; border:1px solid #e2e8f0; border-radius:4px; padding:2px 7px; font-size:10px; color:${c.rrrlScore>=15?'#16a34a':c.rrrlScore>0?'#d97706':'#dc2626'}; font-weight:600;">🏛 RRRLF ${c.rrrlScore}/20</span>
+        <span style="background:white; border:1px solid #e2e8f0; border-radius:4px; padding:2px 7px; font-size:10px; color:${c.nmlScore>0?'#16a34a':'#dc2626'}; font-weight:600;">📚 NML ${c.nmlScore}/10</span>
+      </div>
+      <div style="background:${c.gradeColor}; color:white; border-radius:6px; padding:5px 10px; font-weight:800; font-size:13px; display:inline-block;">Grade: ${c.grade} — ${c.total}/100</div>`;
+    grid.appendChild(div);
+  });
+}
+
+// ═══════════════════════════════════════════════
+// WRITE TO MP
+// ═══════════════════════════════════════════════
+let writeMPDone = false;
+function initWriteMP() {
+  if (writeMPDone) return;
+  writeMPDone = true;
+  const sel = document.getElementById('mpStateSelect');
+  if (!sel) return;
+  Object.keys(STATE_DATA).sort().forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s; opt.textContent = s;
+    sel.appendChild(opt);
+  });
+}
+
+function generateLetter() {
+  const state = document.getElementById('mpStateSelect').value;
+  const name = document.getElementById('mpName').value || 'A Concerned Citizen';
+  if (!state) return;
+  const spend = STATE_DATA[state] ? STATE_DATA[state][6] : null;
+  const hasAct = LEGISLATION[state] && LEGISLATION[state].has_act;
+  const actYear = hasAct ? LEGISLATION[state].year : null;
+  const natAvg = 15.30;
+  const ratio = spend ? (natAvg / spend).toFixed(1) : null;
+
+  // Check RRRLF recent
+  let rrrlStatus = '';
+  const recent2324 = RRRLF_STATE_DATA['2023-24'][state];
+  if (recent2324) {
+    const rel = (recent2324.released/100000).toFixed(1);
+    const san = (recent2324.sanctioned/100000).toFixed(1);
+    rrrlStatus = recent2324.released === 0
+      ? `Despite being sanctioned ₹${san} lakh by RRRLF in 2023-24, ${state} received zero disbursement — a complete release failure.`
+      : `In 2023-24, ${state} received ₹${rel} lakh in RRRLF grants — but this covers only a fraction of our libraries.`;
+  } else {
+    rrrlStatus = `${state} did not appear in RRRLF's 2023-24 state-wise financial data — meaning our libraries received no central RRRLF support that year.`;
+  }
+
+  let spendLine = '';
+  if (spend !== null && spend !== undefined) {
+    if (spend < 1) spendLine = `${state} spends just ₹${spend.toFixed(2)} per person per year on public libraries — among the lowest in India, and ${ratio} times below the national average of ₹15.30.`;
+    else if (spend < natAvg) spendLine = `${state} spends ₹${spend.toFixed(2)} per person per year on public libraries — below the national average of ₹15.30.`;
+    else spendLine = `${state} spends ₹${spend.toFixed(2)} per person per year on public libraries — above the national average of ₹15.30, but still a fraction of what comparable democracies spend.`;
+  }
+
+  const actLine = hasAct
+    ? `${state} has had a Public Library Act since ${actYear} — but having a law is not enough if funding remains inadequate.`
+    : `${state} does not yet have a Public Library Act, leaving libraries without a statutory funding mandate.`;
+
+  const letter = `Subject: Urgent Need for Strengthened Public Library Funding in ${state} — Request for Parliamentary Action
+
+Respected Member of Parliament,
+
+I am writing to you as a resident of ${state} and a concerned citizen who believes that public libraries are foundational infrastructure for our democracy, our economy, and our children's futures.
+
+Recent data tabled in Parliament — including in the July–August 2025 session (Rajya Sabha Q.1316 and Lok Sabha Q.†2365) — reveals a crisis in public library investment in India that demands urgent attention.
+
+THE NATIONAL PICTURE
+
+India spends an average of ₹15.30 per person per year on public libraries. To put this in context: Finland spends ₹5,500, the United States spends ₹3,500, and even China — which enacted its first national Public Library Law in 2017 — now spends approximately ₹250 per capita. India spends less on libraries per person per year than the cost of a single cup of chai.
+
+The National Mission on Libraries (NML) — launched to modernize 64 public libraries — has sanctioned ₹7,872 lakh but released only ₹5,807 lakh (74%). ₹2,065 lakh in approved funds remains unreleased. The Ministry of Culture has declined to take responsibility for digital library access, calling it "a state subject."
+
+THE SITUATION IN ${state.toUpperCase()}
+
+${spendLine}
+
+${rrrlStatus}
+
+${actLine}
+
+MY REQUESTS TO YOU
+
+I respectfully urge you to take the following actions on behalf of your constituents:
+
+1. TABLE A QUESTION in Parliament demanding a state-wise breakdown of NML release rates and a timeline for releasing the ₹2,065 lakh in pending NML funds.
+
+2. CALL FOR A NATIONAL LIBRARY POLICY — India has debated this since 1957 and still has no enacted national policy. The Standing Committee on Education should take this up urgently.
+
+3. CHAMPION A MINIMUM SPEND MANDATE — advocate for a centrally-sponsored scheme that sets a minimum per-capita library expenditure floor for all states and UTs.
+
+4. RAISE THE RRRLF EQUITY ISSUE — 18 of 36 states received zero RRRLF central grants in 2023-24. This concentration must be addressed with needs-based allocation.
+
+A nation that aspires to be a global knowledge economy cannot afford to neglect its public libraries. They are the last mile of access — for first-generation learners, job-seekers, digital newcomers, and millions who have no other pathway to information.
+
+I hope you will champion this cause in Parliament.
+
+Yours sincerely,
+${name}
+${state}
+
+---
+Data sourced from: Ministry of Culture, GoI; Lok Sabha Q.†2365 (04.08.2025); Rajya Sabha Q.1316 (31.07.2025); India Library Spend Tracker (public dashboard)`;
+
+  document.getElementById('letterText').textContent = letter;
+  document.getElementById('letterOutput').style.display = 'block';
+  document.getElementById('letterPlaceholder').style.display = 'none';
+}
+
+function copyLetter() {
+  const text = document.getElementById('letterText').textContent;
+  if (!text) return;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('[onclick="copyLetter()"]');
+    const orig = btn.textContent;
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.textContent = orig, 2000);
+  }).catch(() => {
+    const el = document.getElementById('letterText');
+    const range = document.createRange();
+    range.selectNode(el);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+  });
+}
+
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  initWorldChart();
+  renderStateChart();
+  renderStateTable();
+  rotateShame();
+  setInterval(rotateShame, 5000);
+});
+</script>
+</body>
+</html>

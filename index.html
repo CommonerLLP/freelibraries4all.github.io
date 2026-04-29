@@ -51,36 +51,6 @@
 
   .pamphlet { width: 100%; max-width: 1280px; margin: 0 auto; background: var(--cream); color: var(--ink); }
 
-  /* Sticky jump-nav — appears after the user scrolls past the hero */
-  .jump-nav {
-    position: sticky; top: 0; z-index: 50;
-    background: var(--ink); color: var(--cream);
-    padding: 12px 24px;
-    display: flex; gap: 14px; justify-content: center; align-items: center;
-    flex-wrap: wrap;
-    font-family: var(--f-mono); font-size: 12px;
-    letter-spacing: 2.5px; text-transform: uppercase;
-    border-bottom: 2px solid var(--red);
-    transform: translateY(-100%);
-    transition: transform 0.25s ease-out;
-  }
-  .jump-nav.visible { transform: translateY(0); }
-  .jump-nav a {
-    color: var(--cream); text-decoration: none;
-    border-bottom: 1px dotted transparent;
-    padding: 4px 2px;
-    transition: border-color 0.15s, color 0.15s;
-  }
-  .jump-nav a:hover, .jump-nav a:focus-visible {
-    border-bottom-color: var(--red); color: var(--cream);
-    outline: none;
-  }
-  .jump-nav .sep { color: var(--cream-deep); opacity: 0.45; }
-  /* Anchor offset so sticky nav doesn't cover headlines on jump */
-  section[id] { scroll-margin-top: 60px; }
-  @media (max-width: 900px) {
-    .jump-nav { padding: 10px 14px; font-size: 11px; letter-spacing: 1.8px; gap: 10px; }
-  }
 
   /* Skip link — visible only on focus, top-left */
   .skip-link {
@@ -300,11 +270,85 @@
   .verdict-ratio { font-family: var(--f-display); font-size: 84px; font-weight: 900; color: var(--red); line-height: 1; letter-spacing: -2px; font-variant-numeric: tabular-nums; margin-top: 4px; }
   .verdict-ratio-sub { font-family: var(--f-mono); font-size: 11px; color: var(--cream-deep); margin-top: 8px; letter-spacing: 1.4px; text-transform: uppercase; }
   .verdict-tail { font-family: var(--f-slab); font-size: 17px; color: var(--cream); line-height: 1.45; margin: 24px 0 0; text-wrap: balance; }
+  .verdict-tail strong { color: var(--red); font-weight: 700; }
+
+  /* Tax allocation breakdown — inside .verdict */
+  .alloc-grid {
+    margin-top: 28px; padding: 16px 0;
+    border-top: 2px solid var(--cream);
+    border-bottom: 2px solid var(--cream);
+  }
+  .alloc-row {
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 16px; align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 1px dashed rgba(241,232,211,0.25);
+  }
+  .alloc-row:last-child { border-bottom: none; }
+  .alloc-label {
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 1.4px;
+    color: var(--cream); text-transform: uppercase; line-height: 1.5;
+  }
+  .alloc-mult {
+    display: inline; margin-left: 6px;
+    color: var(--red); font-weight: 700;
+  }
+  .alloc-value {
+    font-family: var(--f-display); font-size: 40px; font-weight: 900;
+    color: var(--cream); letter-spacing: -1px; line-height: 1;
+    font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap;
+  }
+  .alloc-row.libraries .alloc-value { color: var(--red); }
+  @media (max-width: 900px) {
+    .alloc-value { font-size: 28px; }
+  }
   .buys { margin-top: 56px; padding: 32px; background: var(--cream); color: var(--ink); border: 4px solid var(--ink); }
   .buys h3 { font-family: var(--f-display); font-size: 64px; font-weight: 900; letter-spacing: -1.5px; color: var(--ink); text-transform: uppercase; line-height: 0.95; margin: 0; }
   .buys-grid { margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 2px solid var(--ink); border-left: 2px solid var(--ink); }
   .buys-grid > div { padding: 24px; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); font-family: var(--f-display); font-weight: 900; font-size: 32px; letter-spacing: -0.5px; text-transform: uppercase; color: var(--ink); }
   .buys-grid > div.red { color: var(--red); }
+
+  /* CLOSER — flagship two-side equation (PM trips vs Centre's library effort) */
+  .closer-eq {
+    margin-top: 48px;
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    gap: 32px; align-items: center;
+    padding: 40px 0;
+    border-top: 4px solid var(--cream);
+    border-bottom: 4px solid var(--cream);
+  }
+  .closer-side { color: var(--cream); }
+  .closer-label {
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 2px;
+    color: var(--cream); opacity: 0.85;
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .closer-value {
+    font-family: var(--f-display); font-weight: 900; font-size: 96px;
+    letter-spacing: -2.5px; line-height: 0.95; color: var(--cream);
+  }
+  .closer-source {
+    font-family: var(--f-slab); font-size: 14px; line-height: 1.45;
+    color: var(--cream); opacity: 0.85; margin-top: 14px; text-wrap: balance;
+  }
+  .closer-vs {
+    font-family: var(--f-display); font-size: 80px; font-weight: 900;
+    color: var(--ink); letter-spacing: -2px; line-height: 1;
+    text-align: center;
+  }
+  .closer-punch {
+    margin-top: 32px;
+    font-family: var(--f-slab); font-size: 24px;
+    line-height: 1.45; color: var(--cream); font-weight: 500;
+    text-wrap: balance;
+  }
+  .closer-punch strong { color: var(--ink); font-weight: 700; }
+  @media (max-width: 900px) {
+    .closer-eq { grid-template-columns: 1fr; gap: 16px; padding: 28px 0; }
+    .closer-value { font-size: 56px; letter-spacing: -1.5px; }
+    .closer-vs { font-size: 44px; text-align: left; }
+    .closer-punch { font-size: 18px; }
+  }
 
   /* DEFINITION + STANDARDS */
   .def-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
@@ -407,6 +451,63 @@
     .meanwhile-closer .deva { font-size: 22px; }
   }
 
+  /* BUDGET — equation rows showing what India can afford */
+  .budget-grid {
+    margin-top: 48px;
+    border-top: 4px solid var(--cream);
+    border-bottom: 4px solid var(--cream);
+  }
+  .budget-eq {
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    gap: 24px; align-items: center;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--cream-deep);
+  }
+  .budget-eq:last-child { border-bottom: none; }
+  .budget-item, .budget-equiv { color: var(--cream); }
+  .budget-item-label,
+  .budget-equiv-label {
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 2px;
+    color: var(--cream-deep); text-transform: uppercase; margin-bottom: 8px;
+  }
+  .budget-item-value {
+    font-family: var(--f-display); font-size: 56px; font-weight: 900;
+    letter-spacing: -1.5px; color: var(--cream); line-height: 1;
+  }
+  .budget-item-source,
+  .budget-equiv-source {
+    font-family: var(--f-slab); font-size: 14px; line-height: 1.45;
+    color: var(--cream-deep); margin-top: 12px; text-wrap: balance;
+  }
+  .budget-vs {
+    font-family: var(--f-display); font-size: 96px; font-weight: 900;
+    color: var(--red); letter-spacing: -2px; line-height: 1;
+    text-align: center;
+  }
+  .budget-equiv-value {
+    font-family: var(--f-display); font-size: 72px; font-weight: 900;
+    letter-spacing: -2px; color: var(--cream); line-height: 1;
+  }
+  .budget-equiv-value.red { color: var(--red); }
+  .budget-closer {
+    margin-top: 40px;
+    font-family: var(--f-slab); font-size: 22px; line-height: 1.5;
+    color: var(--cream); font-weight: 500; text-wrap: balance;
+  }
+  .budget-closer strong { color: var(--red); font-weight: 700; }
+  .budget-sources {
+    margin-top: 16px; font-family: var(--f-mono); font-size: 10px;
+    color: var(--cream-deep); letter-spacing: 1px;
+    text-transform: uppercase; line-height: 1.6;
+  }
+  @media (max-width: 900px) {
+    .budget-eq { grid-template-columns: 1fr; gap: 12px; padding: 20px 0; }
+    .budget-item-value { font-size: 36px; }
+    .budget-vs { font-size: 56px; text-align: left; }
+    .budget-equiv-value { font-size: 44px; }
+    .budget-closer { font-size: 18px; }
+  }
+
   /* HISTORY TIMELINE */
   .timeline { margin-top: 56px; border-top: 4px solid var(--ink); }
   .event { display: grid; grid-template-columns: 200px 1fr; gap: 32px; padding: 32px 0; border-bottom: 2px solid var(--ink); align-items: baseline; }
@@ -414,68 +515,6 @@
   .event-body { display: grid; grid-template-columns: 1fr 2fr; gap: 24px; align-items: baseline; }
   .event-title { font-family: var(--f-display); font-weight: 900; font-size: 32px; color: var(--ink); letter-spacing: -0.5px; line-height: 1; text-transform: uppercase; text-wrap: balance; }
   .event-text { font-family: var(--f-slab); font-size: 18px; color: var(--ink-soft); line-height: 1.5; text-wrap: balance; }
-
-  /* INDIA MAP (above the state-list table) */
-  .india-map-wrap {
-    margin-top: 32px; margin-bottom: 24px;
-    display: flex; justify-content: center;
-    background: var(--cream); position: relative;
-  }
-  .india-map {
-    width: 100%; max-width: 620px; height: auto;
-    aspect-ratio: 800 / 787;
-  }
-  .india-map svg { width: 100%; height: 100%; display: block; }
-  .india-map path {
-    fill: var(--cream-deep); stroke: var(--ink); stroke-width: 0.6;
-    transition: fill 0.15s, opacity 0.15s, stroke-width 0.1s;
-    cursor: pointer; vector-effect: non-scaling-stroke;
-  }
-  /* Spending tiers (worse = redder/darker) */
-  .india-map path.tier-none { fill: var(--cream); }                /* Centre UTs - no data */
-  .india-map path.tier-zero { fill: var(--red); }                  /* < ₹1/capita — Bihar, Jharkhand, UP, MP, Punjab, etc */
-  .india-map path.tier-low  { fill: var(--ink); fill-opacity: 0.65;}/* ₹1-15 — most states */
-  .india-map path.tier-high { fill: var(--cream-deep); fill-opacity: 0.95; } /* ≥ ₹15 — the relatively fortunate */
-  .india-map path.dim { opacity: 0.18; }
-  .india-map path:hover { stroke-width: 2; }
-  .india-map path:focus-visible { stroke: var(--red); stroke-width: 2.5; outline: none; }
-
-  .india-map-legend {
-    display: flex; flex-wrap: wrap; gap: 18px; justify-content: center;
-    margin-top: 12px; font-family: var(--f-mono); font-size: 10px;
-    letter-spacing: 1.5px; color: var(--ink-soft); text-transform: uppercase;
-  }
-  .india-map-legend .swatch {
-    display: inline-block; width: 14px; height: 14px; vertical-align: middle;
-    margin-right: 6px; border: 1.5px solid var(--ink);
-  }
-  .india-map-legend .swatch.tier-none { background: var(--cream); }
-  .india-map-legend .swatch.tier-zero { background: var(--red); border-color: var(--red); }
-  .india-map-legend .swatch.tier-low  { background: var(--ink); }
-  .india-map-legend .swatch.tier-high { background: var(--cream-deep); }
-
-  .india-map-tooltip {
-    position: fixed; z-index: 1000; pointer-events: none;
-    opacity: 0; transition: opacity 0.12s;
-    background: var(--ink); color: var(--cream);
-    padding: 10px 14px; max-width: 260px;
-    font-family: var(--f-mono); font-size: 11px;
-    letter-spacing: 1px; line-height: 1.5; text-transform: uppercase;
-    border: 2px solid var(--red);
-  }
-  .india-map-tooltip.visible { opacity: 1; }
-  .india-map-tooltip strong {
-    display: block; color: var(--cream);
-    font-family: var(--f-display); font-size: 22px;
-    letter-spacing: -0.5px; text-transform: uppercase; margin-bottom: 6px;
-  }
-  .india-map-tooltip .spend { color: var(--red); font-weight: 700; }
-
-  @media (max-width: 900px) {
-    .india-map { max-width: 100%; }
-    .india-map-tooltip { font-size: 10px; max-width: 200px; }
-    .india-map-tooltip strong { font-size: 18px; }
-  }
 
   /* STATE TRACKER (data section) */
   .state-controls { margin-top: 32px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
@@ -769,30 +808,17 @@
     <span class="accent">A People's Pamphlet · एक जन-पत्रिका</span>
   </div>
 
-  <!-- JUMP NAV (sticky, revealed on scroll past hero) -->
-  <nav class="jump-nav" id="jump-nav" aria-label="Page sections">
-    <a href="#numbers">Numbers</a>
-    <span class="sep" aria-hidden="true">·</span>
-    <a href="#states">States</a>
-    <span class="sep" aria-hidden="true">·</span>
-    <a href="#china">China</a>
-    <span class="sep" aria-hidden="true">·</span>
-    <a href="#write">Write</a>
-    <span class="sep" aria-hidden="true">·</span>
-    <a href="#act">Act</a>
-  </nav>
-
   <!-- HERO -->
   <section class="hero">
     <div class="grain"></div>
     <div class="hero-bgnum" aria-hidden="true">0.07</div>
     <div class="hero-inner">
       <div class="notice-pill">A NOTICE TO THE INDIAN VOTER</div>
-      <h1>ONE <span class="red">STATUE</span> =<br>FIFTEEN YEARS OF<br><span class="red">PUBLIC LIBRARIES</span><br>FUNDING.</h1>
+      <h1>ONE <span class="red">STATUE</span> =<br>FIFTEEN TIMES<br>OUR <span class="red">LIBRARY</span><br>BUDGET.</h1>
       <div class="hero-sub">so much money for statues — but <span class="red">none for our libraries!!!</span></div>
-      <div class="hero-deva" lang="hi">एक मूर्ति = पंद्रह साल का <span class="red">सार्वजनिक पुस्तकालय</span> बजट ।</div>
+      <div class="hero-deva" lang="hi"><span class="red">सार्वजनिक पुस्तकालय</span> बजट का <span class="red">पंद्रह गुना</span> । एक मूर्ति में ।</div>
 
-      <p class="hero-lede">Public libraries are in <strong>List II of the Constitution</strong> — a State subject. State governments spend ₹15.30 per person per year on average. The Centre's RRRLF adds ₹0.07. <span class="red">The United States spends ₹2,900.</span> <span class="red">China — the country we are told we are "competing" with — has had a national Public Library Law since 2017.</span> India has been drafting one since 1957. <strong class="red">We say we want to be a Vishwaguru. With what?</strong></p>
+      <p class="hero-lede">Public libraries are in <strong>List II of the Constitution</strong> — a State subject. State governments spend ₹15.30 per person per year on average. The Centre's RRRLF adds ₹0.07. <span class="red">The United States spends ₹2,900.</span> <span class="red">China — the country we are told we are "competing" with — has had a national Public Library Law since 2017.</span> India has been drafting one for over six decades. <strong class="red">We say we want to be a Vishwaguru. With what?</strong></p>
       <div class="manifesto">
         <div>READ.</div>
         <div>AGITATE.</div>
@@ -834,7 +860,7 @@
   <!-- WORLD COMPARISON -->
   <section class="section cream">
     <div class="eyebrow">India vs the World · per capita / year</div>
-    <h2>WE SPEND <span class="red">LESS</span><br>THAN ANYONE.</h2>
+    <h2>WE SPEND <span class="red">LESS</span><br>THAN OTHERS.</h2>
     <p class="lede">India next to the two countries we are told we are "competing" with. Per person, per year, in nominal Indian Rupees. The bar for India is so small it is almost invisible — that is the point.</p>
     <div class="world-rows" id="world-rows"></div>
   </section>
@@ -844,42 +870,71 @@
     <div class="grain soft"></div>
     <div class="calc-inner">
       <div class="calc-tagrow">
-        <div class="calc-tag">// The Calculator of Contempt · अपमान-गणक</div>
-        <div class="calc-tag muted">Drag · खिसकाओ</div>
+        <div class="calc-tag">// Where your tax goes · आपका कर कहाँ जाता है</div>
       </div>
-      <h2>HOW MUCH IS<br>YOUR READING<br>WORTH TO THIS STATE?</h2>
-      <div class="calc-grid">
+      <h2>WHERE YOUR<br>TAX GOES.<br><span style="color:var(--ink)">NOT TO YOU.</span></h2>
+
+      <div class="closer-eq">
+        <div class="closer-side">
+          <div class="closer-label">PM Modi's foreign trips · 10 years</div>
+          <div class="closer-value">₹762 CR</div>
+          <div class="closer-source">2015–2025. MEA replies in Lok Sabha (The Wire, March 2025).</div>
+        </div>
+        <div class="closer-vs" aria-hidden="true">vs.</div>
+        <div class="closer-side">
+          <div class="closer-label">India's central library effort · 20 years</div>
+          <div class="closer-value">₹197 CR</div>
+          <div class="closer-source">2003–2024. RRRLF total grant disbursement, Ministry of Culture.</div>
+        </div>
+      </div>
+
+      <p class="closer-punch">The State spent <strong>4× more on flying the Prime Minister around in 10 years</strong> than on building libraries in 20.</p>
+
+      <!-- INTERACTIVE: where YOUR tax goes -->
+      <div class="calc-grid" style="margin-top:64px">
         <div>
-          <div class="calc-label">Tell us your annual income — आय</div>
+          <div class="calc-label">Type your annual salary — आय</div>
           <div class="calc-input-row">
             <span class="calc-rupee">₹</span>
             <input id="income-input" type="number" value="1200000" min="0" />
           </div>
-          <input id="income-range" type="range" min="120000" max="10000000" step="10000" value="1200000" aria-label="Annual income in rupees (slider)" />
-          <div class="calc-marks"><span>₹1.2 Lakh</span><span>₹50 Lakh</span><span>₹1 Crore</span></div>
-          <div class="calc-help">Your income is what you bring home. Below — what the Indian state thinks your library is worth, by comparison.</div>
+          <input id="income-range" type="range" min="300000" max="10000000" step="50000" value="1200000" aria-label="Annual salary in rupees" />
+          <div class="calc-marks"><span>₹3 Lakh</span><span>₹50 Lakh</span><span>₹1 Crore</span></div>
+          <div class="calc-help">India's middle class spans roughly ₹5–30 lakh annual household income (PRICE 2023). Below — what the Centre will allocate from your tax this year.</div>
         </div>
+
         <div class="verdict" aria-live="polite" aria-atomic="false">
-          <div class="verdict-tag">The verdict / निर्णय</div>
-          <div class="verdict-line">You earn — <span class="red">₹<span id="v-income">12,00,000</span></span> a year.</div>
-          <div class="verdict-line">The state spends — <span class="red">₹0.07</span> on your library.</div>
-          <div class="verdict-ratio-wrap">
-            <div class="verdict-ratio-tag">The ratio</div>
-            <div class="verdict-ratio">1 : <span id="v-ratio">1,71,42,857</span></div>
-            <div class="verdict-ratio-sub">You earn this many times more than the state spends on your reading.</div>
+          <div class="verdict-tag">The Centre's receipt</div>
+          <div class="verdict-line">Your estimated income tax this year:</div>
+          <div class="verdict-ratio" style="font-size:64px; margin-top:8px">₹<span id="t-tax">71,500</span></div>
+
+          <div class="alloc-grid">
+            <div class="alloc-row libraries">
+              <div class="alloc-label">to public libraries (RRRLF)</div>
+              <div class="alloc-value">₹<span id="t-lib">0.22</span></div>
+            </div>
+            <div class="alloc-row">
+              <div class="alloc-label">to telling you the State works <span class="alloc-mult"><span id="t-ads-mult">43×</span> more</span></div>
+              <div class="alloc-value">₹<span id="t-ads">9.59</span></div>
+            </div>
+            <div class="alloc-row">
+              <div class="alloc-label">to the PM's foreign trips <span class="alloc-mult"><span id="t-pm-mult">7×</span> more</span></div>
+              <div class="alloc-value">₹<span id="t-pm">1.62</span></div>
+            </div>
           </div>
-          <p class="verdict-tail">Now imagine being a Dalit child in a Bihar village. The state spends ₹0.07 on her library too. Except she does not have your other ₹<span id="v-lakh">12</span> lakh to fall back on.</p>
+
+          <p class="verdict-tail">From your tax, the Centre will spend <strong>more on telling you it works</strong> than on the libraries the Constitution promised you under <strong>Articles 14, 21 and 21A.</strong></p>
         </div>
       </div>
 
       <div class="buys">
-        <h3>WHAT ₹0.07 BUYS, IN 2026:</h3>
+        <h3>WHAT ₹0.07 BUYS YOU, IN 2026:</h3>
         <div class="buys-grid">
-          <div>Not a grain of rice.</div>
-          <div>Not a matchstick.</div>
-          <div>Not a sheet of paper.</div>
-          <div>Not a photocopy.</div>
-          <div>Not a library card.</div>
+          <div>Not a sip of your morning coffee.</div>
+          <div>Not one Swiggy delivery fee.</div>
+          <div>Not one Uber surge minute.</div>
+          <div>Not one Netflix episode.</div>
+          <div>Not one page of your child's textbook.</div>
           <div class="red">Not even contempt.</div>
         </div>
       </div>
@@ -892,16 +947,6 @@
     <h2>31 STATES.<br>ONE <span class="red">SCANDAL.</span></h2>
     <p class="lede">Per-capita public library expenditure, ₹ per person per year, 2020–21 — the most recent year tabled by the Ministry of Culture. Goa spends 1,400× more than Jharkhand. Both are in the same country. Both are governed by the same Constitution. <strong style="color:var(--ink)">Of 15 state library acts, only Haryana defines libraries as free from fees.</strong></p>
 
-    <div class="india-map-wrap">
-      <div class="india-map" id="india-map" aria-label="India map: per-capita public library spending by state (2020-21)"></div>
-    </div>
-    <div class="india-map-legend" aria-hidden="true">
-      <span><span class="swatch tier-zero"></span>Under ₹1/capita</span>
-      <span><span class="swatch tier-low"></span>₹1 – ₹15</span>
-      <span><span class="swatch tier-high"></span>₹15 +</span>
-      <span><span class="swatch tier-none"></span>Centre-administered (no state data)</span>
-    </div>
-
     <div class="state-controls">
       <span class="label">Filter:</span>
       <div class="filter-btns" id="state-filters">
@@ -912,8 +957,8 @@
       </div>
       <span class="label" style="margin-left:16px">Sort:</span>
       <select id="state-sort">
+        <option value="asc" selected>Lowest first</option>
         <option value="desc">Highest first</option>
-        <option value="asc">Lowest first</option>
         <option value="name">By name</option>
       </select>
     </div>
@@ -1033,12 +1078,70 @@
 
       <div class="meanwhile-closer">
         <p>
-          China enacted its Public Library Law in 2017. India has been drafting one since 1957. We say we want a knowledge economy. We have funded none of the things that make one. We have built none of the institutions that hold one up.
+          China enacted its Public Library Law in 2017. India has been drafting one for over six decades. We say we want a knowledge economy. We have funded none of the things that make one. We have built none of the institutions that hold one up.
           <strong>We are courting servers, not citizens.</strong>
         </p>
         <div class="deva" lang="hi">हम सर्वर बेच रहे हैं । हम पाठक नहीं बना रहे ।</div>
       </div>
       <div class="meanwhile-sources">Approximate latest-available figures (UNESCO Institute for Statistics, World Bank, OECD; China Ministry of Culture and Tourism). Exact percentages vary by methodology and year. Order-of-magnitude is not in dispute.</div>
+    </div>
+  </section>
+
+  <!-- BUDGET — what India can afford vs what it spends on libraries -->
+  <section class="section ink">
+    <div class="grain soft"></div>
+    <div style="position:relative; z-index:1;">
+      <div class="eyebrow">The budget is a moral document · बजट एक नैतिक दस्तावेज़</div>
+      <h2>WE CAN AFFORD IT.<br>WE <span class="red">CHOOSE</span><br>NOT TO.</h2>
+      <p class="lede">India's libraries are not underfunded because India is poor. They are underfunded because the State chose to spend the money somewhere else. Look at the arithmetic.</p>
+
+      <div class="budget-grid">
+        <div class="budget-eq">
+          <div class="budget-item">
+            <div class="budget-item-label">All India library spending · per year</div>
+            <div class="budget-item-value">₹2,150 CR</div>
+            <div class="budget-item-source">State governments combined ≈ ₹2,142 cr (avg ₹15.30 per capita × ~1.4 billion people, Ministry of Culture, 2020-21). Centre's RRRLF averages another ~₹10 cr / year.</div>
+          </div>
+          <div class="budget-vs" aria-hidden="true">≈</div>
+          <div class="budget-equiv">
+            <div class="budget-equiv-label">Of the Union Budget</div>
+            <div class="budget-equiv-value">0.04%</div>
+            <div class="budget-equiv-source">Union Budget 2024-25 BE: ~₹48 lakh crore. India spends less than four paise of every ₹100 of central budget on public libraries.</div>
+          </div>
+        </div>
+
+        <div class="budget-eq">
+          <div class="budget-item">
+            <div class="budget-item-label">One year · 2019 corporate tax cut · revenue forgone</div>
+            <div class="budget-item-value">₹1,45,000 CR</div>
+            <div class="budget-item-source">Revenue the Centre gave up in FY 2019-20 alone after cutting the corporate tax rate from 30% to 22% (and to 15% for new manufacturing). Recurring annually.</div>
+          </div>
+          <div class="budget-vs" aria-hidden="true">=</div>
+          <div class="budget-equiv">
+            <div class="budget-equiv-label">Of all India's library spending</div>
+            <div class="budget-equiv-value red">67 YEARS</div>
+            <div class="budget-equiv-source">More revenue forgone from corporations in one fiscal year than India has spent on libraries in our lifetimes.</div>
+          </div>
+        </div>
+
+        <div class="budget-eq">
+          <div class="budget-item">
+            <div class="budget-item-label">One year · Production-Linked Incentive (PLI) · annual avg</div>
+            <div class="budget-item-value">~₹40,000 CR</div>
+            <div class="budget-item-source">Subsidies for corporate manufacturers under PLI: ~₹1.97 lakh crore committed across 14 sectors over five years.</div>
+          </div>
+          <div class="budget-vs" aria-hidden="true">=</div>
+          <div class="budget-equiv">
+            <div class="budget-equiv-label">Of all India's library spending</div>
+            <div class="budget-equiv-value red">19 YEARS</div>
+            <div class="budget-equiv-source">One year of subsidies to large corporate manufacturers ≈ two decades of every public library in the country.</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="budget-closer">This is not a matter of poverty. It is a matter of priority. The State has chosen statues, expressways, hyperscale data centres for American corporations, and tax cuts for billion-dollar companies — over the libraries the Constitution promises you under <strong>Articles 14, 21 and 21A.</strong></p>
+
+      <div class="budget-sources">Approximate latest-available figures. Union Budget 2024-25 (Government of India). Corporate tax cut revenue forgone reported by CAG and Finance Ministry annexures (FY 2019-20). PLI scheme commitment data from the Ministry of Commerce and Industry. Library spending: state-level Ministry of Culture data (2020-21) + RRRLF disbursements (2003-2024). Order-of-magnitude is not in dispute.</div>
     </div>
   </section>
 
@@ -1523,7 +1626,7 @@ if (parlEl) parlEl.innerHTML = PARLIAMENT.map((p) => `
 
 // ─── STATE TRACKER ────────────────────────────────────────────────
 let stateFilter = "all";
-let stateSort = "desc";
+let stateSort = "asc"; // lowest first — default sort surfaces the most-underfunded states
 function statusOf(name) {
   const leg = LEGISLATION[name] || {};
   if (leg.free) return "free";
@@ -1559,105 +1662,9 @@ $("#state-filters").addEventListener("click", (e) => {
   $("#state-filters").querySelectorAll(".filter-btn").forEach((x) => x.classList.toggle("active", x === b));
   stateFilter = b.dataset.filter;
   renderStateList();
-  updateMapFilter();
 });
 $("#state-sort").addEventListener("change", (e) => { stateSort = e.target.value; renderStateList(); });
 renderStateList();
-
-// ─── INDIA MAP ────────────────────────────────────────────────────
-// Fetch the simplified state SVG, color paths by spending tier,
-// wire hover tooltip + filter integration with the table above.
-// Some SVG path IDs use older state names — map them to STATE_DATA keys.
-const MAP_NAME_FIX = {
-  "Orissa": "Odisha",
-  "Uttaranchal": "Uttarakhand",
-  "Jammu and Kashmir": "Jammu & Kashmir"
-};
-function tierFor(stateKey) {
-  if (!STATE_DATA[stateKey]) return "none";
-  const v = STATE_DATA[stateKey][6] ?? 0;
-  if (v < 1)  return "zero";
-  if (v < 15) return "low";
-  return "high";
-}
-
-let mapPaths = null;
-const mapTip = document.createElement("div");
-mapTip.className = "india-map-tooltip";
-mapTip.setAttribute("role", "tooltip");
-document.body.appendChild(mapTip);
-
-function showMapTip(e, stateKey) {
-  const data = STATE_DATA[stateKey];
-  const leg = LEGISLATION[stateKey] || {};
-  let inner = `<strong>${esc(stateKey)}</strong>`;
-  if (data) {
-    const v = data[6];
-    inner += `<div><span class="spend">₹${fmtMoney(v ?? 0)}</span> per capita / year (2020-21)</div>`;
-    if (leg.free)         inner += `<div>🟢 Free Library Act, ${leg.year}</div>`;
-    else if (leg.has_act) inner += `<div>🟡 Library Act ${leg.year} (charges fees)</div>`;
-    else                  inner += `<div>🔴 No Library Act</div>`;
-  } else {
-    inner += `<div>Centre-administered · no state-level spending data</div>`;
-  }
-  mapTip.innerHTML = inner;
-  mapTip.classList.add("visible");
-  moveMapTip(e);
-}
-function moveMapTip(e) {
-  const x = (e.clientX || (e.touches && e.touches[0]?.clientX) || 0) + 14;
-  const y = (e.clientY || (e.touches && e.touches[0]?.clientY) || 0) + 14;
-  // Keep tooltip inside viewport
-  const maxX = window.innerWidth - 280;
-  mapTip.style.left = Math.min(x, maxX) + "px";
-  mapTip.style.top  = y + "px";
-}
-function hideMapTip() { mapTip.classList.remove("visible"); }
-
-function updateMapFilter() {
-  if (!mapPaths) return;
-  mapPaths.forEach((p) => {
-    const k = p.dataset.state;
-    if (!k || !STATE_DATA[k]) { p.classList.add("dim"); return; }
-    if (stateFilter === "all") { p.classList.remove("dim"); return; }
-    const status = statusOf(k);
-    p.classList.toggle("dim", status !== stateFilter);
-  });
-}
-
-(function initMap() {
-  const wrap = $("#india-map");
-  if (!wrap) return;
-  fetch("assets/india_states.svg")
-    .then((r) => { if (!r.ok) throw new Error("SVG fetch failed: " + r.status); return r.text(); })
-    .then((svgText) => {
-      wrap.innerHTML = svgText;
-      mapPaths = wrap.querySelectorAll("path");
-      mapPaths.forEach((p) => {
-        const id = p.getAttribute("id");
-        if (!id) return;
-        const stateKey = MAP_NAME_FIX[id] || id;
-        p.dataset.state = stateKey;
-        p.classList.add("tier-" + tierFor(stateKey));
-        p.setAttribute("tabindex", "0");
-        p.setAttribute("role", "button");
-        p.setAttribute("aria-label", stateKey + (STATE_DATA[stateKey] ? `, ₹${fmtMoney(STATE_DATA[stateKey][6] ?? 0)} per capita` : ", Centre-administered"));
-        p.addEventListener("mouseenter", (e) => showMapTip(e, stateKey));
-        p.addEventListener("mousemove", moveMapTip);
-        p.addEventListener("mouseleave", hideMapTip);
-        p.addEventListener("focus", (e) => {
-          const r = p.getBoundingClientRect();
-          showMapTip({ clientX: r.left + r.width / 2, clientY: r.top }, stateKey);
-        });
-        p.addEventListener("blur", hideMapTip);
-      });
-      updateMapFilter();
-    })
-    .catch((err) => {
-      console.warn("India map failed to load:", err);
-      wrap.style.display = "none";
-    });
-})();
 
 // ─── RRRLF ANNUAL CHART ───────────────────────────────────────────
 (function renderRrrlf() {
@@ -1708,21 +1715,69 @@ function updateMapFilter() {
     </div>`).join("");
 })();
 
-// ─── CALCULATOR ───────────────────────────────────────────────────
-const incomeInput = $("#income-input"), incomeRange = $("#income-range");
-const vIncome = $("#v-income"), vRatio = $("#v-ratio"), vLakh = $("#v-lakh");
-const INDIA_SPEND = 0.07;
-function syncCalc(value, source) {
-  const n = Math.max(0, Math.round(+value || 0));
-  if (source !== "input") incomeInput.value = n;
-  if (source !== "range") incomeRange.value = Math.min(Math.max(n, +incomeRange.min), +incomeRange.max);
-  vIncome.textContent = fmtIN(n);
-  vRatio.textContent = fmtIN(Math.round(n / INDIA_SPEND));
-  vLakh.textContent = fmtIN(Math.max(0, Math.round(n / 100000)));
+// ─── TAX ALLOCATION CALCULATOR ────────────────────────────────────
+// Income → estimated income tax → Centre's allocation of that tax
+// across libraries (RRRLF), advertising, and PM foreign trips.
+//
+// Tax brackets: New Tax Regime, FY 2024-25 (no rebate, simplified for advocacy).
+// Centre line items use FY24-25 actuals where available; libraries uses recent
+// RRRLF average. Total Union Budget = FY 2024-25 BE.
+const NEW_TAX_BRACKETS = [
+  [300000,  700000,  0.05],
+  [700000,  1000000, 0.10],
+  [1000000, 1200000, 0.15],
+  [1200000, 1500000, 0.20],
+  [1500000, Infinity, 0.30]
+];
+// Income tax under New Tax Regime FY 2024-25, with ₹75,000 standard deduction
+// for salaried individuals and 4% Health & Education cess on tax payable.
+// Section 87A rebate (zero tax up to ₹7L taxable) applied for salaried filers.
+const STANDARD_DEDUCTION = 75000;
+const REBATE_TAXABLE_CAP = 700000; // 87A rebate makes tax zero up to ₹7L taxable
+const CESS_RATE = 0.04;
+function estimatedIncomeTax(salary) {
+  const taxable = Math.max(0, salary - STANDARD_DEDUCTION);
+  if (taxable <= REBATE_TAXABLE_CAP) return 0;
+  let tax = 0;
+  for (const [lo, hi, rate] of NEW_TAX_BRACKETS) {
+    if (taxable <= lo) break;
+    tax += (Math.min(taxable, hi) - lo) * rate;
+  }
+  return tax * (1 + CESS_RATE);
 }
-incomeInput.addEventListener("input", (e) => syncCalc(e.target.value, "input"));
-incomeRange.addEventListener("input", (e) => syncCalc(e.target.value, "range"));
-syncCalc(incomeInput.value, null);
+const CENTRE_BUDGET   = 4800000; // ₹ crore — Union Budget 2024-25 BE
+const CENTRE_LIBRARIES = 15;     // ₹ crore — RRRLF recent annual avg
+const CENTRE_ADS       = 644;    // ₹ crore — Govt advertising FY 2024-25 actual
+const CENTRE_PM_TRIPS  = 109;    // ₹ crore — PM foreign trips 2024 calendar year
+
+const incomeInput = $("#income-input"), incomeRange = $("#income-range");
+const tTax = $("#t-tax"), tLib = $("#t-lib"), tAds = $("#t-ads"), tPM = $("#t-pm");
+const tAdsMult = $("#t-ads-mult"), tPMMult = $("#t-pm-mult");
+
+function shareFromTax(tax, lineItemCrore) {
+  return tax * (lineItemCrore / CENTRE_BUDGET);
+}
+function recomputeTax(value, source) {
+  const salary = Math.max(0, Math.round(+value || 0));
+  if (source !== "input") incomeInput.value = salary;
+  if (source !== "range") incomeRange.value = Math.min(Math.max(salary, +incomeRange.min), +incomeRange.max);
+  const tax = Math.round(estimatedIncomeTax(salary));
+  const lib = shareFromTax(tax, CENTRE_LIBRARIES);
+  const ads = shareFromTax(tax, CENTRE_ADS);
+  const pm  = shareFromTax(tax, CENTRE_PM_TRIPS);
+  tTax.textContent = fmtIN(tax);
+  tLib.textContent = lib.toFixed(2);
+  tAds.textContent = ads.toFixed(2);
+  tPM.textContent  = pm.toFixed(2);
+  // Multipliers (relative to libraries, the anchor)
+  const adsX = lib > 0 ? Math.round(ads / lib) : 0;
+  const pmX  = lib > 0 ? Math.round(pm  / lib) : 0;
+  tAdsMult.textContent = adsX > 0 ? `${adsX}×` : "—";
+  tPMMult.textContent  = pmX  > 0 ? `${pmX}×`  : "—";
+}
+incomeInput.addEventListener("input", (e) => recomputeTax(e.target.value, "input"));
+incomeRange.addEventListener("input", (e) => recomputeTax(e.target.value, "range"));
+recomputeTax(incomeInput.value, null);
 
 // ─── MP LETTER (state-aware) ──────────────────────────────────────
 const stateSel = $("#mp-state");
@@ -1816,22 +1871,6 @@ nameInput.addEventListener("input", syncLetter);
 stateSel.addEventListener("change", syncLetter);
 constInput.addEventListener("input", syncLetter);
 syncLetter();
-
-// ─── JUMP NAV — show after the hero scrolls out ───────────────────
-(function () {
-  const nav = $("#jump-nav");
-  const hero = document.querySelector(".hero");
-  if (!nav || !hero) return;
-  let ticking = false;
-  function update() {
-    nav.classList.toggle("visible", hero.getBoundingClientRect().bottom < 8);
-    ticking = false;
-  }
-  window.addEventListener("scroll", () => {
-    if (!ticking) { requestAnimationFrame(update); ticking = true; }
-  }, { passive: true });
-  update();
-})();
 
 copyBtn.addEventListener("click", () => {
   const letter = buildLetter();

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  The Right To Read — small-size favicon (16/32 px target).
+  Constitution book with a SIMPLIFIED 8-spoke chakra, very thick
+  strokes. Designed for the pixel grid: at 16 px the wheel still
+  reads as a chakra (8 rays) instead of blurring to a dot.
+  The detailed 24-spoke variant lives in favicon.svg for ≥ 64 px.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" shape-rendering="geometricPrecision">
+  <rect width="32" height="32" fill="#dc2a14"/>
+  <!-- Book cover -->
+  <rect x="5" y="3" width="22" height="26" rx="0.5" fill="#f1e8d3"/>
+  <!-- Spine accent -->
+  <rect x="5" y="3" width="2" height="26" fill="#dc2a14" opacity="0.22"/>
+  <!-- Chakra: 8 spokes, thick strokes, sized to the 22-wide cover -->
+  <g transform="translate(16 16)" fill="none" stroke="#dc2a14" stroke-linecap="butt">
+    <circle r="8" stroke-width="1.6"/>
+    <circle r="1.6" fill="#dc2a14" stroke="none"/>
+    <g stroke-width="1.6">
+      <line x1="0" y1="-7.2" x2="0" y2="-1.8"/>
+      <line x1="0" y1="7.2" x2="0" y2="1.8"/>
+      <line x1="-7.2" y1="0" x2="-1.8" y2="0"/>
+      <line x1="7.2" y1="0" x2="1.8" y2="0"/>
+      <line x1="-5.09" y1="-5.09" x2="-1.27" y2="-1.27"/>
+      <line x1="5.09" y1="-5.09" x2="1.27" y2="-1.27"/>
+      <line x1="-5.09" y1="5.09" x2="-1.27" y2="1.27"/>
+      <line x1="5.09" y1="5.09" x2="1.27" y2="1.27"/>
+    </g>
+  </g>
+</svg>

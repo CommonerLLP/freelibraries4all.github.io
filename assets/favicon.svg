@@ -2,63 +2,62 @@
 <!--
   The Right To Read — favicon
   Constitution of India: cream cover on vermilion, with the
-  24-spoke Ashoka Chakra inscribed on the cover (negative space).
-  Solid silhouette + chunky strokes — survives down to 16 px.
+  24-spoke Ashoka Chakra inscribed on the cover.
+  Tuned for legibility down to 16 px: the chakra fills more of
+  the cover, and spokes are 3 units thick so they survive
+  pixel-grid downsampling.
 -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" shape-rendering="geometricPrecision">
   <rect width="100" height="100" fill="#dc2a14"/>
 
   <!-- Book cover (closed, portrait orientation) -->
-  <g fill="#f1e8d3">
-    <!-- main cover -->
-    <rect x="20" y="10" width="60" height="80" rx="2"/>
-  </g>
+  <rect x="14" y="8" width="72" height="84" rx="2" fill="#f1e8d3"/>
 
   <!-- Spine accent on left edge -->
-  <rect x="20" y="10" width="6" height="80" fill="#dc2a14" opacity="0.18"/>
-  <rect x="22" y="10" width="1.5" height="80" fill="#dc2a14"/>
+  <rect x="14" y="8" width="6" height="84" fill="#dc2a14" opacity="0.18"/>
+  <rect x="17" y="8" width="1.6" height="84" fill="#dc2a14"/>
 
   <!-- Top/bottom binding rules -->
-  <rect x="26" y="16" width="48" height="1.5" fill="#dc2a14"/>
-  <rect x="26" y="83" width="48" height="1.5" fill="#dc2a14"/>
+  <rect x="22" y="14" width="58" height="1.6" fill="#dc2a14"/>
+  <rect x="22" y="84.4" width="58" height="1.6" fill="#dc2a14"/>
 
-  <!-- Ashoka Chakra (24 spokes) — vermilion strokes on cream cover -->
-  <g transform="translate(50 50)" fill="none" stroke="#dc2a14" stroke-width="1.6" stroke-linecap="butt">
+  <!-- Ashoka Chakra (24 spokes), enlarged for small-size legibility -->
+  <g transform="translate(50 50)" fill="none" stroke="#dc2a14" stroke-linecap="butt">
     <!-- outer ring -->
-    <circle r="16" stroke-width="2.4"/>
+    <circle r="22" stroke-width="3.6"/>
     <!-- hub -->
-    <circle r="2.6" fill="#dc2a14" stroke="none"/>
-    <!-- 24 spokes from hub to outer ring -->
-    <g>
-      <line x1="0" y1="-15" x2="0" y2="-3"/>
-      <line x1="0" y1="15" x2="0" y2="3"/>
-      <line x1="-15" y1="0" x2="-3" y2="0"/>
-      <line x1="15" y1="0" x2="3" y2="0"/>
+    <circle r="3.2" fill="#dc2a14" stroke="none"/>
+    <!-- 24 thick spokes -->
+    <g stroke-width="3">
+      <line x1="0" y1="-21" x2="0" y2="-3.4"/>
+      <line x1="0" y1="21" x2="0" y2="3.4"/>
+      <line x1="-21" y1="0" x2="-3.4" y2="0"/>
+      <line x1="21" y1="0" x2="3.4" y2="0"/>
       <!-- 15° -->
-      <line x1="-3.88" y1="-14.49" x2="-0.78" y2="-2.90"/>
-      <line x1="3.88" y1="-14.49" x2="0.78" y2="-2.90"/>
-      <line x1="-3.88" y1="14.49" x2="-0.78" y2="2.90"/>
-      <line x1="3.88" y1="14.49" x2="0.78" y2="2.90"/>
+      <line x1="-5.44" y1="-20.28" x2="-0.88" y2="-3.28"/>
+      <line x1="5.44" y1="-20.28" x2="0.88" y2="-3.28"/>
+      <line x1="-5.44" y1="20.28" x2="-0.88" y2="3.28"/>
+      <line x1="5.44" y1="20.28" x2="0.88" y2="3.28"/>
       <!-- 30° -->
-      <line x1="-7.50" y1="-12.99" x2="-1.50" y2="-2.60"/>
-      <line x1="7.50" y1="-12.99" x2="1.50" y2="-2.60"/>
-      <line x1="-7.50" y1="12.99" x2="-1.50" y2="2.60"/>
-      <line x1="7.50" y1="12.99" x2="1.50" y2="2.60"/>
+      <line x1="-10.50" y1="-18.19" x2="-1.70" y2="-2.94"/>
+      <line x1="10.50" y1="-18.19" x2="1.70" y2="-2.94"/>
+      <line x1="-10.50" y1="18.19" x2="-1.70" y2="2.94"/>
+      <line x1="10.50" y1="18.19" x2="1.70" y2="2.94"/>
       <!-- 45° -->
-      <line x1="-10.61" y1="-10.61" x2="-2.12" y2="-2.12"/>
-      <line x1="10.61" y1="-10.61" x2="2.12" y2="-2.12"/>
-      <line x1="-10.61" y1="10.61" x2="-2.12" y2="2.12"/>
-      <line x1="10.61" y1="10.61" x2="2.12" y2="2.12"/>
+      <line x1="-14.85" y1="-14.85" x2="-2.40" y2="-2.40"/>
+      <line x1="14.85" y1="-14.85" x2="2.40" y2="-2.40"/>
+      <line x1="-14.85" y1="14.85" x2="-2.40" y2="2.40"/>
+      <line x1="14.85" y1="14.85" x2="2.40" y2="2.40"/>
       <!-- 60° -->
-      <line x1="-12.99" y1="-7.50" x2="-2.60" y2="-1.50"/>
-      <line x1="12.99" y1="-7.50" x2="2.60" y2="-1.50"/>
-      <line x1="-12.99" y1="7.50" x2="-2.60" y2="1.50"/>
-      <line x1="12.99" y1="7.50" x2="2.60" y2="1.50"/>
+      <line x1="-18.19" y1="-10.50" x2="-2.94" y2="-1.70"/>
+      <line x1="18.19" y1="-10.50" x2="2.94" y2="-1.70"/>
+      <line x1="-18.19" y1="10.50" x2="-2.94" y2="1.70"/>
+      <line x1="18.19" y1="10.50" x2="2.94" y2="1.70"/>
       <!-- 75° -->
-      <line x1="-14.49" y1="-3.88" x2="-2.90" y2="-0.78"/>
-      <line x1="14.49" y1="-3.88" x2="2.90" y2="-0.78"/>
-      <line x1="-14.49" y1="3.88" x2="-2.90" y2="0.78"/>
-      <line x1="14.49" y1="3.88" x2="2.90" y2="0.78"/>
+      <line x1="-20.28" y1="-5.44" x2="-3.28" y2="-0.88"/>
+      <line x1="20.28" y1="-5.44" x2="3.28" y2="-0.88"/>
+      <line x1="-20.28" y1="5.44" x2="-3.28" y2="0.88"/>
+      <line x1="20.28" y1="5.44" x2="3.28" y2="0.88"/>
     </g>
   </g>
 </svg>

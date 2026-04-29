@@ -713,7 +713,12 @@
   .footer-deva { margin-top: 16px; font-family: var(--f-deva); font-size: 22px; color: var(--ink-soft); font-weight: 700; }
   .footer-meta { font-family: var(--f-mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 1.5px; line-height: 1.8; text-transform: uppercase; }
   .footer-meta .head { color: var(--red); font-weight: 700; font-size: 13px; }
-  .footer-meta .salute { margin-top: 16px; color: var(--red); font-size: 13px; font-weight: 700; }
+  .footer-meta .salute {
+    margin-top: 16px; color: var(--red); font-weight: 700;
+    font-size: 18px; letter-spacing: 0; line-height: 1.7;
+    text-transform: none; font-family: var(--f-deva);
+  }
+  .footer-meta .salute .ta { font-family: var(--f-tamil); }
   .footer-meta a { color: var(--red); }
   .footer-sources {
     grid-column: 1 / -1; border-top: 2px solid var(--ink);
@@ -811,14 +816,14 @@
   <!-- HERO -->
   <section class="hero">
     <div class="grain"></div>
-    <div class="hero-bgnum" aria-hidden="true">0.07</div>
+    <div class="hero-bgnum" aria-hidden="true">11.62</div>
     <div class="hero-inner">
       <div class="notice-pill">A NOTICE TO THE INDIAN VOTER</div>
-      <h1>ONE <span class="red">STATUE</span> =<br>FIFTEEN TIMES<br>OUR <span class="red">LIBRARY</span><br>BUDGET.</h1>
+      <h1>ONE <span class="red">STATUE</span> =<br>TWO YEARS OF<br>INDIA'S ENTIRE<br><span class="red">LIBRARY BUDGET.</span></h1>
       <div class="hero-sub">so much money for statues — but <span class="red">none for our libraries!!!</span></div>
-      <div class="hero-deva" lang="hi"><span class="red">सार्वजनिक पुस्तकालय</span> बजट का <span class="red">पंद्रह गुना</span> । एक मूर्ति में ।</div>
+      <div class="hero-deva" lang="hi">एक <span class="red">प्रतिमा</span> = भारत के पूरे <span class="red">पुस्तकालय बजट</span> के दो साल ।</div>
 
-      <p class="hero-lede">Public libraries are in <strong>List II of the Constitution</strong> — a State subject. State governments spend ₹15.30 per person per year on average. The Centre's RRRLF adds ₹0.07. <span class="red">The United States spends ₹2,900.</span> <span class="red">China — the country we are told we are "competing" with — has had a national Public Library Law since 2017.</span> India has been drafting one for over six decades. <strong class="red">We say we want to be a Vishwaguru. With what?</strong></p>
+      <p class="hero-lede">Public libraries are in <strong>List II of the Constitution</strong> — a State subject. India spends <strong class="red">₹11.62 per person, per year</strong> on every public library in the country combined: states ₹9.55, the Centre ₹2.07. <span class="red">The United States spends ₹2,900.</span> <span class="red">China — the country we are told we are "competing" with — has had a national Public Library Law since 2017.</span> India has been drafting one for over six decades. <strong class="red">We say we want to be a Vishwaguru. With what?</strong></p>
       <div class="manifesto">
         <div>READ.</div>
         <div>AGITATE.</div>
@@ -836,15 +841,15 @@
     </div>
     <div class="stats">
       <div class="stat">
-        <div class="label">India · Centre / per capita</div>
+        <div class="label">India · per capita / year · all libraries</div>
         <div class="deva">भारत · प्रति व्यक्ति</div>
-        <div class="value red">₹0.07</div>
-        <div class="sub">Less than the price of one matchstick. Seven paise. That is the bill the state hands you.</div>
+        <div class="value red">₹11.62</div>
+        <div class="sub">Empirical CAG data, peak year 2018-19. State governments ₹9.55 + the Centre ₹2.07. Less than half a Swiggy delivery fee. The price of biscuits.</div>
       </div>
       <div class="stat deep">
         <div class="label">USA · per capita / year</div>
         <div class="value">₹2,900</div>
-        <div class="sub">That is forty thousand times more, paid by a country we like to claim we are catching up with.</div>
+        <div class="sub">That is two hundred and fifty times more, paid by a country we like to claim we are catching up with.</div>
       </div>
       <div class="stat dark">
         <div class="label">Density of libraries</div>
@@ -876,19 +881,19 @@
 
       <div class="closer-eq">
         <div class="closer-side">
-          <div class="closer-label">PM Modi's foreign trips · 10 years</div>
-          <div class="closer-value">₹762 CR</div>
-          <div class="closer-source">2015–2025. MEA replies in Lok Sabha (The Wire, March 2025).</div>
+          <div class="closer-label">One year · corporate tax cut · revenue forgone</div>
+          <div class="closer-value">₹1,45,000 CR</div>
+          <div class="closer-source">FY 2019-20, after the Centre cut the corporate tax rate from 30% to 22%.</div>
         </div>
         <div class="closer-vs" aria-hidden="true">vs.</div>
         <div class="closer-side">
-          <div class="closer-label">India's central library effort · 20 years</div>
-          <div class="closer-value">₹197 CR</div>
-          <div class="closer-source">2003–2024. RRRLF total grant disbursement, Ministry of Culture.</div>
+          <div class="closer-label">Same year · every public library in India</div>
+          <div class="closer-value">₹1,406 CR</div>
+          <div class="closer-source">2018-19 peak, all states + the Centre combined.</div>
         </div>
       </div>
 
-      <p class="closer-punch">The State spent <strong>4× more on flying the Prime Minister around in 10 years</strong> than on building libraries in 20.</p>
+      <p class="closer-punch">In one fiscal year, the State forgave <strong>100 times more in revenue from billion-dollar corporations</strong> than the country spent on every public library combined. Same Budget. Same Constitution.</p>
 
       <!-- INTERACTIVE: where YOUR tax goes -->
       <div class="calc-grid" style="margin-top:64px">
@@ -910,30 +915,30 @@
 
           <div class="alloc-grid">
             <div class="alloc-row libraries">
-              <div class="alloc-label">to public libraries (RRRLF)</div>
-              <div class="alloc-value">₹<span id="t-lib">0.22</span></div>
+              <div class="alloc-label">to public libraries (Centre, all sources)</div>
+              <div class="alloc-value">₹<span id="t-lib">2.91</span></div>
             </div>
             <div class="alloc-row">
-              <div class="alloc-label">to telling you the State works <span class="alloc-mult"><span id="t-ads-mult">43×</span> more</span></div>
+              <div class="alloc-label">to telling you the State works <span class="alloc-mult"><span id="t-ads-mult">3×</span> more</span></div>
               <div class="alloc-value">₹<span id="t-ads">9.59</span></div>
             </div>
             <div class="alloc-row">
-              <div class="alloc-label">to the PM's foreign trips <span class="alloc-mult"><span id="t-pm-mult">7×</span> more</span></div>
-              <div class="alloc-value">₹<span id="t-pm">1.62</span></div>
+              <div class="alloc-label">forgiven for corporate tax cut, 2019 (your share) <span class="alloc-mult"><span id="t-corp-mult">743×</span> more</span></div>
+              <div class="alloc-value">₹<span id="t-corp">2,160</span></div>
             </div>
           </div>
 
-          <p class="verdict-tail">From your tax, the Centre will spend <strong>more on telling you it works</strong> than on the libraries the Constitution promised you under <strong>Articles 14, 21 and 21A.</strong></p>
+          <p class="verdict-tail">From your tax, the Centre will spend <strong>3× more telling you it works</strong> than on the libraries the Constitution promised you. And it forgave <strong>700 times more in revenue from billion-dollar corporations</strong> than it spent on libraries — under <strong>Articles 14, 21 and 21A.</strong></p>
         </div>
       </div>
 
       <div class="buys">
-        <h3>WHAT ₹0.07 BUYS YOU, IN 2026:</h3>
+        <h3>WHAT ₹11.62 BUYS YOU, IN 2026:</h3>
         <div class="buys-grid">
-          <div>Not a sip of your morning coffee.</div>
+          <div>Not one sip of restaurant coffee.</div>
           <div>Not one Swiggy delivery fee.</div>
-          <div>Not one Uber surge minute.</div>
-          <div>Not one Netflix episode.</div>
+          <div>Not one Uber kilometre.</div>
+          <div>Not three minutes of Netflix.</div>
           <div>Not one page of your child's textbook.</div>
           <div class="red">Not even contempt.</div>
         </div>
@@ -1083,7 +1088,6 @@
         </p>
         <div class="deva" lang="hi">हम सर्वर बेच रहे हैं । हम पाठक नहीं बना रहे ।</div>
       </div>
-      <div class="meanwhile-sources">Approximate latest-available figures (UNESCO Institute for Statistics, World Bank, OECD; China Ministry of Culture and Tourism). Exact percentages vary by methodology and year. Order-of-magnitude is not in dispute.</div>
     </div>
   </section>
 
@@ -1099,14 +1103,14 @@
         <div class="budget-eq">
           <div class="budget-item">
             <div class="budget-item-label">All India library spending · per year</div>
-            <div class="budget-item-value">₹2,150 CR</div>
-            <div class="budget-item-source">State governments combined ≈ ₹2,142 cr (avg ₹15.30 per capita × ~1.4 billion people, Ministry of Culture, 2020-21). Centre's RRRLF averages another ~₹10 cr / year.</div>
+            <div class="budget-item-value">₹1,406 CR</div>
+            <div class="budget-item-source">Empirical CAG-sourced figure for 2018-19, the peak year. State governments ₹1,156 cr + Centre ₹250 cr.</div>
           </div>
           <div class="budget-vs" aria-hidden="true">≈</div>
           <div class="budget-equiv">
             <div class="budget-equiv-label">Of the Union Budget</div>
-            <div class="budget-equiv-value">0.04%</div>
-            <div class="budget-equiv-source">Union Budget 2024-25 BE: ~₹48 lakh crore. India spends less than four paise of every ₹100 of central budget on public libraries.</div>
+            <div class="budget-equiv-value">0.03%</div>
+            <div class="budget-equiv-source">Union Budget 2024-25 BE: ~₹48 lakh crore. India spends three paise of every ₹100 of central budget on every public library combined.</div>
           </div>
         </div>
 
@@ -1119,7 +1123,7 @@
           <div class="budget-vs" aria-hidden="true">=</div>
           <div class="budget-equiv">
             <div class="budget-equiv-label">Of all India's library spending</div>
-            <div class="budget-equiv-value red">67 YEARS</div>
+            <div class="budget-equiv-value red">103 YEARS</div>
             <div class="budget-equiv-source">More revenue forgone from corporations in one fiscal year than India has spent on libraries in our lifetimes.</div>
           </div>
         </div>
@@ -1133,15 +1137,13 @@
           <div class="budget-vs" aria-hidden="true">=</div>
           <div class="budget-equiv">
             <div class="budget-equiv-label">Of all India's library spending</div>
-            <div class="budget-equiv-value red">19 YEARS</div>
-            <div class="budget-equiv-source">One year of subsidies to large corporate manufacturers ≈ two decades of every public library in the country.</div>
+            <div class="budget-equiv-value red">28 YEARS</div>
+            <div class="budget-equiv-source">One year of subsidies to large corporate manufacturers ≈ three decades of every public library in the country.</div>
           </div>
         </div>
       </div>
 
       <p class="budget-closer">This is not a matter of poverty. It is a matter of priority. The State has chosen statues, expressways, hyperscale data centres for American corporations, and tax cuts for billion-dollar companies — over the libraries the Constitution promises you under <strong>Articles 14, 21 and 21A.</strong></p>
-
-      <div class="budget-sources">Approximate latest-available figures. Union Budget 2024-25 (Government of India). Corporate tax cut revenue forgone reported by CAG and Finance Ministry annexures (FY 2019-20). PLI scheme commitment data from the Ministry of Commerce and Industry. Library spending: state-level Ministry of Culture data (2020-21) + RRRLF disbursements (2003-2024). Order-of-magnitude is not in dispute.</div>
     </div>
   </section>
 
@@ -1284,9 +1286,6 @@
     <p class="lede" style="font-size:20px; max-width:920px; line-height:1.55;">
       Dr. B. R. Ambedkar said this first — writing from Columbia University in 1915, where he was reading for his Master's in Economics and Political Science. The Bombay government had proposed a statue to commemorate <strong style="color:var(--ink); font-weight:700">Sir Pherozshah Mehta</strong>, the Parsi reformer and Indian National Congress leader, who had just died. Ambedkar wrote back: <em>build a library in his name. Not a statue.</em> The statue went up. A century on, India is still building statues — and expressways named after donors, and smart cities that are not smart, and hyperscale data centres for American corporations, and vanity projects that fund politicians' families, friends and the kickbacks they collect. <strong>Not libraries.</strong>
     </p>
-    <div style="margin-top:18px; font-family:var(--f-mono); font-size:11px; letter-spacing:0.5px; color:var(--ink-soft); text-transform:uppercase;">
-      Ref: Narake et al. (2014), p. 162. Via <a href="https://www.roundtableindia.co.in/a-library-in-a-controversy-dr-b-r-ambedkar-and-jawaharlal-nehru-university/" target="_blank" rel="noopener" style="color:var(--red); text-decoration:none; border-bottom:1px dotted var(--red)">Round Table India ↗</a>.
-    </div>
   </section>
 
   <!-- FOOTER -->
@@ -1302,17 +1301,49 @@
         Independent of any political party.<br>
         Built on the People's National<br>Library Policy 2024.<br>
         Read the policy: <a href="https://www.fln.org.in" target="_blank" rel="noopener">fln.org.in</a>
-        <div class="salute">Jai Bhim · Jai Savitri<br>Jai Birsa · Jai Periyar</div>
+        <div class="salute">
+          <span lang="hi">जय भीम</span><br>
+          <span lang="mr">जय ज्योती</span><br>
+          <span lang="hi">अबुआ राज</span><br>
+          <span class="ta" lang="ta">வாழ்க பெரியார்</span>
+        </div>
       </div>
       <div class="footer-sources">
         <strong>Data Sources.</strong>
-        State-wise Per Capita Expenditure on Public Libraries 2014–15 to 2020–21 (Ministry of Culture, GoI) ·
-        RRRLF Annual Grant Data 2003–2023 ·
-        RRRLF State-wise Data 2021–25 (Rajya Sabha Q.1316, 31.07.2025) ·
-        NML Scheme Data (Lok Sabha Q.†2365, 04.08.2025 &amp; Q.†4081, 18.08.2025) ·
-        Public Library Legislation Survey ·
-        IMLS Public Libraries Survey USA · CIPFA UK · NAPLE / Libraries.fi (Finland) · ALIA (Australia) · Statistics Canada.
-        Notes: West Bengal 2019–20 (₹0.46) reflects reporting irregularity. Tripura 2020–21 (₹0.07) requires further investigation.
+
+        <strong>Per-capita library expenditure</strong> (₹11.62 national, ₹9.55 state, ₹2.07 Centre, peak 2018-19): Kulkarni, S. R., Balaji, B. P., &amp; Dhanamjaya, M. (2025). <em>What is the per capita expenditure on public libraries in India? An empirical analysis.</em> In <em>Book of abstracts: Global library summit on library diplomacy</em>, South Asian University, New Delhi, 5-7 February 2025 (pp. 125-132). LIS Academy. Sourced from CAG Combined Finance &amp; Revenue Accounts, Major Head 2205 / Sub-head 105.
+
+        <strong>State-wise per-capita library spending 2014-15 to 2020-21</strong>: Ministry of Culture, Government of India.
+
+        <strong>Centre's library spending</strong> (~₹195 cr/yr avg 2014-21; ₹250 cr peak 2018-19): CAG Combined Finance &amp; Revenue Accounts, via Kulkarni-Balaji-Dhanamjaya 2025.
+
+        <strong>RRRLF disbursements</strong> 2003-2023, state-wise 2021-25: Raja Rammohun Roy Library Foundation; Rajya Sabha Q.1316 (31.07.2025); Lok Sabha Q.†2365 (04.08.2025) &amp; Q.†4081 (18.08.2025).
+
+        <strong>Statue of Unity construction cost</strong> (~₹2,989 crore): Government of Gujarat, 2018.
+
+        <strong>Union Budget 2024-25</strong> (~₹48 lakh crore): Government of India, Budget at a Glance.
+
+        <strong>Corporate tax cut revenue forgone</strong> (~₹1.45 lakh crore, FY 2019-20): CAG Performance Audit and Finance Ministry annexures, after the corporate tax rate cut from 30% to 22% (15% for new manufacturing).
+
+        <strong>Production-Linked Incentive (PLI)</strong> (~₹1.97 lakh crore committed across 14 sectors): Ministry of Commerce and Industry.
+
+        <strong>Government advertising / publicity</strong> (₹644 cr FY 2024-25 actual; ₹1,211 cr FY 2025-26 allocation; 5-year total ₹2,447 cr): Lok Sabha replies (Shafi Parambil, December 2025); Union Budget 2025-26.
+
+        <strong>PM Modi's foreign trips</strong> (₹762 cr cumulative 2015-2025; ₹109 cr in 2024; ₹175 cr in 2025): Ministry of External Affairs replies in Lok Sabha; The Wire (March 2025); Deccan Chronicle.
+
+        <strong>Ambedkar's 1915 letter</strong> on Sir Pherozshah Mehta (urging a library over a statue): Narake, H., Kasare, M. L., Kamble, N. G., &amp; Godghate, A. (Eds.) (2014), <em>Dr. Babasaheb Ambedkar: Writings and Speeches</em>, Vol. 17(III), p. 162. Government of Maharashtra. Cited via <a href="https://www.roundtableindia.co.in/a-library-in-a-controversy-dr-b-r-ambedkar-and-jawaharlal-nehru-university/" target="_blank" rel="noopener">Round Table India</a>.
+
+        <strong>India vs China comparisons</strong> (R&amp;D, higher education, school education, library spending, 2017 Public Library Law): UNESCO Institute for Statistics; World Bank; OECD; Ministry of Culture and Tourism (PRC). Order-of-magnitude figures only.
+
+        <strong>International library spending</strong> (USA $35 / ~₹2,900 per cap): IMLS Public Libraries Survey (USA); CIPFA Public Library Statistics (UK); ALIA Australian Public Libraries Statistical Report; NAPLE Forum / Libraries.fi (Finland); Statistics Canada.
+
+        <strong>Public Library Service norm</strong> (1 library per 3,000 people): IFLA-UNESCO Public Library Manifesto (2022); IFLA Library Map of the World.
+
+        <strong>Income tax computation</strong> in the calculator: New Tax Regime FY 2024-25 (Government of India), with ₹75,000 standard deduction, Section 87A rebate, and 4% Health &amp; Education cess applied.
+
+        <strong>Library law &amp; policy framing</strong>: People's National Library Policy 2024 (Free Libraries Network, <a href="https://www.fln.org.in" target="_blank" rel="noopener">fln.org.in</a>).
+
+        <em>Notes</em>: Census 2011 population basis used for per-capita calculations in source data. West Bengal 2019-20 (₹0.46) reflects reporting irregularity. Tripura 2020-21 (₹0.07) requires further investigation. Many of the quantitative ratios are advocacy-grade approximations rounded to the nearest order of magnitude; methodological exactness varies. Where multiple figures exist, the most recent CAG-verified or peak-year value has been used.
       </div>
     </div>
   </footer>
@@ -1745,14 +1776,14 @@ function estimatedIncomeTax(salary) {
   }
   return tax * (1 + CESS_RATE);
 }
-const CENTRE_BUDGET   = 4800000; // ₹ crore — Union Budget 2024-25 BE
-const CENTRE_LIBRARIES = 15;     // ₹ crore — RRRLF recent annual avg
-const CENTRE_ADS       = 644;    // ₹ crore — Govt advertising FY 2024-25 actual
-const CENTRE_PM_TRIPS  = 109;    // ₹ crore — PM foreign trips 2024 calendar year
+const CENTRE_BUDGET    = 4800000; // ₹ crore — Union Budget 2024-25 BE
+const CENTRE_LIBRARIES = 195;     // ₹ crore — Centre's full library spend (CAG 2205-105 avg 2014-21)
+const CENTRE_ADS       = 644;     // ₹ crore — Govt advertising FY 2024-25 actual
+const CORP_TAX_CUT     = 145000;  // ₹ crore — revenue forgone from 2019 corporate tax cut, FY 2019-20
 
 const incomeInput = $("#income-input"), incomeRange = $("#income-range");
-const tTax = $("#t-tax"), tLib = $("#t-lib"), tAds = $("#t-ads"), tPM = $("#t-pm");
-const tAdsMult = $("#t-ads-mult"), tPMMult = $("#t-pm-mult");
+const tTax = $("#t-tax"), tLib = $("#t-lib"), tAds = $("#t-ads"), tCorp = $("#t-corp");
+const tAdsMult = $("#t-ads-mult"), tCorpMult = $("#t-corp-mult");
 
 function shareFromTax(tax, lineItemCrore) {
   return tax * (lineItemCrore / CENTRE_BUDGET);
@@ -1761,19 +1792,19 @@ function recomputeTax(value, source) {
   const salary = Math.max(0, Math.round(+value || 0));
   if (source !== "input") incomeInput.value = salary;
   if (source !== "range") incomeRange.value = Math.min(Math.max(salary, +incomeRange.min), +incomeRange.max);
-  const tax = Math.round(estimatedIncomeTax(salary));
-  const lib = shareFromTax(tax, CENTRE_LIBRARIES);
-  const ads = shareFromTax(tax, CENTRE_ADS);
-  const pm  = shareFromTax(tax, CENTRE_PM_TRIPS);
-  tTax.textContent = fmtIN(tax);
-  tLib.textContent = lib.toFixed(2);
-  tAds.textContent = ads.toFixed(2);
-  tPM.textContent  = pm.toFixed(2);
+  const tax  = Math.round(estimatedIncomeTax(salary));
+  const lib  = shareFromTax(tax, CENTRE_LIBRARIES);
+  const ads  = shareFromTax(tax, CENTRE_ADS);
+  const corp = shareFromTax(tax, CORP_TAX_CUT);
+  tTax.textContent  = fmtIN(tax);
+  tLib.textContent  = lib.toFixed(2);
+  tAds.textContent  = ads.toFixed(2);
+  tCorp.textContent = fmtIN(Math.round(corp));
   // Multipliers (relative to libraries, the anchor)
-  const adsX = lib > 0 ? Math.round(ads / lib) : 0;
-  const pmX  = lib > 0 ? Math.round(pm  / lib) : 0;
-  tAdsMult.textContent = adsX > 0 ? `${adsX}×` : "—";
-  tPMMult.textContent  = pmX  > 0 ? `${pmX}×`  : "—";
+  const adsX  = lib > 0 ? Math.round(ads  / lib) : 0;
+  const corpX = lib > 0 ? Math.round(corp / lib) : 0;
+  tAdsMult.textContent  = adsX  > 0 ? `${adsX}×`  : "—";
+  tCorpMult.textContent = corpX > 0 ? `${fmtIN(corpX)}×` : "—";
 }
 incomeInput.addEventListener("input", (e) => recomputeTax(e.target.value, "input"));
 incomeRange.addEventListener("input", (e) => recomputeTax(e.target.value, "range"));

@@ -113,23 +113,50 @@
 
   /* HERO */
   .hero {
-    position: relative; padding: 64px 56px 80px; background: var(--cream);
+    position: relative; padding: 32px 56px 80px; background: var(--cream);
     overflow: hidden; border-bottom: 4px solid var(--ink);
   }
-  .hero-bgnum {
-    position: absolute; right: -60px; top: -40px;
-    font-family: var(--f-display); font-size: 720px; line-height: 0.75;
-    color: var(--red); opacity: 0.12; font-weight: 900;
-    letter-spacing: -30px; pointer-events: none; user-select: none;
+  /* Pantheon line-art on the right of the hero. Replaces the old
+     .hero-bgnum giant 11.62. Sits behind .hero-inner so the H1
+     reads on top. Hidden on narrow viewports. */
+  .hero-pantheon {
+    position: absolute; right: -40px; top: 24px;
+    height: 92%; max-height: 720px; width: auto;
+    pointer-events: none; user-select: none;
+    opacity: 0.92;
+    z-index: 0;
   }
-  .hero-inner { position: relative; z-index: 1; max-width: 1100px; }
+  @media (max-width: 1100px) { .hero-pantheon { display: none; } }
+  .hero-inner {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column;
+    min-height: 720px;
+  }
+  /* Upper text block (notice + H1 + hero-sub + hero-deva) stays in the
+     left column so it doesn't overlap with the pantheon on the right.
+     Pantheon takes ~60% of width on the right; text takes ~40% on the left. */
+  .hero-inner > :not(.hero-lede) {
+    max-width: 40%;
+  }
+  /* Lede pushed to the bottom of the hero — full width, below the pantheon. */
+  .hero-lede {
+    margin-top: auto;
+    padding-top: 40px;
+  }
+  /* On narrower viewports the pantheon is hidden — drop the min-height
+     so the hero collapses around its content. */
+  @media (max-width: 1100px) {
+    .hero-inner { min-height: 0; }
+    .hero-inner > :not(.hero-lede) { max-width: none; }
+    .hero-lede { margin-top: 0; padding-top: 0; }
+  }
   .notice-pill {
     display: inline-block; background: var(--ink); color: var(--cream);
     padding: 6px 16px; font-family: var(--f-mono); font-size: 12px; letter-spacing: 3px;
     text-transform: uppercase; margin-bottom: 20px;
   }
   .hero h1 {
-    font-family: var(--f-display); font-size: 144px; line-height: 0.88;
+    font-family: var(--f-display); font-size: clamp(56px, 10vw, 160px); line-height: 0.88;
     font-weight: 900; letter-spacing: -3px; color: var(--ink); margin: 0;
     text-transform: uppercase; text-wrap: balance;
   }
@@ -146,11 +173,13 @@
   }
   .hero-sub .red { color: var(--red); font-style: italic; font-weight: 700; }
 
-  /* Hero slab paragraph — replaces the old two-column hero-grid */
+  /* Hero slab paragraph — full-width across the hero, justified. */
   .hero-lede {
     font-family: var(--f-slab); font-size: 26px; line-height: 1.35;
     color: var(--ink); margin: 40px 0 0; font-weight: 500;
-    max-width: 920px; text-wrap: balance;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
   }
   .hero-lede strong { color: var(--ink); font-weight: 700; }
   .hero-lede strong.red, .hero-lede .red { color: var(--red); font-weight: 700; }
@@ -199,15 +228,15 @@
   .section.ink   { background: var(--ink); color: var(--cream); border-bottom: 4px solid var(--red); }
   .section.red   { background: var(--red); color: var(--cream); border-bottom: 4px solid var(--ink); }
   .section h2 {
-    font-family: var(--f-display); font-size: 110px; font-weight: 900;
+    font-family: var(--f-display); font-size: clamp(48px, 9vw, 110px); font-weight: 900;
     line-height: 0.9; letter-spacing: -3px; margin: 0;
     text-transform: uppercase; text-wrap: balance;
   }
   .section.cream h2 { color: var(--ink); }
   .section.ink h2, .section.red h2 { color: var(--cream); }
   .section .lede {
-    font-family: var(--f-slab); font-size: 20px; line-height: 1.45;
-    margin-top: 24px; max-width: 900px; text-wrap: balance;
+    font-family: var(--f-slab); font-size: clamp(16px, 1.5vw, 22px); line-height: 1.45;
+    margin-top: 24px; text-wrap: balance;
   }
   .section.cream .lede { color: var(--ink-soft); }
   .section.ink .lede   { color: var(--cream); opacity: 0.9; }
@@ -216,7 +245,7 @@
   .numbers { background: var(--cream); border-bottom: 4px solid var(--ink); }
   .numbers-head { padding: 56px 56px 24px; }
   .numbers-head h2 {
-    font-family: var(--f-display); font-size: 120px; font-weight: 900;
+    font-family: var(--f-display); font-size: clamp(48px, 10vw, 120px); font-weight: 900;
     letter-spacing: -3px; line-height: 0.9; margin: 0; color: var(--ink);
     text-transform: uppercase;
   }
@@ -362,7 +391,7 @@
   .calc-inner { position: relative; z-index: 1; }
   .calc-tagrow { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; flex-wrap: wrap; gap: 8px; }
   .calc-tag { font-family: var(--f-mono); font-size: 18px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--cream); }
-  .calc h2 { font-family: var(--f-display); font-size: 130px; font-weight: 900; line-height: 0.9; letter-spacing: -3px; margin: 0; color: var(--cream); text-transform: uppercase; text-wrap: balance; }
+  .calc h2 { font-family: var(--f-display); font-size: clamp(48px, 10vw, 130px); font-weight: 900; line-height: 0.9; letter-spacing: -3px; margin: 0; color: var(--cream); text-transform: uppercase; text-wrap: balance; }
   .calc-grid { margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
   .calc-label { font-family: var(--f-mono); font-size: 18px; font-weight: 700; letter-spacing: 2px; color: var(--cream); text-transform: uppercase; }
   .calc-input-row { display: flex; align-items: baseline; gap: 12px; margin-top: 12px; border-bottom: 4px solid var(--cream); padding-bottom: 8px; }
@@ -411,7 +440,7 @@
     .alloc-value { font-size: 28px; }
   }
   .buys { margin-top: 56px; padding: 32px; background: var(--cream); color: var(--ink); border: 4px solid var(--ink); }
-  .buys h3 { font-family: var(--f-display); font-size: 64px; font-weight: 900; letter-spacing: -1.5px; color: var(--ink); text-transform: uppercase; line-height: 0.95; margin: 0; }
+  .buys h3 { font-family: var(--f-display); font-size: clamp(28px, 5vw, 64px); font-weight: 900; letter-spacing: -1.5px; color: var(--ink); text-transform: uppercase; line-height: 0.95; margin: 0; }
   .buys-grid { margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 2px solid var(--ink); border-left: 2px solid var(--ink); }
   .buys-grid > div { padding: 24px; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); font-family: var(--f-display); font-weight: 900; font-size: 32px; letter-spacing: -0.5px; text-transform: uppercase; color: var(--ink); }
   .buys-grid > div.red { color: var(--red); }
@@ -460,7 +489,7 @@
 
   /* DEFINITION + STANDARDS */
   .def-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
-  .def h2 { font-family: var(--f-display); font-size: 110px; font-weight: 900; line-height: 0.9; letter-spacing: -3px; margin: 0; color: var(--ink); text-transform: uppercase; }
+  .def h2 { font-family: var(--f-display); font-size: clamp(48px, 9vw, 110px); font-weight: 900; line-height: 0.9; letter-spacing: -3px; margin: 0; color: var(--ink); text-transform: uppercase; }
   .def p { font-family: var(--f-slab); font-size: 22px; line-height: 1.4; color: var(--ink); margin-top: 32px; font-weight: 500; text-wrap: balance; }
   .def p + p { margin-top: 16px; }
   .def-deva { margin-top: 32px; font-family: var(--f-deva); font-size: 24px; color: var(--ink-soft); font-weight: 600; line-height: 1.4; }
@@ -472,7 +501,7 @@
   .standard .long { font-family: var(--f-slab); font-size: 16px; color: var(--ink-soft); margin-top: 6px; line-height: 1.4; }
 
   /* EXCLUDED */
-  .excluded h2 { font-size: 130px; line-height: 0.88; letter-spacing: -4px; }
+  .excluded h2 { font-size: clamp(48px, 10vw, 130px); line-height: 0.88; letter-spacing: -4px; }
   .excluded-grid { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 4px solid var(--red); border-left: 2px solid var(--red); }
   .excluded-card { padding: 32px 24px; border-right: 2px solid var(--red); border-bottom: 2px solid var(--red); color: var(--cream); }
   .excluded-card.first { background: var(--red); }
@@ -949,7 +978,7 @@
   }
 
   /* QUOTES */
-  .quotes h2 { font-size: 96px; letter-spacing: -2px; }
+  .quotes h2 { font-size: clamp(44px, 8vw, 96px); letter-spacing: -2px; }
   .quote-grid { margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px 48px; }
   .quote { margin: 0; padding: 24px 0 24px 24px; border-left: 4px solid var(--red); border-top: 2px solid var(--ink); }
   .quote .text { font-size: 26px; font-weight: 700; line-height: 1.3; letter-spacing: -0.3px; color: var(--ink); text-wrap: balance; font-family: var(--f-slab); }
@@ -961,7 +990,7 @@
   /* CTA — write to MP, state-aware */
   .cta { background: var(--ink); color: var(--cream); padding: 80px 56px; position: relative; border-bottom: 8px solid var(--red); }
   .cta-inner { position: relative; z-index: 1; }
-  .cta h2 { font-family: var(--f-display); font-size: 140px; font-weight: 900; line-height: 0.85; letter-spacing: -4px; margin: 0; color: var(--cream); text-transform: uppercase; text-wrap: balance; }
+  .cta h2 { font-family: var(--f-display); font-size: clamp(48px, 11vw, 140px); font-weight: 900; line-height: 0.85; letter-spacing: -4px; margin: 0; color: var(--cream); text-transform: uppercase; text-wrap: balance; }
   .cta-deva { font-family: var(--f-deva); font-size: 36px; color: var(--cream-deep); margin-top: 16px; font-weight: 700; letter-spacing: -0.5px; }
   .cta-fields { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
   .cta-fields label { display: block; font-family: var(--f-mono); font-size: 11px; color: var(--cream-deep); letter-spacing: 2px; text-transform: uppercase; }
@@ -1024,7 +1053,7 @@
   .cta-howto strong { color: var(--cream); }
 
   /* ACTIONS */
-  .actions h2 { font-size: 130px; letter-spacing: -4px; line-height: 0.85; }
+  .actions h2 { font-size: clamp(48px, 10vw, 130px); letter-spacing: -4px; line-height: 0.85; }
   .actions-grid { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; border-top: 4px solid var(--ink); border-left: 4px solid var(--ink); }
   .action { padding: 36px; border-right: 4px solid var(--ink); border-bottom: 4px solid var(--ink); background: var(--cream); }
   .action-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 16px; }
@@ -1047,14 +1076,14 @@
     mix-blend-mode: screen;
   }
   .end-inner { position: relative; z-index: 1; text-align: center; }
-  .end h2 { font-family: var(--f-display); font-size: 200px; font-weight: 900; line-height: 0.85; letter-spacing: -6px; margin: 0; color: var(--cream); text-transform: uppercase; text-wrap: balance; }
+  .end h2 { font-family: var(--f-display); font-size: clamp(56px, 14vw, 200px); font-weight: 900; line-height: 0.85; letter-spacing: -6px; margin: 0; color: var(--cream); text-transform: uppercase; text-wrap: balance; }
   .end-deva { margin-top: 32px; font-family: var(--f-deva); font-size: 56px; font-weight: 700; color: var(--cream); line-height: 1; letter-spacing: -1px; opacity: 0.95; }
   .end-tail { margin-top: 48px; font-family: var(--f-slab); font-size: 22px; color: var(--cream); font-style: italic; max-width: 700px; margin-left: auto; margin-right: auto; text-wrap: balance; opacity: 0.95; }
 
   /* FOOTER */
   .footer { background: var(--cream); color: var(--ink); padding: 56px 56px 64px; }
   .footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 48px; align-items: end; }
-  .footer h3 { font-family: var(--f-display); font-size: 88px; font-weight: 900; color: var(--ink); line-height: 0.9; letter-spacing: -2px; text-transform: uppercase; margin: 0; }
+  .footer h3 { font-family: var(--f-display); font-size: clamp(40px, 7vw, 88px); font-weight: 900; color: var(--ink); line-height: 0.9; letter-spacing: -2px; text-transform: uppercase; margin: 0; }
   .footer-deva { margin-top: 16px; font-family: var(--f-deva); font-size: 22px; color: var(--ink-soft); font-weight: 700; }
   .footer-meta { font-family: var(--f-mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 1.5px; line-height: 1.8; text-transform: uppercase; }
   .footer-meta .head { color: var(--red); font-weight: 700; font-size: 13px; }
@@ -1078,34 +1107,31 @@
   @media (max-width: 900px) {
     .strip { padding: 8px 24px; gap: 8px; font-size: 10px; letter-spacing: 1.4px; }
     .hero { padding: 40px 24px 56px; }
-    .hero h1 { font-size: 80px; letter-spacing: -2px; }
+    /* H2/H3 font sizes are fluid via clamp() — no per-breakpoint override needed.
+       Layout-level overrides (grid → column, padding, etc.) only. */
     .hero-deva { font-size: 28px; }
-    .hero-bgnum { font-size: 320px; right: -32px; letter-spacing: -14px; }
+    /* .hero-pantheon hidden under 1100px via main rule */
     .hero-grid { grid-template-columns: 1fr; gap: 32px; }
     .hero-grid p { font-size: 18px; }
-    .manifesto > div { font-size: 28px; padding: 14px 8px; }
     .numbers-head { padding: 40px 24px 16px; }
-    .numbers-head h2 { font-size: 56px; letter-spacing: -2px; }
     .stats { grid-template-columns: 1fr; }
     .stat { border-right: none; border-bottom: 4px solid var(--ink); padding: 28px 24px; }
     .stat:last-child { border-bottom: none; }
     .stat .value { font-size: 72px; }
     .calc { padding: 56px 24px; }
-    .calc h2 { font-size: 56px; letter-spacing: -2px; }
     .calc-grid { grid-template-columns: 1fr; gap: 32px; }
     .calc-rupee, #income-input { font-size: 56px; }
     .verdict { padding: 28px; }
     .verdict-line { font-size: 18px; }
     .verdict-ratio { font-size: 56px; }
-    .buys h3 { font-size: 32px; }
     .buys-grid { grid-template-columns: 1fr 1fr; }
     .section { padding: 56px 24px; }
-    .section h2 { font-size: 56px; letter-spacing: -2px; }
     .def-grid { grid-template-columns: 1fr; gap: 32px; }
     .def p { font-size: 18px; }
     .standard .num { font-size: 40px; }
     .standard .short { font-size: 24px; }
-    .excluded h2 { font-size: 56px; letter-spacing: -2px; }
+    .excluded-grid { grid-template-columns: 1fr 1fr; }
+    .excluded-card .name { font-size: 22px; }
     .excluded-grid { grid-template-columns: 1fr 1fr; }
     .excluded-card .name { font-size: 22px; }
     .door { font-size: 26px; padding: 18px; }
@@ -1120,25 +1146,20 @@
        chart, and report-card picker respectively. */
     .parl-grid { grid-template-columns: 1fr 1fr; }
     .parl-stat .value { font-size: 40px; }
-    .quotes h2 { font-size: 48px; letter-spacing: -1.5px; }
     .quote-grid { grid-template-columns: 1fr; gap: 24px; }
     .quote .text, .quote.deva .text, .quote.tamil .text { font-size: 20px; }
     .cta { padding: 56px 24px; }
-    .cta h2 { font-size: 64px; letter-spacing: -2px; }
     .cta-fields { grid-template-columns: 1fr; }
     .cta-fields input, .cta-fields select { font-size: 24px; }
     .cta-buttons a, .cta-buttons button { font-size: 18px; padding: 14px 20px; }
-    .actions h2 { font-size: 56px; letter-spacing: -2px; }
     .actions-grid { grid-template-columns: 1fr; }
     .action { padding: 24px; }
     .action-verb { font-size: 56px; }
     .action-title { font-size: 22px; }
-    .end h2 { font-size: 80px; letter-spacing: -3px; }
     .end-deva { font-size: 32px; }
     .end-tail { font-size: 18px; }
     .footer { padding: 40px 24px 48px; }
     .footer-grid { grid-template-columns: 1fr; gap: 24px; align-items: start; }
-    .footer h3 { font-size: 48px; letter-spacing: -1px; }
   }
 
 

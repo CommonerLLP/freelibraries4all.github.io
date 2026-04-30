@@ -1179,11 +1179,49 @@
   .footer-sources {
     grid-column: 1 / -1; border-top: 2px solid var(--ink);
     margin-top: 32px; padding-top: 24px;
-    font-family: var(--f-mono); font-size: 10px; line-height: 1.7;
-    color: var(--ink-soft); letter-spacing: 0.5px;
+    color: var(--ink-soft);
   }
-  .footer-sources strong { color: var(--ink); font-size: 11px; }
-  .footer-sources a { color: var(--red); text-decoration: none; }
+  .footer-sources a { color: var(--red); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .footer-sources a:hover, .footer-sources a:focus { color: var(--ink); }
+  /* Bibliography heading — agitprop eyebrow at the start of the block */
+  .footer-sources .bib-head {
+    font-family: var(--f-mono); font-size: 11px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--ink); margin: 0 0 20px;
+  }
+  /* Each entry: red mono label on its own line, then slab citation.
+     Thin separators between entries. Hanging-indent feel via padding. */
+  .footer-sources .bib-list {
+    list-style: none; padding: 0; margin: 0;
+  }
+  .footer-sources .bib-list > li {
+    padding: 12px 0;
+    border-top: 1px solid rgba(26, 26, 26, 0.10);
+    display: block;
+  }
+  .footer-sources .bib-list > li:first-child { border-top: none; padding-top: 0; }
+  .footer-sources .bib-list > li:last-child { padding-bottom: 0; }
+  .footer-sources .bib-label {
+    display: block;
+    font-family: var(--f-mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 4px;
+  }
+  .footer-sources .bib-cite {
+    display: block;
+    font-family: var(--f-slab); font-size: 13px; line-height: 1.5;
+    color: var(--ink); font-weight: 400;
+  }
+  .footer-sources .bib-cite em { color: var(--ink-soft); font-style: italic; }
+  /* Notes block — same shape as a bib entry but emphasised with a top rule. */
+  .footer-sources .bib-notes {
+    margin-top: 24px; padding-top: 20px;
+    border-top: 2px solid var(--ink);
+    font-family: var(--f-slab); font-size: 12px; line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .footer-sources .bib-notes .bib-label { color: var(--ink); margin-bottom: 6px; }
 
   /* RESPONSIVE */
   @media (max-width: 900px) {

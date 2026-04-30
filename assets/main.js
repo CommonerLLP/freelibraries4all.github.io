@@ -40,12 +40,19 @@ $$("#timeline").innerHTML = HISTORY.map((e) => `
     </div>
   </div>`).join("");
 
-$$("#quote-grid").innerHTML = QUOTES.map((q) => `
-  <blockquote class="quote${q.script ? " " + q.script : ""}"${q.iso ? ` lang="${q.iso}"` : ""}>
-    <div class="text">"${esc(q.text)}"</div>
-    ${q.en ? `<div class="en" lang="en">"${esc(q.en)}"</div>` : ""}
-    <div class="attr" lang="en">— ${esc(q.attr)}${q.attrEn && q.attrEn !== q.attr ? " · " + esc(q.attrEn) : ""}</div>
-  </blockquote>`).join("");
+// English-only render — native scripts (Marathi/Tamil/Hindi/Bengali) parked in
+// QUOTES const for the future bilingual version. For this release we surface
+// only the English gloss + roman-script attribution. Speaker's name in their
+// own script is preserved in QUOTES; this renderer just doesn't print it yet.
+$$("#quote-grid").innerHTML = QUOTES.map((q) => {
+  const text = q.en || q.text;
+  const attr = q.attrEn || q.attr;
+  return `
+    <blockquote class="quote" lang="en">
+      <div class="text">"${esc(text)}"</div>
+      <div class="attr" lang="en">— ${esc(attr)}</div>
+    </blockquote>`;
+}).join("");
 
 $$("#actions-grid").innerHTML = ACTIONS.map((a) => `
   <div class="action">

@@ -113,42 +113,71 @@
 
   /* HERO */
   .hero {
-    position: relative; padding: 32px 56px 80px; background: var(--cream);
-    overflow: hidden; border-bottom: 4px solid var(--ink);
+    position: relative;
+    /* Fluid padding: scales smoothly with viewport instead of jumping
+       at a media-query breakpoint. */
+    padding: clamp(24px, 3vw, 40px) clamp(20px, 4vw, 56px) clamp(48px, 6vw, 80px);
+    background: var(--cream);
+    overflow: hidden;
+    border-bottom: 4px solid var(--ink);
   }
-  /* Pantheon line-art on the right of the hero. Replaces the old
-     .hero-bgnum giant 11.62. Sits behind .hero-inner so the H1
-     reads on top. Hidden on narrow viewports. */
+  /* Pantheon line-art (after sadancanada.org, recoloured).
+     Mobile-first default: stacks inline between hero-top and hero-lede,
+     centred, scales smoothly with viewport (no hard ceiling).
+     Desktop (≥1100px): grid item placed in row 1 / col 2 (right).
+     Image source itself is responsive via srcset (600/900/1200 widths). */
   .hero-pantheon {
-    position: absolute; right: -40px; top: 24px;
-    height: 92%; max-height: 720px; width: auto;
     pointer-events: none; user-select: none;
     opacity: 0.92;
-    z-index: 0;
+    display: block;
+    /* Fluid width — image always feels proportional to viewport.
+       Below 600px: 92% of viewport. 600-1099px: scales 80vw up to 720px.
+       At 1100px+ the desktop grid rule below takes over. */
+    width: clamp(280px, 80vw, 720px);
+    height: auto;
+    margin: clamp(24px, 4vw, 40px) auto clamp(8px, 2vw, 24px);
   }
-  @media (max-width: 1100px) { .hero-pantheon { display: none; } }
   .hero-inner {
     position: relative; z-index: 1;
     display: flex; flex-direction: column;
-    min-height: 720px;
+    /* Cap on very large monitors (24"+ at native res, 32"+ external)
+       so line length stays readable. Section bg remains full-bleed. */
+    max-width: 1600px; margin-left: auto; margin-right: auto;
   }
-  /* Upper text block (notice + H1 + hero-sub + hero-deva) stays in the
-     left column so it doesn't overlap with the pantheon on the right.
-     Pantheon takes ~60% of width on the right; text takes ~40% on the left. */
-  .hero-inner > :not(.hero-lede) {
-    max-width: 40%;
-  }
-  /* Lede pushed to the bottom of the hero — full width, below the pantheon. */
-  .hero-lede {
-    margin-top: auto;
-    padding-top: 40px;
-  }
-  /* On narrower viewports the pantheon is hidden — drop the min-height
-     so the hero collapses around its content. */
-  @media (max-width: 1100px) {
-    .hero-inner { min-height: 0; }
-    .hero-inner > :not(.hero-lede) { max-width: none; }
-    .hero-lede { margin-top: 0; padding-top: 0; }
+  /* Hero text always sits over the desktop pantheon (z-index 0). */
+  .hero-inner > * { position: relative; z-index: 1; }
+
+  /* Desktop (≥1100px): keep upper text (notice + H1 + sub) in the left
+     column at ~48% width so it doesn't overlap the right-anchored
+     pantheon. Lede paragraph pushes down to the bottom of a 720px-tall
+     hero-inner — appears below the pantheon, full-width, justified.
+     hero-sub gets an explicit cap so the red "none for our libraries"
+     span never extends into the red pantheon area on the right. */
+  @media (min-width: 1100px) {
+    /* Desktop: CSS grid — row 1 holds upper text on the left and the
+       pantheon on the right (row auto-sizes to whichever is taller);
+       row 2 holds the lede full-width. Lede always starts strictly
+       after row 1 — no overlap possible. */
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) clamp(480px, 56vw, 880px);
+      grid-template-areas:
+        "text  pantheon"
+        "lede  lede";
+      column-gap: clamp(24px, 2.5vw, 48px);
+      row-gap: clamp(24px, 3vw, 40px);
+    }
+    .hero-top      { grid-area: text; }
+    .hero-pantheon {
+      grid-area: pantheon;
+      align-self: start;
+      justify-self: end;
+      margin: 0;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
+    .hero-lede     { grid-area: lede; margin-top: 0; }
   }
   .notice-pill {
     display: inline-block; background: var(--ink); color: var(--cream);
@@ -173,16 +202,26 @@
   }
   .hero-sub .red { color: var(--red); font-style: italic; font-weight: 700; }
 
-  /* Hero slab paragraph — full-width across the hero, justified. */
+  /* Hero slab paragraph — wide but capped at ~80 chars on huge monitors
+     so line length stays readable. Justified. */
   .hero-lede {
     font-family: var(--f-slab); font-size: 26px; line-height: 1.35;
     color: var(--ink); margin: 40px 0 0; font-weight: 500;
     text-align: justify;
     text-justify: inter-word;
     hyphens: auto;
+    max-width: min(100ch, 100%);
   }
   .hero-lede strong { color: var(--ink); font-weight: 700; }
   .hero-lede strong.red, .hero-lede .red { color: var(--red); font-weight: 700; }
+  /* Opener — the "so much money for statues" line, now the first
+     sentence of the lede. Italic + slightly larger to punch above
+     the rest of the paragraph. */
+  .hero-lede .lede-opener {
+    display: inline; font-style: italic; font-weight: 700;
+    font-size: 1.15em; color: var(--ink);
+  }
+  .hero-lede .lede-opener .red { color: var(--red); font-weight: 700; }
   @media (max-width: 900px) {
     .hero-lede { font-size: 18px; margin-top: 28px; }
   }
@@ -237,6 +276,9 @@
   .section .lede {
     font-family: var(--f-slab); font-size: clamp(16px, 1.5vw, 22px); line-height: 1.45;
     margin-top: 24px; text-wrap: balance;
+    /* Anti-wonky cap for huge monitors: never wider than ~80 chars
+       per line. Sections still full-bleed bg, just text stays readable. */
+    max-width: min(100ch, 100%);
   }
   .section.cream .lede { color: var(--ink-soft); }
   .section.ink .lede   { color: var(--cream); opacity: 0.9; }
@@ -399,7 +441,7 @@
   #income-input { flex: 1; min-width: 0; border: none; background: transparent; outline: none; font-family: var(--f-display); font-size: 96px; font-weight: 900; color: var(--cream); letter-spacing: -2px; font-variant-numeric: tabular-nums; width: 100%; }
   #income-range { width: 100%; margin-top: 24px; height: 6px; accent-color: var(--ink); }
   .calc-marks { display: flex; justify-content: space-between; font-family: var(--f-mono); font-size: 16px; font-weight: 700; color: var(--cream); letter-spacing: 1.5px; margin-top: 4px; }
-  .calc-help { font-family: var(--f-slab); font-size: 18px; color: var(--cream); margin-top: 24px; line-height: 1.45; text-wrap: balance; }
+  .calc-help { font-family: var(--f-slab); font-size: 18px; color: var(--cream); margin-top: 24px; line-height: 1.45; text-wrap: balance; max-width: min(100ch, 100%); }
   .verdict { background: var(--ink); color: var(--cream); padding: 40px; }
   .verdict-tag { font-family: var(--f-mono); font-size: 16px; font-weight: 700; letter-spacing: 2px; color: var(--red); text-transform: uppercase; margin-bottom: 20px; }
   .verdict-line { font-family: var(--f-slab); font-size: 22px; line-height: 1.35; color: var(--cream); font-weight: 500; }
@@ -490,7 +532,7 @@
   /* DEFINITION + STANDARDS */
   .def-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
   .def h2 { font-family: var(--f-display); font-size: clamp(48px, 9vw, 110px); font-weight: 900; line-height: 0.9; letter-spacing: -3px; margin: 0; color: var(--ink); text-transform: uppercase; }
-  .def p { font-family: var(--f-slab); font-size: 22px; line-height: 1.4; color: var(--ink); margin-top: 32px; font-weight: 500; text-wrap: balance; }
+  .def p { font-family: var(--f-slab); font-size: 22px; line-height: 1.4; color: var(--ink); margin-top: 32px; font-weight: 500; text-wrap: balance; max-width: min(100ch, 100%); }
   .def p + p { margin-top: 16px; }
   .def-deva { margin-top: 32px; font-family: var(--f-deva); font-size: 24px; color: var(--ink-soft); font-weight: 600; line-height: 1.4; }
   .standard { display: grid; grid-template-columns: auto 1fr; gap: 20px; padding: 18px 0; border-top: 1px solid var(--ink); align-items: baseline; }

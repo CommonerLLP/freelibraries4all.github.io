@@ -107,6 +107,38 @@
     text-transform: uppercase; border-bottom: 4px solid var(--red);
     flex-wrap: wrap;
   }
+
+  /* In-page nav — sticky to viewport top, anchor links to major sections */
+  .pagenav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--cream); color: var(--ink);
+    border-bottom: 2px solid var(--ink);
+    padding: 0 56px;
+    display: flex; gap: 0; align-items: stretch;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .pagenav a {
+    color: var(--ink); text-decoration: none;
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; font-weight: 700;
+    padding: 12px 18px; min-height: 40px;
+    display: inline-flex; align-items: center;
+    border-right: 2px solid var(--ink);
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s;
+  }
+  .pagenav a:first-child { border-left: 2px solid var(--ink); }
+  .pagenav a:hover, .pagenav a:focus {
+    background: var(--ink); color: var(--cream);
+    outline: none;
+  }
+  .pagenav a.write { color: var(--red); }
+  .pagenav a.write:hover { background: var(--red); color: var(--cream); }
+  @media (max-width: 700px) {
+    .pagenav { padding: 0 16px; }
+    .pagenav a { padding: 10px 12px; font-size: 10px; letter-spacing: 1.5px; }
+  }
   /* Section dividers: 4px on most, 8px reserved for the closing red declaration */
   .strip .accent { color: var(--red); }
 
@@ -854,6 +886,15 @@
     <span class="accent">A People's Pamphlet · एक जन-पत्रिका</span>
   </div>
 
+  <!-- IN-PAGE NAV — sticky to viewport top -->
+  <nav class="pagenav" aria-label="Jump to section">
+    <a href="#numbers">Numbers</a>
+    <a href="#states">States</a>
+    <a href="#history">History</a>
+    <a href="#quotes">Quotes</a>
+    <a href="#write" class="write">Write →</a>
+  </nav>
+
   <!-- HERO -->
   <section class="hero">
     <div class="grain"></div>
@@ -1189,7 +1230,7 @@
   </section>
 
   <!-- HISTORY -->
-  <section class="section cream">
+  <section class="section cream" id="history">
     <div class="grain light"></div>
     <div style="position:relative; z-index:1;">
       <div class="eyebrow">A short history · संक्षिप्त इतिहास</div>
@@ -1257,7 +1298,7 @@
 
 
   <!-- QUOTES -->
-  <section class="section cream quotes">
+  <section class="section cream quotes" id="quotes">
     <div class="eyebrow">From the tradition · परंपरा से</div>
     <h2>OUR PEOPLE HAVE<br>BEEN <span class="red">SAYING THIS</span><br>FOR TWO CENTURIES.</h2>
     <div class="quote-grid" id="quote-grid"></div>

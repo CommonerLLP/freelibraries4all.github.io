@@ -107,12 +107,13 @@
     text-transform: uppercase; border-bottom: 4px solid var(--red);
     flex-wrap: wrap;
   }
+  /* Section dividers: 4px on most, 8px reserved for the closing red declaration */
   .strip .accent { color: var(--red); }
 
   /* HERO */
   .hero {
     position: relative; padding: 64px 56px 80px; background: var(--cream);
-    overflow: hidden; border-bottom: 6px solid var(--ink);
+    overflow: hidden; border-bottom: 4px solid var(--ink);
   }
   .hero-bgnum {
     position: absolute; right: -60px; top: -40px;
@@ -201,16 +202,97 @@
   /* MANIFESTO STRIP */
   .manifesto {
     margin-top: 56px; display: flex;
-    border-top: 3px solid var(--ink); border-bottom: 3px solid var(--ink);
+    border-top: 4px solid var(--ink); border-bottom: 4px solid var(--ink);
   }
   .manifesto > div {
     flex: 1; padding: 20px 16px; color: var(--cream);
     font-family: var(--f-display); font-size: 56px; font-weight: 900;
-    letter-spacing: -1px; text-align: center; border-right: 3px solid var(--cream);
+    letter-spacing: -1px; text-align: center; border-right: 2px solid var(--cream);
   }
   .manifesto > div:last-child { border-right: none; }
   .manifesto > div:nth-child(odd) { background: var(--ink); }
   .manifesto > div:nth-child(even) { background: var(--red); }
+
+  /* ============================================================
+     PORTRAIT CARDS — locked geometry. One config, one source of truth.
+     Used for: Ambedkar (1915 Columbia), Birsa (History), Periyar
+     (Actions), Savitribai+Phule pair (Quotes).
+     ============================================================ */
+  .portrait-card {
+    --pc-w: 240px;
+    --pc-h: 280px;
+    background: var(--cream);
+    border: 2px solid var(--ink);
+    width: var(--pc-w);
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+  .portrait-card img {
+    display: block;
+    width: 100%;
+    height: var(--pc-h);
+    object-fit: cover;
+    object-position: center 18%;
+  }
+  .portrait-card .name {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 10px 8px;
+    text-align: center;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    line-height: 1.5;
+    border-top: 4px solid var(--red);
+  }
+  .portrait-card .name strong {
+    color: var(--red);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* Layout: text + single portrait, side by side, aligned to section content. */
+  .with-portrait {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 56px;
+    align-items: start;
+    margin: 0 0 56px;
+  }
+  .with-portrait.portrait-right {
+    grid-template-columns: minmax(0, 1fr) 240px;
+  }
+  .with-portrait > div { min-width: 0; }
+
+  /* Variant for the 2-portrait pair (Savitribai + Phule).
+     Pair lives inside its own grid column at 440px (210 + 20 gap + 210). */
+  .with-portrait.with-pair { grid-template-columns: minmax(0, 1fr) 440px; }
+  .portrait-pair {
+    display: flex; gap: 20px; flex-wrap: nowrap; justify-content: flex-start;
+  }
+  .portrait-pair .portrait-card {
+    --pc-w: 210px; --pc-h: 250px;
+  }
+
+  /* Mobile / narrow desktop — stack to single column */
+  @media (max-width: 980px) {
+    .with-portrait,
+    .with-portrait.portrait-right,
+    .with-portrait.with-pair {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+    .portrait-card { --pc-w: 200px; --pc-h: 240px; margin: 0; }
+    .portrait-pair { flex-wrap: wrap; gap: 16px; justify-content: flex-start; }
+    .portrait-pair .portrait-card { --pc-w: 180px; --pc-h: 220px; }
+  }
+  @media (max-width: 600px) {
+    .portrait-card { --pc-w: 100%; max-width: 220px; }
+    .portrait-pair .portrait-card { --pc-w: calc(50% - 8px); --pc-h: 200px; max-width: none; }
+  }
 
   /* SECTION COMMONS */
   .eyebrow {
@@ -218,9 +300,9 @@
     color: var(--red); text-transform: uppercase; margin-bottom: 16px;
   }
   .section { padding: 80px 56px; position: relative; }
-  .section.cream { background: var(--cream); border-bottom: 6px solid var(--ink); }
-  .section.ink   { background: var(--ink); color: var(--cream); border-bottom: 6px solid var(--red); }
-  .section.red   { background: var(--red); color: var(--cream); border-bottom: 6px solid var(--ink); }
+  .section.cream { background: var(--cream); border-bottom: 4px solid var(--ink); }
+  .section.ink   { background: var(--ink); color: var(--cream); border-bottom: 4px solid var(--red); }
+  .section.red   { background: var(--red); color: var(--cream); border-bottom: 4px solid var(--ink); }
   .section h2 {
     font-family: var(--f-display); font-size: 110px; font-weight: 900;
     line-height: 0.9; letter-spacing: -3px; margin: 0;
@@ -236,7 +318,7 @@
   .section.ink .lede   { color: var(--cream); opacity: 0.9; }
 
   /* NUMBERS */
-  .numbers { background: var(--cream); border-bottom: 6px solid var(--ink); }
+  .numbers { background: var(--cream); border-bottom: 4px solid var(--ink); }
   .numbers-head { padding: 56px 56px 24px; }
   .numbers-head h2 {
     font-family: var(--f-display); font-size: 120px; font-weight: 900;
@@ -274,7 +356,7 @@
   .world-row.india .world-amount { color: var(--red); }
 
   /* CALCULATOR */
-  .calc { background: var(--red); color: var(--cream); padding: 80px 56px; position: relative; border-bottom: 6px solid var(--ink); }
+  .calc { background: var(--red); color: var(--cream); padding: 80px 56px; position: relative; border-bottom: 4px solid var(--ink); }
   .calc-inner { position: relative; z-index: 1; }
   .calc-tagrow { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; flex-wrap: wrap; gap: 8px; }
   .calc-tag { font-family: var(--f-mono); font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--cream); }
@@ -386,15 +468,15 @@
   .def-deva { margin-top: 32px; font-family: var(--f-deva); font-size: 24px; color: var(--ink-soft); font-weight: 600; line-height: 1.4; }
   .standard { display: grid; grid-template-columns: auto 1fr; gap: 20px; padding: 18px 0; border-top: 1px solid var(--ink); align-items: baseline; }
   .standard:first-of-type { border-top-width: 3px; }
-  .standard:last-of-type { border-bottom: 3px solid var(--ink); }
+  .standard:last-of-type { border-bottom: 2px solid var(--ink); }
   .standard .num { font-family: var(--f-display); font-weight: 900; font-size: 56px; color: var(--red); letter-spacing: -1px; line-height: 0.9; font-variant-numeric: tabular-nums; }
   .standard .short { font-family: var(--f-display); font-weight: 900; font-size: 36px; color: var(--ink); letter-spacing: -1px; line-height: 1; text-transform: uppercase; }
   .standard .long { font-family: var(--f-slab); font-size: 16px; color: var(--ink-soft); margin-top: 6px; line-height: 1.4; }
 
   /* EXCLUDED */
   .excluded h2 { font-size: 130px; line-height: 0.88; letter-spacing: -4px; }
-  .excluded-grid { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 3px solid var(--red); border-left: 3px solid var(--red); }
-  .excluded-card { padding: 32px 24px; border-right: 3px solid var(--red); border-bottom: 3px solid var(--red); color: var(--cream); }
+  .excluded-grid { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 4px solid var(--red); border-left: 2px solid var(--red); }
+  .excluded-card { padding: 32px 24px; border-right: 2px solid var(--red); border-bottom: 2px solid var(--red); color: var(--cream); }
   .excluded-card.first { background: var(--red); }
   .excluded-card .tag { font-family: var(--f-mono); font-size: 11px; letter-spacing: 2px; color: var(--red); text-transform: uppercase; margin-bottom: 12px; }
   .excluded-card.first .tag { color: var(--cream); }
@@ -581,7 +663,7 @@
   }
   .state-badge.free { background: var(--ink); color: var(--cream); }
   .state-badge.fees { background: var(--cream-deep); color: var(--ink); }
-  .state-badge.no-act { background: var(--red); color: var(--cream); border-color: var(--red); }
+  .state-badge.no-act { background: transparent; color: var(--red); border-color: var(--red); }
 
   /* RRRLF — annual bar chart in pamphlet style */
   .rrrlf-chart { margin-top: 40px; }
@@ -601,11 +683,11 @@
   .report-grid {
     margin-top: 40px;
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
-    border-top: 3px solid var(--ink); border-left: 3px solid var(--ink);
+    border-top: 2px solid var(--ink); border-left: 2px solid var(--ink);
   }
   .report-card {
     padding: 20px;
-    border-right: 3px solid var(--ink); border-bottom: 3px solid var(--ink);
+    border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink);
     background: var(--cream);
     position: relative;
   }
@@ -630,11 +712,11 @@
   .parl-grid {
     margin-top: 40px;
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
-    border-top: 3px solid var(--ink); border-left: 3px solid var(--ink);
+    border-top: 2px solid var(--ink); border-left: 2px solid var(--ink);
   }
   .parl-stat {
     padding: 28px;
-    border-right: 3px solid var(--ink); border-bottom: 3px solid var(--ink);
+    border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink);
     background: var(--cream);
   }
   .parl-stat .label {
@@ -654,7 +736,7 @@
   /* QUOTES */
   .quotes h2 { font-size: 96px; letter-spacing: -2px; }
   .quote-grid { margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px 48px; }
-  .quote { margin: 0; padding: 24px 0 24px 24px; border-left: 6px solid var(--red); border-top: 2px solid var(--ink); }
+  .quote { margin: 0; padding: 24px 0 24px 24px; border-left: 4px solid var(--red); border-top: 2px solid var(--ink); }
   .quote .text { font-size: 26px; font-weight: 700; line-height: 1.3; letter-spacing: -0.3px; color: var(--ink); text-wrap: balance; font-family: var(--f-slab); }
   .quote.deva .text { font-family: var(--f-deva); font-size: 28px; }
   .quote.tamil .text { font-family: var(--f-tamil); font-size: 28px; }
@@ -671,7 +753,7 @@
   .cta-fields label { display: block; font-family: var(--f-mono); font-size: 11px; color: var(--cream-deep); letter-spacing: 2px; text-transform: uppercase; }
   .cta-fields input, .cta-fields select {
     width: 100%; margin-top: 6px; padding: 10px 0;
-    border: none; border-bottom: 3px solid var(--cream);
+    border: none; border-bottom: 2px solid var(--cream);
     background: transparent; outline: none; color: var(--cream);
     font-family: var(--f-display); font-size: 32px; font-weight: 900;
     letter-spacing: -0.5px;
@@ -1191,9 +1273,17 @@
   <section class="section cream">
     <div class="grain light"></div>
     <div style="position:relative; z-index:1;">
-      <div class="eyebrow">A short history · संक्षिप्त इतिहास</div>
-      <h2>THIS NEGLECT IS<br><span class="red">NOT NEW.</span> IT IS<br>A POLICY.</h2>
-      <p class="lede">We have been told, again and again, what to do. By Phule. By Ambedkar. By Ranganathan. By committees the government itself appointed. The plans exist. The will does not.</p>
+      <div class="with-portrait portrait-right">
+        <div>
+          <div class="eyebrow">A short history · संक्षिप्त इतिहास</div>
+          <h2>THIS NEGLECT IS<br><span class="red">NOT NEW.</span> IT IS<br>A POLICY.</h2>
+          <p class="lede">We have been told, again and again, what to do. By Phule. By Ambedkar. By Ranganathan. By committees the government itself appointed. The plans exist. The will does not. <strong style="color:var(--red)">अबुआ राज</strong> — the country Birsa Munda fought for is the country the State has refused to imagine.</p>
+        </div>
+        <figure class="portrait-card">
+          <img src="assets/portraits/birsa.jpg" alt="Portrait of Birsa Munda">
+          <figcaption class="name"><strong>Birsa Munda</strong><br>1875–1900</figcaption>
+        </figure>
+      </div>
       <div class="timeline" id="timeline"></div>
     </div>
   </section>
@@ -1257,9 +1347,23 @@
 
   <!-- QUOTES -->
   <section class="section cream quotes">
-    <div class="eyebrow">From the tradition · परंपरा से</div>
-    <h2>OUR PEOPLE HAVE<br>BEEN <span class="red">SAYING THIS</span><br>FOR TWO CENTURIES.</h2>
-    <div class="quote-grid" id="quote-grid"></div>
+    <div class="with-portrait portrait-right with-pair">
+      <div>
+        <div class="eyebrow">From the tradition · परंपरा से</div>
+        <h2>OUR PEOPLE HAVE<br>BEEN <span class="red">SAYING THIS</span><br>FOR TWO CENTURIES.</h2>
+      </div>
+      <div class="portrait-pair">
+        <figure class="portrait-card">
+          <img src="assets/portraits/savitribai.jpg" alt="Portrait of Savitribai Phule">
+          <figcaption class="name"><strong>Savitribai Phule</strong><br>1831–1897</figcaption>
+        </figure>
+        <figure class="portrait-card">
+          <img src="assets/portraits/phule.jpg" alt="Portrait of Jyotirao Phule">
+          <figcaption class="name"><strong>Jyotirao Phule</strong><br>1827–1890</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="quote-grid" id="quote-grid" style="margin-top:48px;"></div>
   </section>
 
   <!-- DECLARATION (formerly endframe; now the mantra above the CTA) -->
@@ -1315,18 +1419,35 @@
 
   <!-- ACTIONS -->
   <section class="section cream actions" id="act">
-    <div class="eyebrow">Six things, in order of difficulty · छह काम</div>
-    <h2>AFTER THE LETTER —<br><span class="red">THE WORK.</span></h2>
-    <div class="actions-grid" id="actions-grid"></div>
+    <div class="with-portrait portrait-right">
+      <div>
+        <div class="eyebrow">Six things, in order of difficulty · छह काम</div>
+        <h2>AFTER THE LETTER —<br><span class="red">THE WORK.</span></h2>
+        <div lang="ta" style="font-family:var(--f-deva); margin-top:12px; font-size:28px; color:var(--red); font-weight:700;">வாழ்க பெரியார்&nbsp;।</div>
+      </div>
+      <figure class="portrait-card">
+        <img src="assets/portraits/periyar.jpg" alt="Portrait of E. V. Ramasamy 'Periyar'">
+        <figcaption class="name"><strong>Periyar</strong><br>1879–1973</figcaption>
+      </figure>
+    </div>
+    <div class="actions-grid" id="actions-grid" style="margin-top:48px;"></div>
   </section>
 
   <!-- AMBEDKAR SAID THIS FIRST — closing reflection -->
   <section class="section cream">
-    <div class="eyebrow">Ambedkar said this first · आम्बेडकर ने यही कहा था</div>
-    <h2>1915. <span class="red">COLUMBIA</span><br>UNIVERSITY.<br>A LETTER TO BOMBAY.</h2>
-    <p class="lede" style="font-size:20px; max-width:920px; line-height:1.55;">
-      Dr. B. R. Ambedkar said this first — writing from Columbia University in 1915, where he was reading for his Master's in Economics and Political Science. The Bombay government had proposed a statue to commemorate <strong style="color:var(--ink); font-weight:700">Sir Pherozshah Mehta</strong>, the Parsi reformer and Indian National Congress leader, who had just died. Ambedkar wrote back: <em>build a library in his name. Not a statue.</em> The statue went up. A century on, India is still building statues — and expressways named after donors, and smart cities that are not smart, and hyperscale data centres for American corporations, and vanity projects that fund politicians' families, friends and the kickbacks they collect. <strong>Not libraries.</strong>
-    </p>
+    <div class="with-portrait portrait-right">
+      <div>
+        <div class="eyebrow">Ambedkar said this first · आम्बेडकर ने यही कहा था</div>
+        <h2>1915. <span class="red">COLUMBIA</span><br>UNIVERSITY.<br>A LETTER TO BOMBAY.</h2>
+        <p class="lede" style="font-size:20px; max-width:920px; line-height:1.55;">
+          Dr. B. R. Ambedkar said this first — writing from Columbia University in 1915, where he was reading for his Master's in Economics and Political Science. The Bombay government had proposed a statue to commemorate <strong style="color:var(--ink); font-weight:700">Sir Pherozshah Mehta</strong>, the Parsi reformer and Indian National Congress leader, who had just died. Ambedkar wrote back: <em>build a library in his name. Not a statue.</em> The statue went up. A century on, India is still building statues — and expressways named after donors, and smart cities that are not smart, and hyperscale data centres for American corporations, and vanity projects that fund politicians' families, friends and the kickbacks they collect. <strong>Not libraries.</strong>
+        </p>
+      </div>
+      <figure class="portrait-card">
+        <img src="assets/portraits/ambedkar.jpg" alt="Portrait of Dr. B. R. Ambedkar">
+        <figcaption class="name"><strong>B. R. Ambedkar</strong><br>1891–1956</figcaption>
+      </figure>
+    </div>
   </section>
 
   <!-- FOOTER -->

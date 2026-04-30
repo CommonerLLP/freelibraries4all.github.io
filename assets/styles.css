@@ -183,6 +183,17 @@
     font-family: var(--f-mono); font-size: 12px; letter-spacing: 3px;
     color: var(--red); text-transform: uppercase; margin-bottom: 16px;
   }
+  /* Decorative `//` flourishes — visual cue, hidden from screen readers
+     because CSS-generated content is not part of the accessibility tree
+     in most assistive tech. */
+  .eyebrow::before,
+  .scandal-eyebrow::before,
+  .result-eyebrow::before,
+  .calc-tag::before,
+  .game-tag::before,
+  .cta-howto-tag::before {
+    content: "// ";
+  }
   .section { padding: 80px 56px; position: relative; }
   .section.cream { background: var(--cream); border-bottom: 4px solid var(--ink); }
   .section.ink   { background: var(--ink); color: var(--cream); border-bottom: 4px solid var(--red); }
@@ -862,6 +873,7 @@
     text-wrap: balance; max-width: 860px;
   }
   .dgame-feedback strong { color: var(--cream); font-weight: 800; }
+  .dgame-feedback .alt::before { content: "// "; }
   .dgame-feedback .alt {
     display: block; margin-top: 12px; padding-top: 12px;
     border-top: 2px solid var(--cream);
@@ -981,6 +993,16 @@
   .cta-howto-tag {
     color: var(--red); font-weight: 700; letter-spacing: 2px;
     text-transform: uppercase; margin-bottom: 12px; font-size: 11px;
+    cursor: pointer; list-style: none;
+    padding: 12px 0;
+    border-top: 2px solid var(--cream);
+    border-bottom: 2px solid var(--cream);
+  }
+  /* Note above the CTA buttons (was a giant inline style attribute). */
+  .cta-note {
+    margin-top: 18px; font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 1px; color: var(--cream-deep);
+    text-transform: uppercase; line-height: 1.6;
   }
   .cta-howto ol {
     margin: 0; padding: 0; list-style: none; counter-reset: step;
@@ -1178,6 +1200,7 @@
     line-height: 1.4; font-style: italic;
   }
   .scandal-punchline strong { color: var(--cream); font-weight: 800; font-style: normal; }
+  .scandal-punchline .label::before { content: "// "; }
   .scandal-punchline .label {
     display: block; font-family: var(--f-mono); font-size: 14px;
     letter-spacing: 3px; text-transform: uppercase; font-weight: 700;

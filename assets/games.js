@@ -259,7 +259,7 @@
     fb.hidden = false;
     fb.innerHTML = `
       <div>${r.feedback}</div>
-      <span class="alt">// ${r.diversion}</span>
+      <span class="alt">${r.diversion}</span>
       <div class="next-btn"><button class="game-btn" id="dgame-next" type="button">${idx + 1 < DIVERSION_ROUNDS.length ? "NEXT ROUND →" : "SEE THE PATTERN →"}</button></div>
     `;
     document.getElementById("dgame-next").addEventListener("click", () => {

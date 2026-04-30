@@ -177,7 +177,7 @@ function scandalFor(name) {
         <div class="scandal-value">${r.value}</div>
       </div>`).join("");
     document.getElementById("scandal-punchline").innerHTML =
-      `<span class="label">// THE SCANDAL</span>${s.punchline}`;
+      `<span class="label">THE SCANDAL</span>${s.punchline}`;
     result.hidden = false;
   }
 

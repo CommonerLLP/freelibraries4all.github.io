@@ -1153,7 +1153,13 @@
   .footer-meta { font-family: var(--f-mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 1.5px; line-height: 1.8; text-transform: uppercase; }
   .footer-meta .head { color: var(--red); font-weight: 700; font-size: 13px; }
   /* Small OG card sits above the prose. Landscape, ~280px wide. */
-  .footer-og-link { display: block; margin: 0 0 20px; }
+  /* Defensive cap on BOTH wrapper and image so neither can escape on
+     any browser/cache state. Brave was rendering the OG card oversized
+     against an old cached stylesheet. */
+  .footer-og-link {
+    display: block; margin: 0 0 20px;
+    width: 100%; max-width: 280px;
+  }
   .footer-og-link:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
   .footer-og-card {
     display: block; width: 100%; max-width: 280px;

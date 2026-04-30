@@ -108,36 +108,31 @@
     flex-wrap: wrap;
   }
 
-  /* In-page nav — sticky to viewport top, anchor links to major sections */
-  .pagenav {
+  /* Sticky single-action CTA bar — sits between top strip and hero,
+     stays pinned to viewport top so the action is always one click away. */
+  .actbar {
     position: sticky; top: 0; z-index: 50;
-    background: var(--cream); color: var(--ink);
-    border-bottom: 2px solid var(--ink);
-    padding: 0 56px;
-    display: flex; gap: 0; align-items: stretch;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    background: var(--red); color: var(--cream);
+    border-bottom: 4px solid var(--ink);
+    text-align: center;
   }
-  .pagenav a {
-    color: var(--ink); text-decoration: none;
-    font-family: var(--f-mono); font-size: 11px; letter-spacing: 2px;
-    text-transform: uppercase; font-weight: 700;
-    padding: 12px 18px; min-height: 40px;
-    display: inline-flex; align-items: center;
-    border-right: 2px solid var(--ink);
-    white-space: nowrap;
+  .actbar a {
+    display: block; width: 100%;
+    padding: 16px 24px; min-height: 56px;
+    color: var(--cream); text-decoration: none;
+    font-family: var(--f-display); font-size: 24px; font-weight: 900;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    line-height: 1.15;
     transition: background 0.15s, color 0.15s;
   }
-  .pagenav a:first-child { border-left: 2px solid var(--ink); }
-  .pagenav a:hover, .pagenav a:focus {
-    background: var(--ink); color: var(--cream);
-    outline: none;
+  .actbar a:hover, .actbar a:focus {
+    background: var(--ink); color: var(--cream); outline: none;
   }
-  .pagenav a.write { color: var(--red); }
-  .pagenav a.write:hover { background: var(--red); color: var(--cream); }
+  .actbar .bang { color: var(--cream); margin-right: 6px; }
+  .actbar .arrow { display: inline-block; margin-left: 8px; transition: transform 0.15s; }
+  .actbar a:hover .arrow { transform: translateX(4px); }
   @media (max-width: 700px) {
-    .pagenav { padding: 0 16px; }
-    .pagenav a { padding: 10px 12px; font-size: 10px; letter-spacing: 1.5px; }
+    .actbar a { font-size: 18px; padding: 14px 16px; }
   }
   /* Section dividers: 4px on most, 8px reserved for the closing red declaration */
   .strip .accent { color: var(--red); }
@@ -886,14 +881,10 @@
     <span class="accent">A People's Pamphlet · एक जन-पत्रिका</span>
   </div>
 
-  <!-- IN-PAGE NAV — sticky to viewport top -->
-  <nav class="pagenav" aria-label="Jump to section">
-    <a href="#numbers">Numbers</a>
-    <a href="#states">States</a>
-    <a href="#history">History</a>
-    <a href="#quotes">Quotes</a>
-    <a href="#write" class="write">Write →</a>
-  </nav>
+  <!-- STICKY CALL-TO-ACTION — single button, always visible -->
+  <div class="actbar">
+    <a href="#write"><span class="bang">ACT!</span>Write to your CM and the PM <span style="opacity:0.85">— now.</span><span class="arrow">→</span></a>
+  </div>
 
   <!-- HERO -->
   <section class="hero">

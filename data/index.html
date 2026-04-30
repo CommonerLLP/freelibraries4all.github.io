@@ -717,6 +717,175 @@
   .state-badge.no-act { background: transparent; color: var(--red); border-color: var(--red); }
 
   /* RRRLF — annual bar chart in pamphlet style */
+  /* INTERACTIVE GAME — Higher-or-Lower + Statue Test */
+  .game-app { margin-top: 32px; max-width: 1100px; }
+  .game-screen { animation: fadeIn 0.3s ease-out; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .game-tag {
+    display: inline-block; font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--cream);
+    font-weight: 700; opacity: 0.85;
+  }
+  .game-intro { padding: 32px 0; max-width: 720px; }
+  .game-intro p {
+    font-family: var(--f-slab); font-size: 22px; color: var(--cream);
+    line-height: 1.4; margin: 16px 0 28px; text-wrap: balance;
+  }
+  .game-btn {
+    display: inline-block; padding: 16px 28px; min-height: 52px;
+    background: transparent; color: var(--cream);
+    border: 4px solid var(--cream);
+    font-family: var(--f-display); font-size: 18px; font-weight: 900;
+    letter-spacing: 1px; text-transform: uppercase;
+    cursor: pointer; text-decoration: none;
+    transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
+  }
+  .game-btn:hover, .game-btn:focus {
+    background: var(--cream); color: var(--red);
+    outline: none; transform: translateY(-2px);
+  }
+  .game-btn.primary { background: var(--ink); border-color: var(--ink); color: var(--cream); }
+  .game-btn.primary:hover, .game-btn.primary:focus {
+    background: var(--cream); color: var(--ink); border-color: var(--cream);
+  }
+  .game-meta {
+    display: flex; justify-content: space-between; gap: 16px;
+    padding: 16px 0; border-bottom: 2px solid var(--cream);
+    margin-bottom: 28px;
+    font-family: var(--f-mono); font-size: 14px; letter-spacing: 1.5px;
+    color: var(--cream); font-weight: 700; flex-wrap: wrap;
+  }
+  .game-meta .game-tag { margin-right: 6px; }
+  .game-meta span:not(.game-tag) {
+    font-family: var(--f-display); font-size: 22px; color: var(--ink);
+    font-weight: 900; padding: 0 4px;
+  }
+  .game-question {
+    font-family: var(--f-display); font-size: 40px; font-weight: 900;
+    line-height: 1.05; letter-spacing: -1px; color: var(--cream);
+    text-transform: uppercase; text-wrap: balance;
+    margin: 16px 0 32px; max-width: 880px;
+  }
+  .game-pair {
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    gap: 16px; align-items: stretch;
+  }
+  .game-card {
+    background: var(--cream); color: var(--ink);
+    border: 4px solid var(--ink);
+    padding: 36px 24px; min-height: 220px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    cursor: pointer; text-align: left;
+    font-family: inherit; transition: transform 0.15s, background 0.15s;
+  }
+  .game-card:hover, .game-card:focus { background: var(--ink); color: var(--cream); outline: none; transform: translateY(-3px); }
+  .game-card:hover .game-card-cta, .game-card:focus .game-card-cta { color: var(--red); }
+  .game-card.disabled { pointer-events: none; opacity: 0.85; }
+  .game-card.correct { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+  .game-card.correct .game-card-cta { color: var(--cream); }
+  .game-card.wrong { background: var(--cream); color: var(--ink); border-color: var(--ink); opacity: 0.55; }
+  .game-card-name {
+    font-family: var(--f-display); font-size: 36px; font-weight: 900;
+    letter-spacing: -1px; line-height: 0.95; text-transform: uppercase;
+    text-wrap: balance;
+  }
+  .game-card-reveal {
+    margin-top: 14px;
+    font-family: var(--f-display); font-size: 36px; font-weight: 900;
+    letter-spacing: -1px; color: var(--red);
+    font-variant-numeric: tabular-nums;
+  }
+  .game-card-cta {
+    margin-top: 18px;
+    font-family: var(--f-mono); font-size: 12px; letter-spacing: 2.5px;
+    text-transform: uppercase; font-weight: 700;
+  }
+  .game-vs {
+    align-self: center;
+    font-family: var(--f-display); font-size: 56px; font-weight: 900;
+    color: var(--cream); letter-spacing: -1px;
+  }
+  .game-feedback {
+    margin-top: 24px; padding: 20px 24px;
+    background: var(--ink); color: var(--cream);
+    border: 4px solid var(--ink);
+    font-family: var(--f-slab); font-size: 18px; line-height: 1.4;
+    text-wrap: balance;
+  }
+  .game-feedback.hit { border-color: var(--cream); }
+  .game-feedback strong { color: var(--cream); font-weight: 800; }
+
+  /* Statue Test screen */
+  .statue-q {
+    font-family: var(--f-display); font-size: 44px; font-weight: 900;
+    line-height: 1.1; letter-spacing: -1px; color: var(--cream);
+    text-transform: uppercase; text-wrap: balance;
+    margin: 20px 0 32px; max-width: 920px;
+  }
+  .statue-q strong { color: var(--ink); }
+  .statue-input-wrap {
+    display: flex; gap: 16px; align-items: stretch; flex-wrap: wrap;
+    padding: 20px 0;
+  }
+  .statue-label {
+    font-family: var(--f-mono); font-size: 12px; letter-spacing: 2px;
+    color: var(--cream); text-transform: uppercase; font-weight: 700;
+    align-self: center;
+  }
+  #statue-guess {
+    flex: 1; min-width: 160px; padding: 14px 18px; min-height: 52px;
+    background: var(--cream); color: var(--ink);
+    border: 4px solid var(--cream);
+    font-family: var(--f-display); font-size: 28px; font-weight: 900;
+    letter-spacing: -0.5px; font-variant-numeric: tabular-nums;
+    -webkit-appearance: none; appearance: none;
+  }
+  #statue-guess:focus { outline: 4px solid var(--ink); outline-offset: -2px; }
+  .statue-reveal {
+    margin-top: 28px; padding: 28px 32px;
+    background: var(--ink); color: var(--cream);
+    border: 4px solid var(--ink);
+  }
+  .statue-reveal[hidden] { display: none; }
+  .statue-reveal-num {
+    font-family: var(--f-display); font-size: 96px; font-weight: 900;
+    line-height: 0.9; letter-spacing: -3px; color: var(--red);
+    font-variant-numeric: tabular-nums;
+  }
+  .statue-reveal-num .unit {
+    font-size: 32px; color: var(--cream); margin-left: 12px; letter-spacing: 0;
+  }
+  .statue-reveal-text {
+    font-family: var(--f-slab); font-size: 20px; line-height: 1.45;
+    color: var(--cream); margin-top: 16px; text-wrap: balance;
+  }
+  .statue-reveal-text strong { color: var(--cream); font-weight: 800; }
+  .statue-reveal-actions { margin-top: 24px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* End screen */
+  .game-final {
+    font-family: var(--f-display); font-size: 64px; font-weight: 900;
+    line-height: 1; letter-spacing: -2px; color: var(--cream);
+    text-transform: uppercase; text-wrap: balance;
+    margin: 16px 0 28px; max-width: 880px;
+  }
+  .game-final strong { color: var(--ink); }
+  .game-final .num { color: var(--ink); font-size: 88px; }
+  .game-end-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  @media (max-width: 700px) {
+    .game-question, .statue-q { font-size: 28px; }
+    .game-pair { grid-template-columns: 1fr; }
+    .game-vs { padding: 8px 0; font-size: 36px; }
+    .game-card { padding: 24px 18px; min-height: 160px; }
+    .game-card-name { font-size: 26px; }
+    .game-card-reveal { font-size: 26px; }
+    .statue-reveal-num { font-size: 64px; letter-spacing: -2px; }
+    .statue-reveal-num .unit { font-size: 22px; }
+    .game-final { font-size: 36px; }
+    .game-final .num { font-size: 52px; }
+  }
+
   .rrrlf-chart { margin-top: 40px; }
   .rrrlf-svg { display: block; width: 100%; height: auto; max-height: 460px; }
   .rrrlf-legend {
@@ -1076,6 +1245,143 @@
     </div>
   </section>
 
+  <!-- 2.5 · GAME — Higher or Lower + Statue Test -->
+  <section class="section red" id="game">
+    <div class="grain light"></div>
+    <div style="position:relative; z-index:1;">
+      <div class="eyebrow" style="color:var(--cream);">The game · खेल</div>
+      <h2 style="color:var(--cream);">WHICH STATE<br>FAILS <span style="color:var(--ink);">HARDER?</span></h2>
+      <p class="lede" style="color:var(--cream);">Five rounds. Pick the state that spends more per person on public libraries. Then a final statue test. Sixty seconds. Try not to be too good at this — it means you've absorbed the scandal.</p>
+
+      <div class="game-board" id="game-board">
+        <!-- INTRO -->
+        <div class="game-screen" id="game-intro">
+          <div class="game-eyebrow">// 5 rounds + 1 reveal</div>
+          <button class="game-cta" id="game-start" type="button">START →</button>
+        </div>
+
+        <!-- ROUND -->
+        <div class="game-screen" id="game-round" hidden>
+          <div class="game-eyebrow"><span id="round-num">Round 1</span> / 5 &nbsp;·&nbsp; Score <span id="round-score">0</span></div>
+          <div class="game-prompt">Which state spends MORE per person on public libraries?</div>
+          <div class="vs-pair">
+            <button class="state-card" data-side="a" type="button"><span class="state-card-name" id="card-a">—</span></button>
+            <div class="vs">vs</div>
+            <button class="state-card" data-side="b" type="button"><span class="state-card-name" id="card-b">—</span></button>
+          </div>
+        </div>
+
+        <!-- REVEAL -->
+        <div class="game-screen" id="game-reveal" hidden>
+          <div class="reveal-status" id="reveal-status">CORRECT</div>
+          <div class="reveal-pair">
+            <div class="reveal-card" id="reveal-a">
+              <div class="reveal-name"></div>
+              <div class="reveal-amount"></div>
+              <div class="reveal-cap">per person · per year</div>
+            </div>
+            <div class="reveal-card" id="reveal-b">
+              <div class="reveal-name"></div>
+              <div class="reveal-amount"></div>
+              <div class="reveal-cap">per person · per year</div>
+            </div>
+          </div>
+          <button class="game-cta" id="game-next" type="button">NEXT →</button>
+        </div>
+
+        <!-- STATUE TEST -->
+        <div class="game-screen" id="game-statue" hidden>
+          <div class="game-eyebrow">// The statue test</div>
+          <div class="game-prompt">One <strong>Statue of Unity</strong> cost ₹2,989 crore. <br>How many <strong id="statue-state-name">—</strong> resident-lifetimes of library access does that buy?</div>
+          <div class="statue-reveal">
+            <div class="statue-num" id="statue-num">—</div>
+            <div class="statue-cap" id="statue-cap">resident-lifetimes</div>
+            <div class="statue-tail" id="statue-tail">—</div>
+          </div>
+          <button class="game-cta" id="game-finish" type="button">SEE FINAL SCORE →</button>
+        </div>
+
+        <!-- FINAL -->
+        <div class="game-screen" id="game-final" hidden>
+          <div class="game-eyebrow">// You've finished</div>
+          <div class="final-score">
+            <span class="final-num" id="final-num">0</span>
+            <span class="final-of">/ 5</span>
+          </div>
+          <div class="final-meaning" id="final-meaning">—</div>
+          <div class="final-actions">
+            <button class="game-cta" id="game-replay" type="button">PLAY AGAIN</button>
+            <a class="game-cta secondary" href="/#write">WRITE TO YOUR CM →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2.5 · INTERACTIVE GAME — Higher or Lower + Statue Test -->
+  <section class="section red" id="game">
+    <div class="grain light"></div>
+    <div style="position:relative; z-index:1;">
+      <div class="eyebrow" style="color:var(--cream)">// 60-second civics quiz · खेल</div>
+      <h2 style="color:var(--cream)">PLAY THE<br><span style="color:var(--ink)">LIBRARY</span> GAME.</h2>
+      <p class="lede" style="color:var(--cream); max-width: 920px;">Five rounds of <strong>Higher or Lower</strong> — pick the state that spends more per person on libraries. Then face the <strong>Statue Test</strong>: how many years would your state need to equal one Statue of Unity? <strong style="color:var(--ink)">There are no points for being right. Only for being awake.</strong></p>
+
+      <div id="game-app" class="game-app">
+        <!-- intro -->
+        <div class="game-screen" data-screen="intro">
+          <div class="game-intro">
+            <div class="game-tag">// READY?</div>
+            <p>Five quick rounds. Answer fast. The numbers will surprise you.</p>
+            <button id="game-start" class="game-btn primary">START THE GAME →</button>
+          </div>
+        </div>
+
+        <!-- round (higher-or-lower) -->
+        <div class="game-screen" data-screen="round" hidden>
+          <div class="game-meta">
+            <div><span class="game-tag">// ROUND</span> <span id="game-round">1</span> / 5</div>
+            <div><span class="game-tag">// STREAK</span> <span id="game-streak">0</span></div>
+          </div>
+          <div class="game-question">Which spends more per person on libraries?</div>
+          <div class="game-pair">
+            <button class="game-card" data-pair="A" id="game-a">
+              <div class="game-card-name" id="game-a-name">—</div>
+              <div class="game-card-cta">PICK THIS</div>
+            </button>
+            <div class="game-vs">VS</div>
+            <button class="game-card" data-pair="B" id="game-b">
+              <div class="game-card-name" id="game-b-name">—</div>
+              <div class="game-card-cta">PICK THIS</div>
+            </button>
+          </div>
+          <div class="game-feedback" id="game-feedback" hidden></div>
+        </div>
+
+        <!-- statue test -->
+        <div class="game-screen" data-screen="statue" hidden>
+          <div class="game-tag">// FINAL ROUND · THE STATUE TEST</div>
+          <div class="statue-q" id="statue-q">—</div>
+          <div class="statue-input-wrap">
+            <label class="statue-label" for="statue-guess">Your guess (years):</label>
+            <input id="statue-guess" type="number" min="0" step="1" value="100" />
+            <button id="statue-submit" class="game-btn primary">REVEAL →</button>
+          </div>
+          <div class="statue-reveal" id="statue-reveal" hidden></div>
+        </div>
+
+        <!-- end -->
+        <div class="game-screen" data-screen="end" hidden>
+          <div class="game-tag">// SCORECARD</div>
+          <div class="game-final" id="game-final">—</div>
+          <div class="game-end-actions">
+            <button id="game-replay" class="game-btn">PLAY AGAIN</button>
+            <a href="/#write" class="game-btn primary">WRITE TO YOUR CM →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 3 · PARLIAMENT 2025 -->
   <section class="section ink" id="parliament">
     <div class="grain soft"></div>
@@ -1383,6 +1689,20 @@ const RRRLF_RELEASED = {
   "Rajasthan": 134, "Sikkim": 1, "Uttarakhand": 1, "Chhattisgarh": 3,
   "Puducherry": 0, "Punjab": 0, "Jharkhand": 0
 };
+
+// State population (millions, ~2020 mid-year — used for the statue-test
+// math). Census 2011 + standard projections.
+const STATE_POP_MN = {
+  "Andhra Pradesh": 53, "Arunachal Pradesh": 1.5, "Assam": 35, "Bihar": 124,
+  "Chhattisgarh": 30, "Delhi": 19, "Goa": 1.7, "Gujarat": 67, "Haryana": 28,
+  "Himachal Pradesh": 7.4, "Jammu & Kashmir": 14, "Jharkhand": 38,
+  "Karnataka": 67, "Kerala": 36, "Madhya Pradesh": 85, "Maharashtra": 124,
+  "Manipur": 3.2, "Meghalaya": 3.4, "Mizoram": 1.2, "Nagaland": 2.2,
+  "Odisha": 46, "Puducherry": 1.5, "Punjab": 30, "Rajasthan": 80,
+  "Sikkim": 0.7, "Tamil Nadu": 79, "Telangana": 38, "Tripura": 4.0,
+  "Uttar Pradesh": 235, "Uttarakhand": 11, "West Bengal": 100
+};
+const STATUE_OF_UNITY_CR = 3000; // ₹ crore — Statue of Unity construction cost
 
 const NML_STATES = new Set(['Arunachal Pradesh','Goa','Mizoram','Rajasthan','Telangana','Uttar Pradesh',
   'West Bengal','Assam','Madhya Pradesh','Maharashtra','Nagaland','Tamil Nadu','Karnataka',
@@ -1791,6 +2111,183 @@ const GRADE_MEANING = {
   }
 
   select.addEventListener("change", (e) => showResult(e.target.value));
+})();
+
+// ─── INTERACTIVE GAME — Higher-or-Lower + Statue Test ─────────────
+(function initGame() {
+  const app = document.getElementById("game-app");
+  if (!app) return;
+
+  const screens = {
+    intro:  app.querySelector('[data-screen="intro"]'),
+    round:  app.querySelector('[data-screen="round"]'),
+    statue: app.querySelector('[data-screen="statue"]'),
+    end:    app.querySelector('[data-screen="end"]')
+  };
+  function show(name) {
+    Object.values(screens).forEach((s) => (s.hidden = true));
+    screens[name].hidden = false;
+  }
+
+  // State pairs for Higher-or-Lower: pre-shuffle 5 contrasting pairs.
+  const stateNames = Object.keys(STATE_DATA).filter((n) => STATE_POP_MN[n]);
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+  function makePairs(n) {
+    const pairs = [];
+    const seen = new Set();
+    let safety = 0;
+    while (pairs.length < n && safety++ < 200) {
+      const [a, b] = shuffle(stateNames).slice(0, 2);
+      if (a === b) continue;
+      const key = [a, b].sort().join("|");
+      if (seen.has(key)) continue;
+      // skip pairs where both spends are essentially identical
+      const va = STATE_DATA[a][6] || 0, vb = STATE_DATA[b][6] || 0;
+      if (Math.abs(va - vb) < 0.05) continue;
+      seen.add(key);
+      pairs.push([a, b]);
+    }
+    return pairs;
+  }
+
+  let pairs = [], roundIdx = 0, streak = 0, lastStateForStatue = null;
+
+  function startGame() {
+    pairs = makePairs(5);
+    roundIdx = 0; streak = 0;
+    show("round");
+    renderRound();
+  }
+
+  function renderRound() {
+    const [a, b] = pairs[roundIdx];
+    document.getElementById("game-round").textContent = roundIdx + 1;
+    document.getElementById("game-streak").textContent = streak;
+    document.getElementById("game-a-name").textContent = a;
+    document.getElementById("game-b-name").textContent = b;
+    document.getElementById("game-a").dataset.state = a;
+    document.getElementById("game-b").dataset.state = b;
+    document.getElementById("game-a").className = "game-card";
+    document.getElementById("game-b").className = "game-card";
+    document.getElementById("game-feedback").hidden = true;
+    document.getElementById("game-feedback").innerHTML = "";
+    // restore CTA labels (reveal HTML overwrites them)
+    document.getElementById("game-a").innerHTML =
+      `<div class="game-card-name" id="game-a-name">${a}</div><div class="game-card-cta">PICK THIS</div>`;
+    document.getElementById("game-b").innerHTML =
+      `<div class="game-card-name" id="game-b-name">${b}</div><div class="game-card-cta">PICK THIS</div>`;
+  }
+
+  function pickCard(picked, other) {
+    const va = STATE_DATA[picked][6] || 0;
+    const vb = STATE_DATA[other][6] || 0;
+    const correct = va > vb;
+    if (correct) streak++;
+    document.getElementById("game-streak").textContent = streak;
+
+    const aEl = document.getElementById("game-a");
+    const bEl = document.getElementById("game-b");
+    [aEl, bEl].forEach((el) => el.classList.add("disabled"));
+    const pickedEl = aEl.dataset.state === picked ? aEl : bEl;
+    const otherEl  = aEl.dataset.state === picked ? bEl : aEl;
+    pickedEl.classList.add(correct ? "correct" : "wrong");
+    otherEl.classList.add(correct ? "wrong" : "correct");
+    pickedEl.querySelector(".game-card-cta").outerHTML =
+      `<div class="game-card-reveal">₹${fmtMoney(va)} / yr</div>`;
+    otherEl.querySelector(".game-card-cta").outerHTML =
+      `<div class="game-card-reveal">₹${fmtMoney(vb)} / yr</div>`;
+
+    const fb = document.getElementById("game-feedback");
+    fb.hidden = false;
+    fb.classList.toggle("hit", correct);
+    if (correct) {
+      const ratio = vb > 0 ? Math.round(va / vb) : Infinity;
+      fb.innerHTML = `<strong>Right.</strong> <strong>${picked}</strong> spends ₹${fmtMoney(va)} per person per year. <strong>${other}</strong> spends ₹${fmtMoney(vb)}. ${ratio >= 2 ? `That's <strong>${ratio === Infinity ? "∞" : ratio + "×"}</strong> more.` : ""}`;
+    } else {
+      fb.innerHTML = `<strong>Wrong.</strong> <strong>${other}</strong> actually spends more — ₹${fmtMoney(vb)} per person per year, vs ₹${fmtMoney(va)} for ${picked}.`;
+    }
+
+    setTimeout(() => {
+      roundIdx++;
+      if (roundIdx >= pairs.length) {
+        // Pick the user's "anchor" state for the statue test —
+        // use the last losing state so the statue moment lands hardest.
+        lastStateForStatue = correct ? other : picked;
+        startStatue();
+      } else {
+        renderRound();
+      }
+    }, 2200);
+  }
+
+  document.getElementById("game-a").addEventListener("click", (e) => {
+    if (e.currentTarget.classList.contains("disabled")) return;
+    pickCard(e.currentTarget.dataset.state, document.getElementById("game-b").dataset.state);
+  });
+  document.getElementById("game-b").addEventListener("click", (e) => {
+    if (e.currentTarget.classList.contains("disabled")) return;
+    pickCard(e.currentTarget.dataset.state, document.getElementById("game-a").dataset.state);
+  });
+
+  // STATUE TEST
+  function startStatue() {
+    show("statue");
+    const state = lastStateForStatue;
+    const perCap = STATE_DATA[state][6] || 0;
+    const popCr = STATE_POP_MN[state] / 10; // millions → crore
+    const annualBudget = perCap * popCr; // ₹ crore / year (pop in crore × ₹/person)
+    const yearsForOneStatue = annualBudget > 0 ? Math.round(STATUE_OF_UNITY_CR / annualBudget) : Infinity;
+
+    document.getElementById("statue-q").innerHTML =
+      `<strong>${state}</strong> spends roughly <strong>₹${fmtMoney(annualBudget)} crore</strong> a year on every public library combined.<br>How many years would it need to equal <strong>one ₹${fmtIN(STATUE_OF_UNITY_CR)} crore Statue of Unity?</strong>`;
+
+    document.getElementById("statue-reveal").hidden = true;
+    document.getElementById("statue-reveal").innerHTML = "";
+
+    const submit = document.getElementById("statue-submit");
+    const guess = document.getElementById("statue-guess");
+    guess.value = 100;
+    submit.onclick = () => {
+      const userGuess = parseInt(guess.value, 10) || 0;
+      const off = userGuess > 0 ? Math.abs(userGuess - yearsForOneStatue) / yearsForOneStatue : 1;
+      let verdict;
+      if (yearsForOneStatue === Infinity) {
+        verdict = "Your state spends so little that the answer is, literally, <strong>forever</strong>.";
+      } else if (off < 0.2) verdict = `<strong>Eerie.</strong> You guessed within 20% of the truth.`;
+      else if (userGuess < yearsForOneStatue) verdict = `<strong>You under-guessed.</strong> The real answer is <strong>${fmtIN(yearsForOneStatue)} years</strong> — ${Math.round(yearsForOneStatue / Math.max(userGuess, 1))}× your guess. The library budget is much smaller than you think.`;
+      else verdict = `<strong>You over-guessed.</strong> The real answer is <strong>${fmtIN(yearsForOneStatue)} years</strong> — your guess was ${Math.round(userGuess / Math.max(yearsForOneStatue, 1))}× too high. The truth is somehow worse, and somehow better.`;
+
+      document.getElementById("statue-reveal").innerHTML =
+        `<div class="statue-reveal-num">${yearsForOneStatue === Infinity ? "∞" : fmtIN(yearsForOneStatue)}<span class="unit">years</span></div>
+         <div class="statue-reveal-text">${verdict} ${state} would need <strong>${yearsForOneStatue === Infinity ? "an eternity" : fmtIN(yearsForOneStatue) + " years"}</strong> of its annual library budget to fund a single Statue of Unity. The Centre and Gujarat funded one in five.</div>
+         <div class="statue-reveal-actions">
+           <button class="game-btn" id="statue-next">SEE FINAL SCORE →</button>
+         </div>`;
+      document.getElementById("statue-reveal").hidden = false;
+      document.getElementById("statue-next").addEventListener("click", showEnd);
+    };
+  }
+
+  function showEnd() {
+    show("end");
+    const final = document.getElementById("game-final");
+    let line;
+    if (streak === 5) line = `You got <span class="num">5/5</span>. You already know the scandal. Now do something with it.`;
+    else if (streak >= 3) line = `You got <span class="num">${streak}/5</span>. Better than most. The library you'd visit doesn't exist yet.`;
+    else if (streak >= 1) line = `You got <span class="num">${streak}/5</span>. The data is barely a guess for anyone. That is itself the point.`;
+    else line = `You got <span class="num">0/5</span>. Don't blame yourself. Public-library spending in India is so low that the rankings are noise. Read the page. Write to your CM.`;
+    final.innerHTML = line;
+  }
+
+  document.getElementById("game-start").addEventListener("click", startGame);
+  document.getElementById("game-replay").addEventListener("click", startGame);
 })();
 
 // ─── TAX ALLOCATION CALCULATOR ────────────────────────────────────

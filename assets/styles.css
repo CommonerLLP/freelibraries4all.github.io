@@ -1434,3 +1434,367 @@
 .t-red   { color: var(--red); }
 .t-ink   { color: var(--ink); }
 .t-cream { color: var(--cream); }
+
+/* Print button — invites the reader to take the pamphlet off-screen.
+   Lives at the end of the closing declaration on the homepage and
+   after the China table on /data/. Hidden on print. */
+.print-btn {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 14px 26px;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--cream);
+  background: var(--ink);
+  border: 2px solid var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.12s, color 0.12s;
+}
+.print-btn:hover, .print-btn:focus {
+  background: var(--red); color: var(--cream); border-color: var(--red);
+}
+.print-btn:focus-visible {
+  outline: 3px solid var(--cream); outline-offset: 3px;
+}
+
+/* ============================================================
+   PRINT — turn the website into a pamphlet you can hold.
+   Homepage prints as a 4-page advocacy pamphlet (the case + the
+   call to action). /data/ prints as a 4-page evidence dossier.
+   Together they form a print kit for organisers — protests,
+   college noticeboards, panchayat meetings.
+   ============================================================ */
+@media print {
+  /* A4 with brutal margins. Cream-on-ink survives black-and-white
+     prints; vermilion prints as mid-grey on b/w but stays vermilion
+     on colour printers. */
+  @page {
+    size: A4;
+    margin: 12mm 12mm 14mm;
+  }
+
+  /* Force colours through (default print is grayscale) and kill
+     shadows/animations. */
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    box-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html, body { background: var(--cream); margin: 0; padding: 0; }
+  .pamphlet { max-width: 100% !important; width: 100% !important; }
+
+  /* Hide all chrome + interactive bits on BOTH pages */
+  .skip-link,
+  .actbar,
+  .data-backbar,
+  .grain,
+  .footer-og-link,
+  .footer-sources .bib-list,
+  .footer-sources .bib-notes,
+  .footer-sources .bib-head,
+  .footer-sources,
+  .print-btn,
+  /* Homepage interactive sections */
+  #states,
+  #history,
+  .cta,
+  .calc-grid,
+  /* /data/ interactive sections */
+  #report-card,
+  #game,
+  #diversion,
+  /* Decorative elements that don't translate to paper */
+  .hero-pantheon {
+    display: none !important;
+  }
+
+  /* Strip — single-line registration */
+  .strip {
+    border-bottom: 1px solid var(--ink) !important;
+    padding: 3mm 6mm !important;
+    font-size: 8pt !important;
+    background: var(--cream) !important;
+    color: var(--ink) !important;
+    letter-spacing: 1.5pt !important;
+  }
+  .strip .accent { color: var(--red) !important; }
+
+  /* HERO — page 1 lead */
+  .hero {
+    padding: 6mm !important;
+    border-bottom: 2px solid var(--ink) !important;
+    background: var(--cream) !important;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  .hero-inner { display: block !important; }
+  .hero h1 {
+    font-size: 36pt !important;
+    line-height: 0.95 !important;
+    letter-spacing: -1pt !important;
+    margin: 0 !important;
+  }
+  .hero-lede {
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+    margin-top: 4mm !important;
+    max-width: 100% !important;
+    text-align: left !important;
+  }
+  .notice-pill {
+    font-size: 7pt !important;
+    padding: 2pt 8pt !important;
+    margin-bottom: 3mm !important;
+    letter-spacing: 1.5pt !important;
+  }
+
+  /* NUMBERS — page 1 evidence anchor */
+  .numbers { page-break-after: avoid; break-after: avoid; }
+  .numbers-head { padding: 5mm 6mm 3mm !important; }
+  .numbers-head h2 {
+    font-size: 28pt !important;
+    line-height: 0.95 !important;
+    letter-spacing: -1pt !important;
+    margin: 0 !important;
+  }
+  .stats {
+    grid-template-columns: 1fr 1fr 1fr !important;
+    border-top: 2px solid var(--ink) !important;
+    border-bottom: 2px solid var(--ink) !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .stat { padding: 5mm !important; border-right: 1px solid var(--ink) !important; }
+  .stat .label { font-size: 7pt !important; letter-spacing: 1pt !important; }
+  .stat .value { font-size: 28pt !important; line-height: 1 !important; letter-spacing: -1pt !important; }
+  .stat .value-sub { font-size: 8pt !important; }
+  .stat .sub, .stat .footnote { font-size: 8pt !important; line-height: 1.3 !important; }
+
+  /* CALC — page 2: keep the closing arithmetic + the buys grid only.
+     Slider/verdict are hidden via the .calc-grid rule above. */
+  .calc {
+    page-break-before: always;
+    break-before: page;
+    padding: 6mm !important;
+    background: var(--ink) !important;
+    color: var(--cream) !important;
+  }
+  .calc-inner > .calc-tagrow { display: none !important; }
+  .calc h2 {
+    font-size: 28pt !important;
+    line-height: 0.95 !important;
+    letter-spacing: -1pt !important;
+    color: var(--cream) !important;
+    margin: 0 0 5mm !important;
+  }
+  .closer-eq {
+    grid-template-columns: 1fr auto 1fr !important;
+    gap: 4mm !important;
+    padding: 4mm 0 !important;
+    border-top: 1px solid var(--cream) !important;
+    border-bottom: 1px solid var(--cream) !important;
+  }
+  .closer-label { font-size: 7pt !important; letter-spacing: 1pt !important; color: var(--cream) !important; }
+  .closer-value { font-size: 28pt !important; line-height: 1 !important; color: var(--cream) !important; }
+  .closer-vs { font-size: 24pt !important; color: var(--red) !important; }
+  .closer-source { font-size: 7pt !important; color: var(--cream) !important; opacity: 0.85; }
+  .closer-punch { font-size: 11pt !important; line-height: 1.4 !important; margin-top: 4mm !important; color: var(--cream) !important; }
+
+  .buys { margin-top: 6mm !important; page-break-inside: avoid; break-inside: avoid; }
+  .buys h3 { font-size: 14pt !important; letter-spacing: -0.5pt !important; color: var(--red) !important; }
+  .buys-grid {
+    grid-template-columns: 1fr 1fr 1fr !important;
+    margin-top: 4mm !important;
+  }
+  .buys-grid > div {
+    font-size: 11pt !important;
+    padding: 4mm !important;
+    border-color: var(--cream) !important;
+    color: var(--cream) !important;
+  }
+
+  /* DEFINITION + BUDGET — page 3 */
+  .def {
+    page-break-before: always;
+    break-before: page;
+    padding: 6mm !important;
+  }
+  .def-grid { grid-template-columns: 1fr 1fr !important; gap: 6mm !important; page-break-inside: avoid; break-inside: avoid; }
+  .def h2 { font-size: 26pt !important; line-height: 0.95 !important; letter-spacing: -0.5pt !important; }
+  .def p { font-size: 10pt !important; line-height: 1.4 !important; }
+  .standard { padding: 2mm 0 !important; border-top: 1px solid rgba(26,26,26,0.18) !important; }
+  .standard .num { font-size: 12pt !important; line-height: 1 !important; }
+  .standard .short { font-size: 11pt !important; }
+  .standard .long { font-size: 8pt !important; line-height: 1.35 !important; }
+
+  .section.ink {
+    padding: 6mm !important;
+    page-break-before: avoid;
+    break-before: avoid;
+    background: var(--ink) !important;
+  }
+  .section.ink h2 { font-size: 26pt !important; line-height: 0.95 !important; color: var(--cream) !important; }
+  .section.ink .lede { font-size: 10pt !important; color: var(--cream) !important; }
+  .budget-grid { gap: 4mm !important; margin-top: 4mm !important; }
+  .budget-eq { padding: 3mm 0 !important; }
+  .budget-item-label, .budget-equiv-label { font-size: 7pt !important; color: var(--cream) !important; }
+  .budget-item-value, .budget-equiv-value { font-size: 22pt !important; line-height: 1 !important; color: var(--cream) !important; }
+  .budget-equiv-value.red { color: var(--red) !important; }
+  .budget-vs { font-size: 18pt !important; color: var(--red) !important; }
+  .budget-item-source, .budget-equiv-source { font-size: 7pt !important; color: var(--cream) !important; opacity: 0.85; }
+  .budget-closer { font-size: 10pt !important; line-height: 1.4 !important; margin-top: 4mm !important; color: var(--cream) !important; }
+
+  /* CLOSING DECLARATION — page 4 lead */
+  .section.red.end {
+    page-break-before: always;
+    break-before: page;
+    padding: 10mm 6mm !important;
+    background: var(--red) !important;
+    border: none !important;
+  }
+  .end h2 {
+    font-size: 48pt !important;
+    line-height: 0.95 !important;
+    letter-spacing: -1pt !important;
+    color: var(--cream) !important;
+  }
+  .end-tail { font-size: 12pt !important; color: var(--cream) !important; margin-top: 6mm !important; }
+
+  /* ACTION GRID — page 4 body */
+  .actions {
+    page-break-before: avoid;
+    break-before: avoid;
+    padding: 6mm !important;
+  }
+  .actions h2 { font-size: 26pt !important; line-height: 0.95 !important; }
+  .actions-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 3mm !important;
+    margin-top: 4mm !important;
+  }
+  .action {
+    padding: 3mm !important;
+    border: 1px solid var(--ink) !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .action-num { font-size: 9pt !important; }
+  .action-verb { font-size: 16pt !important; line-height: 1 !important; }
+  .action-title { font-size: 11pt !important; line-height: 1.1 !important; }
+  .action-text { font-size: 8pt !important; line-height: 1.35 !important; }
+
+  /* FOOTER — minimal: salute + URL */
+  .footer {
+    padding: 5mm 6mm !important;
+    border-top: 2px solid var(--ink) !important;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    align-items: center !important;
+    gap: 4mm !important;
+  }
+  .footer h3 { font-size: 14pt !important; line-height: 0.95 !important; }
+  .footer-meta { font-size: 8pt !important; line-height: 1.4 !important; }
+  .footer-meta .head { font-size: 10pt !important; }
+  .footer-meta .salute { font-size: 14pt !important; margin-top: 3mm !important; gap: 6pt !important; }
+  /* Stamp the URL after the footer so the pamphlet always ends with theright2read.org */
+  .footer::after {
+    content: "theright2read.org";
+    display: block;
+    margin-top: 4mm;
+    padding-top: 3mm;
+    border-top: 1px solid var(--ink);
+    font-family: var(--f-mono);
+    font-size: 10pt;
+    text-align: center;
+    color: var(--red);
+    letter-spacing: 2pt;
+  }
+
+  /* /data/-specific tuning */
+  /* Ambedkar 1915 — page 1 */
+  #ambedkar-columbia {
+    padding: 8mm 6mm !important;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  #ambedkar-columbia h2 { font-size: 32pt !important; line-height: 0.95 !important; letter-spacing: -1pt !important; }
+  #ambedkar-columbia .lede { font-size: 11pt !important; line-height: 1.45 !important; }
+  #ambedkar-columbia details { display: block !important; }
+  #ambedkar-columbia details summary { display: none !important; }
+  #ambedkar-columbia details > p { display: block !important; font-size: 9pt !important; margin-top: 3mm !important; line-height: 1.4 !important; }
+
+  /* RRRLF chart — page 2 */
+  #rrrlf {
+    page-break-before: always;
+    break-before: page;
+    padding: 6mm !important;
+    background: var(--ink) !important;
+  }
+  #rrrlf h2 { font-size: 26pt !important; line-height: 0.95 !important; color: var(--cream) !important; }
+  #rrrlf .lede { font-size: 10pt !important; color: var(--cream) !important; }
+  .rrrlf-chart { margin-top: 4mm !important; page-break-inside: avoid; break-inside: avoid; }
+  .stat-grid { grid-template-columns: 1fr 1fr 1fr !important; gap: 3mm !important; margin-top: 4mm !important; }
+  .stat-grid > div { padding: 3mm !important; border: 1px solid var(--cream) !important; page-break-inside: avoid; break-inside: avoid; }
+  .stat-tag { font-size: 8pt !important; }
+  .stat-num { font-size: 22pt !important; }
+  .stat-text { font-size: 8pt !important; }
+
+  /* World comparison + China table — page 3 */
+  #world {
+    page-break-before: always;
+    break-before: page;
+    padding: 6mm !important;
+  }
+  #world h2 { font-size: 24pt !important; line-height: 0.95 !important; }
+  #world .lede { font-size: 9pt !important; line-height: 1.4 !important; }
+  .world-rows { margin-top: 4mm !important; }
+  .world-row { font-size: 9pt !important; padding: 1mm 0 !important; }
+  .world-name, .world-amount { font-size: 10pt !important; }
+
+  #china {
+    padding: 6mm !important;
+    page-break-before: avoid;
+    break-before: avoid;
+    background: var(--ink) !important;
+  }
+  #china h2 { font-size: 24pt !important; color: var(--cream) !important; }
+  #china .lede { font-size: 9pt !important; color: var(--cream) !important; }
+  .vs-grid { font-size: 8pt !important; margin-top: 4mm !important; }
+  .vs-row { page-break-inside: avoid; break-inside: avoid; }
+  .vs-label { font-size: 8pt !important; }
+  .vs-value { font-size: 14pt !important; line-height: 1 !important; }
+  .vs-note { font-size: 7pt !important; line-height: 1.3 !important; }
+  .meanwhile-closer p { font-size: 10pt !important; color: var(--cream) !important; }
+
+  /* QUOTES — page 4 */
+  #quotes {
+    page-break-before: always;
+    break-before: page;
+    padding: 6mm !important;
+  }
+  #quotes h2 { font-size: 24pt !important; line-height: 0.95 !important; }
+  .quote-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 4mm !important;
+    margin-top: 4mm !important;
+  }
+  .quote {
+    padding: 3mm !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .quote .text { font-size: 11pt !important; line-height: 1.4 !important; }
+  .quote .attr { font-size: 8pt !important; }
+
+  /* Hide section-source-note (small footnote-style sources) on print since
+     we have the dedicated bibliography stripped already. */
+  .section-source-note { display: none !important; }
+}

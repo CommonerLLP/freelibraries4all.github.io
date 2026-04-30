@@ -2,7 +2,7 @@
    games.js — interactive games for /data/.
 
    - State Higher-or-Lower + Statue Test
-   - "Which Did We Build?" (Diversion Game)
+   - "What Did We Build?" (Diversion Game)
 
    Each IIFE no-ops if its root container isn't in the DOM, so the
    pamphlet (/) can load this script harmlessly even though it has
@@ -209,7 +209,7 @@
   });
 })();
 
-// ─── DIVERSION GAME — "Which did we build?" runner ──────────────
+// ─── DIVERSION GAME — "What did we build?" runner ───────────────
 
 (function initDiversionGame() {
   const app = document.getElementById("dgame-app");

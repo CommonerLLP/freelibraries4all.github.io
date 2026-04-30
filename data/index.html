@@ -913,75 +913,90 @@
     .game-final .num { font-size: 52px; }
   }
 
-  /* CASCADE GAME — India vs China, 7 rungs */
-  .cascade-rung-tag {
-    display: inline-block; margin: 8px 0 12px;
-    padding: 6px 14px;
-    background: var(--cream); color: var(--ink);
-    font-family: var(--f-mono); font-size: 12px; letter-spacing: 3px;
-    text-transform: uppercase; font-weight: 700;
-    border: 2px solid var(--cream);
+  /* DIVERSION GAME — Which did we build? */
+  .dgame-prompt {
+    font-family: var(--f-display); font-size: 32px; font-weight: 900;
+    line-height: 1.2; letter-spacing: -0.5px; color: var(--cream);
+    text-transform: uppercase; text-wrap: balance;
+    margin: 16px 0 28px; max-width: 920px;
   }
-  .cascade-card .game-card-name { font-size: 56px; letter-spacing: -1.5px; }
-  .cascade-feedback { font-size: 17px; }
-  .cascade-feedback .rung-link {
+  .dgame-prompt strong { color: var(--red); }
+  .dgame-options {
+    display: grid; gap: 12px; max-width: 820px;
+  }
+  .dgame-option {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 18px 22px; min-height: 64px; width: 100%;
+    background: var(--cream); color: var(--ink);
+    border: 4px solid var(--cream); cursor: pointer;
+    text-align: left; font-family: inherit;
+    transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
+  }
+  .dgame-option:hover, .dgame-option:focus {
+    background: var(--ink); color: var(--cream); border-color: var(--cream);
+    outline: none; transform: translateX(4px);
+  }
+  .dgame-option.disabled { pointer-events: none; }
+  .dgame-option.correct {
+    background: var(--red); color: var(--cream); border-color: var(--red);
+  }
+  .dgame-option.correct .dgame-cost { color: var(--cream); }
+  .dgame-option.wrong { opacity: 0.55; }
+  .dgame-option.your-pick { outline: 3px dashed var(--ink); outline-offset: -8px; }
+  .dgame-marker {
+    flex-shrink: 0; width: 28px; height: 28px;
+    border: 3px solid currentColor;
+    background: transparent;
+    margin-top: 2px;
+  }
+  .dgame-option.correct .dgame-marker { background: var(--cream); border-color: var(--cream); }
+  .dgame-text {
+    flex: 1; min-width: 0;
+    font-family: var(--f-display); font-size: 20px; font-weight: 900;
+    letter-spacing: -0.3px; line-height: 1.15; text-transform: uppercase;
+    text-wrap: balance;
+  }
+  .dgame-cost {
+    font-family: var(--f-mono); font-size: 12px; letter-spacing: 1.6px;
+    color: var(--ink-soft); font-weight: 700; text-transform: uppercase;
+    margin-top: 4px; display: block;
+  }
+  .dgame-feedback {
+    margin-top: 20px; padding: 22px 26px;
+    background: var(--red); color: var(--cream);
+    border: 4px solid var(--red);
+    font-family: var(--f-slab); font-size: 18px; line-height: 1.45;
+    text-wrap: balance; max-width: 860px;
+  }
+  .dgame-feedback strong { color: var(--cream); font-weight: 800; }
+  .dgame-feedback .alt {
     display: block; margin-top: 12px; padding-top: 12px;
     border-top: 2px solid var(--cream);
-    font-style: italic; opacity: 0.92;
+    font-style: italic; opacity: 0.95;
   }
-  .cascade-feedback .diversion {
-    display: block; margin-top: 10px;
-    font-family: var(--f-mono); font-size: 12px;
-    letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--cream); font-weight: 700; opacity: 0.85;
+  .dgame-feedback .next-btn { margin-top: 16px; }
+  .dgame-final {
+    font-family: var(--f-display); font-size: 64px; font-weight: 900;
+    line-height: 1; letter-spacing: -2px; color: var(--cream);
+    text-transform: uppercase; text-wrap: balance;
+    margin: 16px 0 22px; max-width: 880px;
   }
-
-  /* End screen — cascade stack visualization */
-  .cascade-stack {
-    margin: 32px 0; max-width: 720px;
-    border: 4px solid var(--cream);
+  .dgame-final .num { color: var(--red); font-size: 88px; }
+  .dgame-final-text {
+    margin-bottom: 28px; max-width: 880px;
   }
-  .cascade-step {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 18px 22px; gap: 16px; flex-wrap: wrap;
-    border-bottom: 2px solid var(--cream);
-    background: var(--ink); color: var(--cream);
-  }
-  .cascade-step:last-child { border-bottom: none; }
-  .cascade-step.base { background: var(--red); color: var(--cream); }
-  .cascade-step .rung {
-    font-family: var(--f-display); font-size: 24px; font-weight: 900;
-    letter-spacing: -0.5px; text-transform: uppercase;
-  }
-  .cascade-step .status {
-    font-family: var(--f-mono); font-size: 13px;
-    letter-spacing: 1.4px; text-transform: uppercase;
-    font-weight: 700;
-  }
-  .cascade-step .status.fail { color: var(--red); }
-  .cascade-step.base .status.fail { color: var(--cream); opacity: 0.95; }
-  .cascade-final {
-    margin: 24px 0; max-width: 880px;
-  }
-  .cascade-final p {
+  .dgame-final-text p {
     font-family: var(--f-slab); font-size: 19px; line-height: 1.5;
     color: var(--cream); margin: 0 0 14px; text-wrap: balance;
   }
-  .cascade-final strong { color: var(--cream); font-weight: 800; }
-  .cascade-final em { color: var(--cream); font-style: italic; opacity: 0.95; }
-  .cascade-sources {
-    margin-top: 32px; padding-top: 16px;
-    border-top: 2px solid var(--cream);
-    font-family: var(--f-mono); font-size: 11px;
-    letter-spacing: 1.2px; line-height: 1.7; text-transform: uppercase;
-    color: var(--cream-deep); max-width: 880px;
-  }
+  .dgame-final-text strong { color: var(--cream); font-weight: 800; }
+  .dgame-final-text em { color: var(--cream); font-style: italic; opacity: 0.9; }
   @media (max-width: 700px) {
-    .cascade-card .game-card-name { font-size: 36px; }
-    .cascade-step { padding: 14px 16px; }
-    .cascade-step .rung { font-size: 18px; }
-    .cascade-step .status { font-size: 11px; }
-    .cascade-final p { font-size: 17px; }
+    .dgame-prompt { font-size: 22px; }
+    .dgame-text { font-size: 16px; }
+    .dgame-final { font-size: 40px; }
+    .dgame-final .num { font-size: 56px; }
+    .dgame-feedback { font-size: 16px; }
   }
 
   .rrrlf-chart { margin-top: 40px; }
@@ -1413,6 +1428,49 @@
     </div>
   </section>
 
+  <!-- 2.6 · "WHICH DID WE BUILD?" — vanity-vs-useful detection game -->
+  <section class="section ink" id="diversion">
+    <div class="grain soft"></div>
+    <div style="position:relative; z-index:1;">
+      <div class="eyebrow">The diversion game · Which did we build?</div>
+      <h2>WHICH DID<br><span class="red">WE BUILD?</span></h2>
+      <p class="lede">India had the money. It funded <strong>one</strong> of these. Pick which. By round 4 you'll have learned the pattern. The pattern is the strategy.</p>
+
+      <div id="dgame-app" class="game-app">
+        <div class="game-screen" data-screen="intro">
+          <div class="game-intro">
+            <div class="game-tag">// 6 ROUNDS · INDIA's REAL CHOICES</div>
+            <p>Each round, India had a real budget. It funded one item. The other options on the table were also real, also possible, also the same money. Pick what India built.</p>
+            <button id="dgame-start" class="game-btn primary">START →</button>
+          </div>
+        </div>
+
+        <div class="game-screen" data-screen="round" hidden>
+          <div class="game-meta">
+            <div><span class="game-tag">// ROUND</span> <span id="dgame-round">1</span> / 6</div>
+            <div><span class="game-tag">// PATTERN SCORE</span> <span id="dgame-score">0</span></div>
+          </div>
+          <div class="dgame-prompt" id="dgame-prompt">—</div>
+          <div class="dgame-options" id="dgame-options"></div>
+          <div class="game-feedback dgame-feedback" id="dgame-feedback" hidden></div>
+        </div>
+
+        <div class="game-screen" data-screen="end" hidden>
+          <div class="game-tag">// YOU LEARNED THE PATTERN</div>
+          <div class="dgame-final" id="dgame-final">—</div>
+          <div class="dgame-final-text">
+            <p>The diversion is not a distraction <em>from</em> the strategy. It <strong>is</strong> the strategy.</p>
+            <p>India funds vanity. India calls itself <strong>Vishwaguru</strong>. The math doesn't add up. Your politicians are betting that you won't do this math. <strong style="color:var(--red);">Do the math. Send the letter.</strong></p>
+          </div>
+          <div class="game-end-actions">
+            <button id="dgame-replay" class="game-btn">PLAY AGAIN</button>
+            <a href="/#write" class="game-btn primary">WRITE TO YOUR CM →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 3 · PARLIAMENT 2025 -->
   <section class="section ink" id="parliament">
     <div class="grain soft"></div>
@@ -1428,71 +1486,92 @@
     </div>
   </section>
 
-  <!-- 4 · INDIA vs CHINA — THE CASCADE (interactive game) -->
+  <!-- 4 · MEANWHILE — India vs China (static comparison table) -->
   <section class="section ink" id="china">
     <div class="grain soft"></div>
     <div style="position:relative; z-index:1;">
-      <div class="eyebrow">India vs China · the cascade</div>
-      <h2>NO LIBRARIES,<br>NO <span class="red">VISHWAGURU.</span></h2>
-      <p class="lede">A knowledge society is a cascade. <strong>Nutrition → Health → Education → Libraries → Knowledge → GDP.</strong> Each rung depends on the one below. China started at the bottom and worked up. India built statues at the top and called itself a knowledge economy. <strong style="color:var(--red)">Play through the cascade. India loses every rung.</strong></p>
+      <div class="eyebrow">Meanwhile · इधर</div>
+      <h2>WE COURT GOOGLE.<br>CHINA BUILT<br><span class="red">LIBRARIES.</span></h2>
+      <p class="lede">While the Indian state courts Amazon, Google, and Microsoft to build hyperscale data centres in a country running out of water, trees, and breathable air, China — the country we are told we are "competing" with — has spent the last twenty years building the things that actually make a knowledge society. India has not. Look at what each one funds.</p>
 
-      <div id="cascade-app" class="game-app">
-        <!-- intro -->
-        <div class="game-screen" data-screen="intro">
-          <div class="game-intro">
-            <div class="game-tag">// SEVEN RUNGS · INDIA vs CHINA</div>
-            <p>For each rung of the cascade — nutrition, health, education, literacy, higher ed, libraries, the law itself — pick the country that funded it. The numbers will tell you what your politicians will not.</p>
-            <button id="cascade-start" class="game-btn primary">START THE CASCADE →</button>
+      <div class="vs-grid" role="table" aria-label="India versus China — knowledge investment comparison">
+        <div class="vs-head" role="row">
+          <div class="india" role="columnheader">INDIA</div>
+          <div class="china" role="columnheader">CHINA</div>
+        </div>
+
+        <div class="vs-row" role="row">
+          <div class="india" role="cell">
+            <div class="vs-label">R&amp;D as % of GDP</div>
+            <div class="vs-value weak">~0.65%</div>
+            <div class="vs-note">Stagnant for two decades. The lowest among major emerging economies.</div>
+          </div>
+          <div class="china" role="cell">
+            <div class="vs-label">R&amp;D as % of GDP</div>
+            <div class="vs-value strong">~2.4%</div>
+            <div class="vs-note">Roughly 4× India's, per unit of economy. Compounded over twenty years.</div>
           </div>
         </div>
 
-        <!-- round -->
-        <div class="game-screen" data-screen="round" hidden>
-          <div class="game-meta">
-            <div><span class="game-tag">// RUNG</span> <span id="cascade-round">1</span> / 7</div>
-            <div><span class="game-tag">// CASCADE SCORE</span> <span id="cascade-score">0</span></div>
+        <div class="vs-row" role="row">
+          <div class="india" role="cell">
+            <div class="vs-label">Higher education · % of GDP</div>
+            <div class="vs-value weak">~1.1%</div>
+            <div class="vs-note">Below the National Education Policy 2020 target of 2%.</div>
           </div>
-          <div class="cascade-rung-tag" id="cascade-rung">— RUNG —</div>
-          <div class="game-question" id="cascade-q">—</div>
-          <div class="game-pair">
-            <button class="game-card cascade-card" id="cascade-india">
-              <div class="game-card-name">INDIA</div>
-              <div class="game-card-cta">PICK INDIA</div>
-            </button>
-            <div class="game-vs">VS</div>
-            <button class="game-card cascade-card" id="cascade-china">
-              <div class="game-card-name">CHINA</div>
-              <div class="game-card-cta">PICK CHINA</div>
-            </button>
+          <div class="china" role="cell">
+            <div class="vs-label">Higher education · % of GDP</div>
+            <div class="vs-value strong">~4%</div>
+            <div class="vs-note">Funds 60+ universities in the QS top-1000. India funds 4.</div>
           </div>
-          <div class="game-feedback cascade-feedback" id="cascade-feedback" hidden></div>
         </div>
 
-        <!-- end -->
-        <div class="game-screen" data-screen="end" hidden>
-          <div class="game-tag">// THE CASCADE COLLAPSED</div>
-          <div class="cascade-stack">
-            <div class="cascade-step" data-rung="GDP"><span class="rung">GDP</span><span class="status fail">India: top-heavy growth</span></div>
-            <div class="cascade-step" data-rung="KNOWLEDGE"><span class="rung">KNOWLEDGE</span><span class="status fail">India: 11 universities in QS top 1000</span></div>
-            <div class="cascade-step" data-rung="LIBRARIES"><span class="rung">LIBRARIES</span><span class="status fail">India: ₹15.30 / person / year</span></div>
-            <div class="cascade-step" data-rung="EDUCATION"><span class="rung">EDUCATION</span><span class="status fail">India: 3% of GDP, well below target</span></div>
-            <div class="cascade-step" data-rung="HEALTH"><span class="rung">HEALTH</span><span class="status fail">India: $60 / person / year (govt)</span></div>
-            <div class="cascade-step base" data-rung="NUTRITION"><span class="rung">NUTRITION</span><span class="status fail">India: 35.5% of children stunted</span></div>
+        <div class="vs-row" role="row">
+          <div class="india" role="cell">
+            <div class="vs-label">School education · % of GDP</div>
+            <div class="vs-value weak">~3%</div>
+            <div class="vs-note">Below the NEP 2020 target of 6%. Has been below it since the target was set in 1968.</div>
           </div>
-          <div class="cascade-final">
-            <p><strong>India lost every rung.</strong> Not by accident.</p>
-            <p>China didn't become an economic power and <em>then</em> fund the cascade. It funded the cascade, then became an economic power. The order matters.</p>
-            <p>India calls itself <strong>Vishwaguru</strong>. Its children are stunted. Its women are unschooled. Its libraries are empty. Its politicians are debating cow slaughter, mosque demolitions, and statue heights.</p>
-            <p>The deprivation is concentrated on <strong>Dalit, Bahujan, Adivasi, Muslim, working-class India</strong>. <strong style="color:var(--red)">The cascade was never broken. It was engineered to fail you.</strong></p>
-          </div>
-          <div class="game-end-actions">
-            <button id="cascade-replay" class="game-btn">PLAY AGAIN</button>
-            <a href="/#write" class="game-btn primary">WRITE TO YOUR CM →</a>
-          </div>
-          <div class="cascade-sources">
-            Sources: Child stunting — NFHS-5 (India) / NHSS (China). Health spending — World Bank Health Expenditure per capita (govt, current US$). Education — World Bank / UNESCO UIS. Literacy — UIS, latest available year. QS Top 1000 — QS World University Rankings 2024-25. Library spend — Kulkarni-Balaji-Dhanamjaya 2025 (India); IFLA + Chinese Ministry of Culture (China, ~ converted). Library Law — Public Library Law of the PRC (2017); India has no enacted national library law.
+          <div class="china" role="cell">
+            <div class="vs-label">School education · % of GDP</div>
+            <div class="vs-value strong">~4.2%</div>
+            <div class="vs-note">Meets and exceeds China's own internal target.</div>
           </div>
         </div>
+
+        <div class="vs-row" role="row">
+          <div class="india" role="cell">
+            <div class="vs-label">Per-capita public library spend</div>
+            <div class="vs-value weak">₹15.30</div>
+            <div class="vs-note">State-level average. The Centre adds ₹0.07.</div>
+          </div>
+          <div class="china" role="cell">
+            <div class="vs-label">Per-capita public library spend</div>
+            <div class="vs-value strong">~₹250</div>
+            <div class="vs-note">Roughly 16× India's state-level average.</div>
+          </div>
+        </div>
+
+        <div class="vs-row" role="row">
+          <div class="india" role="cell">
+            <div class="vs-label">National Public Library Law</div>
+            <div class="vs-value weak">NONE</div>
+            <div class="vs-note">Drafted in 1957. Drafted again in 1986. Drafted again in 2024 — by citizens, not the State. Never enacted.</div>
+          </div>
+          <div class="china" role="cell">
+            <div class="vs-label">National Public Library Law</div>
+            <div class="vs-value strong">2017</div>
+            <div class="vs-note">Public Library Law of the People's Republic of China — enacted 04 November 2016, in force 01 January 2018. Statutory right of access.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="meanwhile-closer">
+        <p>
+          China enacted its Public Library Law in 2017. India has been drafting one for over six decades. We say we want a knowledge economy. We have funded none of the things that make one. We have built none of the institutions that hold one up.
+          <strong>We are courting servers, not citizens.</strong>
+        </p>
+        <div class="deva" lang="hi">हम सर्वर बेच रहे हैं&nbsp;। हम पाठक नहीं बना रहे&nbsp;।</div>
       </div>
     </div>
   </section>
@@ -2333,91 +2412,94 @@ const GRADE_MEANING = {
   });
 })();
 
-// ─── INDIA vs CHINA — THE CASCADE ─────────────────────────────────
-// Each rung of a knowledge society's cascade. India loses every one.
-// Reveals teach: numbers + cascade-link + caste/diversion line.
-const CASCADE = [
+// ─── DIVERSION GAME — "Which did we build?" ──────────────────────
+// Each round: India had a real budget, and funded one of the listed
+// items. The user picks. The "correct" item is always the vanity
+// option. By round 4, the user has internalised the pattern: India
+// funds vanity. The diversion is the strategy.
+const DIVERSION_ROUNDS = [
   {
-    rung: "RUNG 1 · NUTRITION",
-    q: "Which country fed its children?",
-    metric: "Child stunting rate (under-5)",
-    india:  { label: "INDIA",  value: 35.5, unit: "%", winner: false },
-    china:  { label: "CHINA",  value: 4.8,  unit: "%", winner: true },
-    higherIsBetter: false, // lower stunting = better
-    link:    "Stunted children cannot read at grade 3. They drop out by grade 8. They become permanent low-wage labour. The cascade fails on the first rung.",
-    castDim: "In India, stunting is concentrated on Adivasi (40%), Dalit (39%), and Muslim (39%) children — the communities the State has refused to feed for 75 years.",
-    diversion: "Meanwhile your MP is debating: which holiday should be a working day."
+    year: 2018,
+    budget: "₹2,989 crore",
+    prompt: "It's <strong>2018</strong>. India had <strong>₹2,989 crore</strong> on the table. India funded <strong>ONE</strong> of these. Pick which.",
+    options: [
+      { text: "A new IIT campus", cost: "~₹1,500 cr" },
+      { text: "The country's largest public library system, twice over", cost: "~₹1,500 cr" },
+      { text: "Universal child stunting elimination across two states", cost: "~₹500 cr" },
+      { text: "A 182-metre statue", cost: "₹2,989 cr", correct: true }
+    ],
+    feedback: "<strong>India built the Statue of Unity.</strong> ₹2,989 crore. The world's tallest statue. With the same money the Centre could have funded its <strong>library foundation for fifteen years</strong>, eliminated child stunting in two whole states, and still had change for an IIT.",
+    diversion: "Sold to the public as 'national pride.'"
   },
   {
-    rung: "RUNG 2 · HEALTH",
-    q: "Which country pays for a doctor?",
-    metric: "Govt health spending per person, per year",
-    india:  { label: "INDIA",  value: 60,  unit: "USD (PPP)", winner: false },
-    china:  { label: "CHINA",  value: 450, unit: "USD (PPP)", winner: true },
-    higherIsBetter: true,
-    link:    "Without primary health care, illness becomes intergenerational debt. A sick child cannot read. A sick mother cannot send her child to school. The cascade fails on the second rung.",
-    castDim: "Out-of-pocket health spending pushes 55 million Indians into poverty every year. Most are not Brahmin, not upper-caste, not urban.",
-    diversion: "Meanwhile your MP is debating: whose statue gets the next highway named after it."
+    year: 2014,
+    budget: "₹78.7 crore",
+    prompt: "It's <strong>2014</strong>. India had <strong>₹78.7 crore</strong> for the National Mission on Libraries. It modernised <strong>ONE</strong> of these. Pick which.",
+    options: [
+      { text: "5,000 panchayat-level libraries (one per ~150 villages)", cost: "~₹16 lakh each" },
+      { text: "1,000 district libraries with new books and Wi-Fi", cost: "~₹8 lakh each" },
+      { text: "64 libraries — total — across all of India", cost: "~₹1.2 cr each", correct: true },
+      { text: "200 women's reading rooms in rural districts", cost: "~₹40 lakh each" }
+    ],
+    feedback: "<strong>India modernised 64 libraries.</strong> Sixty-four. In a country of 1.4 billion people. That works out to <strong>one library per 22 million Indians</strong>. The mission is a press release. ₹20.6 crore of the sanctioned amount remains undisbursed a decade on.",
+    diversion: "The press release said 'transformative.'"
   },
   {
-    rung: "RUNG 3 · EDUCATION",
-    q: "Which country built schools?",
-    metric: "Total education spend, % of GDP",
-    india:  { label: "INDIA",  value: 3.0, unit: "% of GDP", winner: false },
-    china:  { label: "CHINA",  value: 4.2, unit: "% of GDP", winner: true },
-    higherIsBetter: true,
-    link:    "India has missed its own 6%-of-GDP education target since the Kothari Commission set it in 1968. Fifty-seven years of missed targets. The cascade fails on the third rung.",
-    castDim: "Government schools serve the children of Dalit, Bahujan, Adivasi, Muslim, working-class India. Underfunding government schools is class war by other means.",
-    diversion: "Meanwhile your MP is debating: should this textbook chapter on the Mughals be removed."
+    year: 2024,
+    budget: "₹3,000 crore",
+    prompt: "Across one fiscal year, the Centre spent <strong>~₹3,000 crore</strong> on government advertising — its own image. With the same money, India could have funded <strong>ONE</strong> of these. Which did it actually choose?",
+    options: [
+      { text: "15× the entire annual public-library budget of every state combined", cost: "~₹3,000 cr" },
+      { text: "Free school lunches for 30 million additional children", cost: "~₹3,000 cr" },
+      { text: "10,000 primary health sub-centres", cost: "~₹3,000 cr" },
+      { text: "Government advertising. Newspapers, TV, hoardings, jingles.", cost: "₹3,000 cr", correct: true }
+    ],
+    feedback: "<strong>India bought ad space.</strong> Newspapers, TV, hoardings, jingles. Around <strong>₹3,000 crore</strong> on the State's own publicity. That is roughly <strong>15× the country's entire library budget</strong>. The State spent more on telling you it was working than on the work.",
+    diversion: "Frames itself as 'public information.'"
   },
   {
-    rung: "RUNG 4 · LITERACY",
-    q: "Which country can read?",
-    metric: "Adult literacy rate (15+)",
-    india:  { label: "INDIA",  value: 76, unit: "%", winner: false },
-    china:  { label: "CHINA",  value: 97, unit: "%", winner: true },
-    higherIsBetter: true,
-    link:    "21 percentage points behind China. That is roughly 250 million Indian adults who cannot read. The cascade fails on the fourth rung.",
-    castDim: "Female literacy gaps are largest among Adivasi and rural Muslim women. Caste, class, gender — the same axes, every time.",
-    diversion: "Meanwhile your MP is debating: which language should be the medium of instruction in a state that's never been theirs."
+    year: 2019,
+    budget: "₹1,45,000 crore",
+    prompt: "In <strong>2019</strong> the Union government had a <strong>₹1.45 lakh crore</strong> hole to fill in revenue. It chose <strong>ONE</strong> of these.",
+    options: [
+      { text: "100 years of full library funding for the entire country", cost: "~₹1.4 lakh cr" },
+      { text: "A National Public Library Law + 50,000 new libraries", cost: "~₹1.5 lakh cr" },
+      { text: "MNREGA expansion + universal free school meals", cost: "~₹1.4 lakh cr" },
+      { text: "A corporate tax cut. Permanent. From 30% to 22%.", cost: "₹1,45,000 cr revenue forgone (FY 2019-20)", correct: true }
+    ],
+    feedback: "<strong>India cut corporate tax.</strong> ₹1.45 lakh crore in revenue forgone — every year, compounding. That is more than <strong>100× the country's annual library spend</strong>, gifted upward, in perpetuity. The promised investment surge never came. The libraries didn't either.",
+    diversion: "Sold as 'investment-led growth.'"
   },
   {
-    rung: "RUNG 5 · HIGHER EDUCATION",
-    q: "Which country built universities?",
-    metric: "Universities in QS World Top 1000",
-    india:  { label: "INDIA",  value: 11, unit: "univ.", winner: false },
-    china:  { label: "CHINA",  value: 71, unit: "univ.", winner: true },
-    higherIsBetter: true,
-    link:    "China has 6× more world-ranked universities. India's elite IITs and IIMs serve a tiny fraction of the population. For everyone else, higher education is a fee-funded gamble. The cascade fails on the fifth rung.",
-    castDim: "Reservation alone cannot fix higher ed when the public university itself is starved. The State defunds the public ladder, then blames those who can't climb it.",
-    diversion: "Meanwhile your MP is debating: should this central university be renamed after a politician who died last year."
+    year: 2022,
+    budget: "₹20,000 crore",
+    prompt: "<strong>Central Vista</strong>, the Delhi redevelopment project — original budget ₹13,450 cr, since revised. Most current estimate: <strong>~₹20,000 crore.</strong> India chose <strong>ONE</strong> of these.",
+    options: [
+      { text: "A district public library in every one of India's 800 districts", cost: "~₹2,000 cr" },
+      { text: "A new AIIMS hospital in 8 underserved states", cost: "~₹16,000 cr" },
+      { text: "A new Parliament + new central government office complex + new PM/VP residences", cost: "₹20,000 cr (rising)", correct: true },
+      { text: "Free higher education for every Dalit, Adivasi & OBC student for 5 years", cost: "~₹15,000 cr" }
+    ],
+    feedback: "<strong>India built the Central Vista.</strong> A new Parliament, new offices, new residences. Most recent estimate: ~₹20,000 crore, rising. With the same money India could have built a <strong>district public library in all 800 districts</strong> — and still funded eight new AIIMS hospitals.",
+    diversion: "Promoted as 'modernising democracy.'"
   },
   {
-    rung: "RUNG 6 · LIBRARIES",
-    q: "Which country built libraries?",
-    metric: "Per-capita public library spend, ₹/year",
-    india:  { label: "INDIA",  value: 15.30, unit: "₹/person", winner: false },
-    china:  { label: "CHINA",  value: 250,   unit: "₹/person", winner: true },
-    higherIsBetter: true,
-    link:    "Libraries are the lifelong-learning compensator — the institution that catches everyone the school system failed. India spends 16× less than China on this layer of citizenship. The cascade fails on the sixth rung.",
-    castDim: "When the public library does not exist, a child of Dalit, Adivasi, or working-class parents has no compensating institution. The home does not have books. The school did not work. The library was never built.",
-    diversion: "Meanwhile your MP is debating: which town should be renamed back to its pre-Mughal name."
-  },
-  {
-    rung: "RUNG 7 · THE LAW",
-    q: "Which country wrote a Public Library Law?",
-    metric: "Year national Public Library Law was enacted",
-    india:  { label: "INDIA",  value: 0,    unit: "(NEVER)", winner: false },
-    china:  { label: "CHINA",  value: 2017, unit: "(IN FORCE)", winner: true },
-    higherIsBetter: true,
-    link:    "China's Public Library Law (2017) makes free library access a statutory right. India drafted one in 1957. Drafted again in 1986. Drafted again in 2024 — by citizens, not the State. Never enacted. The cascade has no foundation in law.",
-    castDim: "Without a law, libraries are at the mercy of every state government's mood. Without a law, the demand has nowhere to land.",
-    diversion: "Meanwhile your MP is debating: which faith's holiday calendar takes precedence in a republic of all faiths."
+    year: 2023,
+    budget: "₹4,000 crore (cumulative)",
+    prompt: "Renamed cities, stations, airports, highways, schemes. The cumulative cost of just the <strong>renaming-and-rebranding</strong> — new signage, stationery, web infra, GIS updates — runs into <strong>thousands of crores</strong>. India chose <strong>ONE</strong> path.",
+    options: [
+      { text: "Update every government textbook with current science + civics", cost: "~₹500 cr" },
+      { text: "Spend on translation + Devanagari/regional-script open-access digital books", cost: "~₹300 cr" },
+      { text: "Rename Allahabad, Faizabad, Aurangabad, Ahmednagar, Mughalsarai — and counting", cost: "~₹4,000 cr (signage / stationery / digital infra)", correct: true },
+      { text: "Pay every public-school teacher a 5% raise for 3 years", cost: "~₹3,500 cr" }
+    ],
+    feedback: "<strong>India renamed cities.</strong> Thousands of crores in signage, stationery, GIS database updates, court-order compliance, train indicators, official letterheads. The textbooks didn't get updated. The teachers didn't get paid. The library was never built. <strong>The map was redrawn instead.</strong>",
+    diversion: "Marketed as 'reclaiming heritage.'"
   }
 ];
 
-(function initCascade() {
-  const app = document.getElementById("cascade-app");
+(function initDiversionGame() {
+  const app = document.getElementById("dgame-app");
   if (!app) return;
 
   const screens = {
@@ -2432,80 +2514,70 @@ const CASCADE = [
 
   let idx = 0, score = 0;
 
-  function startGame() { idx = 0; score = 0; show("round"); renderRound(); }
+  function start() { idx = 0; score = 0; show("round"); renderRound(); }
 
   function renderRound() {
-    const r = CASCADE[idx];
-    document.getElementById("cascade-round").textContent = idx + 1;
-    document.getElementById("cascade-score").textContent = score;
-    document.getElementById("cascade-rung").textContent = r.rung;
-    document.getElementById("cascade-q").textContent = r.q;
+    const r = DIVERSION_ROUNDS[idx];
+    document.getElementById("dgame-round").textContent = idx + 1;
+    document.getElementById("dgame-score").textContent = score;
+    document.getElementById("dgame-prompt").innerHTML = r.prompt;
+    const optsEl = document.getElementById("dgame-options");
+    // Shuffle option order so the "correct" item isn't always at the same position
+    const shuffled = r.options.slice().sort(() => Math.random() - 0.5);
+    optsEl.innerHTML = shuffled.map((o, i) => `
+      <button class="dgame-option" data-correct="${o.correct ? "1" : "0"}" data-i="${i}" type="button">
+        <span class="dgame-marker" aria-hidden="true"></span>
+        <span class="dgame-text">${o.text}<span class="dgame-cost">${esc(o.cost)}</span></span>
+      </button>`).join("");
+    document.getElementById("dgame-feedback").hidden = true;
+    document.getElementById("dgame-feedback").innerHTML = "";
 
-    const ind = document.getElementById("cascade-india");
-    const chn = document.getElementById("cascade-china");
-    [ind, chn].forEach((el) => {
-      el.classList.remove("disabled", "correct", "wrong");
-      el.disabled = false;
+    optsEl.querySelectorAll(".dgame-option").forEach((btn) => {
+      btn.addEventListener("click", () => onPick(btn));
     });
-    ind.innerHTML = `<div class="game-card-name">INDIA</div><div class="game-card-cta">PICK INDIA</div>`;
-    chn.innerHTML = `<div class="game-card-name">CHINA</div><div class="game-card-cta">PICK CHINA</div>`;
-
-    const fb = document.getElementById("cascade-feedback");
-    fb.hidden = true; fb.innerHTML = "";
   }
 
-  function pick(country) {
-    const r = CASCADE[idx];
-    const ind = document.getElementById("cascade-india");
-    const chn = document.getElementById("cascade-china");
-    const indWin = r.india.winner;
-    const correct = (country === "INDIA" && indWin) || (country === "CHINA" && !indWin);
+  function onPick(btn) {
+    const r = DIVERSION_ROUNDS[idx];
+    const correct = btn.dataset.correct === "1";
     if (correct) score++;
-    document.getElementById("cascade-score").textContent = score;
+    document.getElementById("dgame-score").textContent = score;
 
-    [ind, chn].forEach((el) => {
-      el.classList.add("disabled");
-      el.disabled = true;
+    const optsEl = document.getElementById("dgame-options");
+    optsEl.querySelectorAll(".dgame-option").forEach((b) => {
+      b.classList.add("disabled");
+      if (b.dataset.correct === "1") b.classList.add("correct");
+      else b.classList.add("wrong");
     });
-    const winnerEl = indWin ? ind : chn;
-    const loserEl  = indWin ? chn : ind;
-    winnerEl.classList.add("correct");
-    loserEl.classList.add("wrong");
+    btn.classList.add("your-pick");
 
-    const fmtVal = (v, u) => v === 0 && u.includes("NEVER") ? `<strong>${u}</strong>` : `<strong>${v}${u.startsWith("%") || u.startsWith("(") ? "" : " "}${u}</strong>`;
-    ind.innerHTML = `<div class="game-card-name">INDIA</div><div class="game-card-reveal">${fmtVal(r.india.value, r.india.unit)}</div>`;
-    chn.innerHTML = `<div class="game-card-name">CHINA</div><div class="game-card-reveal">${fmtVal(r.china.value, r.china.unit)}</div>`;
-
-    const fb = document.getElementById("cascade-feedback");
+    const fb = document.getElementById("dgame-feedback");
     fb.hidden = false;
     fb.innerHTML = `
-      <div><strong>${r.metric}.</strong> India: ${r.india.value}${r.india.unit.startsWith("%") || r.india.unit.startsWith("(") ? "" : " "}${r.india.unit}. China: ${r.china.value}${r.china.unit.startsWith("%") || r.china.unit.startsWith("(") ? "" : " "}${r.china.unit}.</div>
-      <span class="rung-link">${r.link}</span>
-      <span class="rung-link" style="opacity:0.95;">${r.castDim}</span>
-      <span class="diversion">// ${r.diversion}</span>
-      <div style="margin-top:14px;"><button class="game-btn" id="cascade-next">${idx + 1 < CASCADE.length ? "NEXT RUNG →" : "SEE THE CASCADE COLLAPSE →"}</button></div>
+      <div>${r.feedback}</div>
+      <span class="alt">// ${r.diversion}</span>
+      <div class="next-btn"><button class="game-btn" id="dgame-next" type="button">${idx + 1 < DIVERSION_ROUNDS.length ? "NEXT ROUND →" : "SEE THE PATTERN →"}</button></div>
     `;
-    document.getElementById("cascade-next").addEventListener("click", () => {
+    document.getElementById("dgame-next").addEventListener("click", () => {
       idx++;
-      if (idx >= CASCADE.length) showEnd();
+      if (idx >= DIVERSION_ROUNDS.length) showEnd();
       else renderRound();
     });
   }
 
   function showEnd() {
     show("end");
+    const final = document.getElementById("dgame-final");
+    let line;
+    if (score === 6) line = `You got <span class="num">6/6</span>. You already see the pattern. India funds vanity.`;
+    else if (score >= 4) line = `You got <span class="num">${score}/6</span>. You caught on by round four. So has every Indian voter who has been paying attention.`;
+    else if (score >= 2) line = `You got <span class="num">${score}/6</span>. You assumed your government would fund the useful thing. India isn't there yet.`;
+    else line = `You got <span class="num">${score}/6</span>. The State's pattern surprised you because nobody told you. That is itself the diversion.`;
+    final.innerHTML = line;
   }
 
-  document.getElementById("cascade-india").addEventListener("click", () => {
-    if (document.getElementById("cascade-india").disabled) return;
-    pick("INDIA");
-  });
-  document.getElementById("cascade-china").addEventListener("click", () => {
-    if (document.getElementById("cascade-china").disabled) return;
-    pick("CHINA");
-  });
-  document.getElementById("cascade-start").addEventListener("click", startGame);
-  document.getElementById("cascade-replay").addEventListener("click", startGame);
+  document.getElementById("dgame-start").addEventListener("click", start);
+  document.getElementById("dgame-replay").addEventListener("click", start);
 })();
 
 // ─── TAX ALLOCATION CALCULATOR ────────────────────────────────────

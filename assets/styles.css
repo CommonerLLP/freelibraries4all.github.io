@@ -1,3 +1,15 @@
+  /* Honour user's OS-level reduced-motion preference: kills the
+     fadeIn keyframes and the translate transforms on hover/focus. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      transform: none !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   :root {
     --cream: #f1e8d3;
     --cream-deep: #e3d7b8;
@@ -85,7 +97,10 @@
     transition: background 0.15s, color 0.15s;
   }
   .actbar a:hover, .actbar a:focus {
-    background: var(--ink); color: var(--cream); outline: none;
+    background: var(--ink); color: var(--cream);
+  }
+  .actbar a:focus-visible {
+    outline: 3px solid var(--cream); outline-offset: -6px;
   }
   .actbar .bang { color: var(--cream); margin-right: 6px; }
   .actbar .arrow { display: inline-block; margin-left: 8px; transition: transform 0.15s; }
@@ -231,6 +246,8 @@
     letter-spacing: 2px; text-transform: uppercase; color: var(--ink);
     font-weight: 700; margin-bottom: 10px;
   }
+  /* Decorative `//` flourish, hidden from screen readers. */
+  .picker-label::before { content: "// "; }
   .picker-select {
     width: 100%; padding: 18px 20px; min-height: 56px;
     background: var(--cream); color: var(--ink);
@@ -606,6 +623,7 @@
     letter-spacing: 2px; text-transform: uppercase; color: var(--cream);
     font-weight: 700; margin-bottom: 10px;
   }
+  .game-home-label::before { content: "// "; }
   /* Reuse picker-select styling but force cream/ink palette inside the red game section. */
   .game-home-wrap .picker-select {
     background-color: var(--cream); color: var(--ink);
@@ -624,9 +642,13 @@
     cursor: pointer; text-decoration: none;
     transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
   }
+  .game-btn:focus-visible {
+    outline: 3px solid var(--cream); outline-offset: 3px;
+  }
   .game-btn:hover, .game-btn:focus {
+    /* visual feedback retained; focus-visible above adds the keyboard outline */
     background: var(--cream); color: var(--red);
-    outline: none; transform: translateY(-2px);
+    transform: translateY(-2px);
   }
   .game-btn.primary { background: var(--ink); border-color: var(--ink); color: var(--cream); }
   .game-btn.primary:hover, .game-btn.primary:focus {
@@ -662,8 +684,9 @@
     cursor: pointer; text-align: left;
     font-family: inherit; transition: transform 0.15s, background 0.15s;
   }
-  .game-card:hover, .game-card:focus { background: var(--ink); color: var(--cream); outline: none; transform: translateY(-3px); }
+  .game-card:hover, .game-card:focus { background: var(--ink); color: var(--cream); transform: translateY(-3px); }
   .game-card:hover .game-card-cta, .game-card:focus .game-card-cta { color: var(--red); }
+  .game-card:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
   .game-card.disabled { pointer-events: none; opacity: 0.85; }
   .game-card.correct { background: var(--ink); color: var(--cream); border-color: var(--ink); }
   .game-card.correct .game-card-cta { color: var(--cream); }
@@ -803,8 +826,9 @@
   }
   .dgame-option:hover, .dgame-option:focus {
     background: var(--ink); color: var(--cream); border-color: var(--cream);
-    outline: none; transform: translateX(4px);
+    transform: translateX(4px);
   }
+  .dgame-option:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
   .dgame-option.disabled { pointer-events: none; }
   .dgame-option.correct {
     background: var(--red); color: var(--cream); border-color: var(--red);
@@ -1200,8 +1224,9 @@
   }
   .learn-more-btn:hover, .learn-more-btn:focus {
     background: var(--red); border-color: var(--red); color: var(--cream) !important;
-    outline: none; transform: translateY(-2px);
+    transform: translateY(-2px);
   }
+  .learn-more-btn:focus-visible { outline: 3px solid var(--cream); outline-offset: 3px; }
 
 /* ============================================================
    UTILITY CLASSES — replace common inline style="..." patterns.

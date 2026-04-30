@@ -103,7 +103,7 @@
     <p class="lede">Pick your state. We score it A–F across four dimensions: per-capita spending (50 pts), Library Act (20 pts), RRRLF utilisation 2021-24 (20 pts), NML participation (10 pts). Bonus: +5 if the Act actually defines libraries as <em>free</em>.</p>
 
     <div class="picker-wrap">
-      <label class="picker-label" for="state-picker">// Choose your state</label>
+      <label class="picker-label" for="state-picker">Choose your state</label>
       <select id="state-picker" class="picker-select" aria-label="Choose your state">
         <option value="">— Select a state —</option>
       </select>
@@ -141,7 +141,7 @@
             <div class="game-tag">// READY?</div>
             <p>Five quick rounds. Answer fast. We'll close with the <strong>Statue Test</strong> for the state you call home.</p>
             <div class="game-home-wrap">
-              <label class="game-home-label" for="game-home">// Your state (for the Statue Test)</label>
+              <label class="game-home-label" for="game-home">Your state (for the Statue Test)</label>
               <select id="game-home" class="picker-select" aria-label="Your state">
                 <option value="">— Pick your state —</option>
               </select>
@@ -168,7 +168,7 @@
               <div class="game-card-cta">PICK THIS</div>
             </button>
           </div>
-          <div class="game-feedback" id="game-feedback" hidden></div>
+          <div class="game-feedback" id="game-feedback" aria-live="polite" hidden></div>
         </div>
 
         <!-- statue test -->
@@ -180,7 +180,7 @@
             <input id="statue-guess" type="number" inputmode="numeric" min="0" step="1" value="100" autocomplete="off" />
             <button id="statue-submit" class="game-btn primary">REVEAL →</button>
           </div>
-          <div class="statue-reveal" id="statue-reveal" hidden></div>
+          <div class="statue-reveal" id="statue-reveal" aria-live="polite" hidden></div>
         </div>
 
         <!-- end -->
@@ -220,7 +220,7 @@
           </div>
           <div class="dgame-prompt" id="dgame-prompt">—</div>
           <div class="dgame-options" id="dgame-options"></div>
-          <div class="game-feedback dgame-feedback" id="dgame-feedback" hidden></div>
+          <div class="game-feedback dgame-feedback" id="dgame-feedback" aria-live="polite" hidden></div>
         </div>
 
         <div class="game-screen" data-screen="end" hidden>

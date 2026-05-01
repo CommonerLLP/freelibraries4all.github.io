@@ -226,23 +226,28 @@ const EXCLUDED = [
 
 // Narrowed focus: the two specific State efforts that failed/are failing.
 // Phule, Ambedkar, Ranganathan, Birsa, Baroda, Haryana, FLN draft, China 2017
-// preserved in HISTORY_PARKED below for re-use later (current voice excludes them
-// to sharpen the indictment to the Centre's actual policy record).
+// Full chronology — pre-colonial destruction → colonial extraction →
+// Independence-era promise → six decades of Centre neglect → the present.
+// The arc shows that the assault on public knowledge in South Asia has
+// never been a single moment; it is a long thread.
 const HISTORY = [
-  { year: "1986", title: "Chattopadhyay Committee — drafted, then shelved", body: "A government-appointed committee declared what should have been obvious: public libraries must be free, and the State must fund them. The Union Government received the report. Forty years on, no national library policy has been adopted. The recommendations sit on a shelf — the same shelf the books are not on." },
-  { year: "2014", title: "National Mission on Libraries — too small to matter", body: "The Union Government launched NML to modernise sixty-four public libraries. Sixty-four. In a country of 1.4 billion people. ₹78.7 crore sanctioned in total — roughly the price of one luxury apartment in South Mumbai. ₹20.6 crore of that remains undisbursed. NML is not a policy. It is a press release." }
-];
-
-const HISTORY_PARKED = [
-  { year: "1848", title: "Phule opens a school", body: "Jotirao and Savitribai Phule open a school for Dalit-Bahujan girls in Pune. Reading is the first political act." },
-  { year: "1873", title: "Satyashodhak Samaj", body: "Phule's Society of Truth-Seekers names knowledge-gatekeeping for what it is — a brahminical lock on the public mind." },
-  { year: "1910", title: "Baroda makes a free library", body: "Sayajirao Gaekwad III, inspired by American public libraries, opens the Baroda Central Library — free, open to all. He also funds Ambedkar's scholarship to Columbia." },
+  { year: "1193", title: "Nalanda burns", body: "Bakhtiyar Khilji's army sacks the Nālandā Mahāvihāra — a Buddhist monastic university with a nine-million-volume library, founded ~5th century, attended by ten thousand scholars from across Asia. The smoke from the burning manuscripts is said to have darkened the sky for months. Vikramashila and Odantapuri follow. Buddhism, with its anti-caste textual tradition, is effectively erased from the subcontinent. Ambedkar will return to it eight centuries later." },
+  { year: "1799", title: "The British plunder Tipu Sultan's library", body: "Srirangapatna falls to the East India Company. Tipu Sultan's library — thousands of Persian and Arabic manuscripts amassed over a generation — is looted and shipped to Britain. Many end up at Oxford, the Royal Society, the East India Company's London library. The first colonial act of South Asian library extraction." },
+  { year: "1848", title: "Phule opens a school for Dalit girls", body: "Jotirao and Savitribai Phule open the first school for Dalit-Bahujan girls in Pune. Reading is the first political act. Brahmin neighbours throw cow-dung at Savitribai on her walk to school." },
+  { year: "1873", title: "Satyashodhak Samaj", body: "Phule's Society of Truth-Seekers names knowledge-gatekeeping for what it is — a brahminical lock on the public mind, older than colonialism, surviving it." },
+  { year: "1901", title: "Telangana Library Movement begins", body: "Under Nizam-era Hyderabad, a network of village reading rooms emerges — one of the earliest sustained library movements in South Asia. By 1948 it has 240 libraries across the region." },
+  { year: "1910", title: "Baroda Central Library opens — free, open to all", body: "Sayajirao Gaekwad III, inspired by American public libraries, founds the Baroda Central Library on the principle of universal free access. He also funds Ambedkar's scholarship to Columbia. Newton Mohan Dutt's 1928 study Baroda and its libraries documents the model." },
+  { year: "1911", title: "Hindi Sahitya Sammelan", body: "Founded under the Nagari Pracharini Sabha in Allahabad — the first deliberate archive of Hindi print, an anti-colonial reclamation of the language as a public knowledge medium." },
+  { year: "1915", title: "Ambedkar writes from Columbia: build a library, not a statue", body: "From New York, the young Ambedkar urges the Bombay government to commemorate Sir Pherozshah Mehta by building a public library — not a statue. The statue went up. The library never came." },
   { year: "1931", title: "Ranganathan's Five Laws", body: "Books are for use. Every reader her book. Every book its reader. Save the time of the reader. The library is a growing organism. Free was the first one." },
-  { year: "1948", title: "Tamil Nadu Library Act", body: "India's first state library act — drafted with Ranganathan's input, but restricts membership to paying users, contradicting his own First Law." },
-  { year: "1956", title: "Ambedkar's library", body: "Babasaheb dies. He leaves behind a personal library of more than 35,000 books — an indictment of the country that would not let him be educated easily." },
-  { year: "2017", title: "China enacts a Public Library Law", body: "A comparably-sized democracy enshrines public libraries as a statutory right. India still has no equivalent." },
-  { year: "2021", title: "Haryana — the only state", body: "Haryana passes a Library Act that defines the public library as actually free. To this day, the only Indian state to do so." },
-  { year: "2024", title: "FLN drafts the policy", body: "The Free Libraries Network publishes the People's National Library Policy — the document the state has refused to write for seventy-five years." },
+  { year: "1947–49", title: "Partition shatters the libraries", body: "Delhi's Urdu collections are split, looted, or burned. Scholars die or flee. The Maulana Hifzur Rahman Seoharvi tries to save the Madrasa Aminia library; much of it is lost. Partition was also a knowledge-destruction event." },
+  { year: "1948", title: "Tamil Nadu Library Act — India's first", body: "Drafted with Ranganathan's input, but restricts membership to paying users — contradicting his own First Law on the day of its passage." },
+  { year: "1956", title: "Ambedkar dies, leaving 35,000 books at Rajgruha", body: "Babasaheb's personal library at his Mumbai home, Rajgruha, is the largest in 1940s India. The country that wouldn't let him into a public library left him no choice but to build his own." },
+  { year: "1986", title: "Chattopadhyay Committee — drafted, then shelved", body: "A government-appointed committee declares what should have been obvious: public libraries must be free, and the State must fund them. The Union Government receives the report. Forty years on, no national library policy has been adopted." },
+  { year: "2014", title: "National Mission on Libraries — too small to matter", body: "The Union Government launches NML to modernise sixty-four public libraries. Sixty-four, in a country of 1.4 billion. ₹78.7 crore sanctioned in total — roughly the price of one luxury apartment in South Mumbai. ₹20.6 crore remains undisbursed. NML is not a policy. It is a press release." },
+  { year: "2017", title: "China enacts a Public Library Law", body: "A comparably-sized country enshrines public libraries as a statutory right. India still has no equivalent — the draft has been pending since the 1986 Chattopadhyay Committee." },
+  { year: "2021", title: "Haryana passes a Library Act that actually says ‘free’", body: "To date, the only Indian state Library Act that defines the public library as genuinely free of cost." },
+  { year: "2024", title: "FLN publishes the People's National Library Policy", body: "The Free Libraries Network drafts and publishes PNLP24 — the document the State has refused to write for seventy-five years." },
   { year: "2026", title: "You read this", body: "What happens next is up to people who have a bookshelf at home and a friend who is a Member of Parliament." }
 ];
 

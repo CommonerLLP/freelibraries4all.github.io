@@ -203,11 +203,12 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr) clamp(560px, 62vw, 960px);
       grid-template-areas:
-        "text  pantheon"
-        "lede  lede";
+        "text  text"
+        "lede  pantheon";
       column-gap: clamp(24px, 2.5vw, 48px);
       row-gap: clamp(24px, 3vw, 40px);
     }
+    .hero-inner .hero-lede { align-self: end; }
     .hero-top      { grid-area: text; }
     .hero-pantheon {
       grid-area: pantheon;

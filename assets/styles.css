@@ -1250,11 +1250,48 @@
     .stat:last-child { border-bottom: none; }
     .stat .value { font-size: 72px; }
     .calc { padding: 56px 24px; }
-    .calc-grid { grid-template-columns: 1fr; gap: 32px; }
-    .calc-rupee, #income-input { font-size: 56px; }
-    .verdict { padding: 28px; }
-    .verdict-line { font-size: 18px; }
-    .verdict-ratio { font-size: 56px; }
+    /* Mobile-first calc reorder: verdict (the punchline) FIRST,
+       input collapsed below. Reader sees ₹X tax → ₹1.58 to libraries
+       contrast in the first viewport. Customising with a slider is a
+       secondary action, not the gate. */
+    .calc-grid {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 24px !important;
+      margin-top: 32px !important;
+    }
+    .calc-grid > .verdict { order: 1; }
+    .calc-grid > div:not(.verdict) { order: 2; }
+    /* Slim the input UI: smaller numbers, hide axis ticks, compact help */
+    .calc-rupee, #income-input { font-size: 36px !important; letter-spacing: -1px !important; }
+    .calc-input-row { padding-bottom: 4px !important; border-bottom-width: 2px !important; margin-top: 6px !important; }
+    .calc-label { font-size: 11px !important; margin-bottom: 4px !important; }
+    .calc-marks { display: none !important; }
+    .calc-help { font-size: 13px !important; margin-top: 12px !important; opacity: 0.85; line-height: 1.4 !important; }
+    .calc-grid > div:not(.verdict)::before {
+      content: "Edit your salary";
+      display: block;
+      font-family: var(--f-mono);
+      font-size: 10px;
+      letter-spacing: var(--ls-eyebrow);
+      color: var(--cream);
+      opacity: 0.6;
+      text-transform: uppercase;
+      padding-top: 8px;
+      border-top: 1px solid rgba(241, 232, 211, 0.18);
+    }
+    /* Verdict: keep prominent, but tighten so the full block fits viewport.
+       Cut padding, tighten alloc-grid rows, drop the verdict-tail explainer
+       prose on phone (it's already implied by the numbers). */
+    .verdict { padding: 20px 18px; }
+    .verdict-line { font-size: 14px !important; }
+    .verdict-ratio { font-size: 56px !important; margin-top: 4px; letter-spacing: -1.5px; }
+    .verdict-tag { margin-bottom: 10px; font-size: 10px; }
+    .verdict-tail { display: none; }
+    .alloc-grid { margin-top: 18px; padding: 8px 0; }
+    .alloc-row { padding: 10px 0; gap: 10px; }
+    .alloc-label { font-size: 10px !important; line-height: 1.4 !important; }
+    .alloc-value { font-size: 24px !important; }
     .buys-grid { grid-template-columns: 1fr 1fr; }
     .section { padding: 56px 24px; }
     .def-grid { grid-template-columns: 1fr; gap: 32px; }

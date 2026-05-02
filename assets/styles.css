@@ -841,12 +841,217 @@
   }
 
   /* HISTORY TIMELINE */
-  .timeline { margin-top: 56px; border-top: 4px solid var(--ink); }
-  .event { display: grid; grid-template-columns: 200px 1fr; gap: 32px; padding: 32px 0; border-bottom: 2px solid var(--ink); align-items: baseline; }
-  .event-year { font-family: var(--f-display); font-weight: 900; font-size: 84px; color: var(--red); letter-spacing: -2px; line-height: 0.9; font-variant-numeric: tabular-nums; }
-  .event-body { display: grid; grid-template-columns: 1fr 2fr; gap: 24px; align-items: baseline; }
-  .event-title { font-family: var(--f-display); font-weight: 900; font-size: 32px; color: var(--ink); letter-spacing: -0.5px; line-height: 1; text-transform: uppercase; text-wrap: balance; }
-  .event-text { font-family: var(--f-slab); font-size: clamp(15px, 1.2vw, 20px); color: var(--ink-soft); line-height: 1.5; }
+  /* TIMELINE — interactive scrubber + detail panel.
+     Replaces the old vertical stack of .event cards. Each event is a
+     dot positioned proportionally on a 1193 → 2026 line; era bands sit
+     underneath the line as faint colored zones. Dot click / keyboard /
+     swipe / autoplay all drive the same `idx` state, which updates the
+     detail panel. Old `.timeline` / `.event` rules retired. */
+  .timeline-interactive {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 4px solid var(--ink);
+  }
+
+  /* Era bands — sit below the scrubber line. Subtle tinted zones. */
+  .tl-eras {
+    position: relative;
+    height: 28px;
+    margin-bottom: 4px;
+  }
+  .tl-era {
+    position: absolute; top: 0; bottom: 0;
+    border-left: 1px dashed rgba(26,26,26,0.25);
+  }
+  .tl-era:last-child { border-right: 1px dashed rgba(26,26,26,0.25); }
+  .tl-era-pre  { background: rgba(26,26,26,0.04); }
+  .tl-era-col  { background: rgba(220,42,20,0.06); }
+  .tl-era-ref  { background: rgba(220,42,20,0.06); }
+  .tl-era-ind  { background: rgba(26,26,26,0.06); }
+  .tl-era-rec  { background: rgba(220,42,20,0.10); }
+  .tl-era-label {
+    display: block;
+    padding: 6px 8px 0;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: var(--ls-eyebrow);
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  /* Scrubber — horizontal line + clickable dots positioned by year ratio */
+  .tl-scrubber {
+    position: relative;
+    height: 72px;
+    margin-bottom: 32px;
+  }
+  .tl-line {
+    position: absolute;
+    top: 18px; left: 0; right: 0;
+    height: 4px;
+    background: var(--ink);
+  }
+  .tl-dot {
+    position: absolute;
+    top: 8px;
+    transform: translateX(-50%);
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 3px solid var(--ink);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.15s, transform 0.15s, border-color 0.15s;
+  }
+  .tl-dot:hover, .tl-dot:focus { background: var(--red); border-color: var(--red); transform: translateX(-50%) scale(1.15); }
+  .tl-dot:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
+  .tl-dot.active {
+    background: var(--red);
+    border-color: var(--red);
+    transform: translateX(-50%) scale(1.3);
+    z-index: 2;
+  }
+  .tl-dot-year {
+    position: absolute;
+    top: 30px; left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--f-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--ink-soft);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.15s;
+    pointer-events: none;
+  }
+  .tl-dot:hover .tl-dot-year,
+  .tl-dot.active .tl-dot-year,
+  .tl-dot:focus .tl-dot-year { opacity: 1; }
+  .tl-dot.active .tl-dot-year { color: var(--red); font-weight: 800; }
+
+  /* Detail panel — min-height holds a stable floor for short events so
+     controls don't jump up; long events grow the panel downward (no
+     scrolling). Controls move with the panel; the user's mouse follows
+     the content rather than chasing a scroll bar. */
+  .tl-detail {
+    background: var(--cream);
+    border: 4px solid var(--ink);
+    padding: 32px;
+    min-height: 380px;
+    margin-bottom: 20px;
+    user-select: text;
+    display: flex;
+    flex-direction: column;
+  }
+  .tl-body {
+    flex: 1;
+  }
+  .tl-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .tl-year {
+    font-family: var(--f-display);
+    font-size: clamp(48px, 6vw, 88px);
+    font-weight: 900;
+    color: var(--red);
+    letter-spacing: -2px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .tl-era-tag {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: var(--ls-eyebrow);
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 4px 10px;
+    border: 1px solid var(--ink-soft);
+  }
+  .tl-title {
+    font-family: var(--f-display);
+    font-size: clamp(24px, 3.5vw, 44px);
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+  .tl-body {
+    font-family: var(--f-slab);
+    font-size: clamp(15px, 1.3vw, 19px);
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 0;
+    max-width: 70ch;
+  }
+
+  /* Controls row */
+  .tl-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .tl-prev, .tl-next, .tl-play {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: var(--ls-eyebrow);
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--cream);
+    border: 2px solid var(--ink);
+    padding: 12px 18px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .tl-prev:hover, .tl-next:hover, .tl-play:hover,
+  .tl-prev:focus, .tl-next:focus, .tl-play:focus {
+    background: var(--red);
+    border-color: var(--red);
+  }
+  .tl-prev:focus-visible, .tl-next:focus-visible, .tl-play:focus-visible {
+    outline: 3px solid var(--red);
+    outline-offset: 3px;
+  }
+  .tl-progress {
+    font-family: var(--f-mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    letter-spacing: 1px;
+  }
+  .tl-cur { color: var(--red); }
+
+  @media (max-width: 700px) {
+    .tl-eras { height: 22px; }
+    .tl-era-label { font-size: 9px; padding: 4px 4px 0; }
+    .tl-scrubber { height: 56px; margin-bottom: 24px; }
+    .tl-line { top: 14px; height: 3px; }
+    .tl-dot { width: 18px; height: 18px; top: 6px; border-width: 2px; }
+    .tl-dot-year { font-size: 8px; top: 22px; }
+    .tl-detail { padding: 20px; min-height: 340px; }
+    .tl-title { letter-spacing: -0.5px; }
+    .tl-controls { gap: 8px; }
+    .tl-prev, .tl-next, .tl-play { font-size: 11px; padding: 10px 12px; }
+  }
+
+  /* Print: show timeline as a flat list (drop interactive controls) */
+  @media print {
+    .tl-eras, .tl-scrubber, .tl-controls { display: none !important; }
+    .tl-detail { border: none !important; padding: 0 !important; min-height: 0 !important; }
+  }
   /* RRRLF — annual bar chart in pamphlet style */
   /* INTERACTIVE GAME — Higher-or-Lower + Statue Test */
   .game-app { margin-top: 32px; max-width: 1100px; }
@@ -1444,9 +1649,7 @@
     .excluded-grid { grid-template-columns: 1fr 1fr; }
     .excluded-card .name { font-size: 22px; }
     .door { font-size: 26px; padding: 18px; }
-    .event { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
-    .event-year { font-size: 56px; }
-    .event-body { grid-template-columns: 1fr; gap: 8px; }
+    /* Old .event rules retired — see .timeline-interactive */
     .world-row { grid-template-columns: 1fr; gap: 4px; padding: 10px 0; }
     .world-name { font-size: 22px; }
     .world-amount { text-align: left; font-size: 22px; }

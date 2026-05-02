@@ -31,14 +31,148 @@ if (excludedEl) excludedEl.innerHTML = EXCLUDED.map((e, i) => `
     <div class="name">${esc(e.label)}.</div>
   </div>`).join("");
 
-$$("#timeline").innerHTML = HISTORY.map((e) => `
-  <div class="event">
-    <div class="event-year">${esc(e.year)}</div>
-    <div class="event-body">
-      <div class="event-title">${esc(e.title)}.</div>
-      <div class="event-text">${esc(e.body)}</div>
+// ─── INTERACTIVE TIMELINE ────────────────────────────────────────
+// Horizontal scrubber + detail panel. Each event in HISTORY is a dot
+// on a 1193 → 2026 line; clicking/keyboard-navigating/auto-playing
+// updates the detail panel below. Era bands underneath the scrubber
+// give a coarse colored sense of "where we are in 833 years."
+(function renderInteractiveTimeline() {
+  const root = $("#timeline");
+  if (!root || typeof HISTORY === "undefined" || !HISTORY.length) return;
+
+  // Parse the first 4-digit year out of each event's `year` string
+  // ("1193" → 1193, "1947–49" → 1947). Used for scrubber positioning.
+  const yearOf = (str) => parseInt(String(str).match(/\d{4}/)?.[0] || "0", 10);
+  const events = HISTORY.map((e) => ({ ...e, _y: yearOf(e.year) }));
+  const minY = Math.min(...events.map((e) => e._y));
+  const maxY = Math.max(...events.map((e) => e._y));
+  const span = Math.max(1, maxY - minY);
+
+  // Era bands — anti-caste lineage framing. Timeline begins at Phule
+  // (1848) so the first band names the lineage itself, not the
+  // colonial state.
+  //   reform:       1848–1946 (Phule, Periyar, Ranganathan, Travancore)
+  //   republic:     1947–1990 (the Republic's broken promise — TN Act,
+  //                 KSSP, DMK, Chattopadhyay, Haryana 1989)
+  //   retreat:      1991–present (after liberalisation: NKC, NEP digital)
+  const eras = [
+    { key: "ref",  label: "Anti-caste reform",            start: minY, end: 1946 },
+    { key: "ind",  label: "The Republic's broken promise", start: 1947, end: 1990 },
+    { key: "rec",  label: "After liberalisation: the retreat", start: 1991, end: maxY },
+  ];
+  const eraOf = (y) => eras.find((e) => y >= e.start && y <= e.end)?.label || "";
+  const pos = (y) => ((y - minY) / span) * 100;
+
+  // Render shell
+  root.classList.add("timeline-interactive");
+  root.innerHTML = `
+    <div class="tl-eras" aria-hidden="true">
+      ${eras.map((e) => `
+        <div class="tl-era tl-era-${e.key}"
+             style="left:${pos(e.start)}%; right:${100 - pos(e.end)}%">
+          <span class="tl-era-label">${esc(e.label)}</span>
+        </div>`).join("")}
     </div>
-  </div>`).join("");
+    <div class="tl-scrubber" role="group" aria-label="Timeline navigation">
+      <div class="tl-line" aria-hidden="true"></div>
+      ${events.map((e, i) => `
+        <button type="button" class="tl-dot" data-idx="${i}"
+                style="left:${pos(e._y)}%"
+                aria-label="${esc(e.year)} — ${esc(e.title)}">
+          <span class="tl-dot-year">${esc(e.year)}</span>
+        </button>`).join("")}
+    </div>
+    <div class="tl-detail" aria-live="polite">
+      <div class="tl-meta">
+        <span class="tl-year"></span>
+        <span class="tl-era-tag"></span>
+      </div>
+      <h3 class="tl-title"></h3>
+      <p class="tl-body"></p>
+    </div>
+    <div class="tl-controls">
+      <button type="button" class="tl-prev" aria-label="Previous event">← Prev</button>
+      <span class="tl-progress" aria-live="polite"><span class="tl-cur">1</span> / ${events.length}</span>
+      <button type="button" class="tl-play" aria-label="Auto-play timeline">▶ Play</button>
+      <button type="button" class="tl-next" aria-label="Next event">Next →</button>
+    </div>
+  `;
+
+  const detail = {
+    year:  root.querySelector(".tl-year"),
+    eraEl: root.querySelector(".tl-era-tag"),
+    title: root.querySelector(".tl-title"),
+    body:  root.querySelector(".tl-body"),
+    cur:   root.querySelector(".tl-cur"),
+  };
+  const dots   = Array.from(root.querySelectorAll(".tl-dot"));
+  const prevBtn = root.querySelector(".tl-prev");
+  const nextBtn = root.querySelector(".tl-next");
+  const playBtn = root.querySelector(".tl-play");
+
+  let idx = 0;
+  let playing = false;
+  let timer = null;
+
+  function show(i) {
+    idx = (i + events.length) % events.length;
+    const e = events[idx];
+    detail.year.textContent  = e.year;
+    detail.eraEl.textContent = eraOf(e._y);
+    detail.title.textContent = e.title + ".";
+    detail.body.textContent  = e.body;
+    detail.cur.textContent   = String(idx + 1);
+    dots.forEach((d, j) => {
+      d.classList.toggle("active", j === idx);
+      if (j === idx) d.setAttribute("aria-current", "true");
+      else d.removeAttribute("aria-current");
+    });
+  }
+
+  function setPlaying(on) {
+    playing = on;
+    playBtn.textContent = on ? "❚❚ Pause" : "▶ Play";
+    playBtn.setAttribute("aria-pressed", on ? "true" : "false");
+    if (timer) { clearInterval(timer); timer = null; }
+    if (on) {
+      timer = setInterval(() => {
+        if (idx >= events.length - 1) { setPlaying(false); return; }
+        show(idx + 1);
+      }, 4500);
+    }
+  }
+
+  // Click any dot → jump
+  dots.forEach((d) => d.addEventListener("click", () => {
+    setPlaying(false);
+    show(parseInt(d.dataset.idx, 10));
+  }));
+
+  // Prev/Next + autoplay toggle
+  prevBtn.addEventListener("click", () => { setPlaying(false); show(idx - 1); });
+  nextBtn.addEventListener("click", () => { setPlaying(false); show(idx + 1); });
+  playBtn.addEventListener("click", () => setPlaying(!playing));
+
+  // Keyboard arrows (when timeline is focused via tab)
+  root.addEventListener("keydown", (ev) => {
+    if (ev.key === "ArrowLeft")  { ev.preventDefault(); setPlaying(false); show(idx - 1); }
+    if (ev.key === "ArrowRight") { ev.preventDefault(); setPlaying(false); show(idx + 1); }
+    if (ev.key === " ")           { ev.preventDefault(); setPlaying(!playing); }
+  });
+
+  // Touch swipe on the detail panel (mobile)
+  const panel = root.querySelector(".tl-detail");
+  let touchX = 0;
+  panel.addEventListener("touchstart", (ev) => { touchX = ev.touches[0].clientX; }, { passive: true });
+  panel.addEventListener("touchend",   (ev) => {
+    const dx = ev.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) < 40) return;
+    setPlaying(false);
+    show(idx + (dx < 0 ? 1 : -1));
+  });
+
+  show(0);
+})();
 
 // English-only render — native scripts (Marathi/Tamil/Hindi/Bengali) parked in
 // QUOTES const for the future bilingual version. For this release we surface

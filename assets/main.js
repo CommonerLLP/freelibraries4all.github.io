@@ -69,9 +69,7 @@ if (excludedEl) excludedEl.innerHTML = EXCLUDED.map((e, i) => `
     <div class="tl-eras" aria-hidden="true">
       ${eras.map((e) => `
         <div class="tl-era tl-era-${e.key}"
-             style="left:${pos(e.start)}%; right:${100 - pos(e.end)}%">
-          <span class="tl-era-label">${esc(e.label)}</span>
-        </div>`).join("")}
+             style="left:${pos(e.start)}%; right:${100 - pos(e.end)}%"></div>`).join("")}
     </div>
     <div class="tl-scrubber" role="group" aria-label="Timeline navigation">
       <div class="tl-line" aria-hidden="true"></div>

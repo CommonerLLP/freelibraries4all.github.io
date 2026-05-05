@@ -1,1 +1,161 @@
-# freelibraries4all
+# Free Libraries for All
+
+This repository powers the Free Libraries for All GitHub Pages site:
+
+```text
+https://freelibraries4all.github.io
+```
+
+It is a static public data dashboard tracking public library funding in India.
+The site compares Indian state-level per-capita library spending, Raja
+Rammohun Roy Library Foundation (RRRLF) grants, public library legislation,
+National Mission on Libraries (NML) participation, and international spending
+benchmarks.
+
+If you are another developer, this README is meant to be a quick scan: fork the
+repo, run the dashboard locally, and reproduce the deployed
+`freelibraries4all.github.io` site from static files.
+
+There is no build step, backend, database, or package manager. The live site is
+served directly from the static files in this repo.
+
+## Ethics And Politics
+
+Free Libraries for All is grounded in Ambedkarite and anti-caste ethics. The
+project treats access to books, public libraries, knowledge infrastructure, and
+publicly funded learning spaces as questions of social justice, democratic
+participation, and material equality.
+
+The dashboard is built from the view that public libraries matter most when
+they are accessible to people historically excluded from education, literacy,
+archives, state institutions, and cultural power. This includes Dalit,
+Bahujan, Adivasi, minority, working-class, rural, disabled, and gender-marginal
+communities.
+
+Contributors should approach the work with the following commitments:
+
+- Treat library access as a public good, not a private privilege.
+- Pay attention to caste, class, region, language, gender, disability, and rural
+  exclusion when interpreting data.
+- Avoid neutral language that hides structural inequality when the public record
+  shows persistent neglect or exclusion.
+- Keep claims evidence-led, sourced, and accountable.
+- Build tools, data, and analysis that help communities ask sharper questions of
+  governments and public institutions.
+
+## Quick Start For Developers
+
+1. Fork the repo on GitHub:
+
+   ```text
+   https://github.com/freelibraries4all/freelibraries4all.github.io
+   ```
+
+2. Clone your fork:
+
+   ```sh
+   git clone https://github.com/YOUR-USER/freelibraries4all.github.io.git
+   cd freelibraries4all.github.io
+   ```
+
+3. Serve the site locally:
+
+   ```sh
+   python3 -m http.server 8000
+   ```
+
+4. Open:
+
+   ```text
+   http://localhost:8000
+   ```
+
+5. Edit `index.html`, refresh the browser, and verify the dashboard still works.
+
+## Reproducing The GitHub Pages Site
+
+This repo is structured for GitHub Pages. To reproduce the public site from a
+fork:
+
+1. Keep the production dashboard at the repository root as `index.html`.
+2. Push your changes to the fork's `main` branch.
+3. In GitHub, open the fork's repository settings.
+4. Go to **Pages**.
+5. Set the source to deploy from the `main` branch and the repository root.
+6. Save and wait for GitHub Pages to publish.
+
+For a personal or organization fork, GitHub will usually publish at:
+
+```text
+https://YOUR-USER.github.io/freelibraries4all.github.io/
+```
+
+To publish at `https://YOUR-USER.github.io/`, rename the fork to
+`YOUR-USER.github.io` before enabling Pages.
+
+## What The Dashboard Covers
+
+- India vs. world public library spending, with nominal USD and PPP-adjusted
+  comparisons.
+- State-by-state public library expenditure for 31 Indian states and union
+  territories from 2014-15 through 2020-21.
+- RRRLF annual grant trends from 2003 through 2023.
+- State-wise RRRLF releases for 2021-22 through 2024-25, based on Parliament
+  data.
+- Public Library Act status by state and how legislation relates to spending.
+- State report cards combining spending, legislation, RRRLF utilization, and NML
+  participation.
+- A state-specific "Write to Your MP" letter generator for library advocacy.
+
+## Data Sources
+
+The dashboard cites and combines public sources, including:
+
+- Ministry of Culture, Government of India: state-wise per-capita expenditure on
+  public libraries, 2014-15 to 2020-21.
+- Raja Rammohun Roy Library Foundation annual and state-wise grant data.
+- Rajya Sabha Question 1316, answered July 31, 2025, for RRRLF state-wise data.
+- Lok Sabha questions from the July-August 2025 session on NML status and
+  library funding.
+- Public library legislation surveys for Indian states and union territories.
+- International benchmarks from sources such as IMLS, CIPFA, NAPLE,
+  Libraries.fi, ALIA, and Statistics Canada / Alberta.
+
+Source notes, caveats, and conversion notes are included in the dashboard
+footer. Data corrections are welcome, especially when they include a primary
+source link, table, annexure, or official PDF.
+
+## Acknowledgements
+
+Special thanks to the Open Budgets India project by CivicDataLab for opening up
+Indian budget data. This project relies significantly on the broader
+availability and usability of public budget data that work like Open Budgets
+India has made possible.
+
+## Repository Structure
+
+```text
+.
+|-- index.html         # Production static dashboard
+|-- design/index.html  # Earlier design/prototype version
+|-- README.md
+|-- CONTRIBUTING.md
+`-- LICENSE
+```
+
+Most application logic, styles, and data currently live inside `index.html`.
+The page loads Chart.js from a CDN.
+
+## Development Notes
+
+- Keep the site usable as a static page.
+- Prefer primary public sources for data changes.
+- Add source notes when changing numbers, formulas, classifications, or claims.
+- Check the dashboard on mobile and desktop widths after visual changes.
+- Keep accessibility in mind: chart colors, table readability, and keyboard
+  navigation matter for a public-interest site.
+
+## License
+
+This project is licensed under the GNU General Public License v3.0. See
+`LICENSE` for the full license text.

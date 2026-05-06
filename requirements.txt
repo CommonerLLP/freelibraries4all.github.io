@@ -1,0 +1,9 @@
+# freelibraries4all — runtime dependencies for the parliamentary-corpus
+# refresh pipeline. The site itself ships zero Python at runtime; these
+# deps run only when the maintainer regenerates assets/parliament_libraries.js
+# from the upstream Sansad records.
+#
+# Bump the @v tag below when a new sansad-semantic-crawler release lands at
+# https://github.com/CommonSenseLLP/sansad-semantic-crawler
+
+sansad-semantic-crawler[http,pdf] @ git+https://github.com/CommonSenseLLP/sansad-semantic-crawler.git@v0.2.0

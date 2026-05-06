@@ -43,6 +43,33 @@ Contributors should approach the work with the following commitments:
 - Build tools, data, and analysis that help communities ask sharper questions of
   governments and public institutions.
 
+## Refreshing The Parliamentary Library Corpus
+
+`assets/parliament_libraries.js` is generated, not hand-edited. As of
+2026-05-06 the crawler that produces it is the standalone public-good
+package
+[`sansad-semantic-crawler`](https://github.com/CommonSenseLLP/sansad-semantic-crawler)
+(PolyForm Noncommercial 1.0.0), pinned at `v0.2.0` in
+[`requirements.txt`](./requirements.txt). The host project supplies the
+topic profile at [`topics/libraries.json`](./topics/libraries.json) (a
+vendored copy of the package's `examples/topics/libraries.json`,
+because `pip install` does not pull `examples/`).
+
+```sh
+make deps              # one-time: install pinned deps into .venv
+make corpus-refresh    # crawl LS + RS, parse PDFs, regenerate the JS
+```
+
+After regeneration, **bump the `?v=N` cache-bust suffix** wherever the
+JS is loaded — see [`AGENTS.md`](./AGENTS.md) section 5 for the
+canonical one-pass sed command.
+
+The legacy `scripts/sansad_library_crawl.py` + `sansad_library_parse.py`
+that previously did this work were retired in the 2026-05-06 migration;
+they were never tracked in git (dev-time tools that produced the
+committed JS). If you find a stale local copy on disk, it is safe to
+delete.
+
 ## Quick Start For Developers
 
 1. Fork the repo on GitHub:

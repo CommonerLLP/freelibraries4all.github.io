@@ -48,7 +48,7 @@ Contributors should approach the work with the following commitments:
 `assets/parliament_libraries.js` is generated, not hand-edited. As of
 2026-05-06 the crawler that produces it is the standalone public-good
 package
-[`sansad-semantic-crawler`](https://github.com/CommonSenseLLP/sansad-semantic-crawler)
+[`sansad-semantic-crawler`](https://github.com/CommonerLLP/sansad-semantic-crawler)
 (PolyForm Noncommercial 1.0.0), pinned at `v0.2.0` in
 [`requirements.txt`](./requirements.txt). The host project supplies the
 topic profile at [`topics/libraries.json`](./topics/libraries.json) (a

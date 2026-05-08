@@ -49,7 +49,7 @@ Contributors should approach the work with the following commitments:
 2026-05-06 the crawler that produces it is the standalone public-good
 package
 [`sansad-semantic-crawler`](https://github.com/CommonerLLP/sansad-semantic-crawler)
-(PolyForm Noncommercial 1.0.0), pinned at `v0.2.0` in
+(PolyForm Noncommercial 1.0.0), pinned at `v0.4.0` in
 [`requirements.txt`](./requirements.txt). The host project supplies the
 topic profile at [`topics/libraries.json`](./topics/libraries.json) (a
 vendored copy of the package's `examples/topics/libraries.json`,

@@ -1,0 +1,1365 @@
+window.PARLIAMENT_LIBRARY_DATA = {
+  "topic": "libraries",
+  "description": "Parliament library questions — manifest-wide analysis + 25-record full-text sample.",
+  "generatedAt": "2026-05-07T00:38:03",
+  "sourceManifest": "../data/_parliament_libraries/manifest.jsonl",
+  "manifestSize": 4349,
+  "manifestHouses": {
+    "Lok Sabha": 4349
+  },
+  "decadeVolume": [
+    {
+      "decade": 1950,
+      "count": 553
+    },
+    {
+      "decade": 1960,
+      "count": 1519
+    },
+    {
+      "decade": 1970,
+      "count": 82
+    },
+    {
+      "decade": 1980,
+      "count": 637
+    },
+    {
+      "decade": 1990,
+      "count": 470
+    },
+    {
+      "decade": 2000,
+      "count": 208
+    },
+    {
+      "decade": 2010,
+      "count": 449
+    },
+    {
+      "decade": 2020,
+      "count": 431
+    }
+  ],
+  "yearVolume": [
+    {
+      "year": 1952,
+      "count": 43,
+      "starred": 34,
+      "unstarred": 8
+    },
+    {
+      "year": 1953,
+      "count": 50,
+      "starred": 36,
+      "unstarred": 14
+    },
+    {
+      "year": 1954,
+      "count": 97,
+      "starred": 62,
+      "unstarred": 33
+    },
+    {
+      "year": 1955,
+      "count": 85,
+      "starred": 59,
+      "unstarred": 24
+    },
+    {
+      "year": 1956,
+      "count": 103,
+      "starred": 56,
+      "unstarred": 44
+    },
+    {
+      "year": 1957,
+      "count": 12,
+      "starred": 3,
+      "unstarred": 9
+    },
+    {
+      "year": 1958,
+      "count": 64,
+      "starred": 9,
+      "unstarred": 55
+    },
+    {
+      "year": 1959,
+      "count": 99,
+      "starred": 23,
+      "unstarred": 73
+    },
+    {
+      "year": 1960,
+      "count": 84,
+      "starred": 26,
+      "unstarred": 58
+    },
+    {
+      "year": 1961,
+      "count": 78,
+      "starred": 20,
+      "unstarred": 55
+    },
+    {
+      "year": 1962,
+      "count": 78,
+      "starred": 19,
+      "unstarred": 59
+    },
+    {
+      "year": 1963,
+      "count": 199,
+      "starred": 31,
+      "unstarred": 161
+    },
+    {
+      "year": 1964,
+      "count": 206,
+      "starred": 33,
+      "unstarred": 166
+    },
+    {
+      "year": 1965,
+      "count": 108,
+      "starred": 21,
+      "unstarred": 86
+    },
+    {
+      "year": 1966,
+      "count": 184,
+      "starred": 29,
+      "unstarred": 155
+    },
+    {
+      "year": 1967,
+      "count": 245,
+      "starred": 30,
+      "unstarred": 214
+    },
+    {
+      "year": 1968,
+      "count": 291,
+      "starred": 26,
+      "unstarred": 264
+    },
+    {
+      "year": 1969,
+      "count": 46,
+      "starred": 10,
+      "unstarred": 36
+    },
+    {
+      "year": 1970,
+      "count": 5,
+      "starred": 1,
+      "unstarred": 4
+    },
+    {
+      "year": 1972,
+      "count": 5,
+      "starred": 0,
+      "unstarred": 5
+    },
+    {
+      "year": 1977,
+      "count": 29,
+      "starred": 2,
+      "unstarred": 26
+    },
+    {
+      "year": 1978,
+      "count": 33,
+      "starred": 0,
+      "unstarred": 33
+    },
+    {
+      "year": 1979,
+      "count": 10,
+      "starred": 1,
+      "unstarred": 9
+    },
+    {
+      "year": 1980,
+      "count": 47,
+      "starred": 8,
+      "unstarred": 37
+    },
+    {
+      "year": 1981,
+      "count": 31,
+      "starred": 0,
+      "unstarred": 31
+    },
+    {
+      "year": 1982,
+      "count": 88,
+      "starred": 7,
+      "unstarred": 81
+    },
+    {
+      "year": 1983,
+      "count": 71,
+      "starred": 4,
+      "unstarred": 67
+    },
+    {
+      "year": 1984,
+      "count": 38,
+      "starred": 4,
+      "unstarred": 34
+    },
+    {
+      "year": 1985,
+      "count": 73,
+      "starred": 8,
+      "unstarred": 65
+    },
+    {
+      "year": 1986,
+      "count": 88,
+      "starred": 7,
+      "unstarred": 81
+    },
+    {
+      "year": 1987,
+      "count": 77,
+      "starred": 4,
+      "unstarred": 71
+    },
+    {
+      "year": 1988,
+      "count": 78,
+      "starred": 4,
+      "unstarred": 74
+    },
+    {
+      "year": 1989,
+      "count": 46,
+      "starred": 5,
+      "unstarred": 41
+    },
+    {
+      "year": 1990,
+      "count": 72,
+      "starred": 12,
+      "unstarred": 60
+    },
+    {
+      "year": 1991,
+      "count": 50,
+      "starred": 2,
+      "unstarred": 48
+    },
+    {
+      "year": 1992,
+      "count": 94,
+      "starred": 5,
+      "unstarred": 89
+    },
+    {
+      "year": 1993,
+      "count": 47,
+      "starred": 4,
+      "unstarred": 43
+    },
+    {
+      "year": 1994,
+      "count": 31,
+      "starred": 6,
+      "unstarred": 24
+    },
+    {
+      "year": 1995,
+      "count": 54,
+      "starred": 8,
+      "unstarred": 46
+    },
+    {
+      "year": 1996,
+      "count": 37,
+      "starred": 2,
+      "unstarred": 35
+    },
+    {
+      "year": 1997,
+      "count": 31,
+      "starred": 1,
+      "unstarred": 30
+    },
+    {
+      "year": 1998,
+      "count": 35,
+      "starred": 3,
+      "unstarred": 32
+    },
+    {
+      "year": 1999,
+      "count": 19,
+      "starred": 3,
+      "unstarred": 16
+    },
+    {
+      "year": 2000,
+      "count": 33,
+      "starred": 4,
+      "unstarred": 29
+    },
+    {
+      "year": 2001,
+      "count": 13,
+      "starred": 1,
+      "unstarred": 12
+    },
+    {
+      "year": 2002,
+      "count": 23,
+      "starred": 1,
+      "unstarred": 22
+    },
+    {
+      "year": 2003,
+      "count": 18,
+      "starred": 5,
+      "unstarred": 13
+    },
+    {
+      "year": 2004,
+      "count": 19,
+      "starred": 1,
+      "unstarred": 18
+    },
+    {
+      "year": 2005,
+      "count": 36,
+      "starred": 5,
+      "unstarred": 31
+    },
+    {
+      "year": 2006,
+      "count": 17,
+      "starred": 2,
+      "unstarred": 15
+    },
+    {
+      "year": 2007,
+      "count": 20,
+      "starred": 2,
+      "unstarred": 18
+    },
+    {
+      "year": 2008,
+      "count": 17,
+      "starred": 1,
+      "unstarred": 16
+    },
+    {
+      "year": 2009,
+      "count": 12,
+      "starred": 1,
+      "unstarred": 11
+    },
+    {
+      "year": 2010,
+      "count": 37,
+      "starred": 3,
+      "unstarred": 34
+    },
+    {
+      "year": 2011,
+      "count": 30,
+      "starred": 4,
+      "unstarred": 26
+    },
+    {
+      "year": 2012,
+      "count": 42,
+      "starred": 6,
+      "unstarred": 36
+    },
+    {
+      "year": 2013,
+      "count": 28,
+      "starred": 0,
+      "unstarred": 28
+    },
+    {
+      "year": 2014,
+      "count": 40,
+      "starred": 6,
+      "unstarred": 34
+    },
+    {
+      "year": 2015,
+      "count": 54,
+      "starred": 6,
+      "unstarred": 48
+    },
+    {
+      "year": 2016,
+      "count": 67,
+      "starred": 9,
+      "unstarred": 58
+    },
+    {
+      "year": 2017,
+      "count": 43,
+      "starred": 2,
+      "unstarred": 41
+    },
+    {
+      "year": 2018,
+      "count": 30,
+      "starred": 4,
+      "unstarred": 26
+    },
+    {
+      "year": 2019,
+      "count": 78,
+      "starred": 5,
+      "unstarred": 73
+    },
+    {
+      "year": 2020,
+      "count": 43,
+      "starred": 2,
+      "unstarred": 41
+    },
+    {
+      "year": 2021,
+      "count": 83,
+      "starred": 6,
+      "unstarred": 77
+    },
+    {
+      "year": 2022,
+      "count": 51,
+      "starred": 7,
+      "unstarred": 44
+    },
+    {
+      "year": 2023,
+      "count": 45,
+      "starred": 3,
+      "unstarred": 42
+    },
+    {
+      "year": 2024,
+      "count": 61,
+      "starred": 6,
+      "unstarred": 55
+    },
+    {
+      "year": 2025,
+      "count": 137,
+      "starred": 17,
+      "unstarred": 120
+    },
+    {
+      "year": 2026,
+      "count": 11,
+      "starred": 0,
+      "unstarred": 11
+    }
+  ],
+  "ministryShare": [
+    {
+      "name": "EDUCATION",
+      "count": 3006
+    },
+    {
+      "name": "INFORMATION AND BROADCASTING",
+      "count": 659
+    },
+    {
+      "name": "CULTURE",
+      "count": 363
+    },
+    {
+      "name": "RURAL DEVELOPMENT",
+      "count": 111
+    },
+    {
+      "name": "TRIBAL AFFAIRS",
+      "count": 82
+    },
+    {
+      "name": "MINORITY AFFAIRS",
+      "count": 46
+    },
+    {
+      "name": "Other",
+      "count": 82
+    }
+  ],
+  "qtypeShare": [
+    {
+      "name": "Unstarred",
+      "count": 3575
+    },
+    {
+      "name": "Starred",
+      "count": 737
+    },
+    {
+      "name": "Starred-Supplementary",
+      "count": 32
+    },
+    {
+      "name": "Short Notice Question",
+      "count": 5
+    }
+  ],
+  "topAskers": [
+    {
+      "name": "M.C. Chagla",
+      "count": 313
+    },
+    {
+      "name": "Kalu Lal Shrimali",
+      "count": 235
+    },
+    {
+      "name": "Kali Lal Shrimali",
+      "count": 209
+    },
+    {
+      "name": "Bhagwat Jha Azad",
+      "count": 191
+    },
+    {
+      "name": "Triguna Sen",
+      "count": 178
+    },
+    {
+      "name": "Mono Mohan Das",
+      "count": 177
+    },
+    {
+      "name": "Diwan Chand Sharma",
+      "count": 147
+    },
+    {
+      "name": "Bhakt Darshan",
+      "count": 147
+    },
+    {
+      "name": "Abul Kalam Azad",
+      "count": 123
+    },
+    {
+      "name": "Kodardas Kalidas Shah",
+      "count": 116
+    },
+    {
+      "name": "Sher Singh",
+      "count": 105
+    },
+    {
+      "name": "Arjun Singh",
+      "count": 91
+    }
+  ],
+  "keyEvents": [
+    {
+      "year": 1972,
+      "label": "RRRLF founded"
+    },
+    {
+      "year": 1975,
+      "label": "Emergency"
+    },
+    {
+      "year": 1977,
+      "label": "Emergency lifted"
+    },
+    {
+      "year": 1986,
+      "label": "NPE"
+    },
+    {
+      "year": 1991,
+      "label": "Liberalisation"
+    },
+    {
+      "year": 2014,
+      "label": "NML launched"
+    },
+    {
+      "year": 2020,
+      "label": "NEP 2020"
+    }
+  ],
+  "eraComparison": [
+    {
+      "era": "pre-1991",
+      "label": "Pre-1991",
+      "year_from": 1952,
+      "year_to": 1990,
+      "span_years": 39,
+      "total": 2863,
+      "annual_rate": 73.4,
+      "ministry_share": [
+        {
+          "name": "EDUCATION",
+          "count": 2147,
+          "pct": 75.0
+        },
+        {
+          "name": "INFORMATION AND BROADCASTING",
+          "count": 592,
+          "pct": 20.7
+        },
+        {
+          "name": "RURAL DEVELOPMENT",
+          "count": 80,
+          "pct": 2.8
+        },
+        {
+          "name": "Other",
+          "count": 44,
+          "pct": 1.5
+        }
+      ],
+      "starred_pct": 21.9
+    },
+    {
+      "era": "1991-2013",
+      "label": "1991–2013",
+      "year_from": 1991,
+      "year_to": 2013,
+      "span_years": 23,
+      "total": 743,
+      "annual_rate": 32.3,
+      "ministry_share": [
+        {
+          "name": "EDUCATION",
+          "count": 485,
+          "pct": 65.3
+        },
+        {
+          "name": "CULTURE",
+          "count": 123,
+          "pct": 16.6
+        },
+        {
+          "name": "INFORMATION AND BROADCASTING",
+          "count": 57,
+          "pct": 7.7
+        },
+        {
+          "name": "Other",
+          "count": 78,
+          "pct": 10.5
+        }
+      ],
+      "starred_pct": 9.4
+    },
+    {
+      "era": "post-2014",
+      "label": "Post-2014",
+      "year_from": 2014,
+      "year_to": 2026,
+      "span_years": 13,
+      "total": 743,
+      "annual_rate": 57.2,
+      "ministry_share": [
+        {
+          "name": "EDUCATION",
+          "count": 374,
+          "pct": 50.3
+        },
+        {
+          "name": "CULTURE",
+          "count": 218,
+          "pct": 29.3
+        },
+        {
+          "name": "TRIBAL AFFAIRS",
+          "count": 66,
+          "pct": 8.9
+        },
+        {
+          "name": "Other",
+          "count": 85,
+          "pct": 11.4
+        }
+      ],
+      "starred_pct": 9.8
+    }
+  ],
+  "leadStat": {
+    "value": "4%",
+    "label": "of these library questions got a non-answer",
+    "sub": "In the POC sample of <strong>25 questions (2000–2025)</strong>, 1 answers dodged: data not centrally maintained, redirect to states, deferred, or refused. <strong>1 were specifically redirected to states</strong> on the ground that public libraries are a State List subject."
+  },
+  "summaryStats": [
+    {
+      "label": "Questions sampled",
+      "value": "25",
+      "sub": "Stratified across decades; full-text + LLM-summarised."
+    },
+    {
+      "label": "Lok Sabha",
+      "value": "25",
+      "sub": "from elibrary.sansad.in"
+    },
+    {
+      "label": "Rajya Sabha",
+      "value": "0",
+      "sub": "from rsdoc.nic.in"
+    },
+    {
+      "label": "Window",
+      "value": "2000–2025",
+      "sub": "POC window — full sweep is queued back to 1950."
+    }
+  ],
+  "eraBands": [
+    {
+      "label": "Pre-NML era",
+      "name": "2000–2013",
+      "count": 14,
+      "sub": "Dominant frames: <strong>Public libraries, RRRLF, Digital libraries</strong>."
+    },
+    {
+      "label": "NML era",
+      "name": "2014–present",
+      "count": 11,
+      "sub": "Dominant frames: <strong>Public libraries, National Mission on Libraries, RRRLF</strong>."
+    }
+  ],
+  "dodgeBreakdown": {
+    "total": 25,
+    "non_answer_count": 1,
+    "kinds": [
+      {
+        "kind": "redirect_to_states",
+        "label": "Redirected to states (\"library is a State List subject\")",
+        "count": 1
+      },
+      {
+        "kind": "no_central_data",
+        "label": "Cited no central data",
+        "count": 0
+      },
+      {
+        "kind": "deferred",
+        "label": "Deferred — \"under formulation / consideration\"",
+        "count": 0
+      },
+      {
+        "kind": "refused",
+        "label": "Refused outright",
+        "count": 0
+      },
+      {
+        "kind": "none",
+        "label": "Concrete answer",
+        "count": 24
+      }
+    ]
+  },
+  "topTags": [
+    {
+      "tag": "public_library",
+      "label": "Public libraries",
+      "count": 17
+    },
+    {
+      "tag": "nml",
+      "label": "National Mission on Libraries",
+      "count": 8
+    },
+    {
+      "tag": "rrrlf",
+      "label": "RRRLF",
+      "count": 7
+    },
+    {
+      "tag": "digital_library",
+      "label": "Digital libraries",
+      "count": 4
+    },
+    {
+      "tag": "library_act",
+      "label": "Library Acts / policy",
+      "count": 1
+    }
+  ],
+  "pullQuote": {
+    "text": "The Union Government provides financial assistance to public libraries through Raja Rammohun Roy Library Foundation for supply of books, furniture, equipment and renovation of buildings. Details of financial assistance provided in the last three years are available at Annexure-I. Requests from town/rural libraries have been considered, with a statement of financial assistance released during 2006-",
+    "house": "Lok Sabha",
+    "date": "2006-08-17",
+    "title": "FINANCIAL ASSISTANCE TO LIBRARIES ."
+  },
+  "keyQuestions": [
+    {
+      "key": "LS|U|3741|2025-03-24",
+      "label": "Lok Sabha",
+      "date": "2025-03-24",
+      "ministry": "CULTURE",
+      "title": "National Mission On Libraries Scheme",
+      "askers": [
+        "Kesineni Sivanath",
+        "Daggumalla Prasada Rao"
+      ],
+      "stat": "",
+      "excerpt": "The Ministry of Culture provides details on libraries assisted by Raja Rammohun Roy Library Foundation in Andhra Pradesh and financial assistance for library infrastructure upgrades. However, no data is available for network connectivity.",
+      "regex_tags": [
+        "rrrlf",
+        "nml",
+        "public_library"
+      ],
+      "tags": [
+        "RRRLF",
+        "National Mission on Libraries",
+        "Public libraries",
+        "Library Assistance",
+        "Infrastructure Upgrades",
+        "Network Connectivity"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/1522600"
+    },
+    {
+      "key": "LS|U|1726|2025-03-10",
+      "label": "Lok Sabha",
+      "date": "2025-03-10",
+      "ministry": "CULTURE",
+      "title": "National Library Mission",
+      "askers": [
+        "Rajeev Bharadwaj"
+      ],
+      "stat": "",
+      "excerpt": "The Government provides financial assistance of Rs.4822.16 lakh for State and District Libraries under the National Mission on Libraries (NML) Scheme from 2014-15 to February 2025, with Central share amounting to Rs.3860.25 lakh. Digitization efforts are ongoing for seven libraries under this Ministry's jurisdiction.",
+      "regex_tags": [
+        "nml",
+        "public_library",
+        "digital_library"
+      ],
+      "tags": [
+        "National Mission on Libraries",
+        "Public libraries",
+        "Digital libraries",
+        "Library Assistance",
+        "Digitization"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/1520355"
+    },
+    {
+      "key": "LS|U|2212|2024-12-09",
+      "label": "Lok Sabha",
+      "date": "2024-12-09",
+      "ministry": "CULTURE",
+      "title": "Promotion Of Libraries Under Nml",
+      "askers": [
+        "D M Kathir Anand",
+        "Gopal Jee Thakur"
+      ],
+      "stat": "",
+      "excerpt": "The Government provides financial assistance for setting up State Central and District Libraries through its National Mission on Libraries (NML) Scheme, including in Tamil Nadu. However, no funds have been allocated for the development of specific libraries like Saraswathi Mahal Library or Lakshmeshwar Singh Library.",
+      "regex_tags": [
+        "nml",
+        "public_library"
+      ],
+      "tags": [
+        "National Mission on Libraries",
+        "Public libraries",
+        "Library Assistance",
+        "State Responsibility",
+        "Tamil Nadu"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/1514192"
+    },
+    {
+      "key": "LS|U|184|2024-11-25",
+      "label": "Lok Sabha",
+      "date": "2024-11-25",
+      "ministry": "CULTURE",
+      "title": "National Mission On Libraries",
+      "askers": [
+        "Daggumalla Prasada Rao"
+      ],
+      "stat": "",
+      "excerpt": "The Ministry of Culture provided financial assistance to 26 State Central Libraries and 40 District Central Libraries under the National Mission on Libraries. Details are in Annexure-A.",
+      "regex_tags": [
+        "nml",
+        "public_library"
+      ],
+      "tags": [
+        "National Mission on Libraries",
+        "Public libraries",
+        "Library Assistance",
+        "State Central Libraries",
+        "District Central Libraries"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/1516445"
+    },
+    {
+      "key": "LS|U|1142|2024-07-29",
+      "label": "Lok Sabha",
+      "date": "2024-07-29",
+      "ministry": "CULTURE",
+      "title": "Upgradation Of Libraries Through Digital Infrastructure",
+      "askers": [
+        "S Jothimani"
+      ],
+      "stat": "",
+      "excerpt": "The Government does not provide specific data on funds allocated for library setup through National Mission on Libraries and Raja Rammohun Roy Library Foundation. The answer states that setting up of libraries is a State subject, not under Ministry of Culture's purview.",
+      "regex_tags": [
+        "rrrlf",
+        "nml",
+        "public_library"
+      ],
+      "tags": [
+        "RRRLF",
+        "National Mission on Libraries",
+        "Public libraries",
+        "Library Funds",
+        "State Subject"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/1317289"
+    },
+    {
+      "key": "LS|U|198|2024-07-22",
+      "label": "Lok Sabha",
+      "date": "2024-07-22",
+      "ministry": "EDUCATION",
+      "title": "Online Accessibility Of Library Books",
+      "askers": [
+        "Yogender Chandolia"
+      ],
+      "stat": "",
+      "excerpt": "The Government of India provides Rs. 5,000 Crore for State Governments to build libraries and launch Digital Library for Children and Adolescents in digital format with 1000 books in 23 Indian languages.",
+      "regex_tags": [
+        "public_library",
+        "digital_library"
+      ],
+      "tags": [
+        "Public libraries",
+        "Digital libraries",
+        "Library Construction",
+        "Digital Libraries",
+        "Language Support"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/1035561"
+    },
+    {
+      "key": "LS|U|2852|2022-03-21",
+      "label": "Lok Sabha",
+      "date": "2022-03-21",
+      "ministry": "CULTURE",
+      "title": "Launch Of  Every Village Has A Library  Project",
+      "askers": [
+        "Bheemrao Baswanthrao Patil"
+      ],
+      "stat": "",
+      "excerpt": "The Government does not propose to launch a 'Every Village has a Library' project and states that public libraries are under state control as per the Constitution of India.",
+      "regex_tags": [
+        "rrrlf",
+        "nml",
+        "library_act",
+        "public_library"
+      ],
+      "tags": [
+        "RRRLF",
+        "National Mission on Libraries",
+        "Library Acts / policy",
+        "Public libraries",
+        "Library Project",
+        "State Control"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/1085123"
+    },
+    {
+      "key": "LS|U|2331|2021-12-13",
+      "label": "Lok Sabha",
+      "date": "2021-12-13",
+      "ministry": "CULTURE",
+      "title": "Vacancy In Libraries",
+      "askers": [
+        "Jayanta Kumar Roy"
+      ],
+      "stat": "",
+      "excerpt": "The Minister of Culture stated details about libraries funded by his ministry and indicated steps to fill vacant posts.",
+      "regex_tags": [
+        "rrrlf",
+        "public_library"
+      ],
+      "tags": [
+        "RRRLF",
+        "Public libraries",
+        "Library Details",
+        "Vacant Posts",
+        "Government Steps"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/216001"
+    },
+    {
+      "key": "LS|U|3203|2018-12-31",
+      "label": "Lok Sabha",
+      "date": "2018-12-31",
+      "ministry": "CULTURE",
+      "title": "Setting Up Of Libraries In Telangana",
+      "askers": [
+        "Boora Narsaiah Goud"
+      ],
+      "stat": "",
+      "excerpt": "The Minister of Culture provided details of funds for libraries in Telangana and stated that Rs. 1,64,25,000 was sanctioned under the National Mission on Libraries (NML) Model Library Scheme for State Central Library, Hyderabad, and Rs. 52,00,000 for District Central Library, Mahabubnagar.",
+      "regex_tags": [
+        "rrrlf",
+        "nml",
+        "public_library"
+      ],
+      "tags": [
+        "RRRLF",
+        "National Mission on Libraries",
+        "Public libraries",
+        "Library Funds",
+        "Telangana"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/1293022"
+    },
+    {
+      "key": "LS|U|2852|2017-03-20",
+      "label": "Lok Sabha",
+      "date": "2017-03-20",
+      "ministry": "CULTURE",
+      "title": "National Missions On Libraries And Manuscripts",
+      "askers": [
+        "Prathap Simha"
+      ],
+      "stat": "",
+      "excerpt": "The Ministry of Culture runs four National Missions including on Libraries and Manuscripts. Details of their objectives and work done over the last three years are provided.",
+      "regex_tags": [
+        "nml",
+        "public_library"
+      ],
+      "tags": [
+        "National Mission on Libraries",
+        "Public libraries",
+        "National Missions",
+        "Libraries",
+        "Manuscripts"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/1185791"
+    },
+    {
+      "key": "LS|U|3193|2016-12-05",
+      "label": "Lok Sabha",
+      "date": "2016-12-05",
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "title": "Digital Libraries",
+      "askers": [
+        "Manshankar Ninama",
+        "Ramesh Pokhriyal Nishank",
+        "Bharat Singh"
+      ],
+      "stat": "",
+      "excerpt": "The Ministry of Human Resource Development initiated the National Digital Library (NDL) Pilot Project in April 2015 to strengthen digital libraries and empower them with e-Learning resources, including from Institutional Digital Repositories.",
+      "regex_tags": [
+        "digital_library"
+      ],
+      "tags": [
+        "Digital libraries",
+        "Digital Libraries",
+        "National Digital Library",
+        "e-Learning Resources"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/622774"
+    },
+    {
+      "key": "LS|U|2154|2012-03-27",
+      "label": "Lok Sabha",
+      "date": "2012-03-27",
+      "ministry": "CULTURE",
+      "title": "Promotion Of Libraries",
+      "askers": [
+        "Harishchandra Deoram Chavan",
+        "Bhisma Shankar Alias Kushal Tiwari"
+      ],
+      "stat": "",
+      "excerpt": "The Government does not have recent data on public libraries in the country and has no specific steps taken to promote them in rural areas of Odisha.",
+      "regex_tags": [
+        "rrrlf",
+        "public_library"
+      ],
+      "tags": [
+        "RRRLF",
+        "Public libraries",
+        "Public Libraries",
+        "Rural Promotion",
+        "Odisha"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/1113307"
+    },
+    {
+      "key": "LS|U|410|2011-08-02",
+      "label": "Lok Sabha",
+      "date": "2011-08-02",
+      "ministry": "CULTURE",
+      "title": "Grants To Nehru Memorial Museum And Library",
+      "askers": [
+        "S. Pakkirappa"
+      ],
+      "stat": "",
+      "excerpt": "The Government has provided grants totaling over Rs. 30 crores to the Nehru Memorial Museum and Library in Delhi since 2007, including a separate grant of Rs. 20 crores for modernization. An audit found financial irregularities but no specific action was taken against those responsible.",
+      "regex_tags": [],
+      "tags": [
+        "Library Grants",
+        "Financial Audit"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/1077685"
+    },
+    {
+      "key": "LS|U|3622|2010-12-01",
+      "label": "Lok Sabha",
+      "date": "2010-12-01",
+      "ministry": "CULTURE",
+      "title": "Setting Up Of Public Libraries At Panchayat Level",
+      "askers": [
+        "Marotrao Sainuji Kowase"
+      ],
+      "stat": "",
+      "excerpt": "The Government has not proposed to set up public libraries at panchayat level in the country and library setup is a State subject.",
+      "regex_tags": [
+        "public_library"
+      ],
+      "tags": [
+        "Public libraries",
+        "Public Libraries",
+        "Panchayats",
+        "Library Setup"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/830402"
+    },
+    {
+      "key": "LS|U|355|2010-11-10",
+      "label": "Lok Sabha",
+      "date": "2010-11-10",
+      "ministry": "CULTURE",
+      "title": "Sanction To Nehru Memorial Museum And Library",
+      "askers": [
+        "Lal Singh"
+      ],
+      "stat": "",
+      "excerpt": "The Government has provided funds for Nehru Memorial Museum and Library in recent years, with grants released under Plan and Non-Plan categories totaling over Rs.20 crores since 2007.",
+      "regex_tags": [],
+      "tags": [
+        "NehruMemorialMuseum",
+        "FundsReleased"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/243727"
+    },
+    {
+      "key": "LS|U|4795|2010-08-25",
+      "label": "Lok Sabha",
+      "date": "2010-08-25",
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "title": "International Conference On Digital Libraries",
+      "askers": [
+        "Pradeep Kumar Majhi"
+      ],
+      "stat": "",
+      "excerpt": "IGNOU and TERI organized an International Conference on Digital Libraries in February 2010 with objectives to promote ICT-enabled education and improve broadband connectivity for 8,500 colleges.",
+      "regex_tags": [
+        "digital_library"
+      ],
+      "tags": [
+        "Digital libraries",
+        "Digital Libraries",
+        "IGNOU",
+        "TERI"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/482340"
+    },
+    {
+      "key": "LS|U|3671|2008-04-17",
+      "label": "Lok Sabha",
+      "date": "2008-04-17",
+      "ministry": "CULTURE",
+      "title": "M.C. Gupta Committee On Delhi Public Library",
+      "askers": [
+        "Mahavir Bhagora",
+        "Faggan Singh Kulaste",
+        "Ananta Nayak"
+      ],
+      "stat": "",
+      "excerpt": "The M.C. Gupta Committee recommended a two-tier management structure for Delhi Public Library with an enlarged board and executive committee including a Director General as member secretary. The review committee also recommended the creation of additional director positions, but did not specify details.",
+      "regex_tags": [
+        "public_library"
+      ],
+      "tags": [
+        "Public libraries",
+        "Delhi Public Library",
+        "Library Management Structure"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/1428657"
+    },
+    {
+      "key": "LS|U|1293|2006-11-30",
+      "label": "Lok Sabha",
+      "date": "2006-11-30",
+      "ministry": "CULTURE",
+      "title": "National Policy Of Public Library And Information Services",
+      "askers": [
+        "Ramakrishna Badiga"
+      ],
+      "stat": "",
+      "excerpt": "The Government of India has not yet declared a National Policy on Library and Information System (NAPLIS), but an Empowered Committee was set up to formulate an action plan. Some recommendations from the D.P. Chattopadhaya Committee have been implemented through various Ministry schemes.",
+      "regex_tags": [
+        "public_library"
+      ],
+      "tags": [
+        "Public libraries",
+        "Library Policy",
+        "Empowered Committee",
+        "Public Libraries"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/1321934"
+    },
+    {
+      "key": "LS|S|305|2006-08-17",
+      "label": "Lok Sabha",
+      "date": "2006-08-17",
+      "ministry": "CULTURE",
+      "title": "Financial Assistance To Libraries .",
+      "askers": [
+        "Harishchandra Deoram Chavan"
+      ],
+      "stat": "",
+      "excerpt": "The Union Government provides financial assistance to public libraries through Raja Rammohun Roy Library Foundation for supply of books, furniture, equipment and renovation of buildings. Details of financial assistance provided in the last three years are available at Annexure-I. Requests from town/rural libraries have been considered, with a statement of financial assistance released during 2006-",
+      "regex_tags": [
+        "rrrlf",
+        "public_library"
+      ],
+      "tags": [
+        "RRRLF",
+        "Public libraries",
+        "Library Assistance",
+        "Financial Support",
+        "Public Libraries"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/934127"
+    },
+    {
+      "key": "LS|U|4904|2006-05-23",
+      "label": "Lok Sabha",
+      "date": "2006-05-23",
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "title": "Introduction Of Class Libraries",
+      "askers": [
+        "Kotla Jaya Surya Prakash Reddy"
+      ],
+      "stat": "",
+      "excerpt": "The Government of India has instructed Central Board of Secondary Education (CBSE) to introduce class libraries in primary schools and emphasize subjects like music, dance, and fine arts to enhance students' emotional intelligence.",
+      "regex_tags": [],
+      "tags": [
+        "Class Libraries",
+        "Primary Schools",
+        "Emotional Intelligence"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/379057"
+    },
+    {
+      "key": "LS|U|1577|2004-12-09",
+      "label": "Lok Sabha",
+      "date": "2004-12-09",
+      "ministry": "CULTURE",
+      "title": "Setting Up Of Libraries As An Institute Of National Importance",
+      "askers": [
+        "Santasri Chatterjee"
+      ],
+      "stat": "",
+      "excerpt": "The Government has received a proposal for declaring the Uttarpura Joykrishna Public Library as an Institute of National Importance and will not be receiving any proposals from the Government of West Bengal regarding this library.",
+      "regex_tags": [
+        "public_library"
+      ],
+      "tags": [
+        "Public libraries",
+        "Library Proposal",
+        "National Importance"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/1146964"
+    },
+    {
+      "key": "LS|U|3586|2002-04-16",
+      "label": "Lok Sabha",
+      "date": "2002-04-16",
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "title": "Library Facilities In Colleges And Universities",
+      "askers": [
+        "Kamakhya Prasad Singh Deo"
+      ],
+      "stat": "",
+      "excerpt": "The Government does not propose to expand library facilities in colleges and universities during the current financial year. Allocation of funds for this purpose has not yet been finalized by the University Grants Commission (UGC).",
+      "regex_tags": [],
+      "tags": [
+        "Library Facilities",
+        "University Grants Commission",
+        "Financial Year"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/1002469"
+    },
+    {
+      "key": "LS|U|416|2001-07-24",
+      "label": "Lok Sabha",
+      "date": "2001-07-24",
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "title": "Education In Library Science",
+      "askers": [
+        "Subodh Roy"
+      ],
+      "stat": "",
+      "excerpt": "The Minister stated that the information on education in library science is being collected through correspondence with the University Grants Commission and will be made available at the earliest.",
+      "regex_tags": [],
+      "tags": [
+        "Library Education",
+        "University Grants Commission"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/1389845"
+    },
+    {
+      "key": "LS|U|1634|2000-11-29",
+      "label": "Lok Sabha",
+      "date": "2000-11-29",
+      "ministry": "SOCIAL JUSTICE AND EMPOWERMENT",
+      "title": "Ambedkar National Public Library",
+      "askers": [
+        "P.R. Khute"
+      ],
+      "stat": "",
+      "excerpt": "The Minister stated that no Ambedkar National Public Library will be set up in Madhya Pradesh and there are no plans for such a library. The Centenary Celebrations Committee decided to establish the library in Delhi, but this was not implemented.",
+      "regex_tags": [
+        "public_library"
+      ],
+      "tags": [
+        "Public libraries",
+        "Library_Initiatives",
+        "Dr_Ambedkar",
+        "Madhya_Pradesh"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/685248"
+    },
+    {
+      "key": "LS|U|1055|2000-07-28",
+      "label": "Lok Sabha",
+      "date": "2000-07-28",
+      "ministry": "INFORMATION AND BROADCASTING",
+      "title": "Computerisation Of Library Of Publication Division",
+      "askers": [
+        "Haribhau Mahale"
+      ],
+      "stat": "",
+      "excerpt": "The library in the Directorate of Publications Division has a stock of only 40,000 books and uses conventional methods for management. The Government does not have a scheme for computerizing this library.",
+      "regex_tags": [],
+      "tags": [
+        "Library Management",
+        "Publication Division",
+        "Conventional Methods"
+      ],
+      "href": "https://elibrary.sansad.in/handle/123456789/373499"
+    }
+  ]
+};

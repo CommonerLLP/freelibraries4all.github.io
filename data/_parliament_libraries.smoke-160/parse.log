@@ -1,0 +1,12 @@
+[2026-05-06T11:03:36] manifest records=0
+[2026-05-06T11:03:36] wrote assets/parliament_libraries.js records=0
+[2026-05-06T11:14:45] manifest records=1
+[2026-05-06T11:14:45] wrote assets/parliament_libraries.js records=1
+[2026-05-06T11:38:16] parsed 50/160
+[2026-05-06T11:38:17] parsed 100/160
+[2026-05-06T11:38:17] parsed 150/160
+[2026-05-06T11:38:17] wrote analysis records=160
+[2026-05-06T11:40:52] parsed 50/160
+[2026-05-06T11:40:52] parsed 100/160
+[2026-05-06T11:40:52] parsed 150/160
+[2026-05-06T11:40:52] wrote analysis records=160

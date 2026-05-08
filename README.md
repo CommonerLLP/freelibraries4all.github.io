@@ -1,9 +1,9 @@
-# Free Libraries for All
+# The Right to Read
 
-This repository powers the Free Libraries for All GitHub Pages site:
+This repository powers the The Right to Read GitHub Pages site:
 
 ```text
-https://freelibraries4all.github.io
+https://theright2read.github.io
 ```
 
 It is a static public data dashboard tracking public library funding in India.
@@ -14,14 +14,14 @@ benchmarks.
 
 If you are another developer, this README is meant to be a quick scan: fork the
 repo, run the dashboard locally, and reproduce the deployed
-`freelibraries4all.github.io` site from static files.
+`theright2read.github.io` site from static files.
 
 There is no build step, backend, database, or package manager. The live site is
 served directly from the static files in this repo.
 
 ## Ethics And Politics
 
-Free Libraries for All is grounded in Ambedkarite and anti-caste ethics. The
+The Right to Read is grounded in Ambedkarite and anti-caste ethics. The
 project treats access to books, public libraries, knowledge infrastructure, and
 publicly funded learning spaces as questions of social justice, democratic
 participation, and material equality.
@@ -75,14 +75,14 @@ delete.
 1. Fork the repo on GitHub:
 
    ```text
-   https://github.com/freelibraries4all/freelibraries4all.github.io
+   https://github.com/theright2read/theright2read.github.io
    ```
 
 2. Clone your fork:
 
    ```sh
-   git clone https://github.com/YOUR-USER/freelibraries4all.github.io.git
-   cd freelibraries4all.github.io
+   git clone https://github.com/YOUR-USER/theright2read.github.io.git
+   cd theright2read.github.io
    ```
 
 3. Serve the site locally:
@@ -114,7 +114,7 @@ fork:
 For a personal or organization fork, GitHub will usually publish at:
 
 ```text
-https://YOUR-USER.github.io/freelibraries4all.github.io/
+https://YOUR-USER.github.io/theright2read.github.io/
 ```
 
 To publish at `https://YOUR-USER.github.io/`, rename the fork to

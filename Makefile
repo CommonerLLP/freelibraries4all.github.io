@@ -1,4 +1,4 @@
-# freelibraries4all — corpus refresh entry points.
+# theright2read — corpus refresh entry points.
 #
 # As of 2026-05-06 the LS + RS crawler that builds the parliamentary
 # library corpus is the public package `sansad-semantic-crawler`

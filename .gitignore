@@ -1,0 +1,17 @@
+.DS_Store
+.claude/
+.conductor/
+
+# Internal strategy / architecture / design notes — NEVER commit.
+/notes/
+
+# Local standalone package repo. Keep this out of the website repo;
+# it has its own .git directory and remote.
+sansad-semantic-crawler/
+
+# Local crawler/runtime output.
+data/_parliament_libraries/.DS_Store
+data/_parliament_libraries/crawl.log
+data/_parliament_libraries/parse.log
+data/_parliament_libraries/pdfs/
+data/_parliament_libraries/text/

@@ -1,4 +1,4 @@
-# freelibraries4all — runtime dependencies for the parliamentary-corpus
+# theright2read — runtime dependencies for the parliamentary-corpus
 # refresh pipeline. The site itself ships zero Python at runtime; these
 # deps run only when the maintainer regenerates assets/parliament_libraries.js
 # from the upstream Sansad records.

@@ -1,0 +1,884 @@
+[2026-05-06T11:35:00] resume seen=0 topic=libraries download=False
+[2026-05-06T11:35:00] LS query='public library' ministry=CULTURE
+[2026-05-06T11:35:07] LS query='public library' ministry=EDUCATION
+[2026-05-06T11:35:17] LS query='public library' ministry=HUMAN RESOURCE DEVELOPMENT
+[2026-05-06T11:35:27] LS query='public library' ministry=INFORMATION AND BROADCASTING
+[2026-05-06T11:35:36] LS query='public library' ministry=SOCIAL JUSTICE AND EMPOWERMENT
+[2026-05-06T11:35:40] LS query='public library' ministry=TRIBAL AFFAIRS
+[2026-05-06T11:35:46] LS query='public library' ministry=MINORITY AFFAIRS
+[2026-05-06T11:35:49] LS query='public library' ministry=RURAL DEVELOPMENT
+[2026-05-06T11:35:54] LS query='public library' ministry=PANCHAYATI RAJ
+[2026-05-06T11:35:57] DONE added=80 total=80
+[2026-05-06T11:36:21] resume seen=80 topic=libraries download=False
+[2026-05-06T11:36:21] RS session=230 ministry_like=CULTURE%
+[2026-05-06T11:36:26] RS session=230 ministry_like=EDUCATION%
+[2026-05-06T11:36:28] RS session=230 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T11:36:31] RS session=230 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T11:36:34] RS session=230 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T11:36:38] RS session=230 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T11:36:41] RS session=230 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T11:36:43] RS session=230 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T11:36:46] RS session=230 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T11:36:47] RS session=231 ministry_like=CULTURE%
+[2026-05-06T11:36:48] RS session=231 ministry_like=EDUCATION%
+[2026-05-06T11:36:50] RS session=231 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T11:36:51] RS session=231 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T11:36:52] RS session=231 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T11:36:54] RS session=231 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T11:36:55] RS session=231 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T11:36:56] RS session=231 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T11:36:58] RS session=231 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T11:36:59] RS session=232 ministry_like=CULTURE%
+[2026-05-06T11:37:03] RS session=232 ministry_like=EDUCATION%
+[2026-05-06T11:37:05] RS session=232 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T11:37:09] RS session=232 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T11:37:12] RS session=232 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T11:37:16] RS session=232 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T11:37:18] RS session=232 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T11:37:21] RS session=232 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T11:37:24] RS session=232 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T11:37:26] RS session=233 ministry_like=CULTURE%
+[2026-05-06T11:37:28] RS session=233 ministry_like=EDUCATION%
+[2026-05-06T11:37:30] RS session=233 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T11:37:35] RS session=233 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T11:37:39] RS session=233 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T11:37:44] RS session=233 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T11:37:46] RS session=233 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T11:37:48] RS session=233 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T11:37:51] RS session=233 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T11:37:53] RS session=234 ministry_like=CULTURE%
+[2026-05-06T11:37:56] RS session=234 ministry_like=EDUCATION%
+[2026-05-06T11:37:57] RS session=234 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T11:38:01] DONE added=80 total=160
+[2026-05-06T20:05:02] resume seen=160 topic=libraries download=False
+[2026-05-06T20:05:02] LS query='public library' ministry=CULTURE
+[2026-05-06T20:05:14] RS session=1 ministry_like=CULTURE%
+[2026-05-06T20:05:18] RS session=1 ministry_like=EDUCATION%
+[2026-05-06T20:05:18] RS session=1 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:05:19] RS session=1 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:05:19] RS session=1 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:05:19] RS session=1 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:05:20] RS session=1 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:05:20] RS session=1 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:05:20] RS session=1 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:05:21] RS session=2 ministry_like=CULTURE%
+[2026-05-06T20:05:21] RS session=2 ministry_like=EDUCATION%
+[2026-05-06T20:05:21] RS session=2 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:05:22] RS session=2 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:05:22] RS session=2 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:05:22] RS session=2 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:05:23] RS session=2 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:05:23] RS session=2 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:05:23] RS session=2 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:05:24] RS session=3 ministry_like=CULTURE%
+[2026-05-06T20:05:24] RS session=3 ministry_like=EDUCATION%
+[2026-05-06T20:05:25] RS session=3 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:05:25] RS session=3 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:05:25] RS session=3 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:05:26] RS session=3 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:05:26] RS session=3 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:05:26] RS session=3 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:05:27] RS session=3 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:05:27] RS session=4 ministry_like=CULTURE%
+[2026-05-06T20:05:27] RS session=4 ministry_like=EDUCATION%
+[2026-05-06T20:05:28] RS session=4 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:05:28] RS session=4 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:05:28] RS session=4 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:05:29] RS session=4 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:05:29] RS session=4 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:05:30] RS session=4 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:05:30] RS session=4 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:05:30] RS session=5 ministry_like=CULTURE%
+[2026-05-06T20:05:31] RS session=5 ministry_like=EDUCATION%
+[2026-05-06T20:05:31] RS session=5 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:05:31] RS session=5 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:05:32] RS session=5 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:05:32] RS session=5 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:05:32] RS session=5 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:05:33] RS session=5 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:05:33] RS session=5 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:05:34] RS session=6 ministry_like=CULTURE%
+[2026-05-06T20:05:34] RS session=6 ministry_like=EDUCATION%
+[2026-05-06T20:05:34] RS session=6 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:05:35] RS session=6 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:05:35] RS session=6 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:05:35] RS session=6 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:05:36] RS session=6 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:05:36] RS session=6 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:05:37] RS session=6 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:05:37] RS session=7 ministry_like=CULTURE%
+[2026-05-06T20:05:37] RS session=7 ministry_like=EDUCATION%
+[2026-05-06T20:05:38] RS session=7 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:05:38] RS session=7 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:05:38] RS session=7 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:05:39] RS session=7 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:05:39] RS session=7 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:05:40] RS session=7 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:05:40] RS session=7 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:05:40] RS session=8 ministry_like=CULTURE%
+[2026-05-06T20:05:41] RS session=8 ministry_like=EDUCATION%
+[2026-05-06T20:05:41] RS session=8 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:05:41] RS session=8 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:05:42] RS session=8 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:05:42] RS session=8 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:05:42] RS session=8 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:05:43] RS session=8 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:05:43] RS session=8 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:05:43] RS session=9 ministry_like=CULTURE%
+[2026-05-06T20:05:44] RS session=9 ministry_like=EDUCATION%
+[2026-05-06T20:05:44] RS session=9 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:05:44] RS session=9 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:05:45] RS session=9 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:05:45] RS session=9 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:05:45] RS session=9 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:05:46] RS session=9 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:05:46] RS session=9 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:05:47] RS session=10 ministry_like=CULTURE%
+[2026-05-06T20:05:47] RS session=10 ministry_like=EDUCATION%
+[2026-05-06T20:05:47] RS session=10 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:05:48] RS session=10 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:05:48] RS session=10 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:05:48] RS session=10 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:05:49] RS session=10 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:05:49] RS session=10 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:05:50] RS session=10 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:05:50] RS session=11 ministry_like=CULTURE%
+[2026-05-06T20:05:50] RS session=11 ministry_like=EDUCATION%
+[2026-05-06T20:05:51] RS session=11 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:05:51] RS session=11 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:05:51] RS session=11 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:05:52] RS session=11 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:05:52] RS session=11 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:05:53] RS session=11 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:05:53] RS session=11 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:05:53] RS session=12 ministry_like=CULTURE%
+[2026-05-06T20:05:54] RS session=12 ministry_like=EDUCATION%
+[2026-05-06T20:05:54] RS session=12 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:05:54] RS session=12 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:05:55] RS session=12 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:05:55] RS session=12 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:05:55] RS session=12 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:05:56] RS session=12 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:05:56] RS session=12 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:05:57] RS session=13 ministry_like=CULTURE%
+[2026-05-06T20:05:57] RS session=13 ministry_like=EDUCATION%
+[2026-05-06T20:05:57] RS session=13 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:05:58] RS session=13 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:05:58] RS session=13 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:05:58] RS session=13 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:05:59] RS session=13 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:05:59] RS session=13 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:05:59] RS session=13 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:00] RS session=14 ministry_like=CULTURE%
+[2026-05-06T20:06:00] RS session=14 ministry_like=EDUCATION%
+[2026-05-06T20:06:01] RS session=14 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:01] RS session=14 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:01] RS session=14 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:02] RS session=14 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:02] RS session=14 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:02] RS session=14 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:03] RS session=14 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:03] RS session=15 ministry_like=CULTURE%
+[2026-05-06T20:06:04] RS session=15 ministry_like=EDUCATION%
+[2026-05-06T20:06:04] RS session=15 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:04] RS session=15 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:05] RS session=15 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:05] RS session=15 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:06] RS session=15 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:06] RS session=15 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:06] RS session=15 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:07] RS session=16 ministry_like=CULTURE%
+[2026-05-06T20:06:07] RS session=16 ministry_like=EDUCATION%
+[2026-05-06T20:06:07] RS session=16 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:08] RS session=16 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:08] RS session=16 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:08] RS session=16 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:09] RS session=16 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:09] RS session=16 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:09] RS session=16 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:10] RS session=17 ministry_like=CULTURE%
+[2026-05-06T20:06:10] RS session=17 ministry_like=EDUCATION%
+[2026-05-06T20:06:11] RS session=17 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:11] RS session=17 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:11] RS session=17 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:12] RS session=17 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:12] RS session=17 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:12] RS session=17 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:13] RS session=17 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:13] RS session=18 ministry_like=CULTURE%
+[2026-05-06T20:06:13] RS session=18 ministry_like=EDUCATION%
+[2026-05-06T20:06:14] RS session=18 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:14] RS session=18 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:14] RS session=18 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:15] RS session=18 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:15] RS session=18 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:15] RS session=18 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:16] RS session=18 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:16] RS session=19 ministry_like=CULTURE%
+[2026-05-06T20:06:16] RS session=19 ministry_like=EDUCATION%
+[2026-05-06T20:06:17] RS session=19 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:17] RS session=19 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:18] RS session=19 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:18] RS session=19 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:18] RS session=19 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:18] RS session=19 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:19] RS session=19 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:19] RS session=20 ministry_like=CULTURE%
+[2026-05-06T20:06:20] RS session=20 ministry_like=EDUCATION%
+[2026-05-06T20:06:20] RS session=20 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:20] RS session=20 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:21] RS session=20 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:21] RS session=20 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:21] RS session=20 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:22] RS session=20 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:22] RS session=20 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:22] RS session=21 ministry_like=CULTURE%
+[2026-05-06T20:06:23] RS session=21 ministry_like=EDUCATION%
+[2026-05-06T20:06:23] RS session=21 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:23] RS session=21 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:24] RS session=21 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:24] RS session=21 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:24] RS session=21 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:25] RS session=21 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:25] RS session=21 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:25] RS session=22 ministry_like=CULTURE%
+[2026-05-06T20:06:26] RS session=22 ministry_like=EDUCATION%
+[2026-05-06T20:06:26] RS session=22 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:26] RS session=22 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:27] RS session=22 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:27] RS session=22 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:27] RS session=22 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:28] RS session=22 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:28] RS session=22 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:28] RS session=23 ministry_like=CULTURE%
+[2026-05-06T20:06:29] RS session=23 ministry_like=EDUCATION%
+[2026-05-06T20:06:29] RS session=23 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:29] RS session=23 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:30] RS session=23 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:30] RS session=23 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:30] RS session=23 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:31] RS session=23 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:31] RS session=23 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:31] RS session=24 ministry_like=CULTURE%
+[2026-05-06T20:06:32] RS session=24 ministry_like=EDUCATION%
+[2026-05-06T20:06:32] RS session=24 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:33] RS session=24 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:33] RS session=24 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:33] RS session=24 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:34] RS session=24 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:34] RS session=24 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:34] RS session=24 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:35] RS session=25 ministry_like=CULTURE%
+[2026-05-06T20:06:35] RS session=25 ministry_like=EDUCATION%
+[2026-05-06T20:06:35] RS session=25 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:36] RS session=25 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:36] RS session=25 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:36] RS session=25 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:37] RS session=25 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:37] RS session=25 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:37] RS session=25 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:38] RS session=26 ministry_like=CULTURE%
+[2026-05-06T20:06:38] RS session=26 ministry_like=EDUCATION%
+[2026-05-06T20:06:38] RS session=26 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:39] RS session=26 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:39] RS session=26 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:39] RS session=26 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:40] RS session=26 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:40] RS session=26 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:40] RS session=26 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:41] RS session=27 ministry_like=CULTURE%
+[2026-05-06T20:06:41] RS session=27 ministry_like=EDUCATION%
+[2026-05-06T20:06:41] RS session=27 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:42] RS session=27 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:42] RS session=27 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:42] RS session=27 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:43] RS session=27 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:43] RS session=27 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:43] RS session=27 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:44] RS session=28 ministry_like=CULTURE%
+[2026-05-06T20:06:44] RS session=28 ministry_like=EDUCATION%
+[2026-05-06T20:06:45] RS session=28 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:45] RS session=28 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:45] RS session=28 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:46] RS session=28 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:46] RS session=28 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:46] RS session=28 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:47] RS session=28 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:47] RS session=29 ministry_like=CULTURE%
+[2026-05-06T20:06:47] RS session=29 ministry_like=EDUCATION%
+[2026-05-06T20:06:48] RS session=29 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:48] RS session=29 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:48] RS session=29 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:49] RS session=29 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:49] RS session=29 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:49] RS session=29 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:50] RS session=29 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:50] RS session=30 ministry_like=CULTURE%
+[2026-05-06T20:06:51] RS session=30 ministry_like=EDUCATION%
+[2026-05-06T20:06:51] RS session=30 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:51] RS session=30 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:52] RS session=30 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:52] RS session=30 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:52] RS session=30 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:53] RS session=30 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:53] RS session=30 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:53] RS session=31 ministry_like=CULTURE%
+[2026-05-06T20:06:54] RS session=31 ministry_like=EDUCATION%
+[2026-05-06T20:06:54] RS session=31 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:54] RS session=31 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:55] RS session=31 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:55] RS session=31 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:55] RS session=31 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:56] RS session=31 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:56] RS session=31 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:56] RS session=32 ministry_like=CULTURE%
+[2026-05-06T20:06:57] RS session=32 ministry_like=EDUCATION%
+[2026-05-06T20:06:57] RS session=32 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:06:57] RS session=32 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:06:58] RS session=32 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:06:58] RS session=32 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:06:58] RS session=32 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:06:59] RS session=32 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:06:59] RS session=32 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:06:59] RS session=33 ministry_like=CULTURE%
+[2026-05-06T20:07:00] RS session=33 ministry_like=EDUCATION%
+[2026-05-06T20:07:00] RS session=33 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:00] RS session=33 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:01] RS session=33 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:01] RS session=33 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:01] RS session=33 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:02] RS session=33 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:02] RS session=33 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:02] RS session=34 ministry_like=CULTURE%
+[2026-05-06T20:07:03] RS session=34 ministry_like=EDUCATION%
+[2026-05-06T20:07:03] RS session=34 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:04] RS session=34 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:04] RS session=34 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:04] RS session=34 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:05] RS session=34 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:05] RS session=34 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:06] RS session=34 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:06] RS session=35 ministry_like=CULTURE%
+[2026-05-06T20:07:07] RS session=35 ministry_like=EDUCATION%
+[2026-05-06T20:07:07] RS session=35 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:07] RS session=35 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:08] RS session=35 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:08] RS session=35 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:08] RS session=35 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:09] RS session=35 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:09] RS session=35 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:10] RS session=36 ministry_like=CULTURE%
+[2026-05-06T20:07:10] RS session=36 ministry_like=EDUCATION%
+[2026-05-06T20:07:10] RS session=36 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:11] RS session=36 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:11] RS session=36 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:11] RS session=36 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:12] RS session=36 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:12] RS session=36 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:12] RS session=36 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:13] RS session=37 ministry_like=CULTURE%
+[2026-05-06T20:07:13] RS session=37 ministry_like=EDUCATION%
+[2026-05-06T20:07:14] RS session=37 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:14] RS session=37 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:14] RS session=37 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:15] RS session=37 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:15] RS session=37 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:15] RS session=37 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:16] RS session=37 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:16] RS session=38 ministry_like=CULTURE%
+[2026-05-06T20:07:16] RS session=38 ministry_like=EDUCATION%
+[2026-05-06T20:07:17] RS session=38 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:17] RS session=38 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:17] RS session=38 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:18] RS session=38 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:18] RS session=38 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:18] RS session=38 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:19] RS session=38 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:19] RS session=39 ministry_like=CULTURE%
+[2026-05-06T20:07:19] RS session=39 ministry_like=EDUCATION%
+[2026-05-06T20:07:20] RS session=39 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:20] RS session=39 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:20] RS session=39 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:21] RS session=39 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:21] RS session=39 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:21] RS session=39 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:22] RS session=39 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:22] RS session=40 ministry_like=CULTURE%
+[2026-05-06T20:07:22] RS session=40 ministry_like=EDUCATION%
+[2026-05-06T20:07:23] RS session=40 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:23] RS session=40 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:23] RS session=40 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:24] RS session=40 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:24] RS session=40 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:24] RS session=40 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:25] RS session=40 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:25] RS session=41 ministry_like=CULTURE%
+[2026-05-06T20:07:25] RS session=41 ministry_like=EDUCATION%
+[2026-05-06T20:07:26] RS session=41 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:26] RS session=41 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:26] RS session=41 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:27] RS session=41 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:27] RS session=41 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:27] RS session=41 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:28] RS session=41 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:28] RS session=42 ministry_like=CULTURE%
+[2026-05-06T20:07:28] RS session=42 ministry_like=EDUCATION%
+[2026-05-06T20:07:29] RS session=42 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:29] RS session=42 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:30] RS session=42 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:30] RS session=42 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:30] RS session=42 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:31] RS session=42 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:31] RS session=42 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:31] RS session=43 ministry_like=CULTURE%
+[2026-05-06T20:07:32] RS session=43 ministry_like=EDUCATION%
+[2026-05-06T20:07:32] RS session=43 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:32] RS session=43 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:33] RS session=43 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:33] RS session=43 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:33] RS session=43 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:34] RS session=43 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:34] RS session=43 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:34] RS session=44 ministry_like=CULTURE%
+[2026-05-06T20:07:35] RS session=44 ministry_like=EDUCATION%
+[2026-05-06T20:07:35] RS session=44 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:35] RS session=44 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:36] RS session=44 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:36] RS session=44 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:36] RS session=44 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:37] RS session=44 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:37] RS session=44 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:37] RS session=45 ministry_like=CULTURE%
+[2026-05-06T20:07:38] RS session=45 ministry_like=EDUCATION%
+[2026-05-06T20:07:38] RS session=45 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:38] RS session=45 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:39] RS session=45 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:39] RS session=45 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:39] RS session=45 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:40] RS session=45 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:40] RS session=45 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:40] RS session=46 ministry_like=CULTURE%
+[2026-05-06T20:07:41] RS session=46 ministry_like=EDUCATION%
+[2026-05-06T20:07:41] RS session=46 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:41] RS session=46 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:42] RS session=46 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:42] RS session=46 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:42] RS session=46 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:43] RS session=46 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:43] RS session=46 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:43] RS session=47 ministry_like=CULTURE%
+[2026-05-06T20:07:44] RS session=47 ministry_like=EDUCATION%
+[2026-05-06T20:07:44] RS session=47 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:45] RS session=47 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:45] RS session=47 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:45] RS session=47 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:45] RS session=47 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:46] RS session=47 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:46] RS session=47 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:46] RS session=48 ministry_like=CULTURE%
+[2026-05-06T20:07:47] RS session=48 ministry_like=EDUCATION%
+[2026-05-06T20:07:47] RS session=48 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:47] RS session=48 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:48] RS session=48 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:48] RS session=48 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:48] RS session=48 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:49] RS session=48 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:49] RS session=48 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:50] RS session=49 ministry_like=CULTURE%
+[2026-05-06T20:07:50] RS session=49 ministry_like=EDUCATION%
+[2026-05-06T20:07:50] RS session=49 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:51] RS session=49 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:51] RS session=49 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:51] RS session=49 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:52] RS session=49 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:52] RS session=49 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:52] RS session=49 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:53] RS session=50 ministry_like=CULTURE%
+[2026-05-06T20:07:53] RS session=50 ministry_like=EDUCATION%
+[2026-05-06T20:07:53] RS session=50 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:54] RS session=50 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:54] RS session=50 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:54] RS session=50 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:55] RS session=50 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:55] RS session=50 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:56] RS session=50 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:56] RS session=51 ministry_like=CULTURE%
+[2026-05-06T20:07:56] RS session=51 ministry_like=EDUCATION%
+[2026-05-06T20:07:57] RS session=51 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:07:57] RS session=51 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:07:57] RS session=51 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:07:58] RS session=51 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:07:58] RS session=51 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:07:58] RS session=51 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:07:59] RS session=51 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:07:59] RS session=52 ministry_like=CULTURE%
+[2026-05-06T20:07:59] RS session=52 ministry_like=EDUCATION%
+[2026-05-06T20:08:00] RS session=52 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:00] RS session=52 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:00] RS session=52 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:02] RS session=52 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:02] RS session=52 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:08:02] RS session=52 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:08:03] RS session=52 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:08:03] RS session=53 ministry_like=CULTURE%
+[2026-05-06T20:08:04] RS session=53 ministry_like=EDUCATION%
+[2026-05-06T20:08:04] RS session=53 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:04] RS session=53 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:05] RS session=53 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:05] RS session=53 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:06] RS session=53 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:08:06] RS session=53 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:08:07] RS session=53 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:08:07] RS session=54 ministry_like=CULTURE%
+[2026-05-06T20:08:07] RS session=54 ministry_like=EDUCATION%
+[2026-05-06T20:08:08] RS session=54 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:08] RS session=54 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:09] RS session=54 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:09] RS session=54 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:09] RS session=54 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:08:10] RS session=54 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:08:10] RS session=54 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:08:10] RS session=55 ministry_like=CULTURE%
+[2026-05-06T20:08:11] RS session=55 ministry_like=EDUCATION%
+[2026-05-06T20:08:11] RS session=55 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:11] RS session=55 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:12] RS session=55 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:12] RS session=55 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:12] RS session=55 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:08:13] RS session=55 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:08:13] RS session=55 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:08:13] RS session=56 ministry_like=CULTURE%
+[2026-05-06T20:08:14] RS session=56 ministry_like=EDUCATION%
+[2026-05-06T20:08:14] RS session=56 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:14] RS session=56 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:15] RS session=56 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:15] RS session=56 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:16] RS session=56 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:08:16] RS session=56 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:08:16] RS session=56 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:08:17] RS session=57 ministry_like=CULTURE%
+[2026-05-06T20:08:17] RS session=57 ministry_like=EDUCATION%
+[2026-05-06T20:08:17] RS session=57 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:18] RS session=57 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:18] RS session=57 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:18] RS session=57 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:19] RS session=57 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:08:19] RS session=57 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:08:19] RS session=57 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:08:20] RS session=58 ministry_like=CULTURE%
+[2026-05-06T20:08:20] RS session=58 ministry_like=EDUCATION%
+[2026-05-06T20:08:20] RS session=58 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:21] RS session=58 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:21] RS session=58 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:21] RS session=58 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:22] RS session=58 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:08:22] RS session=58 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:08:23] RS session=58 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:08:23] RS session=59 ministry_like=CULTURE%
+[2026-05-06T20:08:23] RS session=59 ministry_like=EDUCATION%
+[2026-05-06T20:08:24] RS session=59 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:24] RS session=59 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:24] RS session=59 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:25] RS session=59 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:25] RS session=59 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:08:25] RS session=59 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:08:26] RS session=59 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:08:26] RS session=60 ministry_like=CULTURE%
+[2026-05-06T20:08:26] RS session=60 ministry_like=EDUCATION%
+[2026-05-06T20:08:27] RS session=60 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:27] RS session=60 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:27] RS session=60 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:28] RS session=60 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:28] RS session=60 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:08:28] RS session=60 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:08:29] RS session=60 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:08:29] RS session=61 ministry_like=CULTURE%
+[2026-05-06T20:08:29] RS session=61 ministry_like=EDUCATION%
+[2026-05-06T20:08:30] RS session=61 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:30] RS session=61 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:30] RS session=61 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:31] RS session=61 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:31] RS session=61 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:08:31] RS session=61 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:08:32] RS session=61 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:08:32] RS session=62 ministry_like=CULTURE%
+[2026-05-06T20:08:33] RS session=62 ministry_like=EDUCATION%
+[2026-05-06T20:08:33] RS session=62 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:33] RS session=62 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:34] RS session=62 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:34] RS session=62 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:34] RS session=62 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:08:35] RS session=62 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:08:35] RS session=62 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:08:35] RS session=63 ministry_like=CULTURE%
+[2026-05-06T20:08:36] RS session=63 ministry_like=EDUCATION%
+[2026-05-06T20:08:36] RS session=63 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:36] RS session=63 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:37] RS session=63 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:37] RS session=63 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:37] RS session=63 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:08:38] RS session=63 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:08:38] RS session=63 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:08:38] RS session=64 ministry_like=CULTURE%
+[2026-05-06T20:08:39] RS session=64 ministry_like=EDUCATION%
+[2026-05-06T20:08:39] RS session=64 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:39] RS session=64 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:40] RS session=64 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:40] RS session=64 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:41] RS session=64 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:08:41] RS session=64 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:08:41] RS session=64 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:08:42] RS session=65 ministry_like=CULTURE%
+[2026-05-06T20:08:42] RS session=65 ministry_like=EDUCATION%
+[2026-05-06T20:08:42] RS session=65 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:43] RS session=65 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:43] RS session=65 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:43] RS session=65 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:44] RS session=65 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:08:44] RS session=65 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:08:45] RS session=65 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:08:45] RS session=66 ministry_like=CULTURE%
+[2026-05-06T20:08:45] RS session=66 ministry_like=EDUCATION%
+[2026-05-06T20:08:46] RS session=66 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:46] RS session=66 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:46] RS session=66 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:47] RS session=66 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:47] RS session=66 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:08:47] RS session=66 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:08:48] RS session=66 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:08:48] RS session=67 ministry_like=CULTURE%
+[2026-05-06T20:08:49] RS session=67 ministry_like=EDUCATION%
+[2026-05-06T20:08:49] RS session=67 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:49] RS session=67 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:50] RS session=67 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:50] RS session=67 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:50] RS session=67 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:08:51] RS session=67 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:08:51] RS session=67 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:08:51] RS session=68 ministry_like=CULTURE%
+[2026-05-06T20:08:52] RS session=68 ministry_like=EDUCATION%
+[2026-05-06T20:08:52] RS session=68 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:52] RS session=68 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:53] RS session=68 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:53] RS session=68 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:53] RS session=68 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:08:54] RS session=68 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:08:54] RS session=68 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:08:54] RS session=69 ministry_like=CULTURE%
+[2026-05-06T20:08:55] RS session=69 ministry_like=EDUCATION%
+[2026-05-06T20:08:55] RS session=69 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:55] RS session=69 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:56] RS session=69 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:56] RS session=69 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:56] RS session=69 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:08:57] RS session=69 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:08:57] RS session=69 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:08:57] RS session=70 ministry_like=CULTURE%
+[2026-05-06T20:08:58] RS session=70 ministry_like=EDUCATION%
+[2026-05-06T20:08:58] RS session=70 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:08:58] RS session=70 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:08:59] RS session=70 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:08:59] RS session=70 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:08:59] RS session=70 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:00] RS session=70 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:00] RS session=70 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:00] RS session=71 ministry_like=CULTURE%
+[2026-05-06T20:09:01] RS session=71 ministry_like=EDUCATION%
+[2026-05-06T20:09:01] RS session=71 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:01] RS session=71 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:02] RS session=71 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:02] RS session=71 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:02] RS session=71 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:03] RS session=71 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:03] RS session=71 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:03] RS session=72 ministry_like=CULTURE%
+[2026-05-06T20:09:04] RS session=72 ministry_like=EDUCATION%
+[2026-05-06T20:09:04] RS session=72 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:05] RS session=72 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:05] RS session=72 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:05] RS session=72 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:06] RS session=72 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:06] RS session=72 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:06] RS session=72 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:07] RS session=73 ministry_like=CULTURE%
+[2026-05-06T20:09:07] RS session=73 ministry_like=EDUCATION%
+[2026-05-06T20:09:07] RS session=73 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:08] RS session=73 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:08] RS session=73 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:09] RS session=73 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:09] RS session=73 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:09] RS session=73 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:10] RS session=73 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:10] RS session=74 ministry_like=CULTURE%
+[2026-05-06T20:09:10] RS session=74 ministry_like=EDUCATION%
+[2026-05-06T20:09:11] RS session=74 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:11] RS session=74 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:11] RS session=74 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:12] RS session=74 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:12] RS session=74 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:12] RS session=74 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:13] RS session=74 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:13] RS session=75 ministry_like=CULTURE%
+[2026-05-06T20:09:13] RS session=75 ministry_like=EDUCATION%
+[2026-05-06T20:09:14] RS session=75 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:14] RS session=75 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:14] RS session=75 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:15] RS session=75 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:15] RS session=75 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:15] RS session=75 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:16] RS session=75 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:16] RS session=76 ministry_like=CULTURE%
+[2026-05-06T20:09:16] RS session=76 ministry_like=EDUCATION%
+[2026-05-06T20:09:17] RS session=76 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:17] RS session=76 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:17] RS session=76 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:18] RS session=76 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:18] RS session=76 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:18] RS session=76 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:19] RS session=76 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:19] RS session=77 ministry_like=CULTURE%
+[2026-05-06T20:09:19] RS session=77 ministry_like=EDUCATION%
+[2026-05-06T20:09:20] RS session=77 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:20] RS session=77 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:20] RS session=77 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:21] RS session=77 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:21] RS session=77 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:21] RS session=77 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:22] RS session=77 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:22] RS session=78 ministry_like=CULTURE%
+[2026-05-06T20:09:22] RS session=78 ministry_like=EDUCATION%
+[2026-05-06T20:09:23] RS session=78 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:23] RS session=78 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:23] RS session=78 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:24] RS session=78 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:24] RS session=78 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:24] RS session=78 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:25] RS session=78 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:25] RS session=79 ministry_like=CULTURE%
+[2026-05-06T20:09:25] RS session=79 ministry_like=EDUCATION%
+[2026-05-06T20:09:26] RS session=79 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:26] RS session=79 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:26] RS session=79 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:27] RS session=79 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:27] RS session=79 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:27] RS session=79 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:28] RS session=79 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:28] RS session=80 ministry_like=CULTURE%
+[2026-05-06T20:09:28] RS session=80 ministry_like=EDUCATION%
+[2026-05-06T20:09:29] RS session=80 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:29] RS session=80 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:29] RS session=80 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:30] RS session=80 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:30] RS session=80 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:31] RS session=80 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:31] RS session=80 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:31] RS session=81 ministry_like=CULTURE%
+[2026-05-06T20:09:32] RS session=81 ministry_like=EDUCATION%
+[2026-05-06T20:09:32] RS session=81 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:32] RS session=81 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:33] RS session=81 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:33] RS session=81 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:33] RS session=81 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:34] RS session=81 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:34] RS session=81 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:34] RS session=82 ministry_like=CULTURE%
+[2026-05-06T20:09:35] RS session=82 ministry_like=EDUCATION%
+[2026-05-06T20:09:35] RS session=82 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:35] RS session=82 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:36] RS session=82 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:36] RS session=82 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:36] RS session=82 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:37] RS session=82 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:37] RS session=82 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:37] RS session=83 ministry_like=CULTURE%
+[2026-05-06T20:09:38] RS session=83 ministry_like=EDUCATION%
+[2026-05-06T20:09:38] RS session=83 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:38] RS session=83 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:39] RS session=83 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:39] RS session=83 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:39] RS session=83 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:40] RS session=83 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:40] RS session=83 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:40] RS session=84 ministry_like=CULTURE%
+[2026-05-06T20:09:41] RS session=84 ministry_like=EDUCATION%
+[2026-05-06T20:09:41] RS session=84 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:41] RS session=84 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:42] RS session=84 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:42] RS session=84 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:42] RS session=84 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:43] RS session=84 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:43] RS session=84 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:43] RS session=85 ministry_like=CULTURE%
+[2026-05-06T20:09:44] RS session=85 ministry_like=EDUCATION%
+[2026-05-06T20:09:44] RS session=85 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:44] RS session=85 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:45] RS session=85 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:45] RS session=85 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:45] RS session=85 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:46] RS session=85 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:46] RS session=85 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:46] RS session=86 ministry_like=CULTURE%
+[2026-05-06T20:09:47] RS session=86 ministry_like=EDUCATION%
+[2026-05-06T20:09:47] RS session=86 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:47] RS session=86 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:48] RS session=86 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:48] RS session=86 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:48] RS session=86 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:49] RS session=86 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:49] RS session=86 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:49] RS session=87 ministry_like=CULTURE%
+[2026-05-06T20:09:50] RS session=87 ministry_like=EDUCATION%
+[2026-05-06T20:09:50] RS session=87 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:50] RS session=87 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:51] RS session=87 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:51] RS session=87 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:51] RS session=87 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:52] RS session=87 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:52] RS session=87 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:52] RS session=88 ministry_like=CULTURE%
+[2026-05-06T20:09:53] RS session=88 ministry_like=EDUCATION%
+[2026-05-06T20:09:53] RS session=88 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:53] RS session=88 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:54] RS session=88 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:54] RS session=88 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:54] RS session=88 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:55] RS session=88 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:55] RS session=88 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:55] RS session=89 ministry_like=CULTURE%
+[2026-05-06T20:09:56] RS session=89 ministry_like=EDUCATION%
+[2026-05-06T20:09:56] RS session=89 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:56] RS session=89 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:09:57] RS session=89 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:09:57] RS session=89 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:09:57] RS session=89 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:09:58] RS session=89 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:09:58] RS session=89 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:09:58] RS session=90 ministry_like=CULTURE%
+[2026-05-06T20:09:59] RS session=90 ministry_like=EDUCATION%
+[2026-05-06T20:09:59] RS session=90 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:09:59] RS session=90 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:10:00] RS session=90 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:10:00] RS session=90 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:10:00] RS session=90 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:10:01] RS session=90 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:10:01] RS session=90 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:10:01] RS session=91 ministry_like=CULTURE%
+[2026-05-06T20:10:02] RS session=91 ministry_like=EDUCATION%
+[2026-05-06T20:10:02] RS session=91 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:10:02] RS session=91 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:10:03] RS session=91 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:10:03] RS session=91 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:10:03] RS session=91 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:10:04] RS session=91 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:10:04] RS session=91 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:10:04] RS session=92 ministry_like=CULTURE%
+[2026-05-06T20:10:05] RS session=92 ministry_like=EDUCATION%
+[2026-05-06T20:10:05] RS session=92 ministry_like=HUMAN RESOURCE DEVELOPMENT%
+[2026-05-06T20:10:05] RS session=92 ministry_like=INFORMATION AND BROADCASTING%
+[2026-05-06T20:10:06] RS session=92 ministry_like=SOCIAL JUSTICE%
+[2026-05-06T20:10:06] RS session=92 ministry_like=TRIBAL AFFAIRS%
+[2026-05-06T20:10:06] RS session=92 ministry_like=MINORITY AFFAIRS%
+[2026-05-06T20:10:07] RS session=92 ministry_like=RURAL DEVELOPMENT%
+[2026-05-06T20:10:07] RS session=92 ministry_like=PANCHAYATI RAJ%
+[2026-05-06T20:10:07] RS session=93 ministry_like=CULTURE%
+[2026-05-06T20:10:08] RS session=93 ministry_like=EDUCATION%

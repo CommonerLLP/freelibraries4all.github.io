@@ -6,20 +6,20 @@ and check.** If a rule is not in this file, it does not exist as a
 persistent rule — it lives only in one session's running context and
 will be lost at the next compaction.
 
-Last updated: 2026-05-06 (org correction: CommonSenseLLP)
+Last updated: 2026-05-06 (org correction: CommonerLLP)
 
 ---
 
 ## 1 · DEPLOY — single remote, no exceptions
 
-- **Production repo:** `CommonSenseLLP/freelibraries4all.github.io`
+- **Production repo:** `CommonerLLP/freelibraries4all.github.io`
   (the only place that serves theright2read.org)
 - **Push target:** `git push origin HEAD:main` only.
 - **Do NOT push to `skishchampi/freelibraries4all`.** That repo is for
   the dashboard / earlier prototype and must not receive pamphlet
   pushes.
 - The local working remote is `origin` →
-  `https://github.com/CommonSenseLLP/freelibraries4all.github.io.git`.
+  `https://github.com/CommonerLLP/freelibraries4all.github.io.git`.
   If `git remote -v` shows anything else as a push target, **stop and
   ask the user before pushing.**
 
@@ -109,7 +109,7 @@ This is the single most-violated rule. **Read it twice.**
 
 - `assets/parliament_libraries.js` is **generated**, not hand-edited.
 - Generator: the public package
-  [`sansad-semantic-crawler`](https://github.com/CommonSenseLLP/sansad-semantic-crawler)
+  [`sansad-semantic-crawler`](https://github.com/CommonerLLP/sansad-semantic-crawler)
   pinned at `v0.2.0` in `requirements.txt`. PolyForm Noncommercial 1.0.0.
 - Topic profile lives at `topics/libraries.json` — vendored from
   the upstream `examples/topics/libraries.json` because `pip install`

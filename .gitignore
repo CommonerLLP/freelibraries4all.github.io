@@ -8,6 +8,9 @@
 # verified-fact audit trail. They stay local to the working tree.
 /CLAUDE.md
 /AGENTS.md
+/CONTEXT.md
+/GEMINI.md
+/WORKING.md
 /memory/
 
 # Internal strategy / architecture / design notes — NEVER commit.

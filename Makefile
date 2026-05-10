@@ -24,7 +24,7 @@ TOPIC_PROFILE := topics/libraries.json
 CORPUS_OUT    := data/_parliament_libraries
 EXPORT_PATH   := assets/parliament_libraries.js
 
-.PHONY: deps corpus-crawl corpus-parse corpus-export corpus-refresh help
+.PHONY: deps corpus-crawl corpus-parse corpus-export corpus-refresh sync-agents help
 
 $(PYTHON):
 	python3 -m venv $(VENV)
@@ -59,6 +59,9 @@ corpus-export: $(PYTHON)
 # AGENTS.md section 5 for the canonical sed command.
 corpus-refresh: corpus-crawl corpus-parse corpus-export
 
+sync-agents:
+	python3 scripts/sync_agents.py
+
 help:
 	@echo "Corpus refresh (sansad-semantic-crawler):"
 	@echo "  make corpus-refresh                   — full pipeline (crawl + parse + export)"
@@ -67,3 +70,5 @@ help:
 	@echo "  make corpus-export                    — regenerate assets/parliament_libraries.js"
 	@echo "Setup:"
 	@echo "  make deps                             — install pinned deps into .venv"
+	@echo "Agent rules:"
+	@echo "  make sync-agents                      — regenerate CLAUDE.md + AGENTS.md from CONTEXT.md"

@@ -37,3 +37,11 @@ data/_parliament_libraries/crawl.log
 data/_parliament_libraries/parse.log
 data/_parliament_libraries/pdfs/
 data/_parliament_libraries/text/
+
+# mp-dossier pipeline outputs — sansad-semantic-crawler intermediates,
+# not theright2read content.
+data/_parliament_libraries/answers.jsonl
+data/_parliament_libraries/analysis_discourse.jsonl
+data/_parliament_libraries/ministry_dossiers/
+data/_parliament_libraries/ministry_summary_committee.jsonl
+data/_parliament_libraries/ministry_summary_qa.jsonl

@@ -19,29 +19,27 @@ repo, run the dashboard locally, and reproduce the deployed
 There is no build step, backend, database, or package manager. The live site is
 served directly from the static files in this repo.
 
-## Ethics And Politics
+## Ethics and Principles
 
-The Right to Read is grounded in Ambedkarite and anti-caste ethics. The
-project treats access to books, public libraries, knowledge infrastructure, and
-publicly funded learning spaces as questions of social justice, democratic
-participation, and material equality.
+The Right to Read is grounded in the principles of social justice and 
+democratic access to knowledge. The project treats access to books, 
+public libraries, and knowledge infrastructure as essential components 
+of material equality and civil participation.
 
-The dashboard is built from the view that public libraries matter most when
-they are accessible to people historically excluded from education, literacy,
-archives, state institutions, and cultural power. This includes Dalit,
-Bahujan, Adivasi, minority, working-class, rural, disabled, and gender-marginal
-communities.
+The dashboard is built with the understanding that public libraries are 
+critical for those who have been historically excluded from institutional 
+literacy and cultural power. This includes Dalit, Bahujan, Adivasi, 
+minority, and working-class communities, among others.
 
-Contributors should approach the work with the following commitments:
+Contributors are expected to maintain these commitments:
 
-- Treat library access as a public good, not a private privilege.
-- Pay attention to caste, class, region, language, gender, disability, and rural
-  exclusion when interpreting data.
-- Avoid neutral language that hides structural inequality when the public record
-  shows persistent neglect or exclusion.
-- Keep claims evidence-led, sourced, and accountable.
-- Build tools, data, and analysis that help communities ask sharper questions of
-  governments and public institutions.
+- Treat library access as a fundamental public good.
+- Prioritize technical accuracy in documenting exclusion across caste, 
+  class, region, and language.
+- Maintain analytical rigor: follow the evidence where it reveals 
+  systemic neglect.
+- Build tools and data that empower researchers and communities to 
+  hold public institutions accountable.
 
 ## Refreshing The Parliamentary Library Corpus
 

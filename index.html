@@ -43,10 +43,11 @@
 </head>
 <body>
 
-<a class="skip-link" href="#main-content">Skip to content</a>
+<nav>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+</nav>
 
-<main class="pamphlet" id="main-content">
-
+<header>
   <!-- STRIP -->
   <div class="strip">
     <span lang="en">The Right to Read</span>
@@ -59,6 +60,9 @@
   <div class="actbar">
     <a href="#write"><span class="bang">ACT!</span>Write to your CM and the PM <span style="opacity:0.85">— now.</span><span class="arrow">→</span></a>
   </div>
+</header>
+
+<main class="pamphlet" id="main-content">
 
   <!-- HERO — fact + question + polemic + buys-card all in one section -->
   <section class="hero">
@@ -74,7 +78,7 @@
       </div>
       <p class="hero-lede"><em class="lede-opener">So much money for statues — but <span class="red">none for our libraries!!!</span></em> <strong class="red">We say we are a Vishwaguru. How?</strong></p>
       <div class="buys">
-        <h3>WHAT ₹11.62 BUYS YOU, IN 2026:</h3>
+        <h2>WHAT ₹11.62 BUYS YOU, IN 2026:</h2>
         <div class="buys-grid">
           <div data-icon="☕">Not one sip of restaurant coffee.</div>
           <div data-icon="🛵">Not one Swiggy delivery fee.</div>
@@ -102,7 +106,7 @@
           <div class="calc-label">Type your annual salary</div>
           <div class="calc-input-row">
             <span class="calc-rupee">₹</span>
-            <input id="income-input" type="number" value="1200000" min="0" />
+            <input id="income-input" type="number" value="1200000" min="0" aria-label="Annual salary in rupees" />
           </div>
           <input id="income-range" type="range" min="300000" max="10000000" step="50000" value="1200000" aria-label="Annual salary in rupees" />
           <div class="calc-marks"><span>₹3 Lakh</span><span>₹50 Lakh</span><span>₹1 Crore</span></div>
@@ -460,7 +464,7 @@
     </div>
     <div class="footer-grid">
       <div>
-        <h3>EDUCATE.<br>AGITATE.<br><span class="red">ORGANISE.</span></h3>
+        <h2>EDUCATE.<br>AGITATE.<br><span class="red">ORGANISE.</span></h2>
       </div>
       <div class="footer-meta">
         <a href="/" class="footer-og-link" aria-label="Right to Read — back to top">
@@ -478,7 +482,7 @@
         </div>
       </div>
       <div class="footer-sources">
-        <h3 class="bib-head">Data Sources</h3>
+        <h2 class="bib-head">Data Sources</h2>
         <ul class="bib-list">
           <li>
             <span class="bib-label">Per-capita library expenditure</span>

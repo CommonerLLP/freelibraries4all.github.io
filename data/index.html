@@ -39,7 +39,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@600;700;900&family=Roboto+Slab:wght@400;500;700;900&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Hind:wght@400;500;600;700&family=Hind+Madurai:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&family=Noto+Serif+Tamil:wght@400;600;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="../assets/styles.css?v=43">
+<link rel="stylesheet" href="../assets/styles.css?v=44">
 </head>
 <body>
 
@@ -152,12 +152,30 @@
   <section class="section ink" id="parliament">
     <div class="grain soft"></div>
     <div class="stack">
-      <div class="eyebrow">Parliament · library questions</div>
-      <h2>WHAT MPs ASK WHEN THEY <span class="red">ASK ABOUT LIBRARIES.</span></h2>
-      <p class="lede">A local crawler now tracks Lok Sabha and Rajya Sabha questions on public libraries, RRRLF, the National Mission on Libraries, Library Acts, digital libraries, school and university libraries, reading rooms, and access. The cards below are generated from the local Parliament corpus.</p>
-      <div class="parl-grid" id="parl-grid"></div>
-      <div class="parl-tags" id="parl-tags" aria-label="Top Parliament library topics"></div>
-      <div class="parl-questions" id="parl-questions"></div>
+      <div class="eyebrow">Parliament · how the State responds</div>
+      <h2>MPs ASK ABOUT LIBRARIES. <span class="red">THE STATE EVADES.</span></h2>
+      <p class="lede">The chart above shows what the Centre <em>spent</em>. This section shows what the Centre <em>says</em> when MPs ask about that spending. <strong>341 library questions in Lok Sabha and Rajya Sabha. 105 had a parseable ministry response.</strong> Of those, <strong class="t-red">64 (61%) were classified as evasive</strong> by the open-source <a href="https://github.com/CommonerLLP/sansad-semantic-crawler" target="_blank" rel="noopener">sansad-semantic-crawler</a> — not Government opinion, Government's own words against a public taxonomy of parliamentary evasion.</p>
+
+      <div class="parl-headline-stat" id="parl-headline-stat"></div>
+
+      <h3 class="parl-subhead">"Library is a state subject." <span class="t-cream-soft">Same five words. Two decades. Both major parties.</span></h3>
+      <p class="parl-subhead-note">The Centre's library-funding arm is RRRLF. Its smallness — ₹197 crore over twenty years — is justified, in Parliament, by the same five-word deflection. Below: every time the Centre invoked it in response to an RRRLF-tagged question, in the order it happened.</p>
+      <div class="parl-rrrlf-cascade" id="parl-rrrlf-cascade"></div>
+
+      <h3 class="parl-subhead">Per-ministry evasion rate <span class="t-cream-soft">on classified responses</span></h3>
+      <p class="parl-subhead-note">Of the 105 responses our classifier could read, here is the share each ministry spent on deflection, refusal, redirection, withheld data, or constitutional default. <strong>N is small — show it.</strong></p>
+      <div class="parl-ministry-rows" id="parl-ministry-rows"></div>
+
+      <h3 class="parl-subhead">A taxonomy of evasion <span class="t-cream-soft">in the State's own words</span></h3>
+      <p class="parl-subhead-note">One verbatim example per category. The classifier's label and political function are shown above the excerpt; the clickable line below it is the original Parliament URI.</p>
+      <div class="parl-evasion-grid" id="parl-evasion-grid"></div>
+
+      <details class="parl-corpus-details">
+        <summary>Corpus stats and top tags</summary>
+        <div class="parl-grid" id="parl-grid"></div>
+        <div class="parl-tags" id="parl-tags" aria-label="Top Parliament library topics"></div>
+      </details>
+
       <div class="section-source-note" id="parl-source-note"></div>
     </div>
   </section>
@@ -385,10 +403,10 @@
 
 </main>
 
-<script src="../assets/data.js?v=43"></script>
-<script src="../assets/parliament_libraries.js?v=43"></script>
-<script src="../assets/helpers.js?v=43"></script>
-<script src="../assets/games.js?v=43"></script>
-<script src="../assets/main.js?v=43"></script>
+<script src="../assets/data.js?v=44"></script>
+<script src="../assets/parliament_libraries.js?v=44"></script>
+<script src="../assets/helpers.js?v=44"></script>
+<script src="../assets/games.js?v=44"></script>
+<script src="../assets/main.js?v=44"></script>
 </body>
 </html>

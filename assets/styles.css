@@ -1476,6 +1476,174 @@
     font-family: var(--f-mono); color: var(--red); font-size: 0.9em;
   }
 
+  /* PARLIAMENT · discourse analysis (v1.0.0 of sansad-semantic-crawler) */
+  .t-cream-soft { color: var(--cream-deep); font-weight: 500; }
+
+  .parl-headline-stat {
+    margin-top: var(--space-8);
+    display: grid; grid-template-columns: auto 1fr; gap: var(--space-8);
+    align-items: start;
+    padding: var(--space-7) var(--space-7);
+    border: 2px solid var(--red);
+    background: rgba(229, 62, 62, 0.08);
+  }
+  .parl-headline-num {
+    font-family: var(--f-display); font-size: 120px; font-weight: 900;
+    line-height: 0.85; letter-spacing: -4px; color: var(--red);
+    font-variant-numeric: tabular-nums;
+  }
+  .parl-headline-lede {
+    font-family: var(--f-slab); font-size: 22px; line-height: 1.3;
+    color: var(--cream);
+  }
+  .parl-headline-sub {
+    margin-top: var(--space-3);
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 1.2px;
+    color: var(--cream-deep); line-height: 1.55;
+  }
+
+  .parl-subhead {
+    margin: var(--space-12) 0 var(--space-2);
+    font-family: var(--f-display); font-size: 34px; font-weight: 900;
+    letter-spacing: -1px; line-height: 1.05; color: var(--cream);
+    text-transform: none;
+  }
+  .parl-subhead-note {
+    margin: 0 0 var(--space-5);
+    font-family: var(--f-slab); font-size: 15px; line-height: 1.5;
+    color: var(--cream-deep);
+  }
+
+  .parl-rrrlf-cascade {
+    display: grid; grid-template-columns: 1fr; gap: 0;
+    border-left: 4px solid var(--red);
+  }
+  .parl-cascade-card {
+    display: grid; grid-template-columns: 130px 1fr;
+    gap: var(--space-5);
+    padding: var(--space-5) var(--space-5);
+    border-bottom: 1px solid rgba(255, 248, 226, 0.15);
+  }
+  .parl-cascade-card:last-child { border-bottom: none; }
+  .parl-cascade-date {
+    font-family: var(--f-mono); font-size: 13px; font-weight: 700;
+    letter-spacing: 0.5px; color: var(--red);
+    padding-top: 6px;
+  }
+  .parl-cascade-quote {
+    font-family: var(--f-slab); font-size: 22px; font-weight: 700;
+    line-height: 1.25; color: var(--cream); font-style: italic;
+  }
+  .parl-cascade-meta {
+    margin-top: var(--space-2);
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 1px;
+    color: var(--cream-deep); text-transform: uppercase;
+  }
+  .parl-cascade-meta a { color: var(--cream); text-decoration-color: var(--red); }
+  .parl-cascade-min {
+    margin-top: 4px;
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 1px;
+    color: var(--cream-deep);
+  }
+
+  .parl-ministry-rows {
+    display: flex; flex-direction: column; gap: var(--space-3);
+  }
+  .parl-ministry-row {
+    display: grid; grid-template-columns: 240px 1fr 220px;
+    gap: var(--space-4); align-items: center;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid rgba(255, 248, 226, 0.12);
+  }
+  .parl-ministry-name {
+    font-family: var(--f-mono); font-size: 12px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; color: var(--cream);
+  }
+  .parl-ministry-bar-wrap {
+    position: relative; height: 28px;
+    background: rgba(255, 248, 226, 0.08);
+    border: 1px solid rgba(255, 248, 226, 0.15);
+  }
+  .parl-ministry-bar {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    background: var(--red);
+  }
+  .parl-ministry-rate {
+    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    font-family: var(--f-display); font-size: 18px; font-weight: 900;
+    color: var(--cream); font-variant-numeric: tabular-nums;
+  }
+  .parl-ministry-n {
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.5px;
+    color: var(--cream-deep);
+  }
+
+  .parl-evasion-grid {
+    display: grid; grid-template-columns: 1fr; gap: 0;
+    border-left: 4px solid var(--red);
+  }
+  .parl-evasion-row {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: var(--space-5);
+    padding: var(--space-5) var(--space-5);
+    border-bottom: 1px solid rgba(255, 248, 226, 0.15);
+  }
+  .parl-evasion-row:last-child { border-bottom: none; }
+  .parl-evasion-tag {
+    font-family: var(--f-mono); font-size: 11px; font-weight: 800;
+    letter-spacing: 2px; color: var(--red); text-transform: uppercase;
+    padding-top: 8px;
+  }
+  .parl-evasion-pattern {
+    font-family: var(--f-slab); font-size: 22px; font-weight: 700;
+    line-height: 1.25; color: var(--cream); font-style: italic;
+  }
+  .parl-evasion-cite {
+    margin-top: var(--space-2);
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 1px;
+    color: var(--cream-deep); text-transform: uppercase;
+  }
+  .parl-evasion-cite a { color: var(--cream); text-decoration-color: var(--red); }
+  .parl-evasion-more {
+    margin-top: var(--space-3);
+  }
+  .parl-evasion-more summary {
+    cursor: pointer; list-style: none;
+    font-family: var(--f-mono); font-size: 10.5px; font-weight: 700;
+    letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--cream-deep);
+  }
+  .parl-evasion-more summary::-webkit-details-marker { display: none; }
+  .parl-evasion-more summary::before { content: "▸ "; color: var(--red); }
+  .parl-evasion-more[open] summary::before { content: "▾ "; }
+  .parl-evasion-more blockquote {
+    margin: var(--space-3) 0 0;
+    padding: var(--space-3) var(--space-4);
+    border-left: 2px solid rgba(229, 62, 62, 0.5);
+    font-family: var(--f-slab); font-size: 14px; line-height: 1.45;
+    color: var(--cream-deep); font-style: normal;
+  }
+  .parl-evasion-function {
+    margin-top: var(--space-2);
+    font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.5px;
+    color: var(--cream-deep); font-style: italic;
+  }
+
+  .parl-corpus-details {
+    margin-top: var(--space-10);
+    border-top: 1px solid rgba(255, 248, 226, 0.15);
+    padding-top: var(--space-5);
+  }
+  .parl-corpus-details summary {
+    cursor: pointer; list-style: none;
+    font-family: var(--f-mono); font-size: 11px; font-weight: 800;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--cream-deep);
+  }
+  .parl-corpus-details summary::-webkit-details-marker { display: none; }
+  .parl-corpus-details summary::before { content: "▸ "; color: var(--red); }
+  .parl-corpus-details[open] summary::before { content: "▾ "; }
+
   /* QUOTES */
   .quotes h2 { font-size: clamp(44px, 8vw, 96px); letter-spacing: -2px; }
   .quote-grid { margin-top: var(--space-12); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-10) 48px; }
@@ -1932,6 +2100,15 @@
     .parl-questions { grid-template-columns: 1fr; }
     .parl-question h3 { font-size: 24px; }
     .parl-question-stat { font-size: 28px; }
+    .parl-headline-stat { grid-template-columns: 1fr; gap: var(--space-3); }
+    .parl-headline-num { font-size: 88px; }
+    .parl-headline-lede { font-size: 18px; }
+    .parl-subhead { font-size: 26px; }
+    .parl-cascade-card { grid-template-columns: 1fr; gap: var(--space-2); }
+    .parl-cascade-quote { font-size: 18px; }
+    .parl-ministry-row { grid-template-columns: 1fr; gap: var(--space-2); }
+    .parl-evasion-row { grid-template-columns: 1fr; gap: var(--space-2); }
+    .parl-evasion-pattern { font-size: 18px; }
     .quote-grid { grid-template-columns: 1fr; gap: var(--space-6); }
     .quote .text, .quote.deva .text, .quote.tamil .text { font-size: 20px; }
     .cta { padding: var(--space-12) var(--space-6); }

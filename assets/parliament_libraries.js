@@ -1,7 +1,7 @@
 window.PARLIAMENT_LIBRARY_DATA = {
   "topic": "libraries",
   "description": "Public, institutional, digital, and access-oriented library questions in Parliament.",
-  "generatedAt": "2026-05-10T09:40:44",
+  "generatedAt": "2026-05-12T05:36:06",
   "sourceManifest": "data/_parliament_libraries/manifest.jsonl",
   "summaryStats": [
     {
@@ -519,6 +519,510 @@ window.PARLIAMENT_LIBRARY_DATA = {
       "excerpt": "Projects on NML (a) the projects undertaken under the National Mission on Libraries (NML) and the amount spent on creation of National Virtual Library of India; and&lt;br/&gt;&lt;br/&gt;(b) the measures taken for the digitization of manuscripts in the last three years and how...",
       "source": "rsdoc.nic.in",
       "href": "https://sansad.in/getFile/annex/249/Au320.doc?source=pqars"
+    }
+  ],
+  "discourseSummary": {
+    "questionsTotal": 341,
+    "responsesExtracted": 105,
+    "responsesClassified": 105,
+    "evasiveCount": 64,
+    "substantiveCount": 41,
+    "evasionRateClassified": 0.6095,
+    "labelDistribution": {
+      "REJECTED": 23,
+      "FACTUAL_DISCLOSURE": 21,
+      "ACCEPTED": 20,
+      "SUBSTITUTED": 12,
+      "FEDERAL_DEFLECTION": 12,
+      "DEFLECTED": 8,
+      "DATA_WITHHELD": 4,
+      "STRUCTURAL_REFUSAL": 2,
+      "CONSTITUTIONAL_DEFAULT": 2,
+      "REPRESENTATIONAL_SILENCE": 1
+    }
+  },
+  "ministryDiscourse": [
+    {
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "recordsTotal": 83,
+      "recordsClassified": 15,
+      "recordsUnclassified": 63,
+      "evasionRateClassified": 0.6,
+      "labelDistribution": {
+        "DEFLECTED": 3,
+        "UNCLASSIFIED": 63,
+        "SUBSTITUTED": 4,
+        "STRUCTURAL_REFUSAL": 2,
+        "DATA_WITHHELD": 2,
+        "FEDERAL_DEFLECTION": 1,
+        "REJECTED": 3,
+        "CONSTITUTIONAL_DEFAULT": 2,
+        "FACTUAL_DISCLOSURE": 3
+      },
+      "perEvasionShare": {
+        "SUBSTITUTED": 0.4444,
+        "DATA_WITHHELD": 0.2222,
+        "DEFLECTED": 0.3333
+      }
+    },
+    {
+      "ministry": "CULTURE",
+      "recordsTotal": 67,
+      "recordsClassified": 15,
+      "recordsUnclassified": 41,
+      "evasionRateClassified": 0.4,
+      "labelDistribution": {
+        "UNCLASSIFIED": 41,
+        "REJECTED": 5,
+        "DEFLECTED": 1,
+        "SUBSTITUTED": 4,
+        "ACCEPTED": 1,
+        "FACTUAL_DISCLOSURE": 3,
+        "FEDERAL_DEFLECTION": 11,
+        "DATA_WITHHELD": 1
+      },
+      "perEvasionShare": {
+        "SUBSTITUTED": 0.6667,
+        "DATA_WITHHELD": 0.1667,
+        "DEFLECTED": 0.1667
+      }
+    },
+    {
+      "ministry": "SOCIAL JUSTICE AND EMPOWERMENT",
+      "recordsTotal": 11,
+      "recordsClassified": 4,
+      "recordsUnclassified": 7,
+      "evasionRateClassified": 0.0,
+      "labelDistribution": {
+        "FACTUAL_DISCLOSURE": 2,
+        "UNCLASSIFIED": 7,
+        "REJECTED": 1,
+        "ACCEPTED": 1
+      },
+      "perEvasionShare": {}
+    },
+    {
+      "ministry": "Education",
+      "recordsTotal": 8,
+      "recordsClassified": 2,
+      "recordsUnclassified": 6,
+      "evasionRateClassified": 0.5,
+      "labelDistribution": {
+        "UNCLASSIFIED": 6,
+        "SUBSTITUTED": 1,
+        "FACTUAL_DISCLOSURE": 1
+      },
+      "perEvasionShare": {
+        "SUBSTITUTED": 1.0
+      }
+    },
+    {
+      "ministry": "TRIBAL AFFAIRS",
+      "recordsTotal": 5,
+      "recordsClassified": 3,
+      "recordsUnclassified": 1,
+      "evasionRateClassified": 1.0,
+      "labelDistribution": {
+        "SUBSTITUTED": 3,
+        "UNCLASSIFIED": 1,
+        "REPRESENTATIONAL_SILENCE": 1
+      },
+      "perEvasionShare": {
+        "SUBSTITUTED": 1.0
+      }
+    },
+    {
+      "ministry": "RURAL DEVELOPMENT",
+      "recordsTotal": 4,
+      "recordsClassified": 1,
+      "recordsUnclassified": 3,
+      "evasionRateClassified": 1.0,
+      "labelDistribution": {
+        "UNCLASSIFIED": 3,
+        "DATA_WITHHELD": 1
+      },
+      "perEvasionShare": {
+        "DATA_WITHHELD": 1.0
+      }
+    },
+    {
+      "ministry": "CULTURE, YOUTH AFFAIRS AND SPORTS",
+      "recordsTotal": 3,
+      "recordsClassified": 0,
+      "recordsUnclassified": 3,
+      "evasionRateClassified": null,
+      "labelDistribution": {
+        "UNCLASSIFIED": 3
+      },
+      "perEvasionShare": {}
+    }
+  ],
+  "discourseExcerpts": [
+    {
+      "label": "CONSTITUTIONAL_DEFAULT",
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "house": "Rajya Sabha",
+      "qtype": "UNSTARRED",
+      "qno": "3367",
+      "date": "2007-05-07",
+      "title": "CONFERENCE OF EDUCATION MINISTERS OF STATES .",
+      "askers": [
+        "Motilal Vora"
+      ],
+      "tags": [
+        "digital_library"
+      ],
+      "excerpt": "MN1STER OF STATE IN THE MINISTRY OF HUMAN RESOURCE DEVELOPMENT (SMT. D. PURANDESWARI) a)A Conference all State Education Ministers was held on 10th and 11th April 2007 at New Delhi. Record of the Co",
+      "matchedPattern": "mission mode",
+      "politicalFunction": "Institutional default of Article 16 representation. Erases Bahujan (SC/ST/OBC) presence via aggregate totals or substitution.",
+      "confidence": 0.95,
+      "uri": ""
+    },
+    {
+      "label": "CONSTITUTIONAL_DEFAULT",
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "house": "Rajya Sabha",
+      "qtype": "STARRED",
+      "qno": "400",
+      "date": "2007-04-30",
+      "title": "CONFERENCE OF EDUCATION MINISTERS OF STATES .",
+      "askers": [
+        "Rajeev Chandrasekhar"
+      ],
+      "tags": [
+        "digital_library"
+      ],
+      "excerpt": "ED ON 30.4.2007. (a): Yes, Sir.A Conference of the State Education Ministers was held on 10th and 11th April, 2007. (b): Points on which a consensus was reached in the said Conference are given in t",
+      "matchedPattern": "mission mode",
+      "politicalFunction": "Institutional default of Article 16 representation. Erases Bahujan (SC/ST/OBC) presence via aggregate totals or substitution.",
+      "confidence": 0.95,
+      "uri": ""
+    },
+    {
+      "label": "DATA_WITHHELD",
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "house": "Rajya Sabha",
+      "qtype": "UNSTARRED",
+      "qno": "1147",
+      "date": "1998-06-05",
+      "title": "APPOINTMENT OF THE KINS OF DELHI UNIVERSITY EMPLOYEES ON COMPASSIONATE GROUNDS .",
+      "askers": [
+        "RAHASBIHARI BARIK"
+      ],
+      "tags": [
+        "university_library"
+      ],
+      "excerpt": "MINISTER OF HUMAN RESOURCE DEVELOPMENT (DR. MURLI MANOHAR JOSHI) (a) to (b) According to the information furnished by the University of Delhi, seventeen cases of kins of the deceased employees of the",
+      "matchedPattern": "information is being collected",
+      "politicalFunction": "Data exists but is withheld or deliberately not collected. The absence of data is itself a political choice.",
+      "confidence": 0.85,
+      "uri": ""
+    },
+    {
+      "label": "DATA_WITHHELD",
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "house": "Rajya Sabha",
+      "qtype": "UNSTARRED",
+      "qno": "728",
+      "date": "2000-07-28",
+      "title": "HIGH COST OF HIGHER EDUCATION .",
+      "askers": [
+        "JANESHWAR MISHRA"
+      ],
+      "tags": [
+        "public_library"
+      ],
+      "excerpt": "THE MINSITER OF HUMAN RESOURCE DEVELOPMENT (DR. MURLI MANOHAR JOSHI) (a) to (e): The information will be laid on the Table of the House in due course.",
+      "matchedPattern": "information will be laid on the Table",
+      "politicalFunction": "Data exists but is withheld or deliberately not collected. The absence of data is itself a political choice.",
+      "confidence": 0.85,
+      "uri": ""
+    },
+    {
+      "label": "DEFLECTED",
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "house": "Rajya Sabha",
+      "qtype": "UNSTARRED",
+      "qno": "2143",
+      "date": "2000-12-08",
+      "title": "BOOKS PUBLISHED IN INDIAN LANGUAGES",
+      "askers": [
+        "KARTAR SINGH DUGGAL"
+      ],
+      "tags": [
+        "public_library"
+      ],
+      "excerpt": "THE MINISTER OF STATE IN THE MINISTRY OF HUMAN RESOURCE DEVELOPMENT (SHRI SYED SHAHNAWAZ HUSSAIN) (a) & (b): Two statements, one language-wise and the other state-wise, of the publications received",
+      "matchedPattern": "The response defers responsibility by stating that concerted efforts have been made and such efforts are a continuous pr",
+      "politicalFunction": "Indefinite deferral with no timeline or accountability trigger: 'under consideration', 'steps are being taken', 'will be examined', 'in due course'.",
+      "confidence": 0.95,
+      "uri": ""
+    },
+    {
+      "label": "DEFLECTED",
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "house": "Rajya Sabha",
+      "qtype": "UNSTARRED",
+      "qno": "4373",
+      "date": "2001-08-31",
+      "title": "LIBRARY SCIENCE EDUCATION .",
+      "askers": [
+        "KUM KUM RAI"
+      ],
+      "tags": [
+        "public_library",
+        "reading_room"
+      ],
+      "excerpt": "THE MINISTER OF HUMAN RESOURCE DEVELOPMENT, SCIENCE AND TECHNOLOGY AND OCEAN DEVELOPMENT (DR. MURLI MANOHAR JOSHI) (a) According to the information furnished by University Grants Commission, the Com",
+      "matchedPattern": "The response deflects by stating that books, furniture and fixtures are not allowed to be purchased for public libraries",
+      "politicalFunction": "Indefinite deferral with no timeline or accountability trigger: 'under consideration', 'steps are being taken', 'will be examined', 'in due course'.",
+      "confidence": 0.95,
+      "uri": ""
+    },
+    {
+      "label": "FEDERAL_DEFLECTION",
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "house": "Rajya Sabha",
+      "qtype": "UNSTARRED",
+      "qno": "1121",
+      "date": "1998-06-05",
+      "title": "RAJA RAMMOHUN ROY LIBRARY FOUNDATION .",
+      "askers": [
+        "KARTAR SINGH DUGGAL"
+      ],
+      "tags": [
+        "public_library",
+        "rrrlf"
+      ],
+      "excerpt": "MINISTER OF HUMAN RESOURCE DEVELOPMENT (DR. MURLI MANOHAR JOSHI) (a) Since library is a State subject, the main objective of Raja Rammohan Roy Library foundation is to support the library movement in",
+      "matchedPattern": "library is a State subject",
+      "politicalFunction": "Uses federalism/State Subjects to dodge Central responsibility for national standards.",
+      "confidence": 0.92,
+      "uri": ""
+    },
+    {
+      "label": "FEDERAL_DEFLECTION",
+      "ministry": "CULTURE",
+      "house": "Rajya Sabha",
+      "qtype": "UNSTARRED",
+      "qno": "4193",
+      "date": "2018-04-04",
+      "title": "Libraries and museums",
+      "askers": [
+        "Derek O' Brien"
+      ],
+      "tags": [
+        "digital_library",
+        "public_library",
+        "rrrlf"
+      ],
+      "excerpt": "04.04.2018 LIBRARIES AND MUSEUMS 4193 . SHRI DEREK O’BRIEN Will the Minister of CULTURE be pleased to state: (a) the total number of libraries and museums in the country which are maintained by t",
+      "matchedPattern": "Library is a state subject",
+      "politicalFunction": "Uses federalism/State Subjects to dodge Central responsibility for national standards.",
+      "confidence": 0.92,
+      "uri": ""
+    },
+    {
+      "label": "REJECTED",
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "house": "Rajya Sabha",
+      "qtype": "UNSTARRED",
+      "qno": "2059",
+      "date": "1998-07-03",
+      "title": "TITLES PUBLISHED IN INDIA DURING .",
+      "askers": [
+        "KARTAR SINGH DUGGAL"
+      ],
+      "tags": [
+        "public_library"
+      ],
+      "excerpt": "THE MINISTER OF HUMAN RESOURCE DEVELOPMENT (DR. MURLI MANOHAR JOSHI): (a) Under the Delivery of Book Act, 1954 there are 4 Depository Libraries 1. National Library, Calcutta 2. Delhi Public Library,",
+      "matchedPattern": "The text does not provide any concrete commitment or specific action related to the query. Instead, it provides factual ",
+      "politicalFunction": "Flat refusal: 'does not agree', 'not feasible', 'does not arise', 'resource constraints'. The recommendation or question is dead.",
+      "confidence": 0.95,
+      "uri": ""
+    },
+    {
+      "label": "REJECTED",
+      "ministry": "SOCIAL JUSTICE AND EMPOWERMENT",
+      "house": "Rajya Sabha",
+      "qtype": "UNSTARRED",
+      "qno": "471",
+      "date": "2001-02-26",
+      "title": "NGOS RECEIVING FINANCIAL ASSISTANCE IN MAHARASHTRA .",
+      "askers": [
+        "VEDPRAKASH P. GOYAL"
+      ],
+      "tags": [
+        "accessibility"
+      ],
+      "excerpt": "MINISTER OF STATE OF THE MINISTRY OF SOCIAL JUSTICE AND EMPOWERMENT (SMT. MANEKA GANDHI) (a)The names of Non-Governmental Organisations in Maharashtra Which are receiving financial assistance from Go",
+      "matchedPattern": "The text clearly states that the NGOs have been blacklisted and action taken against them (such as warning, suspending f",
+      "politicalFunction": "Flat refusal: 'does not agree', 'not feasible', 'does not arise', 'resource constraints'. The recommendation or question is dead.",
+      "confidence": 0.95,
+      "uri": ""
+    },
+    {
+      "label": "REPRESENTATIONAL_SILENCE",
+      "ministry": "TRIBAL AFFAIRS",
+      "house": "Rajya Sabha",
+      "qtype": "UNSTARRED",
+      "qno": "2154",
+      "date": "2020-03-12",
+      "title": "Funds for NGOs working with Ministry",
+      "askers": [
+        "Parimal Nathwani"
+      ],
+      "tags": [
+        "public_library"
+      ],
+      "excerpt": "12.03.2020 FUNDS FOR NGOs WORKING WITH MINISTRY 2154. SHRI PARIMAL NATHWANI: Will the Minister of TRIBAL AFFAIRS be pleased to state: (a) whether any grant has been released for Non-Governmental",
+      "matchedPattern": "objective of the scheme is",
+      "politicalFunction": "Factual recitation that deliberately ignores Article 16/representation mandates.",
+      "confidence": 0.88,
+      "uri": ""
+    },
+    {
+      "label": "STRUCTURAL_REFUSAL",
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "house": "Rajya Sabha",
+      "qtype": "UNSTARRED",
+      "qno": "2688",
+      "date": "1998-07-10",
+      "title": "SCHEME FOR ESTABLISHING RURAL LIBRARIES .",
+      "askers": [
+        "NAGENDRA NATH OJHA"
+      ],
+      "tags": [
+        "public_library"
+      ],
+      "excerpt": "MINISTER OF HUMAN RESOURCE DEVELOPMENT (DR. MURLI MANOHAR JOSHI) (a) Govt. has not approved the scheme namely Financial Assistance for Establishment Rural Library. (b) and (c) Do not arise.",
+      "matchedPattern": "Govt. has not approved the scheme",
+      "politicalFunction": "Blunt refusal to establish the 'Form of Administration' required for social democracy.",
+      "confidence": 0.9,
+      "uri": ""
+    },
+    {
+      "label": "STRUCTURAL_REFUSAL",
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "house": "Rajya Sabha",
+      "qtype": "UNSTARRED",
+      "qno": "1115",
+      "date": "1998-06-05",
+      "title": "AFFAIRS OF ADI SANKARACHARYA SANSKRIT UNIVERSITY .",
+      "askers": [
+        "NARAYANASWAMY YERRA"
+      ],
+      "tags": [
+        "public_library"
+      ],
+      "excerpt": "MINISTER OF HUMAN RESOURCE DEVELOPMENT (DR. MURLI MANOHAR JOSHI) (a) There is no scheme for establishment of rural libraries by the Union Government. However, for supporting the library Foundation ha",
+      "matchedPattern": "no scheme for establishment",
+      "politicalFunction": "Blunt refusal to establish the 'Form of Administration' required for social democracy.",
+      "confidence": 0.9,
+      "uri": ""
+    },
+    {
+      "label": "SUBSTITUTED",
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "house": "Rajya Sabha",
+      "qtype": "UNSTARRED",
+      "qno": "2173",
+      "date": "1997-03-14",
+      "title": "FINANCIAL ASSISTANCE BEING OFFERED TO LIBRARIES .",
+      "askers": [
+        "NAGENDRA NATH OJHA"
+      ],
+      "tags": [
+        "public_library"
+      ],
+      "excerpt": "THE MINISTER OF STATE IN THE DEPARTMENT OF EDUCATION IN THE MINISTRY OF EDUCATION IN THE MINISTRY OF HUMAN RESOURCE DEVELOPMENT (SHRI MUHI RAM SAIKIA) (a) Yes, Sir. (b) Government of India have reco",
+      "matchedPattern": "Under the\nScheme of",
+      "politicalFunction": "Replaced the question's framing with the ministry's preferred metric. The original question is unanswered.",
+      "confidence": 0.75,
+      "uri": ""
+    },
+    {
+      "label": "SUBSTITUTED",
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "house": "Rajya Sabha",
+      "qtype": "UNSTARRED",
+      "qno": "4669",
+      "date": "2001-04-27",
+      "title": "PROMOTION OF HINDI IN NON HINDI SPEAKING REGIONS",
+      "askers": [
+        "VANGA GEETHA"
+      ],
+      "tags": [
+        "reading_room"
+      ],
+      "excerpt": "ra) and the Central Institute of Indian Languages (Mysore), all Central Government institutions, implement several schemes and programmes for this purpose such as : i) Teaching of Hindi to the people",
+      "matchedPattern": "Under the Scheme of",
+      "politicalFunction": "Replaced the question's framing with the ministry's preferred metric. The original question is unanswered.",
+      "confidence": 0.75,
+      "uri": ""
+    }
+  ],
+  "rrrlfDeflections": [
+    {
+      "ministry": "HUMAN RESOURCE DEVELOPMENT",
+      "house": "Rajya Sabha",
+      "qtype": "UNSTARRED",
+      "qno": "1121",
+      "date": "1998-06-05",
+      "title": "RAJA RAMMOHUN ROY LIBRARY FOUNDATION .",
+      "askers": [
+        "KARTAR SINGH DUGGAL"
+      ],
+      "matchedPattern": "library is a State subject",
+      "excerpt": "MINISTER OF HUMAN RESOURCE DEVELOPMENT (DR. MURLI MANOHAR JOSHI) (a) Since library is a State subject, the main objective of Raja Rammohan Roy Library foundation is to support the library movement in",
+      "politicalFunction": "Uses federalism/State Subjects to dodge Central responsibility for national standards.",
+      "uri": ""
+    },
+    {
+      "ministry": "CULTURE",
+      "house": "Rajya Sabha",
+      "qtype": "UNSTARRED",
+      "qno": "3708",
+      "date": "2018-03-28",
+      "title": "Opening of more public libraries in rural and semi urban areas",
+      "askers": [
+        "Anil Desai"
+      ],
+      "matchedPattern": "Library is a state subject",
+      "excerpt": "(a) Public Library provides knowledge based services to all the cross-section of the society including Students, Women, Senior Citizen, Children, Youth, Neo-literates and Specially abled persons. (",
+      "politicalFunction": "Uses federalism/State Subjects to dodge Central responsibility for national standards.",
+      "uri": ""
+    },
+    {
+      "ministry": "CULTURE",
+      "house": "Rajya Sabha",
+      "qtype": "UNSTARRED",
+      "qno": "4193",
+      "date": "2018-04-04",
+      "title": "Libraries and museums",
+      "askers": [
+        "Derek O' Brien"
+      ],
+      "matchedPattern": "Library is a state subject",
+      "excerpt": "04.04.2018 LIBRARIES AND MUSEUMS 4193 . SHRI DEREK O’BRIEN Will the Minister of CULTURE be pleased to state: (a) the total number of libraries and museums in the country which are maintained by t",
+      "politicalFunction": "Uses federalism/State Subjects to dodge Central responsibility for national standards.",
+      "uri": ""
+    },
+    {
+      "ministry": "CULTURE",
+      "house": "Rajya Sabha",
+      "qtype": "UNSTARRED",
+      "qno": "4190",
+      "date": "2018-04-04",
+      "title": "Public Library Systems",
+      "askers": [
+        "Mahesh Poddar"
+      ],
+      "matchedPattern": "Library is a state subject",
+      "excerpt": "(a) & (b) Currently nineteen (19) states have Library Legislation. Name of the states having Library legislation is at Annexure. (c) Library is a state subject and opening of new library comes under",
+      "politicalFunction": "Uses federalism/State Subjects to dodge Central responsibility for national standards.",
+      "uri": ""
     }
   ]
 };

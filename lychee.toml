@@ -16,12 +16,10 @@ max_retries = 2
 # Domains with known false-positives in CI:
 #  - pgportal.gov.in: India govt site with an SSL cert chain that
 #    Linux runners don't trust; reachable in normal browsers.
-#  - polyformproject.org: intermittent 404s on the licence URL.
 #  - jsdelivr.net and fonts.gstatic.com: CDN endpoints that block
 #    unauthenticated GETs from CI ranges.
 exclude = [
   "^https://pgportal\\.gov\\.in",
-  "^https://polyformproject\\.org",
   "^https://(cdn\\.)?jsdelivr\\.net",
   "^https://fonts\\.gstatic\\.com",
 ]

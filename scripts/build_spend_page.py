@@ -8,8 +8,12 @@ extension:
 - Corrects the denominator from Census 2011 fixed to TG 2020 annual
   projections (MoHFW, July 2020, Table 11) — read directly from the
   primary PDF, no interpolation.
-- Adjusts for inflation via CPI-IW (base 2011-12 = 100) so we can
-  report a real per-capita series alongside Balaji's nominal.
+- Adjusts for inflation via the MoSPI implicit GDP deflator (NAS,
+  base 2011-12) so we can report a real per-capita series alongside
+  Balaji's nominal. GDP deflator is the standard in real
+  government-spending analysis (IMF GFSM 2014, OECD, World Bank PER,
+  RBI State Finances) — replaces an earlier CPI-IW (Labour Bureau)
+  implementation.
 - Extends state series through 2024-25 using either (a) state demand-
   for-grants documents where available (Assam, Goa, Rajasthan,
   Odisha) or (b) CAGR (2016-17 → 2020-21) extrapolation. CAG actuals
@@ -18,7 +22,7 @@ extension:
 
 Methodology in full at:
   - In-page Methods section of /spend/
-  - memory/verified_facts.md → "₹3.85 hero figure — methodology"
+  - memory/verified_facts.md → "₹4.66 hero figure — methodology"
 
 Voice: pamphlet register (cream/ink/red palette, Bebas Neue display +
 Inter Tight body + JetBrains Mono eyebrows + Roboto Slab pull-quotes).
@@ -45,12 +49,37 @@ years_all     = years_balaji + years_ext
 # Chart 1: National per capita — three scenarios, 2014-15 → 2024-25
 # A: Nominal total / Census 2011 India population (fixed) — Balaji's method
 # B: Nominal total / TG 2020 projected India population (annual July 1)
-# C: Real (CPI-IW 2011-12=100) total / TG 2020 projected population
+# C: Real (NAS GDP deflator, 2011-12 base) total / TG 2020 projected population
 # Years 2021-25 are CAGR extrapolation (see Methods section in HTML).
 nat_A = [5.16, 6.62, 8.62, 9.96, 11.64, 7.79, 8.39,  8.49, 8.66, 9.13, 9.51]
 nat_B = [4.93, 6.25, 8.05, 9.19, 10.63, 7.04, 7.50,  7.51, 7.60, 7.94, 8.20]
-nat_C = [3.87, 4.71, 5.81, 6.40,  7.08, 4.41, 4.48,  4.24, 3.92, 3.87, 3.85]
+# Real per-Indian per-year, base 2011-12 ₹, deflated by MoSPI NAS implicit
+# GDP deflator (the standard for real government-spending analysis per
+# IMF GFSM 2014, OECD, World Bank PER methodology, RBI State Finances).
+# Year-by-year factors below; full provenance in /spend/ Methods.
+nat_C = [4.16, 5.16, 6.44, 7.07,  7.87, 5.09, 5.17,  4.78, 4.57, 4.65, 4.66]
 LAST_ACTUAL_IDX = 6  # 2020-21 — last CAG actual
+
+# MoSPI NAS implicit GDP deflator factors (constant / current), base 2011-12.
+# Latest revision per year: Third Revised 2014-15..2020-21, Second Revised
+# 2021-22, Final 2022-23, First Revised 2023-24, Provisional 2024-25.
+# Source: mospi.gov.in/national-accounts-statistics (queried 2026-05-12).
+DEFLATOR_FACTOR = [0.8444, 0.8256, 0.7997, 0.7691, 0.7404,
+                   0.7230, 0.6898, 0.6366, 0.6011, 0.5860, 0.5684]
+# 2018-19 single-year factor — used for state and zone cross-sections
+# (K-B-D's published base year).
+DEFLATOR_2018_19 = 0.7404
+
+
+def deflate_series(nominal_series):
+    """Year-by-year deflation of an 11-element FY series (2014-15..2024-25)."""
+    return [None if v is None else round(v * DEFLATOR_FACTOR[i], 2)
+            for i, v in enumerate(nominal_series)]
+
+
+def deflate_cross_2018(v):
+    """Deflate a 2018-19 nominal per-capita figure to 2011-12 real ₹."""
+    return round(v * DEFLATOR_2018_19, 2)
 
 # Chart 2: State per capita 2018-19, nominal/TG (ranked low→high)
 state_labels = ['Jharkhand','Bihar','Uttar Pradesh','Punjab','Madhya Pradesh',
@@ -60,21 +89,30 @@ state_labels = ['Jharkhand','Bihar','Uttar Pradesh','Punjab','Madhya Pradesh',
                 'Telangana','Tamil Nadu','Mizoram','Sikkim','West Bengal',
                 'Kerala','Andhra Pradesh','Karnataka','Arunachal Pradesh',
                 'Puducherry','Goa']
-state_vals   = [0.14,0.36,0.94,0.98,1.09,1.22,1.26,1.48,1.49,1.79,3.33,4.31,
-                4.71,5.02,6.88,10.61,11.11,11.66,12.43,13.16,13.97,16.23,16.80,
-                19.68,19.69,24.67,24.74,35.23,48.02,50.61,118.76]
+# Nominal source values (K-B-D 2025, base 2018-19) kept here for audit.
+# The arrays used everywhere downstream are the deflated real-terms versions.
+state_vals_nominal = [0.14,0.36,0.94,0.98,1.09,1.22,1.26,1.48,1.49,1.79,3.33,4.31,
+                      4.71,5.02,6.88,10.61,11.11,11.66,12.43,13.16,13.97,16.23,16.80,
+                      19.68,19.69,24.67,24.74,35.23,48.02,50.61,118.76]
+state_vals = [deflate_cross_2018(v) for v in state_vals_nominal]
 
 # Chart 3: Regional averages 2018-19
 region_labels = ['Central','North','East','North-East','South','West','Puducherry (UT)']
-region_vals   = [1.18, 4.48, 5.35, 15.14, 22.97, 45.40, 50.61]
+region_vals_nominal = [1.18, 4.48, 5.35, 15.14, 22.97, 45.40, 50.61]
+region_vals = [deflate_cross_2018(v) for v in region_vals_nominal]
 
-# Chart 4: Extended 4-state series (per capita nominal/TG, None = gap)
-ext_assam     = [3.99,3.42,3.72,5.20,4.71,4.70,4.92, 4.87,4.42,7.84,6.97]
-ext_goa       = [66.52,90.59,96.69,113.23,118.76,130.42,132.00, None,163.38,245.19,284.17]
-ext_rajasthan = [1.27,1.22,1.25,1.29,1.49,1.43,1.40, None,None,1.80,2.04]
-ext_odisha    = [0.91,0.97,0.99,1.11,1.22,1.20,1.13, None,1.16,1.30,1.14]
+# Chart 4: Extended 4-state series — nominal (K-B-D + OBI extrapolation),
+# then year-by-year deflation to 2011-12 real ₹.
+ext_assam_nominal     = [3.99,3.42,3.72,5.20,4.71,4.70,4.92, 4.87,4.42,7.84,6.97]
+ext_goa_nominal       = [66.52,90.59,96.69,113.23,118.76,130.42,132.00, None,163.38,245.19,284.17]
+ext_rajasthan_nominal = [1.27,1.22,1.25,1.29,1.49,1.43,1.40, None,None,1.80,2.04]
+ext_odisha_nominal    = [0.91,0.97,0.99,1.11,1.22,1.20,1.13, None,1.16,1.30,1.14]
+ext_assam     = deflate_series(ext_assam_nominal)
+ext_goa       = deflate_series(ext_goa_nominal)
+ext_rajasthan = deflate_series(ext_rajasthan_nominal)
+ext_odisha    = deflate_series(ext_odisha_nominal)
 
-india_avg_2018 = 10.63
+india_avg_2018 = deflate_cross_2018(10.63)   # = 7.87
 
 # ── SVG visualisations for Section 2 ──────────────────────────────────────────
 
@@ -121,7 +159,7 @@ def strip_plot_svg():
     parts = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Bubble chart: 31 Indian states by per-capita library expenditure 2018-19; bubble size proportional to population; colour green-to-red shows spend tier">']
 
     # title
-    parts.append(f'<text x="0" y="22" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" letter-spacing="2" fill="#f1e8d3" opacity="0.75">31 STATES + UTs · BUBBLE = POPULATION · COLOUR = ₹/PERSON · 2018-19</text>')
+    parts.append(f'<text x="0" y="22" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" letter-spacing="2" fill="#f1e8d3" opacity="0.75">31 STATES + UTs · BUBBLE = POPULATION · REAL ₹/PERSON · 2018-19 · 2011-12 ₹</text>')
 
     # baseline axis
     parts.append(f'<line x1="{PAD_L}" y1="{Y_AXIS}" x2="{W-PAD_R}" y2="{Y_AXIS}" stroke="#f1e8d3" stroke-width="2"/>')
@@ -133,9 +171,9 @@ def strip_plot_svg():
         parts.append(f'<text x="{tx:.1f}" y="{Y_AXIS+30}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700" fill="#f1e8d3">{label}</text>')
 
     # India avg dashed marker
-    tx = x_of(10.63)
+    tx = x_of(india_avg_2018)
     parts.append(f'<line x1="{tx:.1f}" y1="40" x2="{tx:.1f}" y2="{Y_AXIS-50}" stroke="#dc2a14" stroke-dasharray="5 4" stroke-width="2"/>')
-    parts.append(f'<text x="{tx:.1f}" y="36" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" letter-spacing="1" fill="#dc2a14">INDIA AVG ₹10.63</text>')
+    parts.append(f'<text x="{tx:.1f}" y="36" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" letter-spacing="1" fill="#dc2a14">INDIA AVG ₹{india_avg_2018} · 2018-19 REAL</text>')
 
     # bubbles — draw in pop ascending order so big ones are on top of small ones at the same x
     indexed = sorted(range(len(state_labels)), key=lambda i: pops[i])
@@ -153,14 +191,14 @@ def strip_plot_svg():
 
     # callouts for selected states (the politically important ones)
     callouts = [
-        # (state, value, x_offset_for_label, y_offset_for_label, anchor)
-        ("UP",          0.94, 0,   -110, "middle"),
-        ("Bihar",       0.36, 0,   -70,  "middle"),
-        ("Jharkhand",   0.14, 0,   -30,  "middle"),
-        ("MP",          1.09, 0,   80,   "middle"),
-        ("Maharashtra",12.43, 0,   70,   "middle"),
-        ("Karnataka",  35.23, 0,   -50,  "middle"),
-        ("Goa",       118.76, 0,   -30,  "middle"),
+        # (state, real-2018-19 value, x_offset_for_label, y_offset_for_label, anchor)
+        ("UP",          0.70, 0,   -110, "middle"),
+        ("Bihar",       0.27, 0,   -70,  "middle"),
+        ("Jharkhand",   0.10, 0,   -30,  "middle"),
+        ("MP",          0.81, 0,   80,   "middle"),
+        ("Maharashtra", 9.20, 0,   70,   "middle"),
+        ("Karnataka",  26.08, 0,   -50,  "middle"),
+        ("Goa",        87.94, 0,   -30,  "middle"),
     ]
     for name, v, dx, dy, anchor in callouts:
         cx = x_of(v); pop = STATE_POP_MN.get(name if name not in ("UP","MP") else {"UP":"Uttar Pradesh","MP":"Madhya Pradesh"}[name], 5)
@@ -277,9 +315,9 @@ def goa_stack_svg():
     # Sub-text is provided as a 2-tuple now (line1, line2) so we control the
     # break point precisely — splitting at the natural · in the prose.
     rows = [
-        ("GOA",                       118.76, ("1.6M people",                  "the outlier"),                       "#dc2a14"),
-        ("AVERAGE OF STATE AVERAGES",  15.30, ("What the press cites",          "Goa weighs as much as UP"),         "#f1e8d3"),
-        ("PER INDIAN",                 10.63, ("What India spends",             "weighted by population"),            "#f1e8d3"),
+        ("GOA",                       87.94, ("1.6M people",                  "the outlier"),                        "#dc2a14"),
+        ("AVERAGE OF STATE AVERAGES", 11.33, ("What the press cites",          "Goa weighs as much as UP"),          "#f1e8d3"),
+        ("PER INDIAN",                 7.87, ("2018-19 real · what India spends", "weighted by population"),         "#f1e8d3"),
     ]
     W = 720
     ROW_H = 132
@@ -355,23 +393,24 @@ MOC_ALL = {  # full zone memberships for hover-tooltip and overlap indication
 # Per-zone metadata: (display name, hex color, avg per-capita, population_M, share_of_india_pct).
 # Pure traffic-light ramp: deep-red (lowest avg) → orange → yellow → light-green → green → forest.
 # 6 stops for MHA; 7 stops for MoC. Both span the same red→green gradient.
+# Zone avg per-capita: 2018-19 K-B-D nominal × 0.7404 (NAS GDP deflator).
 MHA_ZONE_META = {
-    "Central":   ("CENTRAL ZC",  "#c53030",  1.27, 361, 27),
-    "Eastern":   ("EASTERN ZC",  "#e8633f",  5.35, 308, 23),
-    "Northern":  ("NORTHERN ZC", "#ecc94b",  5.51, 180, 13),
-    "NEC":       ("NE COUNCIL",  "#a3c265", 15.14,  50,  4),
-    "Southern":  ("SOUTHERN ZC", "#68d391", 27.58, 274, 20),
-    "Western":   ("WESTERN ZC",  "#2f855a", 45.40, 193, 14),
+    "Central":   ("CENTRAL ZC",  "#c53030",  0.94, 361, 27),    # nom 1.27
+    "Eastern":   ("EASTERN ZC",  "#e8633f",  3.96, 308, 23),    # nom 5.35
+    "Northern":  ("NORTHERN ZC", "#ecc94b",  4.08, 180, 13),    # nom 5.51
+    "NEC":       ("NE COUNCIL",  "#a3c265", 11.21,  50,  4),    # nom 15.14
+    "Southern":  ("SOUTHERN ZC", "#68d391", 20.42, 274, 20),    # nom 27.58
+    "Western":   ("WESTERN ZC",  "#2f855a", 33.61, 193, 14),    # nom 45.40
     "None":      ("UNGROUPED",   "#94908a", None,  None, None),
 }
 MOC_ZONE_META = {
-    "NC": ("NORTH CENTRAL", "#c53030",  1.64, 584, 41),
-    "N":  ("NORTH",         "#e8633f",  5.09, 174, 13),
-    "E":  ("EAST",          "#ed8936",  7.91, 351, 26),
-    "NE": ("NORTH EAST",   "#ecc94b", 15.14,  50,  4),
-    "S":  ("SOUTH",         "#a3c265", 27.58, 275, 20),
-    "SC": ("SOUTH CENTRAL", "#68d391", 29.64, 399, 29),
-    "W":  ("WEST",          "#2f855a", 34.43, 273, 20),
+    "NC": ("NORTH CENTRAL", "#c53030",  1.21, 584, 41),    # nom 1.64
+    "N":  ("NORTH",         "#e8633f",  3.77, 174, 13),    # nom 5.09
+    "E":  ("EAST",          "#ed8936",  5.86, 351, 26),    # nom 7.91
+    "NE": ("NORTH EAST",    "#ecc94b", 11.21,  50,  4),    # nom 15.14
+    "S":  ("SOUTH",         "#a3c265", 20.42, 275, 20),    # nom 27.58
+    "SC": ("SOUTH CENTRAL", "#68d391", 21.95, 399, 29),    # nom 29.64
+    "W":  ("WEST",          "#2f855a", 25.49, 273, 20),    # nom 34.43
 }
 
 
@@ -452,10 +491,10 @@ def zone_bubble_chart_svg(zone_map, all_zones_map, zone_meta, title, sub, show_o
         parts.append(f'<line x1="{tx:.1f}" y1="{Y_AXIS-7}" x2="{tx:.1f}" y2="{Y_AXIS+7}" stroke="#f1e8d3" stroke-width="2"/>')
         parts.append(f'<text x="{tx:.1f}" y="{Y_AXIS+28}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700" fill="#f1e8d3">{label}</text>')
 
-    # India avg marker (₹10.63)
-    tx = x_of(10.63)
+    # India avg marker (₹7.87)
+    tx = x_of(india_avg_2018)
     parts.append(f'<line x1="{tx:.1f}" y1="{PAD_T - 8}" x2="{tx:.1f}" y2="{H - PAD_B + 12}" stroke="#f1e8d3" stroke-dasharray="4 4" stroke-width="1.2" opacity="0.45"/>')
-    parts.append(f'<text x="{tx:.1f}" y="{PAD_T - 12}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" letter-spacing="1" fill="#f1e8d3" opacity="0.85">INDIA AVG ₹10.63</text>')
+    parts.append(f'<text x="{tx:.1f}" y="{PAD_T - 12}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" letter-spacing="1" fill="#f1e8d3" opacity="0.85">INDIA AVG ₹{india_avg_2018} · 2018-19 REAL</text>')
 
     # Zone bubbles — sorted by avg ascending so colour reads red→green left-to-right
     sorted_zones = sorted(
@@ -669,6 +708,27 @@ html = f"""<!DOCTYPE html>
 <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#dc2a14">
+
+<!-- Canonical + Open Graph + Twitter card for link unfurls -->
+<link rel="canonical" href="https://theright2read.org/spend/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Right to Read — The Right to Read" />
+<meta property="og:url" content="https://theright2read.org/spend/" />
+<meta property="og:title" content="What India spends on libraries — Right to Read" />
+<meta property="og:description" content="₹4.66 per Indian per year, real terms (2011-12 ₹). Per-capita state expenditure on public libraries 2014-2025 — extending and correcting Kulkarni-Balaji-Dhanamjaya (2025) with TG 2020 population projections and the MoSPI GDP deflator." />
+<meta property="og:locale" content="en_IN" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="What India spends on libraries — Right to Read" />
+<meta name="twitter:description" content="₹4.66 per Indian per year, real terms. Per-capita state expenditure on public libraries 2014-2025." />
+<meta property="og:image" content="https://theright2read.org/assets/og-image.png?v=2" />
+<meta property="og:image:secure_url" content="https://theright2read.org/assets/og-image.png?v=2" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1600" />
+<meta property="og:image:height" content="838" />
+<meta property="og:image:alt" content="Right to Read — The Right to Read. India spends ₹4.66 per Indian per year on every public library combined." />
+<meta name="twitter:image" content="https://theright2read.org/assets/og-image.png?v=2" />
+<meta name="twitter:image:alt" content="Right to Read — The Right to Read. India spends ₹4.66 per Indian per year on every public library combined." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1001,42 +1061,33 @@ svg .memdot:hover {{ r: 9; }}
   fill: currentColor;
 }}
 
-/* ── "Builds on" credit block — sits between hero and Section 1.
-   Earnest acknowledgement of the three pieces of work this analysis
-   depends on. Not buried in citations; visible up front. */
+/* ── "Builds on" credit strip — tight, between hero and Section 1.
+   Visible attribution without monumental scale. */
 .builds-on {{
   background: var(--cream-deep);
-  border: 2px solid var(--ink);
-  border-left: 12px solid var(--red);
-  padding: clamp(22px, 3vw, 36px) clamp(20px, 3vw, 40px);
+  border-left: 6px solid var(--red);
+  padding: 16px clamp(16px, 2.5vw, 24px);
   margin: 0;
 }}
 .builds-on .bo-eyebrow {{
-  font-family: var(--f-mono); font-size: 12px;
-  letter-spacing: 2px; text-transform: uppercase;
+  font-family: var(--f-mono); font-size: 11px;
+  letter-spacing: 1.8px; text-transform: uppercase;
   font-weight: 700; color: var(--red); margin-bottom: 10px;
 }}
-.builds-on .bo-headline {{
-  font-family: var(--f-display); font-size: clamp(32px, 4cqi, 48px);
-  letter-spacing: 0.5px; line-height: 1.05;
-  margin-bottom: 22px;
-}}
-.builds-on .bo-item {{
-  margin-bottom: 18px;
+.builds-on .bo-row {{
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 28px;
 }}
 .builds-on .bo-item .bo-who {{
-  font-family: var(--f-display); font-size: clamp(20px, 2.4cqi, 28px);
-  letter-spacing: 0.5px; line-height: 1.1;
-  margin-bottom: 4px;
+  font-family: var(--f-slab); font-size: 14px; font-weight: 700;
+  line-height: 1.3; margin-bottom: 2px;
 }}
 .builds-on .bo-item .bo-what {{
-  font-family: var(--f-body); font-size: 16px; line-height: 1.55;
+  font-family: var(--f-body); font-size: 13px; line-height: 1.5;
+  color: var(--ink-soft);
 }}
-.builds-on .bo-closing {{
-  font-family: var(--f-slab); font-size: 16px; line-height: 1.5;
-  margin-top: 14px; padding-top: 14px;
-  border-top: 1px dashed var(--ink);
-  font-style: italic;
+.builds-on .bo-item .bo-what a {{ color: var(--red); }}
+@media (max-width: 720px) {{
+  .builds-on .bo-row {{ grid-template-columns: 1fr; gap: 12px; }}
 }}
 
 /* ── Tooltip on hover for SVG bubbles & bars ── */
@@ -1379,14 +1430,93 @@ svg .memdot:focus-visible {{
   text-transform: uppercase; margin: 24px 0 12px;
 }}
 
-/* ── Footer ── */
-footer {{
-  background: var(--ink); color: var(--cream);
-  padding: 32px clamp(20px, 4vw, 56px);
-  font-family: var(--f-mono); font-size: 11px;
-  letter-spacing: 1px; line-height: 1.7;
+/* Collapsible Methods block — keeps the long-form sources, deflator
+   note, caveats, and per-state CAGR table out of the reader's path
+   unless they ask. Matches the bib-collapse pattern from the homepage
+   and data page: black-bordered button, mono uppercase label, red +/−
+   marker, cream background. */
+.bib-collapse {{
+  margin-top: 24px;
 }}
-footer a {{ color: var(--red); text-decoration: underline; }}
+.bib-collapse > summary {{
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 2px solid var(--ink);
+  background: transparent;
+  font-family: var(--f-mono); font-size: 11px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--ink);
+  transition: background 0.15s, color 0.15s;
+}}
+.bib-collapse > summary::-webkit-details-marker {{ display: none; }}
+.bib-collapse > summary::after {{
+  content: "+";
+  font-family: var(--f-mono); font-size: 16px; font-weight: 700;
+  color: var(--red); line-height: 1;
+}}
+.bib-collapse[open] > summary::after {{ content: "−"; }}
+.bib-collapse > summary:hover,
+.bib-collapse > summary:focus-visible {{
+  background: var(--ink); color: var(--cream); outline: none;
+}}
+.bib-collapse > summary:hover::after,
+.bib-collapse > summary:focus-visible::after {{ color: var(--cream); }}
+.bib-collapse[open] > summary {{ margin-bottom: 24px; }}
+
+/* ── Print button · matches the .print-btn on /, /data/, /inequality/.
+   Placed in Section 7 (ink background) so we use cream-on-red instead
+   of the default cream-on-ink, otherwise the button would blend into
+   the background. ── */
+.print-btn {{
+  display: inline-block;
+  margin-top: 32px;
+  padding: 14px 26px;
+  font-family: var(--f-mono); font-size: 13px;
+  letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+  color: var(--cream);
+  background: var(--red);
+  border: 2px solid var(--red);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}}
+.print-btn:hover, .print-btn:focus {{
+  background: var(--cream); color: var(--red); border-color: var(--cream);
+}}
+.print-btn:focus-visible {{
+  outline: 3px solid var(--cream); outline-offset: 3px;
+}}
+.print-hint {{
+  margin: 14px 0 0;
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 1px;
+  color: var(--cream-deep); line-height: 1.6;
+  max-width: 640px;
+}}
+
+/* ── Footer (matches .page-footer on other pages: cream background,
+   ink-soft text, WIP notice + colophon) ── */
+footer {{
+  background: var(--cream); color: var(--ink-soft);
+  padding: 32px clamp(20px, 4vw, 56px) 48px;
+  border-top: 2px solid var(--ink);
+  font-family: var(--f-mono); font-size: 12px;
+  line-height: 1.7;
+}}
+footer a {{ color: inherit; text-decoration: underline; text-underline-offset: 3px; }}
+footer a:hover {{ color: var(--red); }}
+footer .wip-notice {{
+  color: var(--red); border-color: var(--red);
+  margin-top: 8px; margin-bottom: 24px;
+}}
+footer .colophon-line {{
+  margin-top: 12px; padding-top: 12px;
+  color: var(--ink-soft); letter-spacing: 1px;
+}}
 
 /* ── Responsive ── */
 @media (max-width: 700px) {{
@@ -1398,6 +1528,76 @@ footer a {{ color: var(--red); text-decoration: underline; }}
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }}
+}}
+
+/* ── Print stylesheet · matches the pattern in assets/styles.css used
+   by /, /data/, /inequality/. Renders A4 with chrome hidden, colours
+   forced through, Methods <details> auto-opened so the PDF is a
+   self-contained citable artefact. ── */
+@media print {{
+  @page {{
+    size: A4;
+    margin: 14mm 12mm 14mm;
+  }}
+  *, *::before, *::after {{
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    box-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
+  }}
+  html, body {{
+    background: var(--cream) !important;
+    margin: 0; padding: 0;
+    color: var(--ink) !important;
+  }}
+  .pamphlet {{
+    max-width: 100% !important; width: 100% !important;
+    background: var(--cream) !important;
+  }}
+  /* Hide on-screen chrome */
+  .skip-link,
+  .data-backbar,
+  .strip,
+  .actbar,
+  .grain,
+  .tip,
+  .print-btn,
+  .print-hint {{ display: none !important; }}
+  /* Sections lose their stacked vertical padding to compress page count */
+  .section {{
+    padding: 14mm 0 8mm !important;
+    background: var(--cream) !important;
+    color: var(--ink) !important;
+    border: none !important;
+  }}
+  .section.ink, .section.ink * {{
+    background: var(--cream) !important;
+    color: var(--ink) !important;
+  }}
+  .section.ink .eyebrow, .section.cream .eyebrow {{ color: var(--red) !important; }}
+  .section.ink .red, .section.cream .red, .red {{ color: var(--red) !important; }}
+  /* Methods section begins on a new physical page so readers who only
+     want the analysis can print "pages 1-N" and skip the methodology
+     appendix. */
+  section.methods {{
+    page-break-before: always !important;
+    break-before: page !important;
+  }}
+  /* Methods <details> open in print so the PDF is self-contained */
+  details.bib-collapse > summary {{ display: none; }}
+  details.bib-collapse > *:not(summary) {{ display: block !important; }}
+  /* Page-break hints */
+  h1, h2 {{ page-break-after: avoid; break-after: avoid; }}
+  h3 {{ page-break-after: avoid; break-after: avoid; }}
+  .stat-grid, .killer, .traj-states-card, table {{
+    page-break-inside: avoid; break-inside: avoid;
+  }}
+  /* SVG charts must scale to print width */
+  svg {{ max-width: 100% !important; height: auto !important; }}
+  /* Hide the footer-internal GitHub icon link target (still visible as text) */
+  footer {{ border-top: 1px solid var(--ink) !important; padding-top: 8mm !important; }}
+  footer .wip-notice {{ break-inside: avoid; page-break-inside: avoid; }}
 }}
 </style>
 </head>
@@ -1424,15 +1624,16 @@ footer a {{ color: var(--red); text-decoration: underline; }}
       <h1>WHAT INDIA SPENDS<br>ON <span class="red">PUBLIC LIBRARIES.</span></h1>
       <p class="lede">
         Kulkarni, Balaji &amp; Dhanamjaya (2025) put the number at <strong>₹11.62 per Indian per year</strong>
-        for 2018-19 — the highest point on record. We re-ran their analysis with the government's own
-        annual population projections (TG 2020) and a CPI deflator. After those two corrections,
-        and after extrapolating state-level CAG accounts through 2024-25, the real story is this:
+        (nominal) for 2018-19 — the highest point on record. We re-ran their analysis with the government's
+        own annual population projections (TG 2020) and the MoSPI implicit GDP deflator (NAS, base 2011-12).
+        After those two corrections, and after extrapolating state-level CAG accounts through 2024-25, the
+        real story is this:
       </p>
 
       <div class="killer">
         <div>
           <div class="label">India · 2024-25 · real terms (2011-12 ₹)</div>
-          <div class="figure">₹3.85</div>
+          <div class="figure">₹4.66</div>
         </div>
         <div class="sub">
           per Indian, per year, on every public library in the country. Less than a local bus ticket.
@@ -1442,56 +1643,9 @@ footer a {{ color: var(--red); text-decoration: underline; }}
     </div>
   </section>
 
-  <!-- ═══════════════════════════════ BUILDS ON · earnest credit, up front -->
-  <section class="section cream">
-    <div class="stack">
-      <div class="builds-on">
-        <div class="bo-eyebrow">Builds on</div>
-        <div class="bo-headline">THIS ANALYSIS STANDS ON<br>THREE PIECES OF WORK<br>BY OTHERS.</div>
-
-        <div class="bo-item">
-          <div class="bo-who">Kulkarni, Balaji &amp; Dhanamjaya (2025)</div>
-          <div class="bo-what">
-            compiled, audited, and published the state-level
-            public-library expenditure series for 2014-15 through
-            2020-21, from CAG Combined Finance and Revenue Accounts
-            (Major Head 2205 / Sub-head 105). Their 2018-19 per-capita
-            figures are the foundation everything below rests on.
-            <strong>Without their work, none of this exists.</strong>
-          </div>
-        </div>
-
-        <div class="bo-item">
-          <div class="bo-who">The Technical Group on Population Projections (MoHFW, 2020)</div>
-          <div class="bo-what">
-            chaired by Prof. K. S. James and constituted by the
-            National Commission on Population, produced the annual
-            state-level population projections 2011–2036. We use their
-            Table 11 — annual figures, no interpolation — instead of
-            fixed Census 2011 denominators. This correction is what
-            turns "₹11.62 nominal at peak" into "₹3.85 real today."
-          </div>
-        </div>
-
-        <div class="bo-item">
-          <div class="bo-who">CivicDataLab &amp; CBGA · Open Budgets India</div>
-          <div class="bo-what">
-            maintain
-            <a href="https://openbudgetsindia.org/" target="_blank" rel="noopener" style="color:var(--red); text-decoration:underline;">openbudgetsindia.org</a>,
-            the civic-data corpus that makes Indian state demand-for-grants
-            documents reusable as a dataset. That's the infrastructure
-            that lets this analysis extend the series past 2020-21 for
-            Assam, Goa, Rajasthan, and Odisha.
-          </div>
-        </div>
-
-        <div class="bo-closing">
-          We extended; they built. Full Chicago-format citations in the
-          Methods section at the bottom of this page.
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- "Builds on" credit moved to Methods/Sources at the bottom — the
+       three citations already live in <ol class="bib-list">, this strip
+       was a duplicate. -->
 
   <!-- ═══════════════════════════════ SECTION 1: THE ARC -->
   <section class="section cream">
@@ -1500,16 +1654,18 @@ footer a {{ color: var(--red); text-decoration: underline; }}
       <h2>RISE, PEAK, <span class="red">RETREAT.</span></h2>
       <p class="lede">
         Between 2014-15 and 2018-19, state expenditure on public libraries (budget head MH 2205-105)
-        nearly doubled in nominal terms. Adjusted for inflation, the gain was real but small. From 2019-20
-        onwards, the line bends down — and according to the trend in the underlying CAG accounts,
-        it has not bent back up.
+        nearly doubled in nominal terms. Adjusted with the MoSPI implicit GDP deflator (base 2011-12),
+        the real-terms gain was modest but real: from <strong>₹4.16</strong> to <strong>₹7.87</strong>
+        per Indian per year. From 2019-20 onwards, the line bends down — and according to the trend in
+        the underlying CAG accounts, it has not bent back up. <strong class="t-red">By 2024-25, almost
+        all the post-2014 real-terms gain has retreated.</strong>
       </p>
 
       <div class="stat-grid">
         <div class="stat">
           <div class="yr">2014-15 · start</div>
           <div class="real-lbl">Real · 2011-12 ₹</div>
-          <div class="real">₹3.87</div>
+          <div class="real">₹4.16</div>
           <div class="real-unit">per Indian, per year</div>
           <div class="nom-row">
             <span class="nom">₹4.93</span>
@@ -1520,7 +1676,7 @@ footer a {{ color: var(--red); text-decoration: underline; }}
         <div class="stat peak">
           <div class="yr">2018-19 · peak</div>
           <div class="real-lbl">Real · 2011-12 ₹</div>
-          <div class="real">₹7.08</div>
+          <div class="real">₹7.87</div>
           <div class="real-unit">per Indian, per year</div>
           <div class="nom-row">
             <span class="nom">₹10.63</span>
@@ -1531,13 +1687,13 @@ footer a {{ color: var(--red); text-decoration: underline; }}
         <div class="stat now">
           <div class="yr">2024-25 · estimate</div>
           <div class="real-lbl">Real · 2011-12 ₹</div>
-          <div class="real">₹3.85</div>
+          <div class="real">₹4.66</div>
           <div class="real-unit">per Indian, per year</div>
           <div class="nom-row">
             <span class="nom">₹8.20</span>
             <span class="nom-lbl">nominal</span>
           </div>
-          <div class="caption">CAGR extrapolation. Below 2014-15 in real terms.</div>
+          <div class="caption">CAGR extrapolation. <strong>41% below 2018-19 peak.</strong></div>
         </div>
       </div>
 
@@ -1562,7 +1718,7 @@ footer a {{ color: var(--red); text-decoration: underline; }}
     <div class="grain"></div>
     <div class="stack">
       <div class="eyebrow">Section 2 · the spread</div>
-      <h2>FROM ₹0.14<br>TO <span class="red">₹118.76.</span></h2>
+      <h2>FROM ₹0.10<br>TO <span class="red">₹87.94.</span></h2>
       <p class="lede">
         31 states and UTs across nearly four orders of magnitude. Jharkhand at one end.
         Goa at the other. The bottom half clusters near zero; the top is stretched thin.
@@ -1605,8 +1761,8 @@ footer a {{ color: var(--red); text-decoration: underline; }}
             Goa has 1.6 million people — about one outer Mumbai suburb — tourist revenues
             that outpace its population, and a Portuguese inheritance in which libraries
             are civic ornament. The press cites the <strong>unweighted state average of
-            ₹15.30</strong> as "India's library spend." Goa alone is what pulls that
-            number above the population-weighted reality of ₹10.63.
+            ₹11.33</strong> as "India's library spend." Goa alone is what pulls that
+            number above the population-weighted reality of ₹7.87 (2018-19 real, 2011-12 ₹).
           </p>
           <div class="p-q">
             Is Goa a model that can be scaled to a state of 230 million people whose
@@ -1641,13 +1797,13 @@ footer a {{ color: var(--red); text-decoration: underline; }}
         <div class="region-card" style="border-left: 12px solid var(--red); grid-column: 1 / -1;">
           <div class="reg-head">
             <div class="reg-name">CENTRAL ZONAL COUNCIL</div>
-            <div class="reg-meta">4 states · ~361M people · <strong>26.5% of India</strong><br><span class="reg-avg">₹1.27</span> avg · <strong>every state below ₹2</strong></div>
+            <div class="reg-meta">4 states · ~361M people · <strong>26.5% of India</strong><br><span class="reg-avg">₹0.94</span> avg · <strong>every state below ₹2</strong></div>
           </div>
           <ul class="reg-states">
-            <li><span class="st">Uttar Pradesh</span><span class="v low">₹0.94</span></li>
-            <li><span class="st">Madhya Pradesh</span><span class="v low">₹1.09</span></li>
-            <li><span class="st">Chhattisgarh</span><span class="v low">₹1.26</span></li>
-            <li><span class="st">Uttarakhand</span><span class="v low">₹1.79</span></li>
+            <li><span class="st">Uttar Pradesh</span><span class="v low">₹0.70</span></li>
+            <li><span class="st">Madhya Pradesh</span><span class="v low">₹0.81</span></li>
+            <li><span class="st">Chhattisgarh</span><span class="v low">₹0.93</span></li>
+            <li><span class="st">Uttarakhand</span><span class="v low">₹1.33</span></li>
           </ul>
           <div class="question">
             The MHA grouped UP — the world's largest sub-national unit by population after China's
@@ -1663,15 +1819,15 @@ footer a {{ color: var(--red); text-decoration: underline; }}
         <div class="region-card">
           <div class="reg-head">
             <div class="reg-name">NORTHERN ZC</div>
-            <div class="reg-meta">6 states · ~180M people · 13%<br><span class="reg-avg">₹5.51</span> avg</div>
+            <div class="reg-meta">6 states · ~180M people · 13%<br><span class="reg-avg">₹4.08</span> avg</div>
           </div>
           <ul class="reg-states">
-            <li><span class="st">Punjab</span><span class="v low">₹0.98</span></li>
-            <li><span class="st">Haryana</span><span class="v low">₹1.48</span></li>
-            <li><span class="st">Rajasthan</span><span class="v low">₹1.49</span></li>
-            <li><span class="st">Delhi</span><span class="v">₹4.31</span></li>
-            <li><span class="st">Himachal Pradesh</span><span class="v">₹11.66</span></li>
-            <li><span class="st">Jammu &amp; Kashmir</span><span class="v">₹13.16</span></li>
+            <li><span class="st">Punjab</span><span class="v low">₹0.73</span></li>
+            <li><span class="st">Haryana</span><span class="v low">₹1.10</span></li>
+            <li><span class="st">Rajasthan</span><span class="v low">₹1.10</span></li>
+            <li><span class="st">Delhi</span><span class="v">₹3.19</span></li>
+            <li><span class="st">Himachal Pradesh</span><span class="v">₹8.63</span></li>
+            <li><span class="st">Jammu &amp; Kashmir</span><span class="v">₹9.74</span></li>
           </ul>
           <div class="question">
             The MHA Northern Council groups Punjab — site of the Phulkian state libraries
@@ -1686,19 +1842,19 @@ footer a {{ color: var(--red); text-decoration: underline; }}
         <div class="region-card">
           <div class="reg-head">
             <div class="reg-name">EASTERN ZC</div>
-            <div class="reg-meta">4 states · ~308M people · 23%<br><span class="reg-avg">₹5.35</span> avg · <strong>₹0.57 w/o WB</strong></div>
+            <div class="reg-meta">4 states · ~308M people · 23%<br><span class="reg-avg">₹3.96</span> avg · <strong>₹0.42 w/o WB</strong></div>
           </div>
           <ul class="reg-states">
-            <li><span class="st">Jharkhand</span><span class="v low">₹0.14</span></li>
-            <li><span class="st">Bihar</span><span class="v low">₹0.36</span></li>
-            <li><span class="st">Odisha</span><span class="v low">₹1.22</span></li>
-            <li><span class="st">West Bengal</span><span class="v cess">₹19.69</span></li>
+            <li><span class="st">Jharkhand</span><span class="v low">₹0.10</span></li>
+            <li><span class="st">Bihar</span><span class="v low">₹0.27</span></li>
+            <li><span class="st">Odisha</span><span class="v low">₹0.90</span></li>
+            <li><span class="st">West Bengal</span><span class="v cess">₹14.58</span></li>
           </ul>
           <div class="question">
             The Eastern zone produced the Bengal Renaissance, the Brahmo Samaj reading rooms,
             Serampore's missionary press, the Bihar Vidyapith adult-literacy networks, and
             (geographically, before 1193) Nalanda. Strip West Bengal's cess-distorted figure
-            and the zone averages <strong>₹0.57</strong>. What does it mean that the zone
+            and the zone averages <strong>₹0.42</strong>. What does it mean that the zone
             with India's deepest historical literacy traditions has its worst public-library
             budgets — and that the historical literacy itself came overwhelmingly from
             non-state institutions?
@@ -1709,16 +1865,16 @@ footer a {{ color: var(--red); text-decoration: underline; }}
         <div class="region-card">
           <div class="reg-head">
             <div class="reg-name">WESTERN ZC</div>
-            <div class="reg-meta">3 states · ~193M people · 14%<br><span class="reg-avg">₹45.40</span> avg · <strong>₹8.73 w/o Goa</strong></div>
+            <div class="reg-meta">3 states · ~193M people · 14%<br><span class="reg-avg">₹33.61</span> avg · <strong>₹6.46 w/o Goa</strong></div>
           </div>
           <ul class="reg-states">
-            <li><span class="st">Gujarat</span><span class="v low">₹5.02</span></li>
-            <li><span class="st">Maharashtra</span><span class="v">₹12.43</span></li>
-            <li><span class="st">Goa</span><span class="v">₹118.76</span></li>
+            <li><span class="st">Gujarat</span><span class="v low">₹3.72</span></li>
+            <li><span class="st">Maharashtra</span><span class="v">₹9.20</span></li>
+            <li><span class="st">Goa</span><span class="v">₹87.94</span></li>
           </ul>
           <div class="question">
-            Strip Goa and the West averages ₹8.73 — below the national figure. Gujarat at
-            <strong>₹5.02</strong> — the state most loudly celebrated as India's development
+            Strip Goa and the West averages ₹6.46 — below the national figure. Gujarat at
+            <strong>₹3.72</strong> — the state most loudly celebrated as India's development
             model — is half the corrected national average. The zone only looks "rich"
             because of one small ex-Portuguese coastal enclave. What is the development
             model, if it does not extend to libraries?
@@ -1729,15 +1885,15 @@ footer a {{ color: var(--red); text-decoration: underline; }}
         <div class="region-card">
           <div class="reg-head">
             <div class="reg-name">SOUTHERN ZC</div>
-            <div class="reg-meta">5 states + Puducherry · ~274M people · 20%<br><span class="reg-avg">₹27.58</span> avg · <strong>all cess-legislated</strong></div>
+            <div class="reg-meta">5 states + Puducherry · ~274M people · 20%<br><span class="reg-avg">₹20.42</span> avg · <strong>all cess-legislated</strong></div>
           </div>
           <ul class="reg-states">
-            <li><span class="st">Telangana</span><span class="v cess">₹13.97</span></li>
-            <li><span class="st">Tamil Nadu</span><span class="v cess">₹16.23</span></li>
-            <li><span class="st">Kerala</span><span class="v cess">₹24.67</span></li>
-            <li><span class="st">Andhra Pradesh</span><span class="v cess">₹24.74</span></li>
-            <li><span class="st">Karnataka</span><span class="v cess">₹35.23</span></li>
-            <li><span class="st">Puducherry (UT)</span><span class="v">₹50.61</span></li>
+            <li><span class="st">Telangana</span><span class="v cess">₹10.34</span></li>
+            <li><span class="st">Tamil Nadu</span><span class="v cess">₹12.02</span></li>
+            <li><span class="st">Kerala</span><span class="v cess">₹18.26</span></li>
+            <li><span class="st">Andhra Pradesh</span><span class="v cess">₹18.32</span></li>
+            <li><span class="st">Karnataka</span><span class="v cess">₹26.08</span></li>
+            <li><span class="st">Puducherry (UT)</span><span class="v">₹37.47</span></li>
           </ul>
           <div class="question">
             Every state in the Southern zone has — or inherits — Public Libraries Act
@@ -1753,17 +1909,17 @@ footer a {{ color: var(--red); text-decoration: underline; }}
         <div class="region-card">
           <div class="reg-head">
             <div class="reg-name">NORTH EASTERN COUNCIL</div>
-            <div class="reg-meta">8 states (incl. Sikkim, 2002) · ~50M · 3.7%<br><span class="reg-avg">₹15.14</span> avg · 12× Central</div>
+            <div class="reg-meta">8 states (incl. Sikkim, 2002) · ~50M · 3.7%<br><span class="reg-avg">₹11.21</span> avg · 12× Central</div>
           </div>
           <ul class="reg-states">
-            <li><span class="st">Nagaland</span><span class="v">₹3.33</span></li>
-            <li><span class="st">Assam</span><span class="v">₹4.71</span></li>
-            <li><span class="st">Manipur</span><span class="v">₹6.88</span></li>
-            <li><span class="st">Tripura</span><span class="v">₹10.61</span></li>
-            <li><span class="st">Meghalaya</span><span class="v">₹11.11</span></li>
-            <li><span class="st">Mizoram</span><span class="v">₹16.80</span></li>
-            <li><span class="st">Sikkim</span><span class="v">₹19.68</span></li>
-            <li><span class="st">Arunachal Pradesh</span><span class="v">₹48.02</span></li>
+            <li><span class="st">Nagaland</span><span class="v">₹2.47</span></li>
+            <li><span class="st">Assam</span><span class="v">₹3.49</span></li>
+            <li><span class="st">Manipur</span><span class="v">₹5.09</span></li>
+            <li><span class="st">Tripura</span><span class="v">₹7.85</span></li>
+            <li><span class="st">Meghalaya</span><span class="v">₹8.23</span></li>
+            <li><span class="st">Mizoram</span><span class="v">₹12.44</span></li>
+            <li><span class="st">Sikkim</span><span class="v">₹14.57</span></li>
+            <li><span class="st">Arunachal Pradesh</span><span class="v">₹35.56</span></li>
           </ul>
           <div class="question">
             The NEC was created in 1972 because the standard Zonal Councils could not handle
@@ -1833,7 +1989,7 @@ footer a {{ color: var(--red); text-decoration: underline; }}
         places in the East), Delhi (MHA: North), Haryana (MHA: North) and Rajasthan (MHA: North),
         on top of UP / MP / Uttarakhand. Result: <strong>~584 million people</strong>
         — 41% of India, headquartered at the Hindi belt's cultural capital — averaging
-        <strong>₹1.64 per person per year</strong> on public libraries.
+        <strong>₹1.21 per person per year</strong> on public libraries.
       </p>
 
       <p class="body">
@@ -1879,9 +2035,9 @@ footer a {{ color: var(--red); text-decoration: underline; }}
         <div class="traj-card">
           <div class="st-name">GOA</div>
           <div class="traj-line">
-            <div class="traj-step"><div class="yr">2014-15</div><div class="val">₹66.52</div><div class="tag">Actual</div></div>
-            <div class="traj-step"><div class="yr">2018-19 · peak</div><div class="val">₹118.76</div><div class="tag">Actual</div></div>
-            <div class="traj-step now"><div class="yr">2024-25</div><div class="val">₹284.17</div><div class="tag">Budget Est.</div></div>
+            <div class="traj-step"><div class="yr">2014-15</div><div class="val">₹56.17</div><div class="tag">Actual</div></div>
+            <div class="traj-step"><div class="yr">2018-19 · peak</div><div class="val">₹87.94</div><div class="tag">Actual</div></div>
+            <div class="traj-step now"><div class="yr">2024-25</div><div class="val">₹161.52</div><div class="tag">Budget Est.</div></div>
           </div>
           <div class="question">
             Goa kept climbing — through 2019-20, through COVID, through 2024. By 2024-25 (BE) it
@@ -1896,13 +2052,13 @@ footer a {{ color: var(--red); text-decoration: underline; }}
         <div class="traj-card">
           <div class="st-name">ASSAM</div>
           <div class="traj-line">
-            <div class="traj-step"><div class="yr">2014-15</div><div class="val">₹3.99</div><div class="tag">Actual</div></div>
-            <div class="traj-step"><div class="yr">2018-19</div><div class="val">₹4.71</div><div class="tag">Actual</div></div>
-            <div class="traj-step now"><div class="yr">2024-25</div><div class="val">₹6.97</div><div class="tag">Budget Est.</div></div>
+            <div class="traj-step"><div class="yr">2014-15</div><div class="val">₹3.37</div><div class="tag">Actual</div></div>
+            <div class="traj-step"><div class="yr">2018-19</div><div class="val">₹3.49</div><div class="tag">Actual</div></div>
+            <div class="traj-step now"><div class="yr">2024-25</div><div class="val">₹3.96</div><div class="tag">Budget Est.</div></div>
           </div>
           <div class="question">
-            Assam is the only one of the four where the recent budget estimate (₹7.84 in 2023-24 BE,
-            ₹6.97 in 2024-25 BE) exceeds the 2018-19 actual. Caveat: Assam's state-budget figures
+            Assam is the only one of the four where the recent budget estimate (₹4.59 in 2023-24 BE,
+            ₹3.96 in 2024-25 BE) exceeds the 2018-19 actual. Caveat: Assam's state-budget figures
             cover MH 105 only and likely undercount by ~22% versus CAG accounts. <em>If</em> the BE
             converts into actual spending, Assam will be the first non-cess state in the data to
             recover above its pre-COVID library line. Will the BE actually convert?
@@ -1912,12 +2068,12 @@ footer a {{ color: var(--red); text-decoration: underline; }}
         <div class="traj-card">
           <div class="st-name">RAJASTHAN</div>
           <div class="traj-line">
-            <div class="traj-step"><div class="yr">2014-15</div><div class="val">₹1.27</div><div class="tag">Actual</div></div>
-            <div class="traj-step"><div class="yr">2018-19</div><div class="val">₹1.49</div><div class="tag">Actual</div></div>
-            <div class="traj-step now"><div class="yr">2024-25</div><div class="val">₹2.04</div><div class="tag">Revised Est.</div></div>
+            <div class="traj-step"><div class="yr">2014-15</div><div class="val">₹1.07</div><div class="tag">Actual</div></div>
+            <div class="traj-step"><div class="yr">2018-19</div><div class="val">₹1.10</div><div class="tag">Actual</div></div>
+            <div class="traj-step now"><div class="yr">2024-25</div><div class="val">₹1.16</div><div class="tag">Revised Est.</div></div>
           </div>
           <div class="question">
-            Rajasthan's per-capita library budget has grown from ₹1.27 to ₹2.04 over a decade —
+            Rajasthan's per-capita library budget has grown from ₹0.94 to ₹1.16 over a decade —
             a 60% nominal increase, perhaps 5% in real terms. For a state of <strong>83 million</strong>,
             ₹2 per person per year is not investment. It is a token. The question is: at what
             point does a token become an admission — that the State has decided libraries are
@@ -1928,14 +2084,14 @@ footer a {{ color: var(--red); text-decoration: underline; }}
         <div class="traj-card">
           <div class="st-name">ODISHA</div>
           <div class="traj-line">
-            <div class="traj-step"><div class="yr">2014-15</div><div class="val">₹0.91</div><div class="tag">Actual</div></div>
-            <div class="traj-step"><div class="yr">2018-19</div><div class="val">₹1.22</div><div class="tag">Actual</div></div>
-            <div class="traj-step now"><div class="yr">2024-25</div><div class="val">₹1.14</div><div class="tag">Budget Est.</div></div>
+            <div class="traj-step"><div class="yr">2014-15</div><div class="val">₹0.77</div><div class="tag">Actual</div></div>
+            <div class="traj-step"><div class="yr">2018-19</div><div class="val">₹0.90</div><div class="tag">Actual</div></div>
+            <div class="traj-step now"><div class="yr">2024-25</div><div class="val">₹0.65</div><div class="tag">Budget Est.</div></div>
           </div>
           <div class="question">
             Odisha has been celebrated for two decades as India's well-governed state — disaster
             response, fiscal discipline, mining royalties redirected to welfare. Its public-library
-            line has not moved meaningfully from <strong>₹1.13 to ₹1.30</strong> across any year
+            line has not moved meaningfully from <strong>₹0.95 to ₹1.10</strong> across any year
             of this analysis. If a state that gets governance right cannot find its way to investing
             in libraries, where does that leave the states that get governance wrong?
           </div>
@@ -1982,14 +2138,14 @@ footer a {{ color: var(--red); text-decoration: underline; }}
               <div class="label">Generation I · 1948–1989 · Act + Cess</div>
               <div class="h3">THE CESS TRADITION.</div>
             </div>
-            <div class="meta">5 states<br><span class="avg">₹24.11</span>avg per capita</div>
+            <div class="meta">5 states<br><span class="avg">₹17.85</span>avg per capita</div>
           </div>
           <div class="gen-states">
-            <span class="st-pill">Tamil Nadu <span class="yr">1948</span><span class="v">₹16.23</span></span>
-            <span class="st-pill">Andhra Pradesh <span class="yr">1960</span><span class="v">₹24.74</span></span>
-            <span class="st-pill">Karnataka <span class="yr">1965</span><span class="v">₹35.23</span></span>
-            <span class="st-pill">West Bengal <span class="yr">1979</span><span class="v">₹19.69</span></span>
-            <span class="st-pill">Kerala <span class="yr">1989</span><span class="v">₹24.67</span></span>
+            <span class="st-pill">Tamil Nadu <span class="yr">1948</span><span class="v">₹12.02</span></span>
+            <span class="st-pill">Andhra Pradesh <span class="yr">1960</span><span class="v">₹18.32</span></span>
+            <span class="st-pill">Karnataka <span class="yr">1965</span><span class="v">₹26.08</span></span>
+            <span class="st-pill">West Bengal <span class="yr">1979</span><span class="v">₹14.58</span></span>
+            <span class="st-pill">Kerala <span class="yr">1989</span><span class="v">₹18.26</span></span>
           </div>
           <p class="gen-text">
             Five states. All wrote a library cess into their Public Libraries Act: a small
@@ -2023,13 +2179,13 @@ footer a {{ color: var(--red); text-decoration: underline; }}
               <div class="label">Generation II · 1967–1989 · Act, no Cess</div>
               <div class="h3">THE TAX TRADITION.</div>
             </div>
-            <div class="meta">4 states<br><span class="avg">₹8.69</span>avg per capita</div>
+            <div class="meta">4 states<br><span class="avg">₹6.43</span>avg per capita</div>
           </div>
           <div class="gen-states">
-            <span class="st-pill">Maharashtra <span class="yr">1967</span><span class="v">₹12.43</span></span>
-            <span class="st-pill">Manipur <span class="yr">1988</span><span class="v">₹6.88</span></span>
-            <span class="st-pill">Haryana <span class="yr">1989 · "free"</span><span class="v low">₹1.48</span></span>
-            <span class="st-pill">Telangana <span class="yr">1960 / 2015</span><span class="v">₹13.97</span></span>
+            <span class="st-pill">Maharashtra <span class="yr">1967</span><span class="v">₹9.20</span></span>
+            <span class="st-pill">Manipur <span class="yr">1988</span><span class="v">₹5.09</span></span>
+            <span class="st-pill">Haryana <span class="yr">1989 · "free"</span><span class="v low">₹1.10</span></span>
+            <span class="st-pill">Telangana <span class="yr">1960 / 2015</span><span class="v">₹10.34</span></span>
           </div>
           <p class="gen-text">
             Four states. Wrote Acts but chose tax-funding — library spending must compete
@@ -2044,11 +2200,11 @@ footer a {{ color: var(--red); text-decoration: underline; }}
             of the public to use it for reference or borrowing without charging fee or
             subscription."</em> This is the only Indian Act that legally defines public
             libraries as free. It passed two years before liberalisation. Haryana's
-            per-capita library spend: <strong>₹1.48</strong>.
+            per-capita library spend: <strong>₹1.10</strong>.
           </p>
           <div class="gen-question">
             What does it mean to have a law that says "libraries are free" — and spend
-            ₹1.48 per person on them? Is the law a placeholder for a politics that hasn't
+            ₹1.10 per person on them? Is the law a placeholder for a politics that hasn't
             arrived yet, or a placeholder for a politics that has already arrived in
             another form — the State having decided that the statute is enough, and the
             funding is optional?
@@ -2065,12 +2221,12 @@ footer a {{ color: var(--red); text-decoration: underline; }}
             <div class="meta">6 states<br><span class="avg">₹2.32</span>avg w/o Goa &amp; Arunachal</div>
           </div>
           <div class="gen-states">
-            <span class="st-pill">Goa <span class="yr">1993</span><span class="v">₹118.76</span></span>
-            <span class="st-pill">Gujarat <span class="yr">2001</span><span class="v">₹5.02</span></span>
-            <span class="st-pill">Odisha <span class="yr">2002</span><span class="v low">₹1.22</span></span>
-            <span class="st-pill">Uttarakhand <span class="yr">2005</span><span class="v low">₹1.79</span></span>
-            <span class="st-pill">Chhattisgarh <span class="yr">2006</span><span class="v low">₹1.26</span></span>
-            <span class="st-pill">Arunachal Pradesh <span class="yr">2009</span><span class="v">₹48.02</span></span>
+            <span class="st-pill">Goa <span class="yr">1993</span><span class="v">₹87.94</span></span>
+            <span class="st-pill">Gujarat <span class="yr">2001</span><span class="v">₹3.72</span></span>
+            <span class="st-pill">Odisha <span class="yr">2002</span><span class="v low">₹0.90</span></span>
+            <span class="st-pill">Uttarakhand <span class="yr">2005</span><span class="v low">₹1.33</span></span>
+            <span class="st-pill">Chhattisgarh <span class="yr">2006</span><span class="v low">₹0.93</span></span>
+            <span class="st-pill">Arunachal Pradesh <span class="yr">2009</span><span class="v">₹35.56</span></span>
           </div>
           <p class="gen-text">
             Six states. <strong>Every Library Act passed in India after 1990 has been
@@ -2105,33 +2261,33 @@ footer a {{ color: var(--red); text-decoration: underline; }}
             <div class="meta">16 states<br><span class="avg">~700M</span>people</div>
           </div>
           <div class="gen-states">
-            <span class="st-pill low">Uttar Pradesh<span class="v">₹0.94</span></span>
-            <span class="st-pill low">Bihar<span class="v">₹0.36</span></span>
-            <span class="st-pill low">Madhya Pradesh<span class="v">₹1.09</span></span>
-            <span class="st-pill low">Jharkhand<span class="v">₹0.14</span></span>
-            <span class="st-pill low">Punjab<span class="v">₹0.98</span></span>
-            <span class="st-pill low">Rajasthan<span class="v">₹1.49</span></span>
-            <span class="st-pill">Assam<span class="v">₹4.71</span></span>
-            <span class="st-pill">Delhi<span class="v">₹4.31</span></span>
-            <span class="st-pill">Himachal<span class="v">₹11.66</span></span>
-            <span class="st-pill">J&amp;K<span class="v">₹13.16</span></span>
-            <span class="st-pill">Meghalaya<span class="v">₹11.11</span></span>
-            <span class="st-pill">Mizoram<span class="v">₹16.80</span></span>
-            <span class="st-pill">Nagaland<span class="v">₹3.33</span></span>
-            <span class="st-pill">Sikkim<span class="v">₹19.68</span></span>
-            <span class="st-pill">Tripura<span class="v">₹10.61</span></span>
-            <span class="st-pill">Puducherry<span class="v">₹50.61</span></span>
+            <span class="st-pill low">Uttar Pradesh<span class="v">₹0.70</span></span>
+            <span class="st-pill low">Bihar<span class="v">₹0.27</span></span>
+            <span class="st-pill low">Madhya Pradesh<span class="v">₹0.81</span></span>
+            <span class="st-pill low">Jharkhand<span class="v">₹0.10</span></span>
+            <span class="st-pill low">Punjab<span class="v">₹0.73</span></span>
+            <span class="st-pill low">Rajasthan<span class="v">₹1.10</span></span>
+            <span class="st-pill">Assam<span class="v">₹3.49</span></span>
+            <span class="st-pill">Delhi<span class="v">₹3.19</span></span>
+            <span class="st-pill">Himachal<span class="v">₹8.63</span></span>
+            <span class="st-pill">J&amp;K<span class="v">₹9.74</span></span>
+            <span class="st-pill">Meghalaya<span class="v">₹8.23</span></span>
+            <span class="st-pill">Mizoram<span class="v">₹12.44</span></span>
+            <span class="st-pill">Nagaland<span class="v">₹2.47</span></span>
+            <span class="st-pill">Sikkim<span class="v">₹14.57</span></span>
+            <span class="st-pill">Tripura<span class="v">₹7.85</span></span>
+            <span class="st-pill">Puducherry<span class="v">₹37.47</span></span>
           </div>
           <p class="gen-text">
             Sixteen states. Of the eight lowest-spending in India, <strong>six are in this
-            group</strong>: Jharkhand ₹0.14, Bihar ₹0.36, UP ₹0.94, Punjab ₹0.98, MP ₹1.09,
-            Rajasthan ₹1.49. UP alone — 230 million people, more than the population of
+            group</strong>: Jharkhand ₹0.10, Bihar ₹0.27, UP ₹0.70, Punjab ₹0.73, MP ₹0.81,
+            Rajasthan ₹1.10. UP alone — 230 million people, more than the population of
             Brazil — has no statute naming public libraries as something the State maintains.
           </p>
           <p class="gen-text">
             The data refuses a clean story even here. Arunachal Pradesh, which the live
             government roster has been slow to update with its 2009 Act, spends ₹48 per
-            capita. Mizoram, no Act, spends ₹16.80. Some no-Act states (the NE small ones)
+            capita. Mizoram, no Act, spends ₹12.44. Some no-Act states (the NE small ones)
             spend well; the large no-Act states all spend nothing. The absence is not a
             uniform condition — but it is a reliable predictor of underspend at scale.
           </p>
@@ -2182,16 +2338,16 @@ footer a {{ color: var(--red); text-decoration: underline; }}
       </p>
       <p class="body">
         The ₹11–12 figure that has circulated as a benchmark came from Balaji et al.'s
-        careful 2025 study. Corrected for a growing population and rising prices,
-        India's peak real expenditure was <strong>₹7.08 per person in 2018-19</strong>.
-        By the government's own state-level spending trends, that figure had fallen
-        to approximately <strong>₹3.85 by 2024-25</strong> — lower, in constant rupees,
-        than any year going back to 2014-15.
+        careful 2025 study. Corrected for a growing population and rising prices using
+        the MoSPI implicit GDP deflator (base 2011-12), India's peak real expenditure was
+        <strong>₹7.87 per person in 2018-19</strong>. By 2024-25 that figure had retreated
+        to <strong>₹4.66 — 41% below peak</strong>, almost entirely undoing the post-2014
+        real-terms gain.
       </p>
       <p class="body">
         For scale: the central government alone spends over <strong>₹1,000 per capita
         per year on defence</strong>. State spending on education runs ₹200–400 per
-        capita. ₹3.85 for libraries is not even a rounding error in that arithmetic.
+        capita. ₹4.66 for libraries is not even a rounding error in that arithmetic.
         It is what a State that has decided libraries do not matter looks like.
       </p>
       <p class="body">
@@ -2201,15 +2357,21 @@ footer a {{ color: var(--red); text-decoration: underline; }}
         political will exists somewhere in India. It just does not extend to the
         states where most Indians live.
       </p>
+      <button type="button" class="print-btn" onclick="window.print()"
+              aria-label="Print this analysis as an A4 PDF — pages 1-16 are the analysis, 17-18 are methodology and sources">
+        Print this analysis (A4) →
+      </button>
+      <p class="print-hint">
+        Pages 1–16 are the analysis. Pages 17–18 are sources, methodology, and the per-state CAGR table — choose "pages 1-16" in your print dialog to skip the methodology appendix.
+      </p>
     </div>
   </section>
 
   <!-- ═══════════════════════════════ METHODS -->
-  <section class="section ink methods">
-    <div class="grain"></div>
+  <section class="section cream methods">
     <div class="stack">
-      <div class="eyebrow">Methods · sources · assumptions</div>
-      <h2>HOW WE GOT HERE.</h2>
+      <details class="bib-collapse">
+        <summary>Sources, data &amp; citations</summary>
 
       <p class="body">
         <strong>What we used and where it came from.</strong>
@@ -2218,10 +2380,31 @@ footer a {{ color: var(--red); text-decoration: underline; }}
         expenditure data for 2021-22 → 2024-25 from state demand-for-grants
         documents (Assam, Goa, Rajasthan, Odisha) accessed via Open Budgets
         India (Source 3). Annual state-level population from the MoHFW
-        Technical Group's projections (Source 2). CPI-IW deflator for
-        real-terms calculations from the Labour Bureau (Source 4). All
-        replication checks against Kulkarni-Balaji-Dhanamjaya's 2018-19
-        per-capita figures pass within ±₹0.20.
+        Technical Group's projections (Source 2). All replication checks
+        against Kulkarni-Balaji-Dhanamjaya's 2018-19 per-capita figures
+        pass within ±₹0.20 of their published nominal values.
+      </p>
+
+      <p class="body">
+        <strong>Deflation to 2011-12 ₹.</strong>
+        All real-terms per-capita figures on this page are deflated using
+        the <strong>MoSPI implicit GDP deflator</strong> derived from
+        National Accounts Statistics (GDP at current prices ÷ GDP at
+        constant 2011-12 prices), using the latest published revision per
+        year — Third Revised Estimates 2014-15 to 2020-21, Second Revised
+        2021-22, Final Estimates 2022-23, First Revised 2023-24,
+        Provisional Estimates 2024-25. This is the standard deflator for
+        real government-spending analysis used in the IMF Government
+        Finance Statistics Manual (GFSM 2014), OECD Government at a
+        Glance, World Bank Public Expenditure Review methodology, and
+        the RBI's annual <em>State Finances: A Study of Budgets</em>.
+        Single-year state and zone cross-sections are deflated by the
+        2018-19 factor (0.7404, i.e. a cumulative GDP-deflator level of
+        1.3506 since the 2011-12 base). Per-state inflation differs
+        slightly from the national factor; we use the national one for
+        cross-state comparability. Kulkarni-Balaji-Dhanamjaya's original
+        published nominal figures are recoverable by dividing by the
+        same factor.
       </p>
 
       <h3>Sources</h3>
@@ -2252,10 +2435,16 @@ footer a {{ color: var(--red); text-decoration: underline; }}
           Odisha (2021–22 through 2024–25) accessed through the OBI corpus.
         </li>
         <li style="margin-bottom: 14px;">
-          Labour Bureau, Ministry of Labour and Employment, Government of
-          India. <em>Consumer Price Index for Industrial Workers (CPI-IW),
-          Base 2011-12 = 100</em>. Monthly series. The 2024-25 value (213.0)
-          is the published provisional estimate.
+          Ministry of Statistics and Programme Implementation, Government
+          of India. <em>National Accounts Statistics: Gross Domestic
+          Product at Current and Constant 2011-12 Prices</em>.
+          Annual series, base year 2011-12. Implicit GDP deflator
+          computed as GDP-current-prices ÷ GDP-constant-2011-12-prices.
+          Latest published revision per year used (Third Revised
+          Estimates 2014-15 to 2020-21, Second Revised 2021-22, Final
+          Estimates 2022-23, First Revised 2023-24, Provisional
+          Estimates 2024-25). Accessed via the MoSPI public API,
+          May 2026.
         </li>
       </ol>
 
@@ -2325,6 +2514,8 @@ footer a {{ color: var(--red); text-decoration: underline; }}
         </tbody>
       </table>
 
+      </details>
+
     </div>
   </section>
 
@@ -2335,7 +2526,7 @@ footer a {{ color: var(--red); text-decoration: underline; }}
     </div>
     <div class="colophon-line">
       Last updated May 2026 ·
-      Code: <a href="https://polyformproject.org/licenses/noncommercial/1.0.0/">PolyForm-NC 1.0</a> ·
+      Code: <a href="https://polyformproject.org/licenses/noncommercial/1.0.0">PolyForm-NC 1.0</a> ·
       Data: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
       <a class="github-link" href="https://github.com/CommonerLLP/theright2read" target="_blank" rel="noopener" aria-label="GitHub repository: CommonerLLP/theright2read" title="CommonerLLP/theright2read">
         <svg class="github-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
@@ -2465,6 +2656,26 @@ new Chart(document.getElementById('chart1'), {{
 // Charts 2, 3, 4 removed in favour of structured HTML/CSS callouts
 // (Cess Paradox + Goa Exception in Section 2, Region cards in Section 3,
 // State trajectory cards in Section 4, Generation cards in Section 5).
+
+// Open every <details> when the user prints, so the PDF artefact is
+// self-contained (Methods + per-state CAGR table included). Restore
+// original state after the print dialog closes. The print CSS forces
+// section.methods onto its own page so readers who only want the
+// analysis can choose "pages 1-N" and skip the methodology appendix.
+(function setupPrintExpansion() {{
+  const remember = new WeakMap();
+  window.addEventListener('beforeprint', () => {{
+    document.querySelectorAll('details').forEach(d => {{
+      remember.set(d, d.open);
+      d.open = true;
+    }});
+  }});
+  window.addEventListener('afterprint', () => {{
+    document.querySelectorAll('details').forEach(d => {{
+      if (remember.has(d)) d.open = remember.get(d);
+    }});
+  }});
+}})();
 </script>
 </body>
 </html>

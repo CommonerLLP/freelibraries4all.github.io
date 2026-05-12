@@ -39,7 +39,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@600;700;900&family=Roboto+Slab:wght@400;500;700;900&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Hind:wght@400;500;600;700&family=Hind+Madurai:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&family=Noto+Serif+Tamil:wght@400;600;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="../assets/styles.css?v=40">
+<link rel="stylesheet" href="../assets/styles.css?v=43">
 </head>
 <body>
 
@@ -114,7 +114,8 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
+  <!-- Closing CTA + masthead — content section, not part of the unified footer -->
+  <section class="closing-section">
     <div class="footer-grid">
       <div>
         <h3>EDUCATE.<br>AGITATE.<br><span class="red">ORGANISE.</span></h3>
@@ -134,8 +135,13 @@
           <span class="ta" lang="ta">வாழ்க பெரியார்</span>
         </div>
       </div>
-      <div class="footer-sources">
-        <h3 class="bib-head">Historical Sources</h3>
+    </div>
+  </section>
+
+  <!-- Unified footer — identical on every page of the site -->
+  <footer class="page-footer">
+    <details class="bib-collapse">
+      <summary class="bib-head">Sources, data &amp; citations</summary>
         <ul class="bib-list">
           <li>
             <span class="bib-label">Ambedkar's 1915 letter on Sir Pherozshah Mehta</span>
@@ -174,19 +180,33 @@
             <span class="bib-cite">People's National Library Policy 2024 (Free Libraries Network, <a href="https://www.fln.org.in" target="_blank" rel="noopener">fln.org.in</a>).</span>
           </li>
         </ul>
-        <div class="bib-notes">
-          <span class="bib-label">Notes on the history</span>
-          The voices in the Quotes section are presented in their original languages (Marathi, Tamil, Hindi/Devanagari) on the page, with English glosses for accessibility. Citations follow conventional academic style; primary sources are used wherever possible. Historical events are dated from official government / archival records.
-        </div>
+      <div class="bib-notes">
+        <span class="bib-label">Notes on the history</span>
+        The voices in the Quotes section are presented in their original languages (Marathi, Tamil, Hindi/Devanagari) on the page, with English glosses for accessibility. Citations follow conventional academic style; primary sources are used wherever possible. Historical events are dated from official government / archival records.
       </div>
+    </details>
+    <div class="wip-notice">
+      Work in progress · 2021-25 figures are extrapolations and will be revised as CAG actuals are published.
+    </div>
+    <div class="colophon-line">
+      Last updated May 2026 ·
+      Code: <a href="https://polyformproject.org/licenses/noncommercial/1.0.0/">PolyForm-NC 1.0</a> ·
+      Data: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+      <a class="github-link" href="https://github.com/CommonerLLP/theright2read" target="_blank" rel="noopener" aria-label="GitHub repository: CommonerLLP/theright2read" title="CommonerLLP/theright2read">
+        <svg class="github-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+          <title>GitHub</title>
+          <path d="M8 0C3.58 0 0 3.67 0 8.2c0 3.62 2.29 6.69 5.47 7.77.4.08.55-.18.55-.4 0-.19-.01-.84-.01-1.53-2.01.38-2.53-.5-2.69-.96-.09-.24-.48-.96-.82-1.16-.28-.16-.68-.56-.01-.57.63-.01 1.08.59 1.23.83.72 1.24 1.87.89 2.33.68.07-.53.28-.89.51-1.09-1.78-.21-3.64-.91-3.64-4.04 0-.89.31-1.62.82-2.19-.08-.21-.36-1.04.08-2.16 0 0 .67-.22 2.2.84A7.4 7.4 0 0 1 8 3.95c.68 0 1.36.09 2 .28 1.53-1.06 2.2-.84 2.2-.84.44 1.12.16 1.95.08 2.16.51.57.82 1.3.82 2.19 0 3.14-1.87 3.83-3.65 4.04.29.25.54.76.54 1.54 0 1.11-.01 2-.01 2.27 0 .22.15.48.55.4A8.09 8.09 0 0 0 16 8.2C16 3.67 12.42 0 8 0Z" />
+        </svg>
+        <span>GitHub</span>
+      </a>
     </div>
   </footer>
 
 </main>
 
-<script src="../assets/data.js?v=40"></script>
-<script src="../assets/helpers.js?v=40"></script>
-<script src="../assets/games.js?v=40"></script>
-<script src="../assets/main.js?v=40"></script>
+<script src="../assets/data.js?v=43"></script>
+<script src="../assets/helpers.js?v=43"></script>
+<script src="../assets/games.js?v=43"></script>
+<script src="../assets/main.js?v=43"></script>
 </body>
 </html>

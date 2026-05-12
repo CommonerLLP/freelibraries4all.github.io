@@ -198,5 +198,5 @@ carries a `DO-NOT-HAND-EDIT` header — regenerate with
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0. See
-`LICENSE` for the full license text.
+This project is licensed under the [PolyForm Noncommercial 1.0.0](https://polyformproject.org/licenses/noncommercial/1.0.0/)
+license. Noncommercial use only. See `LICENSE` for the full license text.

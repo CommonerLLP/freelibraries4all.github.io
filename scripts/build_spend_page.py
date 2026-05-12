@@ -266,34 +266,43 @@ def cess_sparklines_svg():
 
 
 def goa_stack_svg():
-    """A magnitude stack: Goa vs four reference averages, with bars scaled to the
-    actual values (linear). The bar lengths show how far out Goa sits."""
+    """The Goa-exception argument in three rows: the outlier itself, the
+    inflated unweighted-state average that the press cites, and the honest
+    population-weighted figure. Bars are linear-scaled; ₹ values are
+    right-aligned in a fixed column so they never overlap the sub-labels.
+
+    Hindi-belt and Central averages live in Section 3 (region cards) — they
+    don't belong in the Goa-exception panel because they aren't part of the
+    same argument."""
+    # Sub-text is provided as a 2-tuple now (line1, line2) so we control the
+    # break point precisely — splitting at the natural · in the prose.
     rows = [
-        ("GOA",                    118.76, "Single state · 1.6M people",  "#dc2a14"),
-        ("UNWEIGHTED STATE AVG",    15.30, "What press cites · Goa inflates it", "#f1e8d3"),
-        ("POPULATION-WEIGHTED AVG", 10.63, "What India actually spends · 2018-19", "#f1e8d3"),
-        ("HINDI-BELT 8 AVG",         4.48, "45% of India's population",   "#f1e8d3"),
-        ("CENTRAL · MP + CHHATTISGARH",  1.18, "~150M people",            "#f1e8d3"),
+        ("GOA",                       118.76, ("1.6M people",                  "the outlier"),                       "#dc2a14"),
+        ("AVERAGE OF STATE AVERAGES",  15.30, ("What the press cites",          "Goa weighs as much as UP"),         "#f1e8d3"),
+        ("PER INDIAN",                 10.63, ("What India spends",             "weighted by population"),            "#f1e8d3"),
     ]
-    W = 560
-    ROW_H = 78
-    H = ROW_H * len(rows) + 28
-    LABEL_W = 230
-    BAR_W = W - LABEL_W - 110
+    W = 720
+    ROW_H = 132
+    H = ROW_H * len(rows) + 32
+    LABEL_W = 340
+    VAL_X = W - 12
+    VAL_RESERVED = 120
+    BAR_X = LABEL_W
+    BAR_MAX_W = W - LABEL_W - VAL_RESERVED
     MAX_V = 130
-    parts = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Comparison of Goa per-capita library expenditure with four national reference averages">']
-    for i, (label, v, sub, col) in enumerate(rows):
-        y_top = 12 + i * ROW_H
+    parts = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Goa per-capita library expenditure compared with two ways of averaging national figures">']
+    for i, (label, v, sub_pair, col) in enumerate(rows):
+        sub1, sub2 = sub_pair
+        y_top = 16 + i * ROW_H
         y_mid = y_top + ROW_H / 2
-        # label
-        parts.append(f'<text x="0" y="{y_mid - 12}" font-family="Bebas Neue" font-size="28" fill="#f1e8d3">{label}</text>')
-        parts.append(f'<text x="0" y="{y_mid + 14}" font-family="JetBrains Mono, monospace" font-size="13" font-weight="500" fill="#f1e8d3" opacity="0.7" letter-spacing="0.5">{sub}</text>')
-        # bar
-        bar_len = (v / MAX_V) * BAR_W
-        parts.append(f'<rect class="zonebar" x="{LABEL_W}" y="{y_mid - 18}" width="{bar_len:.1f}" height="36" fill="{col}" rx="2"><title>{label} · ₹{v:.2f} per capita · {sub}</title></rect>')
-        # value
-        text_x = LABEL_W + bar_len + 12
-        parts.append(f'<text x="{text_x:.1f}" y="{y_mid + 10}" font-family="Bebas Neue" font-size="36" fill="{col}">₹{v:.2f}</text>')
+        # Main display label
+        parts.append(f'<text x="0" y="{y_mid - 26}" font-family="Bebas Neue" font-size="36" fill="#f1e8d3">{label}</text>')
+        # Sub-text on TWO lines, each bigger than before
+        parts.append(f'<text x="0" y="{y_mid + 6}"  font-family="JetBrains Mono, monospace" font-size="16" font-weight="500" fill="#f1e8d3" opacity="0.75" letter-spacing="0.5">{sub1}</text>')
+        parts.append(f'<text x="0" y="{y_mid + 28}" font-family="JetBrains Mono, monospace" font-size="16" font-weight="500" fill="#f1e8d3" opacity="0.75" letter-spacing="0.5">{sub2}</text>')
+        bar_len = (v / MAX_V) * BAR_MAX_W
+        parts.append(f'<rect class="zonebar" x="{BAR_X}" y="{y_mid - 26}" width="{bar_len:.1f}" height="52" fill="{col}" rx="2"><title>{label} · ₹{v:.2f} per Indian · {sub1} · {sub2}</title></rect>')
+        parts.append(f'<text x="{VAL_X}" y="{y_mid + 14}" text-anchor="end" font-family="Bebas Neue" font-size="50" fill="{col}">₹{v:.2f}</text>')
     parts.append('</svg>')
     return "\n".join(parts)
 
@@ -948,6 +957,82 @@ svg .sparkdot:hover {{ r: 6; }}
 svg .memdot {{ transition: r 0.12s; cursor: pointer; }}
 svg .memdot:hover {{ r: 9; }}
 
+/* ── Work-in-progress notice in footer ── */
+.wip-notice {{
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--red);
+  padding: 8px 12px;
+  border: 1px dashed var(--red);
+  display: inline-block;
+  margin-bottom: 14px;
+  white-space: nowrap;
+}}
+@media (max-width: 720px) {{
+  .wip-notice {{ white-space: normal; max-width: 100%; }}
+}}
+
+/* ── GitHub repo link · matches the academiaindia/whoseuniversity.org
+   footer pattern: inherits text colour, no decoration. Inline-flex
+   with octicon at 1em (scales with surrounding text). */
+.github-link {{
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  vertical-align: -0.12em;
+  color: inherit;
+  text-decoration: none;
+}}
+.github-link:hover {{ text-decoration: underline; }}
+.github-link .github-icon {{
+  width: 1em;
+  height: 1em;
+  flex: 0 0 auto;
+  fill: currentColor;
+}}
+
+/* ── "Builds on" credit block — sits between hero and Section 1.
+   Earnest acknowledgement of the three pieces of work this analysis
+   depends on. Not buried in citations; visible up front. */
+.builds-on {{
+  background: var(--cream-deep);
+  border: 2px solid var(--ink);
+  border-left: 12px solid var(--red);
+  padding: clamp(22px, 3vw, 36px) clamp(20px, 3vw, 40px);
+  margin: 0;
+}}
+.builds-on .bo-eyebrow {{
+  font-family: var(--f-mono); font-size: 12px;
+  letter-spacing: 2px; text-transform: uppercase;
+  font-weight: 700; color: var(--red); margin-bottom: 10px;
+}}
+.builds-on .bo-headline {{
+  font-family: var(--f-display); font-size: clamp(32px, 4cqi, 48px);
+  letter-spacing: 0.5px; line-height: 1.05;
+  margin-bottom: 22px;
+}}
+.builds-on .bo-item {{
+  margin-bottom: 18px;
+}}
+.builds-on .bo-item .bo-who {{
+  font-family: var(--f-display); font-size: clamp(20px, 2.4cqi, 28px);
+  letter-spacing: 0.5px; line-height: 1.1;
+  margin-bottom: 4px;
+}}
+.builds-on .bo-item .bo-what {{
+  font-family: var(--f-body); font-size: 16px; line-height: 1.55;
+}}
+.builds-on .bo-closing {{
+  font-family: var(--f-slab); font-size: 16px; line-height: 1.5;
+  margin-top: 14px; padding-top: 14px;
+  border-top: 1px dashed var(--ink);
+  font-style: italic;
+}}
+
 /* ── Tooltip on hover for SVG bubbles & bars ── */
 .tip {{
   position: fixed;
@@ -1346,6 +1431,57 @@ footer a {{ color: var(--red); text-decoration: underline; }}
         <div class="sub">
           per Indian, per year, on every public library in the country. Less than a local bus ticket.
           Less than what the State spends on a single one of its statue commissions. Lower than 2014-15.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ BUILDS ON · earnest credit, up front -->
+  <section class="section cream">
+    <div class="stack">
+      <div class="builds-on">
+        <div class="bo-eyebrow">Builds on</div>
+        <div class="bo-headline">THIS ANALYSIS STANDS ON<br>THREE PIECES OF WORK<br>BY OTHERS.</div>
+
+        <div class="bo-item">
+          <div class="bo-who">Kulkarni, Balaji &amp; Dhanamjaya (2025)</div>
+          <div class="bo-what">
+            compiled, audited, and published the state-level
+            public-library expenditure series for 2014-15 through
+            2020-21, from CAG Combined Finance and Revenue Accounts
+            (Major Head 2205 / Sub-head 105). Their 2018-19 per-capita
+            figures are the foundation everything below rests on.
+            <strong>Without their work, none of this exists.</strong>
+          </div>
+        </div>
+
+        <div class="bo-item">
+          <div class="bo-who">The Technical Group on Population Projections (MoHFW, 2020)</div>
+          <div class="bo-what">
+            chaired by Prof. K. S. James and constituted by the
+            National Commission on Population, produced the annual
+            state-level population projections 2011–2036. We use their
+            Table 11 — annual figures, no interpolation — instead of
+            fixed Census 2011 denominators. This correction is what
+            turns "₹11.62 nominal at peak" into "₹3.85 real today."
+          </div>
+        </div>
+
+        <div class="bo-item">
+          <div class="bo-who">CivicDataLab &amp; CBGA · Open Budgets India</div>
+          <div class="bo-what">
+            maintain
+            <a href="https://openbudgetsindia.org/" target="_blank" rel="noopener" style="color:var(--red); text-decoration:underline;">openbudgetsindia.org</a>,
+            the civic-data corpus that makes Indian state demand-for-grants
+            documents reusable as a dataset. That's the infrastructure
+            that lets this analysis extend the series past 2020-21 for
+            Assam, Goa, Rajasthan, and Odisha.
+          </div>
+        </div>
+
+        <div class="bo-closing">
+          We extended; they built. Full Chicago-format citations in the
+          Methods section at the bottom of this page.
         </div>
       </div>
     </div>
@@ -2070,28 +2206,60 @@ footer a {{ color: var(--red); text-decoration: underline; }}
       <h2>HOW WE GOT HERE.</h2>
 
       <p class="body">
-        <strong>Expenditure data, 2014-15 to 2020-21:</strong> Kulkarni, A., Balaji, B.,
-        &amp; Dhanamjaya, M. (2025). "What is the per capita expenditure on public libraries
-        in India? An empirical analysis." Table 1 — CAG Combined Finance and Revenue Accounts,
-        Minor Head 2205-105 (Public Libraries). All replication checks pass within ±₹0.20
-        per capita.
+        <strong>What we used and where it came from.</strong>
+        State-level expenditure data for 2014-15 → 2020-21 from
+        Kulkarni, Balaji &amp; Dhanamjaya (Source 1 below). State-level
+        expenditure data for 2021-22 → 2024-25 from state demand-for-grants
+        documents (Assam, Goa, Rajasthan, Odisha) accessed via Open Budgets
+        India (Source 3). Annual state-level population from the MoHFW
+        Technical Group's projections (Source 2). CPI-IW deflator for
+        real-terms calculations from the Labour Bureau (Source 4). All
+        replication checks against Kulkarni-Balaji-Dhanamjaya's 2018-19
+        per-capita figures pass within ±₹0.20.
       </p>
-      <p class="body">
-        <strong>Expenditure data, 2021-22 to 2024-25:</strong> State demand-for-grants
-        documents for Assam, Goa, Rajasthan, Odisha. Budget Estimates and Revised
-        Estimates are not actuals; actual spending may differ. Assam figures likely
-        undercount by ~22% vs CAG methodology. All other states: CAGR extrapolation.
-      </p>
-      <p class="body">
-        <strong>Population:</strong> Technical Group on Population Projections,
-        National Commission on Population, MoHFW (July 2020). "Population Projections
-        for India and States 2011–2036." Table 11 — annual figures read directly from
-        the primary PDF; no interpolation.
-      </p>
-      <p class="body">
-        <strong>Deflator:</strong> CPI-IW (Consumer Price Index for Industrial Workers),
-        Labour Bureau, base 2011-12=100. Real values expressed in 2011-12 prices.
-        The 2024-25 CPI-IW value (213.0) is a provisional estimate.
+
+      <h3>Sources</h3>
+      <ol class="bib-list" style="font-family: var(--f-body); font-size: 15px; line-height: 1.6; padding-left: 28px;">
+        <li style="margin-bottom: 14px;">
+          Kulkarni, S. R., B. P. Balaji, and M. Dhanamjaya. "What Is the Per
+          Capita Expenditure on Public Libraries in India? An Empirical
+          Analysis." In <em>Book of Abstracts: Global Library Summit on
+          Library Diplomacy</em>, South Asian University, New Delhi, 5–7
+          February 2025, 125–32. New Delhi: LIS Academy, 2025.
+        </li>
+        <li style="margin-bottom: 14px;">
+          National Commission on Population. <em>Population Projections for
+          India and States, 2011–2036: Report of the Technical Group on
+          Population Projections</em>. Chaired by K. S. James. New Delhi:
+          Ministry of Health and Family Welfare, Government of India,
+          July 2020.
+          <a href="https://nhm.gov.in/New_Updates_2018/Report_Population_Projection_2019.pdf"
+             target="_blank" rel="noopener"
+             style="color:var(--red); text-decoration:underline;">nhm.gov.in/New_Updates_2018/Report_Population_Projection_2019.pdf</a>.
+        </li>
+        <li style="margin-bottom: 14px;">
+          CivicDataLab and Centre for Budget and Governance Accountability.
+          "Open Budgets India." Accessed May 2026.
+          <a href="https://openbudgetsindia.org/" target="_blank" rel="noopener"
+             style="color:var(--red); text-decoration:underline;">openbudgetsindia.org</a>.
+          State demand-for-grants documents for Assam, Goa, Rajasthan, and
+          Odisha (2021–22 through 2024–25) accessed through the OBI corpus.
+        </li>
+        <li style="margin-bottom: 14px;">
+          Labour Bureau, Ministry of Labour and Employment, Government of
+          India. <em>Consumer Price Index for Industrial Workers (CPI-IW),
+          Base 2011-12 = 100</em>. Monthly series. The 2024-25 value (213.0)
+          is the published provisional estimate.
+        </li>
+      </ol>
+
+      <p class="body" style="margin-top:18px;">
+        <strong>Caveats.</strong> Budget Estimates and Revised Estimates are
+        not actuals; actual spending may differ. Assam state-budget figures
+        likely undercount by ~22% versus the CAG methodology. For states
+        without published 2021–25 figures we use CAGR (2016-17 → 2020-21)
+        extrapolation from the 2020-21 base — see the assumptions block
+        below.
       </p>
 
       <h3>Extrapolation assumptions for replication</h3>
@@ -2151,18 +2319,26 @@ footer a {{ color: var(--red); text-decoration: underline; }}
         </tbody>
       </table>
 
-      <p class="body">
-        Full data and code:
-        <a href="https://github.com/CommonerLLP/sansad-semantic-crawler" style="color:var(--red); text-decoration:underline;">
-          CommonerLLP/sansad-semantic-crawler
-        </a>.
-      </p>
     </div>
   </section>
 
   <footer>
-    Right to Read · Free Libraries for All. This analysis builds on Kulkarni, Balaji &amp; Dhanamjaya (2025).
-    Released under <a href="https://polyformproject.org/licenses/noncommercial/1.0.0/">PolyForm Noncommercial 1.0.0</a>.
+    <div class="wip-notice">
+      Work in progress · 2021-25 figures are extrapolations and will be revised
+      as CAG actuals are published.
+    </div>
+    <div class="colophon-line">
+      Last updated May 2026 ·
+      Code: <a href="https://polyformproject.org/licenses/noncommercial/1.0.0/">PolyForm-NC 1.0</a> ·
+      Data: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+      <a class="github-link" href="https://github.com/CommonerLLP/theright2read" target="_blank" rel="noopener" aria-label="GitHub repository: CommonerLLP/theright2read" title="CommonerLLP/theright2read">
+        <svg class="github-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+          <title>GitHub</title>
+          <path d="M8 0C3.58 0 0 3.67 0 8.2c0 3.62 2.29 6.69 5.47 7.77.4.08.55-.18.55-.4 0-.19-.01-.84-.01-1.53-2.01.38-2.53-.5-2.69-.96-.09-.24-.48-.96-.82-1.16-.28-.16-.68-.56-.01-.57.63-.01 1.08.59 1.23.83.72 1.24 1.87.89 2.33.68.07-.53.28-.89.51-1.09-1.78-.21-3.64-.91-3.64-4.04 0-.89.31-1.62.82-2.19-.08-.21-.36-1.04.08-2.16 0 0 .67-.22 2.2.84A7.4 7.4 0 0 1 8 3.95c.68 0 1.36.09 2 .28 1.53-1.06 2.2-.84 2.2-.84.44 1.12.16 1.95.08 2.16.51.57.82 1.3.82 2.19 0 3.14-1.87 3.83-3.65 4.04.29.25.54.76.54 1.54 0 1.11-.01 2-.01 2.27 0 .22.15.48.55.4A8.09 8.09 0 0 0 16 8.2C16 3.67 12.42 0 8 0Z" />
+        </svg>
+        <span>GitHub</span>
+      </a>
+    </div>
   </footer>
 
 </main>

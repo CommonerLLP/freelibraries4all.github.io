@@ -1592,9 +1592,13 @@
   .end-tail { margin-top: 48px; font-family: var(--f-slab); font-size: 22px; color: var(--cream); font-style: italic; max-width: 700px; margin-left: auto; margin-right: auto; text-wrap: balance; opacity: 0.95; }
 
   /* FOOTER */
-  .footer { background: var(--cream); color: var(--ink); padding: var(--space-12) var(--space-12) var(--space-14); }
+  .footer,
+  .closing-section { background: var(--cream); color: var(--ink); padding: var(--space-12) var(--space-12) var(--space-14); }
   .footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 48px; align-items: center; }
-  .footer h3 { font-family: var(--f-display); font-size: clamp(40px, 7vw, 88px); font-weight: 900; color: var(--ink); line-height: 0.9; letter-spacing: -2px; text-transform: uppercase; margin: 0; }
+  .footer h2,
+  .footer h3,
+  .closing-section h2,
+  .closing-section h3 { font-family: var(--f-display); font-size: clamp(40px, 7vw, 88px); font-weight: 900; color: var(--ink); line-height: 0.9; letter-spacing: -2px; text-transform: uppercase; margin: 0; }
   .footer-deva { margin-top: var(--space-4); font-family: var(--f-deva); font-size: 22px; color: var(--ink-soft); font-weight: 700; }
   .footer-meta { font-family: var(--f-mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 1.5px; line-height: 1.8; text-transform: uppercase; }
   .footer-meta .head { color: var(--red); font-weight: 700; font-size: 13px; }
@@ -1635,6 +1639,44 @@
     letter-spacing: 3px; text-transform: uppercase;
     color: var(--ink); margin: 0 0 var(--space-5);
   }
+  /* Collapsible Data Sources: native <details>/<summary>. Closed by
+     default — the bibliographic detail sits one click away rather than
+     dominating the colophon. */
+  .footer-sources .bib-collapse > summary {
+    list-style: none;          /* hide default disclosure triangle */
+    cursor: pointer;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border: 2px solid var(--ink);
+    background: transparent;
+    margin-bottom: 0;
+  }
+  .footer-sources .bib-collapse > summary::-webkit-details-marker {
+    display: none;             /* Safari */
+  }
+  .footer-sources .bib-collapse > summary::after {
+    content: "+";
+    font-family: var(--f-mono); font-size: 16px; font-weight: 700;
+    color: var(--red); line-height: 1;
+    transition: transform 0.15s;
+  }
+  .footer-sources .bib-collapse[open] > summary::after {
+    content: "−";
+  }
+  .footer-sources .bib-collapse > summary:hover,
+  .footer-sources .bib-collapse > summary:focus-visible {
+    background: var(--ink); color: var(--cream);
+  }
+  .footer-sources .bib-collapse > summary:hover::after,
+  .footer-sources .bib-collapse > summary:focus-visible::after {
+    color: var(--cream);
+  }
+  .footer-sources .bib-collapse[open] > summary {
+    margin-bottom: var(--space-5);
+  }
   /* Each entry: red mono label on its own line, then slab citation.
      Thin separators between entries. Hanging-indent feel via padding. */
   .footer-sources .bib-list {
@@ -1668,6 +1710,146 @@
     color: var(--ink-soft);
   }
   .footer-sources .bib-notes .bib-label { color: var(--ink); margin-bottom: 6px; }
+
+  /* Work-in-progress notice in footers. Pamphlet voice: small mono caps,
+     red on cream, dashed border to read as a stamp. */
+  .wip-notice {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--red);
+    padding: var(--space-2) var(--space-3);
+    border: 1px dashed var(--red);
+    display: inline-block;
+    margin-bottom: var(--space-4);
+    /* Single-line by default; only wraps when the viewport is narrower
+       than the content. */
+    white-space: nowrap;
+  }
+  @media (max-width: 720px) {
+    .wip-notice { white-space: normal; max-width: 100%; }
+  }
+
+  /* Unified site-wide footer — identical structure on every page.
+     Contains a collapsible bibliography, optional WIP stamp, and the
+     colophon line. The legacy `.footer` class is still used for the
+     homepage's closing CTA block which now lives in a separate
+     <section class="closing-section">. */
+  .page-footer {
+    background: var(--cream);
+    color: var(--ink-soft);
+    padding: var(--space-8) clamp(20px, 4vw, 56px) var(--space-10);
+    border-top: 2px solid var(--ink);
+    font-family: var(--f-mono);
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  .page-footer .bib-collapse {
+    margin: 0 0 var(--space-5);
+  }
+  .page-footer .bib-list {
+    list-style: none; padding: 0; margin: var(--space-5) 0 0;
+    font-family: var(--f-slab); font-size: 13px; line-height: 1.55;
+    color: var(--ink);
+  }
+  .page-footer .bib-list > li {
+    padding: var(--space-3) 0;
+    border-top: 1px solid rgba(14, 14, 14, 0.12);
+  }
+  .page-footer .bib-list > li:first-child { border-top: none; }
+  .page-footer .bib-list .bib-label {
+    display: block;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--red); font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .page-footer .bib-list .bib-cite { color: var(--ink); }
+  .page-footer .bib-list a { color: var(--red); text-decoration: underline; }
+  .page-footer .bib-notes {
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid rgba(14, 14, 14, 0.12);
+    font-family: var(--f-slab); font-size: 12px; line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .page-footer .bib-notes .bib-label {
+    display: block;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--red); font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .page-footer .wip-notice {
+    margin-top: var(--space-2); margin-bottom: var(--space-4);
+  }
+  .page-footer .colophon-line {
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    color: var(--ink-soft);
+    letter-spacing: 1px;
+  }
+  .page-footer .colophon-line a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .page-footer .colophon-line a:hover { color: var(--red); }
+  /* The bib-collapse summary button styling is inherited from
+     `.footer-sources .bib-collapse` rules above; redefine for
+     `.page-footer` so it works without the legacy wrapper. */
+  .page-footer .bib-collapse > summary {
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border: 2px solid var(--ink);
+    background: transparent;
+    font-family: var(--f-mono); font-size: 11px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--ink);
+  }
+  .page-footer .bib-collapse > summary::-webkit-details-marker { display: none; }
+  .page-footer .bib-collapse > summary::after {
+    content: "+";
+    font-size: 16px; color: var(--red); line-height: 1;
+  }
+  .page-footer .bib-collapse[open] > summary::after { content: "−"; }
+  .page-footer .bib-collapse > summary:hover,
+  .page-footer .bib-collapse > summary:focus-visible {
+    background: var(--ink); color: var(--cream);
+  }
+  .page-footer .bib-collapse > summary:hover::after,
+  .page-footer .bib-collapse > summary:focus-visible::after {
+    color: var(--cream);
+  }
+
+  /* .closing-section styling lives with the .footer rules above —
+     both share padding + h2/h3 sizing. */
+
+  /* GitHub repo link · matches the academiaindia/whoseuniversity.org
+     pattern: inline-flex with octicon at 1em (scales with text). */
+  .github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+    vertical-align: -0.12em;
+    color: inherit;
+    text-decoration: none;
+  }
+  .github-link:hover { text-decoration: underline; }
+  .github-link .github-icon {
+    width: 1em;
+    height: 1em;
+    flex: 0 0 auto;
+    fill: currentColor;
+  }
 
   /* RESPONSIVE */
   @media (max-width: 900px) {

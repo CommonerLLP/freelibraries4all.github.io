@@ -1,0 +1,70 @@
+# Site checks — link validity + HTML sanity on every PR and main push.
+# This repo has no build step. Static HTML/CSS/JS is what ships to
+# GitHub Pages from `main`. CI here just guards against shipping
+# broken links or malformed HTML.
+name: site-checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancel in-progress runs for the same branch when a new commit lands.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    name: link checker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # lychee is a fast link checker — supports HTML, markdown, and
+      # ignores false positives via a config file when one is added.
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Config lives in lychee.toml at repo root: accept-codes,
+          # excludes for sites with known SSL/UA quirks, root-dir for
+          # root-relative href resolution.
+          args: >-
+            --no-progress
+            --config lychee.toml
+            --root-dir ${{ github.workspace }}
+            ./index.html
+            ./data/index.html
+            ./inequality/index.html
+            ./spend/index.html
+            ./README.md
+            ./SECURITY.md
+            ./CONTRIBUTING.md
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  html:
+    name: html validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # html-validate is a fast standalone HTML5 validator — no DOM,
+      # no headless browser. Catches structural issues only.
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install html-validate
+        run: npm install --no-save html-validate@9
+      - name: Validate HTML
+        run: |
+          npx html-validate \
+            --formatter codeframe \
+            index.html \
+            data/index.html \
+            inequality/index.html \
+            spend/index.html

@@ -1,0 +1,27 @@
+# lychee link-checker config for the site CI.
+# https://github.com/lycheeverse/lychee
+# Accept ranges + a few specific codes that some servers return for
+# unauthenticated bot requests.
+accept = ["100..=103", "200..=299", "403", "429"]
+
+# root_dir is passed at invocation time from the workflow so it can use
+# the runner's actual workspace path (${{ github.workspace }}).
+max_concurrency = 4
+max_redirects = 5
+no_progress = true
+timeout = 30
+retry_wait_time = 8
+max_retries = 2
+
+# Domains with known false-positives in CI:
+#  - pgportal.gov.in: India govt site with an SSL cert chain that
+#    Linux runners don't trust; reachable in normal browsers.
+#  - polyformproject.org: intermittent 404s on the licence URL.
+#  - jsdelivr.net and fonts.gstatic.com: CDN endpoints that block
+#    unauthenticated GETs from CI ranges.
+exclude = [
+  "^https://pgportal\\.gov\\.in",
+  "^https://polyformproject\\.org",
+  "^https://(cdn\\.)?jsdelivr\\.net",
+  "^https://fonts\\.gstatic\\.com",
+]

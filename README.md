@@ -59,8 +59,12 @@ make corpus-refresh    # crawl LS + RS, parse PDFs, regenerate the JS
 ```
 
 After regeneration, **bump the `?v=N` cache-bust suffix** wherever the
-JS is loaded — see [`AGENTS.md`](./AGENTS.md) section 5 for the
-canonical one-pass sed command.
+JS or CSS is loaded. One-pass update across all HTML files:
+
+```bash
+find . -name "*.html" -not -path "./node_modules/*" \
+  -exec sed -i '' 's/v=OLD/v=NEW/g' {} +
+```
 
 The legacy `scripts/sansad_library_crawl.py` + `sansad_library_parse.py`
 that previously did this work were retired in the 2026-05-06 migration;
@@ -198,5 +202,5 @@ carries a `DO-NOT-HAND-EDIT` header — regenerate with
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0. See
-`LICENSE` for the full license text.
+This project is licensed under the [PolyForm Noncommercial 1.0.0](https://polyformproject.org/licenses/noncommercial/1.0.0/)
+license. Noncommercial use only. See `LICENSE` for the full license text.

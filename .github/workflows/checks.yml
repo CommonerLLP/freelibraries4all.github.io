@@ -55,7 +55,7 @@ jobs:
       # html-validate is a fast standalone HTML5 validator — no DOM,
       # no headless browser. Catches structural issues only.
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '20'
       - name: Install html-validate

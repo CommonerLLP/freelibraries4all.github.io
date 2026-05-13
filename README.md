@@ -56,7 +56,22 @@ because `pip install` does not pull `examples/`).
 ```sh
 make deps              # one-time: install pinned deps into .venv
 make corpus-refresh    # crawl LS + RS, parse PDFs, regenerate the JS
+make test              # docs/code sync checks for this repo contract
 ```
+
+The refresh pipeline leaves a small auditable trail in
+`data/_parliament_libraries/`:
+
+- `data/_parliament_libraries/manifest.jsonl` records the crawled questions and PDFs.
+- `data/_parliament_libraries/analysis.jsonl` records topic classification against the vendored
+  `topics/libraries.json` profile.
+- `data/_parliament_libraries/_runs.jsonl` records run-level provenance, including
+  the topic-profile hash.
+
+The site's public artifact is still `assets/parliament_libraries.js`.
+The intermediate JSONL files matter because they are the easiest way to
+review whether a corpus refresh changed the substance of the analysis or
+only the rendered asset.
 
 After regeneration, **bump the `?v=N` cache-bust suffix** wherever the
 JS or CSS is loaded. One-pass update across all HTML files:
@@ -199,6 +214,9 @@ carries a `DO-NOT-HAND-EDIT` header — regenerate with
 - Check the dashboard on mobile and desktop widths after visual changes.
 - Keep accessibility in mind: chart colors, table readability, and keyboard
   navigation matter for a public-interest site.
+- Treat factual README and Makefile claims as part of the repo contract.
+  If you change corpus entrypoints, pinned versions, or named output files,
+  update the docs in the same PR and keep `make test` green.
 
 ## License
 

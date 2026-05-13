@@ -104,7 +104,9 @@ not be the only basis for numeric changes when a primary source exists.
    question.
 4. Document sources and assumptions in the relevant file, pull request, or
    methodology note.
-5. Test the static site locally before opening a pull request.
+5. Keep repo docs in sync when you change entrypoints, pinned dependencies,
+   or generated public artifacts.
+6. Test the static site locally before opening a pull request.
 
 ## Code Style
 
@@ -140,6 +142,19 @@ Before submitting a change:
 
 4. Check at least one narrow mobile viewport and one desktop viewport.
 
+5. If your change touches `README.md`, `Makefile`, `requirements.txt`,
+   `requirements-dev.txt`, `topics/libraries.json`, or the parliamentary-corpus
+   refresh pipeline, run:
+
+   ```sh
+   make test
+   ```
+
+   These checks enforce narrow factual invariants: the README's pinned
+   `sansad-semantic-crawler` tag must match `requirements.txt`, documented
+   `make ...` commands must exist, and the README's named corpus artifacts must
+   match the files this repo actually carries.
+
 ## Pull Request Checklist
 
 - The change is focused and described clearly.
@@ -148,6 +163,7 @@ Before submitting a change:
 - Source notes or methodology text were updated when needed.
 - Calculations and unit conversions are explained.
 - The dashboard still works as a static site.
+- Repo docs stay in sync with changed commands, pinned versions, and artifact names.
 - No generated local files, caches, or operating-system metadata are included.
 
 ## Tone And Content

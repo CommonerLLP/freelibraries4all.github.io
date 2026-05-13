@@ -25,16 +25,19 @@ TOPIC_PROFILE := topics/libraries.json
 CORPUS_OUT    := data/_parliament_libraries
 EXPORT_PATH   := assets/parliament_libraries.js
 
-.PHONY: deps corpus-crawl corpus-parse corpus-export corpus-extract-answers \
+.PHONY: deps test corpus-crawl corpus-parse corpus-export corpus-extract-answers \
         corpus-analyse-discourse corpus-analyse-ministry corpus-analyse \
         corpus-enrich corpus-refresh sync-agents help
 
 $(PYTHON):
 	python3 -m venv $(VENV)
-	$(PIP) install -q -r requirements.txt
+	$(PIP) install -q -r requirements.txt -r requirements-dev.txt
 
 deps:
-	$(PIP) install -r requirements.txt
+	$(PIP) install -r requirements.txt -r requirements-dev.txt
+
+test: $(PYTHON)
+	$(PYTHON) -m pytest tests/ -v
 
 corpus-crawl: $(PYTHON)
 	@test -f $(TOPIC_PROFILE) || { echo "missing $(TOPIC_PROFILE)"; exit 1; }
@@ -95,5 +98,6 @@ help:
 	@echo "  make corpus-enrich                    — export + join analytical files (the public artefact)"
 	@echo "Setup:"
 	@echo "  make deps                             — install pinned deps into .venv"
+	@echo "  make test                             — run docs/code sync checks"
 	@echo "Agent rules:"
 	@echo "  make sync-agents                      — regenerate CLAUDE.md + AGENTS.md from CONTEXT.md"

@@ -83,20 +83,22 @@ body {
 }
 .strip .accent { color: var(--red); }
 
-/* ── Back-bar ── */
-.backbar {
+/* ── Site nav ── */
+.site-nav {
   background: var(--cream);
   border-bottom: 2px solid var(--ink);
   padding: 14px clamp(20px, 4vw, 56px);
+  display: flex; align-items: center; gap: 12px;
 }
-.backbar a {
+.site-nav-link {
   font-family: var(--f-mono); font-size: 12px; letter-spacing: 2px;
   text-transform: uppercase; font-weight: 700;
   color: var(--ink); text-decoration: none;
-  border-bottom: 2px solid var(--red); padding-bottom: 2px;
+  border-bottom: 2px solid transparent; padding-bottom: 2px;
 }
-.backbar a + a { margin-left: 18px; }
-.backbar a:hover { color: var(--red); }
+.site-nav-link:hover { color: var(--red); }
+.site-nav-link[aria-current="page"] { border-bottom-color: var(--ink); }
+.site-nav-sep { color: #2a2a2a; font-family: var(--f-mono); font-size: 12px; user-select: none; }
 
 /* ── Section base ── */
 .section {
@@ -862,7 +864,7 @@ footer .colophon-line {
   }
   /* Hide on-screen chrome */
   .skip-link,
-  .data-backbar,
+  .site-nav,
   .strip,
   .actbar,
   .grain,
@@ -917,10 +919,13 @@ footer .colophon-line {
     <span class="accent">Per Capita Public Library Spend · 2014–2025</span>
   </div>
 
-  <div class="backbar">
-    <a href="/">← Back to the pamphlet</a>
-    <a href="/data/">→ Other data</a>
-  </div>
+  <nav class="site-nav" aria-label="Site navigation">
+    <a href="/" class="site-nav-link">The Case</a>
+    <span class="site-nav-sep" aria-hidden="true">·</span>
+    <a href="/data/" class="site-nav-link">The Data</a>
+    <span class="site-nav-sep" aria-hidden="true">·</span>
+    <a href="/inequality/" class="site-nav-link">The History</a>
+  </nav>
 
   <!-- ═══════════════════════════════ HERO -->
   <section class="section cream">
@@ -956,7 +961,7 @@ footer .colophon-line {
   <section class="section cream">
     <div class="stack">
       <div class="eyebrow">Section 1 · the arc</div>
-      <h2>RISE, PEAK, <span class="red">RETREAT.</span></h2>
+      <h2>RISE, PEAK, RETREAT.</h2>
       <p class="lede">
         Between 2014-15 and 2018-19, state expenditure on public libraries (budget head MH 2205-105)
         nearly doubled in nominal terms. Adjusted with the MoSPI implicit GDP deflator (base 2011-12),
@@ -1023,7 +1028,7 @@ footer .colophon-line {
     <div class="grain"></div>
     <div class="stack">
       <div class="eyebrow">Section 2 · the spread</div>
-      <h2>FROM ₹0.10<br>TO <span class="red">₹87.94.</span></h2>
+      <h2>FROM ₹0.10<br>TO ₹87.94.</h2>
       <p class="lede">
         31 states and UTs across nearly four orders of magnitude. Jharkhand at one end.
         Goa at the other. The bottom half clusters near zero; the top is stretched thin.
@@ -1240,7 +1245,7 @@ footer .colophon-line {
   <section class="section cream">
     <div class="stack">
       <div class="eyebrow">Section 3 · MHA Zonal Councils (1956) + North-Eastern Council (1972)</div>
-      <h2>THE STATE'S <span class="red">OWN MAP.</span></h2>
+      <h2>THE STATE'S OWN MAP.</h2>
       <p class="lede">
         In 1956, Nehru proposed grouping the reorganised states into Zonal Councils —
         advisory bodies meant to "develop the habit of cooperative working" between
@@ -1410,7 +1415,7 @@ footer .colophon-line {
     <div class="grain"></div>
     <div class="stack">
       <div class="eyebrow">Section 4 · MHA (1956) vs Ministry of Culture (1985)</div>
-      <h2>TWO MAPS.<br>ONE <span class="red">BUDGET LINE.</span></h2>
+      <h2>TWO MAPS.<br>ONE BUDGET LINE.</h2>
       <p class="lede">
         The State of India has drawn its regional map twice. The Ministry of Home Affairs
         in 1956 grouped reorganised states into <strong>five non-overlapping Zonal Councils</strong>
@@ -1630,7 +1635,7 @@ footer .colophon-line {
     <div class="grain"></div>
     <div class="stack">
       <div class="eyebrow">Section 5 · post-2021 receipts</div>
-      <h2>FOUR STATES.<br><span class="red">FOUR ANSWERS.</span></h2>
+      <h2>FOUR STATES.<br>FOUR ANSWERS.</h2>
       <p class="lede">
         CAG accounts for 2021-22 onwards are not yet published for most states.
         For Assam, Goa, Rajasthan, and Odisha we extracted figures from state
@@ -1723,7 +1728,7 @@ footer .colophon-line {
   <section class="section cream">
     <div class="stack">
       <div class="eyebrow">Section 6 · the legal architecture</div>
-      <h2>ACT. CESS. TAX.<br><span class="red">ABSENCE.</span></h2>
+      <h2>ACT. CESS. TAX.<br>ABSENCE.</h2>
       <p class="lede">
         Spending is downstream of legislation. Before a State can fund public libraries
         sustainably, it has to commit, in statute, that public libraries are a thing
@@ -1939,7 +1944,7 @@ footer .colophon-line {
     <div class="grain"></div>
     <div class="stack">
       <div class="eyebrow">Section 7 · what this means</div>
-      <h2>A DECADE.<br>NO <span class="red">REAL PROGRESS.</span></h2>
+      <h2>A DECADE.<br>NO REAL PROGRESS.</h2>
       <p class="lede">
         Public libraries are not a luxury. They are one of the few genuinely universal
         public goods — a place where a child from a poor family reads the same book
@@ -1956,8 +1961,15 @@ footer .colophon-line {
       </p>
       <p class="body">
         For scale: the central government alone spends over <strong>₹1,000 per capita
-        per year on defence</strong>. State spending on education runs ₹200–400 per
-        capita. ₹4.66 for libraries is not even a rounding error in that arithmetic.
+        per year on defence</strong>. Combined Union and State spending on education
+        and culture runs to <strong>₹9.2 lakh crore</strong> — over
+        <strong>₹650 per Indian</strong> (Economic Survey 2024-25). The entire
+        Ministry of Culture — museums, monuments, archaeology, performing arts —
+        received <strong>₹3,261 crore in 2024-25</strong>: <strong>₹23 per
+        Indian</strong>. The one national body tasked with supporting public
+        libraries across all states received <strong>₹27 crore</strong> in its
+        last verified Parliamentary allocation: under one rupee per Indian.
+        ₹4.66 for libraries is not a rounding error in that arithmetic.
         It is what a State that has decided libraries do not matter looks like.
       </p>
       <p class="body">
@@ -2055,6 +2067,21 @@ footer .colophon-line {
           Estimates 2022-23, First Revised 2023-24, Provisional
           Estimates 2024-25). Accessed via the MoSPI public API,
           May 2026.
+        </li>
+        <li style="margin-bottom: 14px;">
+          Reserve Bank of India. <em>State Finances: A Study of Budgets of
+          2025-26</em>. Mumbai: RBI, January 2026. Statement 31: Social Sector
+          Expenditure — All States and UTs combined: ₹26,54,955 crore
+          (₹26.5 lakh crore) in 2023-24.
+        </li>
+        <li style="margin-bottom: 14px;">
+          Ministry of Finance, Government of India. <em>Economic Survey
+          2024-25</em>, Chapter 11 (Social Sector). Combined Union and State
+          education and culture expenditure FY25 (BE): ₹9.2 lakh crore.
+          Ministry of Culture total allocation 2024-25: ₹3,260.93 crore
+          (SC 376th Report, March 2025; PIB PRID 1895562). RRRLF allocation
+          FY 2021-22: ₹27.07 crore (SC 310th Report, February 2022,
+          Table of Central library institutions).
         </li>
       </ol>
 

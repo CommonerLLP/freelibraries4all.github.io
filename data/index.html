@@ -37,50 +37,55 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@600;700;900&family=Roboto+Slab:wght@400;500;700;900&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Hind:wght@400;500;600;700&family=Hind+Madurai:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&family=Noto+Serif+Tamil:wght@400;600;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@600;700;900&family=Roboto+Slab:wght@400;500;700;900&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="../assets/styles.css?v=45">
+<link rel="stylesheet" href="../assets/styles.css?v=48">
 </head>
 <body>
 
 <a class="skip-link" href="#main-content">Skip to content</a>
 
-<main class="pamphlet" id="main-content">
-
-  <h1 class="visually-hidden">Data — The Right to Read: RRRLF disbursements, state report cards, world comparisons, and Parliament Q&amp;A on public libraries in India.</h1>
-
+<header>
   <!-- STRIP -->
   <div class="strip">
     <span lang="en">Free Libraries For All</span>
     <span class="accent">A People's Pamphlet</span>
   </div>
 
-  <!-- STICKY CALL-TO-ACTION — links back to the pamphlet's write section -->
+  <!-- STICKY CALL-TO-ACTION -->
   <div class="actbar">
     <a href="/#write"><span class="bang">ACT!</span>Write to your CM and the PM <span style="opacity:0.85">— now.</span><span class="arrow">→</span></a>
   </div>
 
-  <!-- BACK LINKS — to pamphlet + sister page -->
-  <div class="data-backbar">
-    <a href="/" class="data-back-link">← Back to the pamphlet</a>
-    <a href="/inequality/" class="data-back-link" style="margin-left: 16px;">Our past →</a>
-  </div>
+  <!-- SITE NAV -->
+  <nav class="site-nav" aria-label="Site navigation">
+    <a href="/" class="site-nav-link">Home</a>
+    <span class="site-nav-sep" aria-hidden="true">·</span>
+    <a href="/data/" class="site-nav-link" aria-current="page">The Data</a>
+    <span class="site-nav-sep" aria-hidden="true">·</span>
+    <a href="/inequality/" class="site-nav-link">The History</a>
+  </nav>
+</header>
+
+<main class="pamphlet" id="main-content">
+
+  <h1 class="visually-hidden">Data — The Right to Read: RRRLF disbursements, state report cards, world comparisons, and Parliament Q&amp;A on public libraries in India.</h1>
 
   <!-- DATA PAGE OPENER -->
-  <section class="section cream" id="data-hero">
+  <section class="section cream fit-headline" id="data-hero" style="--cqi-h2: 7;">
     <div class="def-stack">
       <div class="eyebrow">The data</div>
-      <h2>STATE OF <span class="red">PUBLIC LIBRARIES.</span></h2>
-      <p class="lede">The numbers behind the pamphlet. RRRLF disbursements 2003-2023, per-state grades and scandal data, world comparison, and India vs China. Updated as new data lands. Use this as your evidence base.</p>
+      <h2>STATE OF PUBLIC LIBRARIES.</h2>
+      <p class="lede">The numbers behind the pamphlet. Raja Rammohun Roy Library Foundation (RRRLF) disbursements 2003–2023, per-state grades and scandal data, world comparison, and India vs China. Updated as new data lands. Use this as your evidence base.</p>
     </div>
   </section>
 
   <!-- 1 · RRRLF -->
-  <section class="section ink" id="rrrlf">
+  <section class="section ink fit-headline" id="rrrlf" style="--cqi-h2: 6;">
     <div class="grain soft"></div>
     <div class="stack">
       <div class="eyebrow">RRRLF · the Centre's contribution</div>
-      <h2>TWO DECADES. <span class="red">A NOSE DIVE.</span></h2>
+      <h2>TWO DECADES. A NOSE DIVE.</h2>
       <p class="lede">The Raja Rammohun Roy Library Foundation is the Union Government's library funding arm. From 2003 to 2023 it disbursed ₹197 crore in total, across 1.4 billion people, across twenty years. The line below is what each Indian got per year, in nominal rupees. <strong class="t-red">In real terms — adjusted for inflation and population growth — the line is far steeper.</strong> Even at peak, the Centre was spending less than 25 paise per person per year on every public library in the country combined.</p>
       <div class="rrrlf-chart" id="rrrlf-chart"></div>
       <div class="stat-grid">
@@ -104,10 +109,10 @@
   </section>
 
   <!-- 2 · STATE REPORT CARD + SCANDAL DETAILS (one picker, two stacked panels) -->
-  <section class="section cream" id="report-card">
+  <section class="section cream fit-headline" id="report-card" style="--cqi-h2: 5;">
     <div class="eyebrow">State Report Card</div>
-    <h2>HOW DOES YOUR STATE <span class="red">GRADE?</span></h2>
-    <p class="lede">Pick your state. The card grades it A–F (per-capita spending 50 pts, Library Act 20 pts, RRRLF utilisation 2021-24 20 pts, NML participation 10 pts; +5 if the Act defines libraries as <em>free</em>). Below the grade, the scandal: where your state ranks, what the Centre sent, what it walks away with.</p>
+    <h2>HOW DOES YOUR STATE GRADE?</h2>
+    <p class="lede">Pick your state. The card grades it A–F (per-capita spending 50 pts, Library Act 20 pts, RRRLF utilisation 2021–24 20 pts, National Mission on Libraries (NML) participation 10 pts; +5 if the Act defines libraries as <em>free</em>). Below the grade, the scandal: where your state ranks, what the Centre sent, what it walks away with.</p>
 
     <div class="picker-wrap">
       <label class="picker-label" for="state-picker">Choose your state</label>
@@ -151,22 +156,12 @@
   <!-- Library game and diversion game both moved to homepage. -->
 
 
-  <section class="section ink" id="parliament">
+  <section class="section ink fit-headline" id="parliament" style="--cqi-h2: 5;">
     <div class="grain soft"></div>
     <div class="stack">
       <div class="eyebrow">Parliament · how the State responds</div>
-      <h2>MPs ASK ABOUT LIBRARIES. <span class="red">THE STATE EVADES.</span></h2>
-      <p class="lede">The chart above shows what the Centre <em>spent</em>. This section shows what the Centre <em>says</em> when MPs ask about that spending. <strong>341 library questions in Lok Sabha and Rajya Sabha. 105 had a parseable ministry response.</strong> Of those, <strong class="t-red">64 (61%) were classified as evasive</strong> by the open-source <a href="https://github.com/CommonerLLP/sansad-semantic-crawler" target="_blank" rel="noopener">sansad-semantic-crawler</a> — not Government opinion, Government's own words against a public taxonomy of parliamentary evasion.</p>
-
+      <h2>MPs ASK ABOUT LIBRARIES. THE STATE EVADES.</h2>
       <div class="parl-headline-stat" id="parl-headline-stat"></div>
-
-      <h3 class="parl-subhead">"Library is a state subject." <span class="t-cream-soft">Same five words. Two decades. Both major parties.</span></h3>
-      <p class="parl-subhead-note">The Centre's library-funding arm is RRRLF. Its smallness — ₹197 crore over twenty years — is justified, in Parliament, by the same five-word deflection. Below: every time the Centre invoked it in response to an RRRLF-tagged question, in the order it happened.</p>
-      <div class="parl-rrrlf-cascade" id="parl-rrrlf-cascade"></div>
-
-      <h3 class="parl-subhead">Per-ministry evasion rate <span class="t-cream-soft">on classified responses</span></h3>
-      <p class="parl-subhead-note">Of the 105 responses our classifier could read, here is the share each ministry spent on deflection, refusal, redirection, withheld data, or constitutional default. <strong>N is small — show it.</strong></p>
-      <div class="parl-ministry-rows" id="parl-ministry-rows"></div>
 
       <h3 class="parl-subhead">A taxonomy of evasion <span class="t-cream-soft">in the State's own words</span></h3>
       <p class="parl-subhead-note">One verbatim example per category. The classifier's label and political function are shown above the excerpt; the clickable line below it is the original Parliament URI.</p>
@@ -184,9 +179,9 @@
 
 
   <!-- 3.5 · WORLD COMPARISON — India next to the rich-world peers -->
-  <section class="section cream" id="world">
+  <section class="section cream fit-headline" id="world" style="--cqi-h2: 6;">
     <div class="eyebrow">India vs the World · per capita / year</div>
-    <h2>WE SPEND <span class="red">LESS</span> THAN OTHERS.</h2>
+    <h2>WE SPEND LESS THAN OTHERS.</h2>
     <p class="lede">India next to the countries that take their public libraries seriously. Per person, per year, in nominal Indian Rupees. The bars for India are so small they are almost invisible — that is the point. Finland spends roughly <strong>360× more</strong> per person than the average Indian state. The Centre's contribution rounds, visibly, to zero.</p>
     <div class="world-rows" id="world-rows"></div>
     <div class="section-source-note" style="margin-top: 28px;">
@@ -199,7 +194,7 @@
     <div class="grain soft"></div>
     <div class="stack">
       <div class="eyebrow">Meanwhile</div>
-      <h2>LAND FOR DATA CENTRES. <span class="red">NOT FOR LIBRARIES.</span></h2>
+      <h2>LAND FOR DATA CENTRES. NOT FOR LIBRARIES.</h2>
       <p class="lede">India has land for hyperscale data centres. Hectares cleared, water rights granted, electricity guaranteed, tax holidays signed — for foreign-owned server farms, in a country running out of water, trees, and breathable air. <strong>India does not have land for library campuses.</strong> Not for a National Library plot per district. Not for a public reading room per ward. China — the country we are told we are "competing" with — built the libraries first and is courting the data centres second. Look at what each one funds.</p>
 
       <div class="vs-grid" role="table" aria-label="India versus China — knowledge investment comparison">
@@ -286,32 +281,7 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <!-- Closing CTA + masthead — content section, not part of the unified footer -->
-  <section class="closing-section">
-    <div class="footer-grid">
-      <div>
-        <h3>EDUCATE.<br>AGITATE.<br><span class="red">ORGANISE.</span></h3>
-      </div>
-      <div class="footer-meta">
-        <a href="/" class="footer-og-link" aria-label="Right to Read — back to pamphlet">
-          <img class="footer-og-card" src="../assets/og-image.png?v=2" alt="Right to Read — Free Libraries for All." />
-        </a>
-        <div class="head">Free Libraries For All</div>
-        A pamphlet for the middle class.<br>
-        Independent of any political party.<br>
-        Built on the People's National<br>Library Policy 2024.<br>
-        Read the policy: <a href="https://www.fln.org.in" target="_blank" rel="noopener">fln.org.in</a>
-        <div class="salute">
-          <span lang="hi">जय भीम</span>
-          <span class="salute-sep" aria-hidden="true">·</span>
-          <span class="ta" lang="ta">வாழ்க பெரியார்</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Unified footer — identical on every page of the site -->
+  <!-- FOOTER — sources above the closing peroration -->
   <footer class="page-footer">
     <details class="bib-collapse">
       <summary class="bib-head">Sources, data &amp; citations</summary>
@@ -386,6 +356,34 @@
         Census 2011 population basis used for per-capita calculations in source data. West Bengal 2019-20 (₹0.46) reflects reporting irregularity. Tripura 2020-21 (₹0.07) requires further investigation. Many of the quantitative ratios are advocacy-grade approximations rounded to the nearest order of magnitude; methodological exactness varies. Where multiple figures exist, the most recent CAG-verified or peak-year value has been used.
       </div>
     </details>
+  </footer>
+
+  <!-- Closing peroration -->
+  <section class="closing-section">
+    <div class="footer-grid">
+      <div>
+        <h3>EDUCATE.<br>AGITATE.<br><span class="red">ORGANISE.</span></h3>
+      </div>
+      <div class="footer-meta">
+        <a href="/" class="footer-og-link" aria-label="Right to Read — back to pamphlet">
+          <img class="footer-og-card" src="../assets/og-image.png?v=2" alt="Right to Read — Free Libraries for All." />
+        </a>
+        <div class="head">Free Libraries For All</div>
+        A pamphlet for the middle class.<br>
+        Independent of any political party.<br>
+        Built on the People's National<br>Library Policy 2024.<br>
+        Read the policy: <a href="https://www.fln.org.in" target="_blank" rel="noopener">fln.org.in</a>
+        <div class="salute">
+          <span lang="hi">जय भीम</span>
+          <span class="salute-sep" aria-hidden="true">·</span>
+          <span class="ta" lang="ta">வாழ்க பெரியார்</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Colophon -->
+  <div class="page-footer-end">
     <div class="wip-notice">
       Work in progress · 2021-25 figures are extrapolations and will be revised as CAG actuals are published.
     </div>
@@ -401,14 +399,14 @@
         <span>GitHub</span>
       </a>
     </div>
-  </footer>
+  </div>
 
 </main>
 
-<script src="../assets/data.js?v=45"></script>
-<script src="../assets/parliament_libraries.js?v=45"></script>
-<script src="../assets/helpers.js?v=45"></script>
-<script src="../assets/games.js?v=45"></script>
-<script src="../assets/main.js?v=45"></script>
+<script src="../assets/data.js?v=48"></script>
+<script src="../assets/parliament_libraries.js?v=48"></script>
+<script src="../assets/helpers.js?v=48"></script>
+<script src="../assets/games.js?v=48"></script>
+<script src="../assets/main.js?v=48"></script>
 </body>
 </html>

@@ -29,6 +29,7 @@ if (excludedEl) excludedEl.innerHTML = EXCLUDED.map((e, i) => `
   <div class="excluded-card${i === 0 ? " first" : ""}">
     <div class="tag">Excluded — ${String(i+1).padStart(2, "0")}</div>
     <div class="name">${esc(e.label)}.</div>
+    ${e.stats ? `<div class="stats">${esc(e.stats)}</div>` : ""}
   </div>`).join("");
 
 // ─── INTERACTIVE TIMELINE ────────────────────────────────────────
@@ -216,9 +217,6 @@ $$("#actions-grid").innerHTML = ACTIONS.map((a) => `
       <div class="parl-headline-num">${esc(pct)}</div>
       <div class="parl-headline-body">
         <div class="parl-headline-lede"><strong>${esc(ds.evasiveCount)} of ${esc(ds.responsesClassified)}</strong> classified responses to library questions in Parliament were evasive.</div>
-        <div class="parl-headline-sub">
-          Across labels: REJECTED · SUBSTITUTED · FEDERAL_DEFLECTION · DEFLECTED · DATA_WITHHELD · STRUCTURAL_REFUSAL · CONSTITUTIONAL_DEFAULT · REPRESENTATIONAL_SILENCE.
-        </div>
       </div>`;
   }
 
@@ -363,6 +361,9 @@ function scandalFor(name) {
     ? (leg.free ? `${leg.year} Library Act — defines libraries as <strong>free</strong>` : `${leg.year} Library Act — but it permits user fees`)
     : `<strong style="color:var(--red)">No Library Act on the books</strong>`;
 
+  const ruralCov = RURAL_COVERAGE[name];
+  const ruralLine = ruralCov !== undefined ? `<strong>${ruralCov}%</strong> of Gram Panchayats have a functional library (PAI 2.0)` : `Rural coverage data unavailable for this jurisdiction`;
+
   const releasedL = RRRLF_RELEASED[name] || 0;
   const rrrlLine = releasedL > 0 ? `₹${fmtIN(releasedL)}L received from the Centre's library foundation` : `<strong style="color:var(--red)">₹0 received from the Centre's library foundation</strong>`;
 
@@ -405,11 +406,13 @@ function scandalFor(name) {
     name, spend, rank, total,
     rows: [
       { dim: "Per-capita spending",      detail: `₹${fmtMoney(spend)} per person per year (2020-21).`,  value: `₹${fmtMoney(spend)}` },
+      { dim: "Rural Coverage (GP)",      detail: ruralLine, value: ruralCov !== undefined ? `${ruralCov}%` : "—" },
       { dim: "vs national average",       detail: vsLine,  value: spend >= NATIONAL_AVG ? "↑" : "↓" },
       { dim: "Library Act",                detail: actLine, value: leg.has_act ? (leg.free ? "Free" : "Fees") : "None" },
       { dim: "RRRLF 2021-24",              detail: rrrlLine, value: releasedL > 0 ? `₹${fmtIN(releasedL)}L` : "₹0" },
       { dim: "Rank (out of 31)",           detail: rankLine, value: `${rank}/${total}` }
     ],
+
     punchline
   };
 }
@@ -468,7 +471,7 @@ const INDIA_POP_MN = {
   // RRRLF disbursement is in lakhs (₹L). 1 L = 100,000 ₹.
   const points = [];
   for (let y = 2003; y <= 2023; y++) {
-    const v = RRMLF_DATA[y];
+    const v = RRRLF_DATA[y];
     const pop = INDIA_POP_MN[y];
     if (!v || !pop) continue;
     const perCapita = (v * 100000) / (pop * 1_000_000); // ₹/person/year

@@ -146,7 +146,7 @@ const JURISDICTION_CONTACTS = {
 };
 
 // Annual RRRLF grant disbursement (₹ Lakhs, 2003-2023)
-const RRMLF_DATA = {
+const RRRLF_DATA = {
   2003:378.53, 2004:177.00, 2005:390.00, 2006:207.00,
   2008:332.00, 2010:887.43, 2012:2350.00, 2013:2670.30,
   2014:1139.32, 2015:710.00, 2016:2046.47, 2017:1493.40,
@@ -216,13 +216,29 @@ const STANDARDS = [
 ];
 
 const EXCLUDED = [
-  { id: "dalit",      label: "Dalit, Bahujan, Adivasi" },
-  { id: "women",      label: "Women, non-binary & trans people" },
-  { id: "disabled",   label: "Persons with disabilities" },
-  { id: "working",    label: "The working class & rural poor" },
-  { id: "muslim",     label: "Religious minorities" },
-  { id: "linguistic", label: "Speakers of non-dominant languages" }
+  { id: "dalit",      label: "Dalit, Bahujan, Adivasi", stats: "ST: 69.1% · SC: 73.5% (Literacy, 2022-23)" },
+  { id: "women",      label: "Women, non-binary & trans people", stats: "Women: 71.5% vs Men: 84.4% (Literacy, NFHS-5)" },
+  { id: "disabled",   label: "Persons with disabilities", stats: "Systematically un-counted in library infrastructure" },
+  { id: "working",    label: "The working class & rural poor", stats: "Rural Literacy: 74.9% vs Urban: 88.3%" },
+  { id: "muslim",     label: "Religious minorities", stats: "OBC literacy: 78.9% (includes many Muslim groups)" },
+  { id: "linguistic", label: "Speakers of non-dominant languages", stats: "Collections lack non-dominant languages" }
 ];
+
+// Rural library coverage percentage (Gram Panchayats with functional libraries).
+// Source: MoPR PAI 2.0 (Panchayat Advancement Index) Baseline Report 2025, Indicator T6.12.
+const RURAL_COVERAGE = {
+  "Kerala": 98,
+  "Tripura": 95,
+  "Maharashtra": 92.9,
+  "Gujarat": 85,
+  "Telangana": 82,
+  "Tamil Nadu": 75,
+  "Uttar Pradesh": 40,
+  "Andhra Pradesh": 35,
+  "Bihar": 22,
+  "National": 45.72
+};
+window.RURAL_COVERAGE = RURAL_COVERAGE;
 
 // Narrowed focus: the two specific State efforts that failed/are failing.
 // Phule, Ambedkar, Ranganathan, Birsa, Baroda, Haryana, FLN draft, China 2017
@@ -262,6 +278,7 @@ const HISTORY = [
   { year: "2017", title: "China enacts a Public Library Law", body: "A comparably-sized country enshrines public libraries as a statutory right. India still has no equivalent — the draft has been pending since the 1986 Chattopadhyay Committee." },
   { year: "2020", title: "National Education Policy 2020 — libraries reduced to 'digital'", body: "The first major education policy in 35 years. Library mentions are overwhelmingly about digital access and digitisation — 'one nation, one digital library' replaces the question of physical public libraries entirely. The library as anti-caste infrastructure, as a constitutional public good, as a place where caste, gender, and class meet on neutral ground — gets no chapter, no allocation, no target." },
   { year: "2024", title: "FLN publishes the People's National Library Policy", body: "The Free Libraries Network drafts and publishes PNLP24 — the document the State has refused to write for seventy-five years." },
+  { year: "2024–25", title: "The Digital Shift — ₹5,000 crore for 'Digital Libraries'", body: "In the 2023–24 budget, the Centre earmarks a ₹5,000 crore corpus for states to build digital libraries at the Panchayat level. The physical public library remains un-funded. The State chooses the screen over the shelf — a shift that bypasses the millions without reliable electricity or devices." },
   { year: "2026", title: "You read this", body: "What happens next is up to people who have a bookshelf at home and a friend who is a Member of Parliament." }
 ];
 
